@@ -9,7 +9,7 @@ Tecnologías usadas:
    - docu: https://docs.djangoproject.com/en/3.0/
 
 # Steps
-## Client
+### Client
 1. Crear un entorno virtual
 2. Instalar pip
 3. Instalar dependencias:
@@ -20,4 +20,4 @@ pip install -r requirements.txt
 ~~~ 
 python manage.py runserver
 ~~~ 
-## API
+### API
