@@ -15,3 +15,7 @@ Tecnologías usadas:
 ~~~ 
 pip install -r requirements.txt 
 ~~~
+4. En stock_manager/stockmanager:
+~~~ 
+python manage.py runserver
+~~~ 
