@@ -5,7 +5,7 @@ Esta es **API REST** del proyecto del **Grupo 2** desarrollada en python 3 (Pyth
 Tecnologías usadas:
 -  virtualenvwrapper --> **Entornos virtuales** que se van a usar
    - docu: https://virtualenvwrapper.readthedocs.io/en/latest/index.html 
-- Django --> **Web Framework** que se va a usar 
+- Django --> **Web Framework** que se va a usar para la parte de cliente
    - docu: https://docs.djangoproject.com/en/3.0/
 
 # Steps
