@@ -1,6 +1,6 @@
 # Stock Manager
 
-Esta es **API REST** del proyecto del **Grupo 2** desarrollada en python 3 (Python 3.7.4).
+Esta es **API REST** del proyecto del **Grupo 2** desarrollada en python 3 (Python 3).
 
 Tecnologías usadas:
 -  virtualenvwrapper --> **Entornos virtuales** que se van a usar
