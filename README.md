@@ -11,7 +11,7 @@ Tecnologías usadas:
 # Steps
 1. Crear un entorno virtual
 2. Instalar pip
- 
+3. Instalar dependencias:
 ~~~ 
 pip install -r requirements.txt 
 ~~~
