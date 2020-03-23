@@ -7,3 +7,8 @@ Tecnologías usadas:
    - docu: https://virtualenvwrapper.readthedocs.io/en/latest/index.html 
 - Django --> **Web Framework** que se va a usar 
    - docu: https://docs.djangoproject.com/en/3.0/
+
+# Steps
+1- Crear un entorno virtual
+2- Instalar pip
+3- ~~~ pip install -r requirements.txt ~~~
