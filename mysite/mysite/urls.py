@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
+import stock_manager.views as views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', views.test),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
