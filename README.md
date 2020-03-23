@@ -9,9 +9,9 @@ Tecnologías usadas:
    - docu: https://docs.djangoproject.com/en/3.0/
 
 # Steps
-1- Crear un entorno virtual
-2- Instalar pip
-3- 
+1 - Crear un entorno virtual
+2 - Instalar pip
+3 - 
 ~~~ 
 pip install -r requirements.txt 
 ~~~
