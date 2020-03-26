@@ -9,7 +9,8 @@ def test(request):
     return render(request, "index.html")
     #return render(request, "cart.html")
     #return render(request, "product-single.html")
-    #return render(request, "shop.html")
+    #return render(request, "shop.html") 
+    #Prueba de commit
 
 
 
