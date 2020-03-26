@@ -18,6 +18,7 @@ from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 import stock_manager.views as views
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
