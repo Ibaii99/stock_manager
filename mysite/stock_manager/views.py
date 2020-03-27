@@ -6,15 +6,18 @@ sessions = {}
 
 
 def test(request):
-    return render(request, "index.html")
+    #return render(request, "index.html")
     #return render(request, "cart.html")
     #return render(request, "product-single.html")
-    #return render(request, "shop.html") 
+    return render(request, "shop.html") 
     #Prueba de commit
 
 
+def shop(request):
+    return render(request, "shop.html")
 
-
+def index(request):
+    return render(request, "index.html")
 
 #Guardara el valor de la ip y la sesion
 def save_session(request, session_id):

@@ -23,6 +23,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', views.test),
+    path('index/', views.index),
+    path('shop/', views.shop),
+    path('', views.index),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

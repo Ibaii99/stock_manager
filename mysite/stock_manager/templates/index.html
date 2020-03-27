@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
-<html lang="en">
+<html lang="es">
 
-  <body class="goto-here">
+
 	{% block body %}
 		<section id="home-section" class="hero">
 			<div class="home-slider owl-carousel">
-			<div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+			<div class="slider-item" style="background-image: url({% static 'images/bg_1.jpg' %});">
 				<div class="overlay"></div>
 				<div class="container">
 				<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -22,7 +22,7 @@
 				</div>
 			</div>
 
-			<div class="slider-item" style="background-image: url(images/bg_2.jpg);">
+			<div class="slider-item" style="background-image: url({% static 'images/bg_2.jpg' %});">
 				<div class="overlay"></div>
 				<div class="container">
 				<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -99,7 +99,7 @@
 										<div class="text text-center">
 											<h2>Vegetables</h2>
 											<p>Protect the health of every home</p>
-											<p><a href="#" class="btn btn-primary">Shop now</a></p>
+											<p><a href="/shop/" class="btn btn-primary">Shop now</a></p>
 										</div>
 									</div>
 								</div>
