@@ -13,8 +13,10 @@ def test(request):
     #Prueba de commit
 
 def user(request):
-    
-    print(request.META.get('REMOTE_ADDR'))
+    if(request.method == 'POST'):
+        None
+    return render(request, "profile.html")
+
     
 def register(request):
     if(request.method == 'POST'):
