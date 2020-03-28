@@ -12,6 +12,19 @@ def test(request):
     return render(request, "shop.html") 
     #Prueba de commit
 
+def user(request):
+    
+    print(request.META.get('REMOTE_ADDR'))
+    
+def register(request):
+    if(request.method == 'POST'):
+        None
+    return render(request, "register.html")
+
+def login(request):
+    if(request.method == 'POST'):
+        None
+    return render(request, "login.html")
 
 def shop(request):
     return render(request, "shop.html")
