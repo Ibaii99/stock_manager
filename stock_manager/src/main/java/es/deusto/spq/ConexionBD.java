@@ -15,23 +15,27 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionBD {
-	
-		private static final String dbhost = "jdbc:mysql://localhost:3306/stock_ managerDB";
-		private static final String username = "root";
-		private static final String password = "1234Clave";
-		private Connection conn;
-		
-		@SuppressWarnings("finally")
-		public Connection createNewDBconnection() {
-			try  {	
-				conn = DriverManager.getConnection(
-						dbhost, username, password);	
-			} catch (final SQLException e) {
-				System.out.println("Cannot create database connection");
-				e.printStackTrace();
-			} finally {
-				return conn;	
-			}		
-		}	
+private String dbhost = "jdbc:mysql://localhost/stock_managerDB";
+private String username = "root";
+private String password = "1234Clave";
+private static String bd = "stock_managerDB";
+private Connection conn = null;
+
+@SuppressWarnings("finally")
+public Connection createNewDBconnection() {
+	try  {	
+		Class.forName("com.mysql.jdbc.Connection");
+		conn = (Connection)DriverManager.getConnection(dbhost, username, password);	
+		if(conn != null) {
+			System.out.println("Conexion a base de datos " + dbhost +"....OK");
+		}
+	} catch (SQLException e) {
+		System.out.println("Cannot create database connection");
+		e.printStackTrace();
+	} finally {
+		return conn;	
+	}		
+}
+
 
 }
