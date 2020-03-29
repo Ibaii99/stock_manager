@@ -97,6 +97,30 @@ public void insertCesta(Cesta cesta){
 
 	}
 }
+public void insertUsuario(Usuario usuario){
+	String insertSQL = "INSERT INTO articulo VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+		for (Articulo articulo : articulos) {
+			stmt.setInt(1, articulo.getID());
+			stmt.executeUpdate();
+		}
+	} catch (SQLException e) {
+		System.out.println(e);
+        e.printStackTrace();
+	}
+
+		
+	} catch (SQLException e) {
+		System.out.println(e);
+		System.out.println("Cannot create database connection");
+
+		e.printStackTrace();
+		return null;
+
+        e.printStackTrace();
+
+	}
+}
 
 public static int teclaSelectArticulo( Statement st) {
 	String sentSQL = "";
