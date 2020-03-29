@@ -1,6 +1,7 @@
 package es.deusto.spq.clases;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Cesta {
 
@@ -31,6 +32,15 @@ public class Cesta {
         this.ID = ID;
     }
 
-    
+    public float getRecibo(){
+
+        int r = 0;
+
+        for (Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
+           r += entry.getKey().getPrecio()*entry.getValue();
+        }
+       
+        return r;
+    }
 
 }
