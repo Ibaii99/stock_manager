@@ -14,7 +14,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 public class ConexionBD {
 private String dbhost = "jdbc:mysql://localhost/stock_managerDB";
 private String username = "root";
@@ -38,6 +37,5 @@ public Connection createNewDBconnection() {
 	}		
 }
 
-	
 
 }
