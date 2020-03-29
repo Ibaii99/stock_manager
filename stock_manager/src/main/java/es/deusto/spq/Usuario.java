@@ -2,22 +2,27 @@ package es.deusto.spq;
 
 
 public class Usuario {
+    private int ID;
     private String nombre;
     private String email;
     private String contrasenya;
     private String direccion;
-
-    public Usuario(){
-
-    }
     
-    public Usuario(String _nombre, String _email, String _contrasenya, String _direccion){
+    public Usuario(int ID, String _nombre, String _email, String _contrasenya, String _direccion){
+        this.ID = ID;
         this.contrasenya = _contrasenya;
         this.email = _email;
         this.nombre = _nombre;
         this.direccion = _direccion;
     }
 
+
+    /**
+     * @param ID the contrasenya to set
+     */
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     /**
      * @param contrasenya the contrasenya to set
@@ -42,6 +47,12 @@ public class Usuario {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    /**
+     * @return the ID
+     */
+    public int getID() {
+        return ID;
     }
     /**
      * @return the contrasenya
