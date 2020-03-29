@@ -8,8 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 import java.util.logging.*;
+
+import es.deusto.spq.clases.Articulo;
+import es.deusto.spq.clases.Cesta;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -60,7 +65,29 @@ public void insertArticulo(List<Articulo> articulos){
 			stmt.executeUpdate();
 		}
 	} catch (SQLException e) {
-		throw new DBManagerException("Error al insertar artículos.", e);
+		System.out.println(e);
+        e.printStackTrace();
+	}
+}
+
+public void insertCesta(Cesta cesta){
+	String insertSQL = "INSERT INTO cesta_compra VALUES(?, ?, ?)";
+	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+
+		for (Map.Entry<Articulo, Integer> entry : cesta.getArticulos().entrySet()) {
+			r += entry.getKey().getPrecio()*entry.getValue();
+
+			for (Articulo articulo : cesta.getArticulos()) {
+				stmt.setInt(1, articulo.getID());
+				stmt.executeUpdate();
+			}
+
+		 }
+
+		
+	} catch (SQLException e) {
+		System.out.println(e);
+        e.printStackTrace();
 	}
 }
 

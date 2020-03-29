@@ -6,37 +6,42 @@ import java.util.Map;
 public class Cesta {
 
     private int ID;
-    private HashMap<Articulo,Integer> articulos;
+    private final HashMap<Articulo, Integer> articulos;
     private String estado;
 
-    public Cesta(){
+    public Cesta() {
         this.articulos = new HashMap<>();
     }
 
-    public void addArticulo(Articulo articulo, int cantidad){
+    public void addArticulo(final Articulo articulo, final int cantidad) {
         this.articulos.put(articulo, cantidad);
     }
 
-    public String getEstado(){
+    public String getEstado() {
         return this.estado;
     }
 
-    public void setEstado(String estado){
+    public void setEstado(final String estado) {
         this.estado = estado;
     }
 
-    public int getID(){
+    public int getID() {
         return this.ID;
     }
-    public void setID(int ID){
+
+    public void setID(final int ID) {
         this.ID = ID;
     }
 
-    public float getRecibo(){
+    public HashMap<Articulo,Integer> getArticulos() {
+        return this.articulos;
+    }
+
+    public float getRecibo() {
 
         int r = 0;
 
-        for (Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
+        for (final Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
            r += entry.getKey().getPrecio()*entry.getValue();
         }
        
