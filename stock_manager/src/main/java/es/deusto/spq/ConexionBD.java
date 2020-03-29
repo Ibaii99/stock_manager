@@ -37,5 +37,47 @@ public Connection createNewDBconnection() {
 	}		
 }
 
+/** Devuelve statement para usar la base de datos
+ * @param con	Conexi�n ya creada y abierta a la base de datos
+ * @return	sentencia de trabajo si se crea correctamente, null si hay cualquier error
+ */
+public static Statement usarBD(conn ) {
+	try {
+		Statement statement = con.createStatement();
+		statement.setQueryTimeout(20); 
+		return statement;
+	} catch (SQLException e) {
+		System.out.println("Cannot create database connection");
+		e.printStackTrace();
+		return null;
+	}
+}
+public void insertArticulo(List<Articulo> articulos){
+	String insertSQL = "INSERT INTO articulo VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+		for (Articulo articulo : articulos) {
+			stmt.setInt(1, articulo.getID());
+			stmt.executeUpdate();
+		}
+	} catch (SQLException e) {
+		throw new DBManagerException("Error al insertar artículos.", e);
+	}
+}
+
+public static int teclaSelect( Statement st) {
+	String sentSQL = "";
+	try {
+		sentSQL = "select * from articulo '";
+		ResultSet rs = st.executeQuery( sentSQL );
+	} catch (SQLException e) {
+		System.out.println("Error en la bd");
+		e.printStackTrace();
+	}
+}
+
+
+
+
+
 
 }
