@@ -1,6 +1,6 @@
 package es.deusto.spq.clases;
 
-class Oferta{
+public class Oferta{
 
     private int codigo;
     private String nombre;
