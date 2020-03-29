@@ -84,55 +84,8 @@ public void insertArticulo(List<Articulo> articulos){
 
 
 
-<<<<<<< HEAD
-			for (Articulo articulo : cesta.getArticulos()) {
-				stmt.setInt(1, articulo.getID());
-				stmt.executeUpdate();
-			}
 
-		 }
-
-		
-	} catch (SQLException e) {
-		System.out.println(e);
-		System.out.println("Cannot create database connection");
-
-		e.printStackTrace();
-		return null;
-
-        e.printStackTrace();
-
-	}
-}
-public void insertUsuario(Usuario usuario){
-	String insertSQL = "INSERT INTO articulo VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
-		for (Articulo articulo : articulos) {
-			stmt.setInt(1, articulo.getID());
-			stmt.executeUpdate();
-		}
-	} catch (SQLException e) {
-		System.out.println(e);
-        e.printStackTrace();
-	}
-
-		
-	} catch (SQLException e) {
-		System.out.println(e);
-		System.out.println("Cannot create database connection");
-
-		e.printStackTrace();
-		return null;
-
-        e.printStackTrace();
-
-	}
-}
-
-public static int teclaSelectArticulo( Statement st) {
-=======
 public static ArrayList<Articulo> teclaSelectArticulo( Statement st) {
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 	String sentSQL = "";
 	ArrayList<Articulo> articulos = new ArrayList();
 	try {
@@ -271,7 +224,7 @@ public static ArrayList<Pedido> teclaSelectPedido(Statement st) {
 
 
 public void insertVendedor(List<Vendedor> vendedores){
-	String insertSQL = "INSERT INTO pedido VALUES(?, ?, ?)";
+	String insertSQL = "INSERT INTO vendedor VALUES(?, ?, ?)";
 	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
 		for (Vendedor vendedor : vendedores) {
 			stmt.setInt(1, vendedor.getID());
@@ -289,7 +242,7 @@ public static ArrayList<Vendedor> teclaSelectVendedor(Statement st) {
 	String sentSQL = "";
 	ArrayList<Vendedor> vendedores = new ArrayList();
 	try {
-		sentSQL = "select * from pedido '";
+		sentSQL = "select * from vendedor";
 		ResultSet rs = st.executeQuery( sentSQL );
 		while(rs.next()) {
 			int ID = rs.getInt("ID");
@@ -305,6 +258,48 @@ public static ArrayList<Vendedor> teclaSelectVendedor(Statement st) {
 		e.printStackTrace();
 	}
 	return vendedores;
+}
+
+public void insertUsuarios(List<Usuario> usuarios){
+	String insertSQL = "INSERT INTO cliente VALUES(?, ?, ?, ?, ?)";
+	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+		for (Usuario usuario : usuarios) {
+			stmt.setInt(1, usuario.getID());
+			stmt.setString(2, usuario.getNombre());
+			stmt.setString(3, usuario.getEmail());
+			stmt.setString(4, usuario.getContrasenya());
+			stmt.setString(5, usuario.getDireccion());
+			
+			stmt.executeUpdate();
+		}
+	} catch (SQLException e) {
+		System.out.println("Cannot create database connection");
+        e.printStackTrace();
+	}
+}
+
+public static ArrayList<Usuario> teclaSelectUsuario(Statement st) {
+	String sentSQL = "";
+	ArrayList<Usuario> usuarios = new ArrayList();
+	try {
+		sentSQL = "select * from cliente '";
+		ResultSet rs = st.executeQuery( sentSQL );
+		while(rs.next()) {
+			int ID = rs.getInt("ID");
+			String nombre = rs.getString("nombre");
+			String email = rs.getString("email");
+			String contrasenya = rs.getString("contrasenya");
+			String direccion = rs.getString("direccion");
+			  
+			Usuario usuario = new Usuario(ID, nombre, email, contrasenya, direccion);
+			usuarios.add(usuario);
+		}
+		
+	} catch (SQLException e) {
+		System.out.println("Error en la bd");
+		e.printStackTrace();
+	}
+	return usuarios;
 }
 
 
