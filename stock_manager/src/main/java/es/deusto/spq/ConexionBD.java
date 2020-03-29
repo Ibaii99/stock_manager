@@ -1,15 +1,20 @@
 package es.deusto.spq;
 
 import java.sql.Connection;
+import es.deusto.spq.clases.*;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.*;
+
+import es.deusto.spq.clases.Articulo;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -41,9 +46,9 @@ public Connection createNewDBconnection() {
  * @param con	Conexi�n ya creada y abierta a la base de datos
  * @return	sentencia de trabajo si se crea correctamente, null si hay cualquier error
  */
-public static Statement usarBD(conn ) {
+public static Statement usarBD(Connection conn ) {
 	try {
-		Statement statement = con.createStatement();
+		Statement statement = conn.createStatement();
 		statement.setQueryTimeout(20); 
 		return statement;
 	} catch (SQLException e) {
@@ -61,25 +66,56 @@ public void insertArticulo(List<Articulo> articulos){
 		}
 	} catch (SQLException e) {
 		System.out.println("Cannot create database connection");
+
 		e.printStackTrace();
 		return null;
-	}
-}
 
-public static int teclaSelect( Statement st) {
+        e.printStackTrace();
+
+	}
+}get.
+
+public static int teclaSelectArticulo( Statement st) {
 	String sentSQL = "";
 	try {
 		sentSQL = "select * from articulo '";
 		ResultSet rs = st.executeQuery( sentSQL );
+		while(rs.next()) {
+			Date caducidad = rs.getDate("caducidad");
+			...
+			Articulo a = new Articulo(...);
+		}
 	} catch (SQLException e) {
 		System.out.println("Error en la bd");
 		e.printStackTrace();
 	}
+	return rs;
 }
 
+public void insertOferta(List<Oferta> ofertas){
+	String insertSQL = "INSERT INTO oferta VALUES(?, ?, ?)";
+	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+		for (Oferta oferta : ofertas) {
+			stmt.setInt(1, oferta.getCodigo());
+			stmt.executeUpdate();
+		}
+	} catch (SQLException e) {
+		System.out.println("Cannot create database connection");
+        e.printStackTrace();
+	}
+}
 
-
-
+//public static int teclaSelectOferta( Statement st) {
+//	String sentSQL = "";
+//	try {
+//		sentSQL = "select * from oferta '";
+//		ResultSet rs = st.executeQuery( sentSQL );
+//		
+//	} catch (SQLException e) {
+//		System.out.println("Error en la bd");
+//		e.printStackTrace();
+//	}
+//}
 
 
 }
