@@ -82,46 +82,16 @@ public void insertArticulo(List<Articulo> articulos){
 	}
 }
 
-<<<<<<< HEAD
+
+
 public static ArrayList<Articulo> teclaSelectArticulo( Statement st) {
 	String sentSQL = "";
 	ArrayList<Articulo> articulos = new ArrayList();
-=======
-public void insertCesta(Cesta cesta){
-	String insertSQL = "INSERT INTO cesta_compra VALUES(?, ?, ?)";
-	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
-
-		for (Map.Entry<Articulo, Integer> entry : cesta.getArticulos().entrySet()) {
-			r += entry.getKey().getPrecio()*entry.getValue();
-
-			for (Articulo articulo : cesta.getArticulos()) {
-				stmt.setInt(1, articulo.getID());
-				stmt.executeUpdate();
-			}
-
-		 }
-
-		
-	} catch (SQLException e) {
-		System.out.println(e);
-		System.out.println("Cannot create database connection");
-
-		e.printStackTrace();
-		return null;
-
-        e.printStackTrace();
-
-	}
-}get.
-
-public static int teclaSelectArticulo( Statement st) {
-	String sentSQL = "";
->>>>>>> d977665afb968fdfbdf66f3835a84f5cf3dcfb0c
 	try {
 		sentSQL = "select * from articulo '";
 		ResultSet rs = st.executeQuery( sentSQL );
 		while(rs.next()) {
-<<<<<<< HEAD
+
 			int id = rs.getInt("ID");
 		String nombre_Articulo = rs.getString("nombre");
 		Date caducidad = rs.getDate("caducidad");
@@ -133,21 +103,16 @@ public static int teclaSelectArticulo( Statement st) {
 		Articulo articulo = new Articulo(id,nombre_Articulo,caducidad,
 		precio,stock,descripcion,oferta,categoria);
 		articulos.add(articulo);
-=======
-			Date caducidad = rs.getDate("caducidad");
-			...
-			Articulo a = new Articulo(...);
->>>>>>> d977665afb968fdfbdf66f3835a84f5cf3dcfb0c
+
+
 		}
 	} catch (SQLException e) {
 		System.out.println("Error en la bd");
 		e.printStackTrace();
 	}
-<<<<<<< HEAD
+
 	return articulos;
-=======
-	return rs;
->>>>>>> d977665afb968fdfbdf66f3835a84f5cf3dcfb0c
+
 }
 
 public void insertOferta(List<Oferta> ofertas){
@@ -255,5 +220,45 @@ public static ArrayList<Pedido> teclaSelectPedido(Statement st) {
 	}
 	return pedidos;
 }
+
+
+public void insertVendedor(List<Vendedor> vendedores){
+	String insertSQL = "INSERT INTO pedido VALUES(?, ?, ?)";
+	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+		for (Vendedor vendedor : vendedores) {
+			stmt.setInt(1, vendedor.getID());
+			stmt.setString(2, vendedor.getNombre());
+			stmt.setString(3, vendedor.getEmail());
+			stmt.executeUpdate();
+		}
+	} catch (SQLException e) {
+		System.out.println("Cannot create database connection");
+        e.printStackTrace();
+	}
+}
+
+public static ArrayList<Vendedor> teclaSelectVendedor(Statement st) {
+	String sentSQL = "";
+	ArrayList<Vendedor> vendedores = new ArrayList();
+	try {
+		sentSQL = "select * from pedido '";
+		ResultSet rs = st.executeQuery( sentSQL );
+		while(rs.next()) {
+			int ID = rs.getInt("ID");
+			String nombre = rs.getString("nombre");
+			String email = rs.getString("email");
+			  
+			Vendedor vendedor = new Vendedor(ID, nombre, email);
+			vendedores.add(vendedor);
+		}
+		
+	} catch (SQLException e) {
+		System.out.println("Error en la bd");
+		e.printStackTrace();
+	}
+	return vendedores;
+}
+
+
 
 }
