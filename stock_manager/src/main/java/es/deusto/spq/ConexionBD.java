@@ -259,6 +259,46 @@ public static ArrayList<Vendedor> teclaSelectVendedor(Statement st) {
 	return vendedores;
 }
 
+public void insertOpinion(List<Opinion> opiniones){
+	String insertSQL = "INSERT INTO pedido VALUES(?, ?, ?)";
+	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+		for (Opinion opinion : opiniones) {
+			stmt.setString(1, opinion.getTexto());
+			stmt.setInt(2, opinion.getValoracion());
+			stmt.setInt(3, opinion.getID_Cliente());
+			stmt.setInt(4, opinion.getID_Opinion());
+			stmt.executeUpdate();
+		}
+	} catch (SQLException e) {
+		System.out.println("Cannot create database connection");
+        e.printStackTrace();
+	}
+}
+
+public static ArrayList<Opinion> teclaSelectOpinion(Statement st) {
+	String sentSQL = "";
+	ArrayList<Opinion> opiniones = new ArrayList();
+	try {
+		sentSQL = "select * from pedido '";
+		ResultSet rs = st.executeQuery( sentSQL );
+		while(rs.next()) {
+			String texto = rs.getString("tetxo");
+			int valoracion = rs.getInt("valoracion");
+			int ID_Cliente = rs.getInt("ID_Cliente");
+			int ID_Opinion = rs.getInt("ID_Opinion");
+
+			  
+			Opinion opinion = new Opinion(texto, valoracion, ID_Cliente, ID_Opinion);
+			opiniones.add(opinion);
+		}
+		
+	} catch (SQLException e) {
+		System.out.println("Error en la bd");
+		e.printStackTrace();
+	}
+	return opiniones;
+}
+
 
 
 }
