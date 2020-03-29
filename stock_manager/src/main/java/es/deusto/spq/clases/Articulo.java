@@ -15,12 +15,6 @@ public class Articulo {
 
     
 
-    public Articulo(int iD, String nombre, String categoria) {
-		super();
-		this.ID = iD;
-		this.nombre = nombre;
-		this.categoria = categoria;
-	}
 
 	public Articulo(int iD, String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
 			String categoria) {
@@ -32,6 +26,14 @@ public class Articulo {
 		this.stock = stock;
 		this.descripcion = descripcion;
 		this.oferta = oferta;
+		this.categoria = categoria;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
