@@ -11,18 +11,31 @@ public class Articulo {
     private int stock;
     private String descripcion;
     private float oferta;
+    private String categoria;
 
-    public Articulo(int ID, String _nombre, Date caducidad, float precio, int stock, String descripcion, float oferta) {
-        this.setID(ID);
-        this.setNombre(_nombre);
-        this.setCaducidad(caducidad);
-        this.setPrecio(precio);
-        this.setStock(stock);
-        this.setDescripcion(descripcion);
-        this.setOferta(oferta);
-    }
+    
 
-    public float getOferta() {
+    public Articulo(int iD, String nombre, String categoria) {
+		super();
+		this.ID = iD;
+		this.nombre = nombre;
+		this.categoria = categoria;
+	}
+
+	public Articulo(int iD, String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
+			String categoria) {
+		super();
+		this.ID = iD;
+		this.nombre = nombre;
+		this.caducidad = caducidad;
+		this.precio = precio;
+		this.stock = stock;
+		this.descripcion = descripcion;
+		this.oferta = oferta;
+		this.categoria = categoria;
+	}
+
+	public float getOferta() {
         return oferta;
     }
 
