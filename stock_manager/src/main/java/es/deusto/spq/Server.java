@@ -1,6 +1,7 @@
 package es.deusto.spq;
 
 import javax.ws.rs.GET;
+import es.deusto.spq.clases.*;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
