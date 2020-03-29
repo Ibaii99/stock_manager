@@ -3,7 +3,8 @@ package es.deusto.spq.clases;
 public class Pedido {
 	private int codigo_Pedido;
 	private String proveedor_Pedido;
-	private String articulo_Pedido;
+	private Articulo articulo_Pedido;
+	
 	public int getCodigo_Pedido() {
 		return codigo_Pedido;
 	}
@@ -16,14 +17,14 @@ public class Pedido {
 	public void setProveedor_Pedido(String proveedor_Pedido) {
 		this.proveedor_Pedido = proveedor_Pedido;
 	}
-	public String getArticulo_Pedido() {
+	public Articulo getArticulo_Pedido() {
 		return articulo_Pedido;
 	}
-	public void setArticulo_Pedido(String articulo_Pedido) {
+	public void setArticulo_Pedido(Articulo articulo_Pedido) {
 		this.articulo_Pedido = articulo_Pedido;
 	}
 	
-	public Pedido(int codigo_Pedido, String proveedor_Pedido, String articulo_Pedido) {
+	public Pedido(int codigo_Pedido, String proveedor_Pedido, Articulo articulo_Pedido) {
 		super();
 		this.codigo_Pedido = codigo_Pedido;
 		this.proveedor_Pedido = proveedor_Pedido;
