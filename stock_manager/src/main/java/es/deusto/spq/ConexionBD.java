@@ -96,7 +96,7 @@ public void insertCesta(Cesta cesta){
         e.printStackTrace();
 
 	}
-}get.
+}
 
 public static int teclaSelectArticulo( Statement st) {
 	String sentSQL = "";
