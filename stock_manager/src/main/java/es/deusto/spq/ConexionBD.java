@@ -60,7 +60,9 @@ public void insertArticulo(List<Articulo> articulos){
 			stmt.executeUpdate();
 		}
 	} catch (SQLException e) {
-		throw new DBManagerException("Error al insertar artículos.", e);
+		System.out.println("Cannot create database connection");
+		e.printStackTrace();
+		return null;
 	}
 }
 
