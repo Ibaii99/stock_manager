@@ -10,11 +10,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 import java.util.logging.*;
 
 import es.deusto.spq.clases.Articulo;
-
+import es.deusto.spq.clases.Cesta;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -76,18 +77,51 @@ public void insertArticulo(List<Articulo> articulos){
 			stmt.executeUpdate();
 		}
 	} catch (SQLException e) {
-		System.out.println("Cannot create database connection");
+		System.out.println(e);
         e.printStackTrace();
 	}
 }
 
+<<<<<<< HEAD
 public static ArrayList<Articulo> teclaSelectArticulo( Statement st) {
 	String sentSQL = "";
 	ArrayList<Articulo> articulos = new ArrayList();
+=======
+public void insertCesta(Cesta cesta){
+	String insertSQL = "INSERT INTO cesta_compra VALUES(?, ?, ?)";
+	try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+
+		for (Map.Entry<Articulo, Integer> entry : cesta.getArticulos().entrySet()) {
+			r += entry.getKey().getPrecio()*entry.getValue();
+
+			for (Articulo articulo : cesta.getArticulos()) {
+				stmt.setInt(1, articulo.getID());
+				stmt.executeUpdate();
+			}
+
+		 }
+
+		
+	} catch (SQLException e) {
+		System.out.println(e);
+		System.out.println("Cannot create database connection");
+
+		e.printStackTrace();
+		return null;
+
+        e.printStackTrace();
+
+	}
+}get.
+
+public static int teclaSelectArticulo( Statement st) {
+	String sentSQL = "";
+>>>>>>> d977665afb968fdfbdf66f3835a84f5cf3dcfb0c
 	try {
 		sentSQL = "select * from articulo '";
 		ResultSet rs = st.executeQuery( sentSQL );
 		while(rs.next()) {
+<<<<<<< HEAD
 			int id = rs.getInt("ID");
 		String nombre_Articulo = rs.getString("nombre");
 		Date caducidad = rs.getDate("caducidad");
@@ -99,12 +133,21 @@ public static ArrayList<Articulo> teclaSelectArticulo( Statement st) {
 		Articulo articulo = new Articulo(id,nombre_Articulo,caducidad,
 		precio,stock,descripcion,oferta,categoria);
 		articulos.add(articulo);
+=======
+			Date caducidad = rs.getDate("caducidad");
+			...
+			Articulo a = new Articulo(...);
+>>>>>>> d977665afb968fdfbdf66f3835a84f5cf3dcfb0c
 		}
 	} catch (SQLException e) {
 		System.out.println("Error en la bd");
 		e.printStackTrace();
 	}
+<<<<<<< HEAD
 	return articulos;
+=======
+	return rs;
+>>>>>>> d977665afb968fdfbdf66f3835a84f5cf3dcfb0c
 }
 
 public void insertOferta(List<Oferta> ofertas){
