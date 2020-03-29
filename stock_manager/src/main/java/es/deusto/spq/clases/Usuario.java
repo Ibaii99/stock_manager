@@ -79,5 +79,8 @@ public class Usuario {
         return nombre;
     }
     
+    public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
+    	
+	}
 
 }
