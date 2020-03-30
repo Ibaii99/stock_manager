@@ -5,7 +5,7 @@ public class Opinion {
 	private int valoracion;
 	private int opinion_cliente;
 	private int codigo_opinion;
-	
+	//Comentario
 	
 	public String getTexto() {
 		return texto;

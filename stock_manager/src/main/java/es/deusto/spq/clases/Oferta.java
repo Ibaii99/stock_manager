@@ -11,7 +11,7 @@ public class Oferta{
         this.nombre_oferta = nombre;
         this.articulo_oferta = articulo;
     }
-
+//Comentario
 	public int getCodigo_oferta() {
 		return codigo_oferta;
 	}

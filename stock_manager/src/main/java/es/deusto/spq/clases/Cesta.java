@@ -16,6 +16,7 @@ public class Cesta {
     public void addArticulo(final Articulo articulo, final int cantidad) {
         this.articulos.put(articulo, cantidad);
     }
+  //Comentario
 
     public String getEstado() {
         return this.estado;
