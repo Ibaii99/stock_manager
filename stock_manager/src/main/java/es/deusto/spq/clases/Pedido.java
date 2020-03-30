@@ -2,7 +2,7 @@ package es.deusto.spq.clases;
 
 public class Pedido {
 	private int codigo_pedido;
-	private String proveedor_pedido;
+	private Vendedor proveedor_pedido;
 	private Articulo articulo_pedido;
 	
 	public int getCodigo_Pedido() {
@@ -11,10 +11,10 @@ public class Pedido {
 	public void setCodigo_Pedido(int codigo_Pedido) {
 		this.codigo_pedido = codigo_Pedido;
 	}
-	public String getProveedor_Pedido() {
+	public Vendedor getProveedor_Pedido() {
 		return proveedor_pedido;
 	}
-	public void setProveedor_Pedido(String proveedor_Pedido) {
+	public void setProveedor_Pedido(Vendedor proveedor_Pedido) {
 		this.proveedor_pedido = proveedor_Pedido;
 	}
 	public Articulo getArticulo_Pedido() {
@@ -24,7 +24,7 @@ public class Pedido {
 		this.articulo_pedido = articulo_Pedido;
 	}
 	
-	public Pedido(int codigo_Pedido, String proveedor_Pedido, Articulo articulo_Pedido) {
+	public Pedido(int codigo_Pedido, Vendedor proveedor_Pedido, Articulo articulo_Pedido) {
 		super();
 		this.codigo_pedido = codigo_Pedido;
 		this.proveedor_pedido = proveedor_Pedido;
