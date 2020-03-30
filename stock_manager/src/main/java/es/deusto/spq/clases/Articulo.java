@@ -13,9 +13,6 @@ public class Articulo {
     private float oferta;
     private String categoria;
 
-    
-
-
 	public Articulo(int iD, String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
 			String categoria) {
 		super();
