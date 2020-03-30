@@ -114,6 +114,23 @@ public class Articulo {
         //&&this.oferta==p.oferta&&this.precio==p.precio&&this.stock==p.stock;
 
     }
+
+    private int ID;
+    private String nombre;
+    private Date caducidad;
+    private float precio;
+    private int stock;
+    private String descripcion;
+    private float oferta;
+    private String categoria;
+
+    @Override
+	public String toString() {
+        return "Articulo [ID=" + this.ID + ", nombre=" + this.nombre + ", Caducidad=" + this.categoria + ", Precio" + this.precio +
+        ", Stock" + this.stock + ", Descrpción" + this.descripcion + ", Oferta" + this.oferta + ", Categoria" + this.categoria +     "]";
+	}
+
+
     @Override
 	public int hashCode() {
 		

@@ -53,11 +53,11 @@ public class Cesta {
         this.estado = estado;
     }
 
-    public int getID() {
+    public int getIDCliente() {
         return this.ID_cliente;
     }
 
-    public void setID(final int ID_cliente) {
+    public void setIDCliente(final int ID_cliente) {
         this.ID_cliente = ID_cliente;
     }
 
@@ -77,6 +77,20 @@ public class Cesta {
         return r;
     }
     
+    @Override
+	public String toString() {
+
+        String r = "";
+
+        for (final Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
+
+           r += "Cesta {" + entry.getKey().toString() + ", Cantidad: " + entry.getValue() + "  }";
+
+        }
+
+		return r;
+	}
+
     
 
 }
