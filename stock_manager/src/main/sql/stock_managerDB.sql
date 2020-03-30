@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `stock_managerdb`.`articulo` (
   `precio` FLOAT NOT NULL,
   `stock` INT(11) NULL DEFAULT NULL,
   `descripción` VARCHAR(45) NOT NULL,
-  `precio_normal` FLOAT NOT NULL,
   `precio_oferta` FLOAT NOT NULL,
   `foto` LONGBLOB NULL DEFAULT NULL,
   `categoria` VARCHAR(45) NULL DEFAULT NULL,
