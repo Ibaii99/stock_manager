@@ -9,7 +9,7 @@ import es.deusto.spq.clases.Cesta.Estado;
 
 
 
-class CombateTest {
+class Cesta_test {
 
     @org.junit.Test
 	void testConstructor() {    
