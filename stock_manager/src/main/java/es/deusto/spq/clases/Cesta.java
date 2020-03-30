@@ -33,7 +33,11 @@ public class Cesta {
     }
 
     public void addArticulo(final Articulo articulo, final int cantidad) {
-        this.articulos.put(articulo, cantidad);
+        
+        if (this.articulos.containsKey(articulo)) {
+            this.articulos.replace(articulo, articulos.get(articulo)+cantidad);
+        }else this.articulos.put(articulo, cantidad); 
+       
     }
   //Comentario
 
