@@ -5,12 +5,31 @@ import java.util.Map;
 
 public class Cesta {
 
-    private int ID_cliente;
-    private final HashMap<Articulo, Integer> articulos;
-    private String estado;
+    enum Estado {
+        ACTUAL,
+        PREPARACION,
+        ENCAMINO,
+        ENTREGADO
+      }
 
-    public Cesta() {
+    private int ID_cliente;
+    private int ID_cesta;
+    private final HashMap<Articulo, Integer> articulos;
+    private Estado estado;
+
+    public Cesta(int idCesta, int idCliente, Estado estado) {
+        this.ID_cesta = idCesta;
+        this.ID_cliente = idCliente;
         this.articulos = new HashMap<>();
+        this.estado = estado;
+    }
+
+    public int getID_cesta() {
+        return ID_cesta;
+    }
+
+    public void setID_cesta(int iD_cesta) {
+        this.ID_cesta = iD_cesta;
     }
 
     public void addArticulo(final Articulo articulo, final int cantidad) {
@@ -18,11 +37,15 @@ public class Cesta {
     }
   //Comentario
 
-    public String getEstado() {
+    public Estado getEstado() {
         return this.estado;
     }
 
-    public void setEstado(final String estado) {
+    public String getEstadoString() {
+        return this.estado.toString();
+    }
+
+    public void setEstado(final Estado estado) {
         this.estado = estado;
     }
 
@@ -38,6 +61,7 @@ public class Cesta {
         return this.articulos;
     }
 
+    //A modificar por Oferta
     public float getRecibo() {
 
         int r = 0;
@@ -48,13 +72,6 @@ public class Cesta {
        
         return r;
     }
-
-	public Cesta(int iD_cliente, HashMap<Articulo, Integer> articulos, String estado) {
-		super();
-		ID_cliente = iD_cliente;
-		this.articulos = articulos;
-		this.estado = estado;
-	}
     
     
 
