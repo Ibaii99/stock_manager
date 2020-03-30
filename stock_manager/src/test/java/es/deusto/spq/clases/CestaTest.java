@@ -1,15 +1,11 @@
 package es.deusto.spq.clases;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.junit.jupiter.api.Test;
-
-import es.deusto.spq.clases.Cesta.Estado; 
+import es.deusto.spq.clases.Cesta.Estado;
 
 
 
