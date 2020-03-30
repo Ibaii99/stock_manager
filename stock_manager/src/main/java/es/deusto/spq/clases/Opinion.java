@@ -3,9 +3,9 @@ package es.deusto.spq.clases;
 public class Opinion {
 	private String texto;
 	private int valoracion;
-	private int ID_Cliente;
-	private int ID_Opinion;
-	
+	private int opinion_cliente;
+	private int codigo_opinion;
+	//Comentario
 	
 	public String getTexto() {
 		return texto;
@@ -19,24 +19,24 @@ public class Opinion {
 	public void setValoracion(int valoracion) {
 		this.valoracion = valoracion;
 	}
-	public int getID_Cliente() {
-		return ID_Cliente;
+	public int getOpinion_Cliente() {
+		return opinion_cliente;
 	}
-	public void setID_Cliente(int iD_Cliente) {
-		ID_Cliente = iD_Cliente;
+	public void setOpinionCliente(int opinion_cliente) {
+		this.opinion_cliente = opinion_cliente;
 	}
 	public int getID_Opinion() {
-		return ID_Opinion;
+		return codigo_opinion;
 	}
-	public void setID_Opinion(int iD_Opinion) {
-		ID_Opinion = iD_Opinion;
+	public void setCodigo_Opinion(int codigo_opinion) {
+		this.codigo_opinion = codigo_opinion;
 	}
-	public Opinion(String texto, int valoracion, int iD_Cliente, int iD_Opinion) {
+	public Opinion(String texto, int valoracion, int opinion_cliente, int codigo_opinion) {
 		super();
 		this.texto = texto;
 		this.valoracion = valoracion;
-		ID_Cliente = iD_Cliente;
-		ID_Opinion = iD_Opinion;
+		this.opinion_cliente = opinion_cliente;
+		this.codigo_opinion = codigo_opinion;
 	}
 	
 
