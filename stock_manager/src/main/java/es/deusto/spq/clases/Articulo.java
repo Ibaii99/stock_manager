@@ -25,6 +25,17 @@ public class Articulo {
 		this.oferta = oferta;
 		this.categoria = categoria;
 	}
+	public Articulo() {
+		super();
+		this.ID = 0;
+		this.nombre = "";
+		this.caducidad = new Date(0,0,0);
+		this.precio = 0;
+		this.stock = 0;
+		this.descripcion = "";
+		this.oferta = 0;
+		this.categoria = "";
+	}
 
 	public String getCategoria() {
 		return categoria;
