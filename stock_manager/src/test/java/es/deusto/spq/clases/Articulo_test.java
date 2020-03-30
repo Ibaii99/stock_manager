@@ -10,11 +10,6 @@ import org.junit.Test;
 public class Articulo_test {
 	static Date fechaC = new Date(System.currentTimeMillis());
 	private static Articulo articulo= new Articulo(1, "manzana", fechaC , 1.20f, 50, "verde", 0.85f, "fruta");
-	@BeforeClass
-	public static void inicializarClase() {
-		articulo = new Articulo();
-	}
-	
 	@Test
 	public void testgetID() {
 		assertEquals(articulo.getID(), 1);

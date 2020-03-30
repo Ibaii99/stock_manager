@@ -115,15 +115,6 @@ public class Articulo {
 
     }
 
-    private int ID;
-    private String nombre;
-    private Date caducidad;
-    private float precio;
-    private int stock;
-    private String descripcion;
-    private float oferta;
-    private String categoria;
-
     @Override
 	public String toString() {
         return "Articulo [ID=" + this.ID + ", nombre=" + this.nombre + ", Caducidad=" + this.categoria + ", Precio" + this.precio +
