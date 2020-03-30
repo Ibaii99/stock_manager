@@ -1,11 +1,21 @@
 package es.deusto.spq.clases;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class Pedido {
-	private int codigo_Pedido;
+
+	@PrimaryKey
+    @Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
+	private long codigo_Pedido;
+	
 	private String proveedor_Pedido;
 	private Articulo articulo_Pedido;
 	
-	public int getCodigo_Pedido() {
+	public long getCodigo_Pedido() {
 		return codigo_Pedido;
 	}
 	public void setCodigo_Pedido(int codigo_Pedido) {
