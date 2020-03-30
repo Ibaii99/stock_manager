@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Cesta {
 
-    private int ID;
+    private int ID_cliente;
     private final HashMap<Articulo, Integer> articulos;
     private String estado;
 
@@ -26,11 +26,11 @@ public class Cesta {
     }
 
     public int getID() {
-        return this.ID;
+        return this.ID_cliente;
     }
 
-    public void setID(final int ID) {
-        this.ID = ID;
+    public void setID(final int ID_cliente) {
+        this.ID_cliente = ID_cliente;
     }
 
     public HashMap<Articulo,Integer> getArticulos() {
@@ -47,5 +47,14 @@ public class Cesta {
        
         return r;
     }
+
+	public Cesta(int iD_cliente, HashMap<Articulo, Integer> articulos, String estado) {
+		super();
+		ID_cliente = iD_cliente;
+		this.articulos = articulos;
+		this.estado = estado;
+	}
+    
+    
 
 }
