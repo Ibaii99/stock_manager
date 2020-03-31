@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 import java.util.HashMap;
 
+import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
 
 
@@ -15,11 +16,11 @@ class Cesta_test {
 
         final int idCliente = 0;
         final int idCesta = 999;
-        final Articulo a1 = new Articulo("manzana", new Date(2020, 3, 23), 0.23f, 120, "Manzana Naturas", 0.10f, "FRUTA");
-        final Articulo a2 = new Articulo("pera", new Date(2020, 3, 23), 0.40f, 120, "Pera Naturas", 0.20f, "FRUTA");
-        final Articulo a3 = new Articulo("mandarina", new Date(2020, 3, 23), 0.13f, 120, "Mandarina Naturas", 0.5f, "FRUTA");
-        final Articulo a4 = new Articulo("naranja", new Date(2020, 3, 23), 0.40f, 120, "Naranja Naturas", 0.25f, "FRUTA");
-        final Articulo a5 = new Articulo("manzana", new Date(2020, 3, 23), 0.23f, 120, "Manzana Naturas", 0.10f, "FRUTA");
+        final Articulo a1 = new Articulo("manzana", new Date(05/9/120) , 1.20f, 50, "verde", 0.85f, Categoria.FRUTA);
+        final Articulo a2 = new Articulo("chocolate", new Date(05/9/120) , 1.20f, 50, "verde", 0.85f, Categoria.DULCE);
+        final Articulo a3 = new Articulo("manzana", new Date(05/9/120) , 1.20f, 50, "verde", 0.85f, Categoria.FRUTA);
+        final Articulo a4 = new Articulo("manzana", new Date(05/9/120) , 1.20f, 50, "verde", 0.85f, Categoria.FRUTA);
+        final Articulo a5 = new Articulo("manzana", new Date(05/9/120) , 1.20f, 50, "verde", 0.85f, Categoria.FRUTA);
         Cesta cesta = new Cesta(new Cliente(), Estado.ACTUAL);
 
         cesta.addArticulo(a1, 40);
