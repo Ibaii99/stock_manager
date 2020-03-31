@@ -100,7 +100,43 @@ public class Articulo {
     public void setID(int iD) {
         this.ID = iD;
     }
-    
+
+    @Override
+	public boolean equals(Object o){
+		
+		if (!(o instanceof Articulo)) return false;
+		
+        Articulo p = (Articulo) o;
+
+        return this.ID==p.ID;
+        
+        //&&this.nombre==p.nombre&&this.caducidad==p.caducidad&&this.categoria==p.categoria&&this.descripcion==p.descripcion
+        //&&this.oferta==p.oferta&&this.precio==p.precio&&this.stock==p.stock;
+
+    }
+
+    @Override
+	public String toString() {
+        return "Articulo [ID=" + this.ID + ", nombre=" + this.nombre + ", Caducidad=" + this.categoria + ", Precio" + this.precio +
+        ", Stock" + this.stock + ", Descrpción" + this.descripcion + ", Oferta" + this.oferta + ", Categoria" + this.categoria +     "]";
+	}
+
+
+    @Override
+	public int hashCode() {
+		
+        int hash = 31 * this.ID;
+        hash += 31 * this.caducidad.hashCode();
+        hash += 31 * this.stock;
+        hash += 31 * this.categoria.hashCode();
+        hash += 31 * this.descripcion.hashCode();
+        hash += 31 * this.nombre.hashCode();
+        hash += 31 * Math.round(this.oferta);
+        hash += 31 * Math.round( this.precio);
+        
+		return hash;
+		
+	}
 
 
 }
