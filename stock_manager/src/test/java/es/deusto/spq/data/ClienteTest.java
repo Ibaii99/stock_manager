@@ -7,8 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ClienteTest {
-	
-	private static Cliente c = new Cliente(001, "Mikel", "mikelmartinez999@opendeusto.es", "12345", "Universidad de Deusto");
+	private static Cliente c = new Cliente("Mikel", "mikelmartinez999@opendeusto.es", "12345", "Universidad de Deusto");
 	@Test
 	public void testGetEmail_cliente() {
         String email = c.getEmail_cliente();
@@ -28,17 +27,7 @@ public class ClienteTest {
 
 
 
-   
-    /**
-     * @return the ID
-     */
-	@Test
-    public void testGetID() {
-		int ID_cliente = c.getID_cliente();
-		int esperado = 001;
-        assertEquals("getNombre", ID_cliente, esperado);
-        
-    }
+  
 
     /**
      * @return the contrasenya

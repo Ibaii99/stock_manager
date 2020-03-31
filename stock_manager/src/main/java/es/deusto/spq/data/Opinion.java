@@ -20,6 +20,11 @@ public class Opinion implements Serializable {
 	private int valoracion;
 	
 	
+	public long getId() {
+		return id;
+	}
+
+
 	private Cliente cliente;
 
 

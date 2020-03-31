@@ -39,7 +39,15 @@ public class Cliente implements Serializable{
         this.direccion_cliente = _direccion;
     }
 
-    public String getEmail_cliente() {
+    public String getContrasenya_cliente() {
+		return contrasenya_cliente;
+	}
+
+	public void setContrasenya_cliente(String contrasenya_cliente) {
+		this.contrasenya_cliente = contrasenya_cliente;
+	}
+
+	public String getEmail_cliente() {
         return email_cliente;
     }
 
@@ -68,9 +76,6 @@ public class Cliente implements Serializable{
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	/**
      * @return the direccion
