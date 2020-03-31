@@ -56,63 +56,34 @@ public class Cliente implements Serializable{
     }
 
     /**
-     * @param contrasenya the contrasenya to set
-     */
-    public void setContrasenya(String contrasenya) {
-        this.contrasenya_cliente = contrasenya;
-    }
-
-    /**
      * @param direccion the direccion to set
      */
-    public void setDireccion(String direccion) {
+    public void setDireccion_cliente(String direccion) {
         this.direccion_cliente = direccion;
     }
 
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.contrasenya_cliente = email;
-    }
+ 
 
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.contrasenya_cliente = nombre;
-    }
+    public long getId() {
+		return id;
+	}
 
-    /**
-     * @return the contrasenya
-     */
-    public String getContrasenya() {
-        return contrasenya_cliente;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    /**
+	/**
      * @return the direccion
      */
-    public String getDireccion() {
+    public String getDireccion_cliente() {
         return direccion_cliente;
     }
 
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return contrasenya_cliente;
-    }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return contrasenya_cliente;
-    }
-    
+   
     public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
     	
 	}
+
+	
 
 }
