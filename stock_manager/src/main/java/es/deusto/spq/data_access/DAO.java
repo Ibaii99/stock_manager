@@ -8,8 +8,10 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
+import javax.ws.rs.Path;
 
 import es.deusto.spq.data.Articulo;
+
 
 public class DAO {
 	//JDO
@@ -38,16 +40,18 @@ public class DAO {
 
 		}
 	}
+	//Hacer stores de cada clase
+	//Hacer 
 
 	public List<Articulo> getUsuarios(){
-		List <Articulo> usr = new ArrayList<Articulo>();
+		List <Articulo> ret = new ArrayList<Articulo>();
 		Transaction tx = pm.currentTransaction();
 		try {
 			System.out.println("   * Retrieving an Extent for Articulos.");
 			tx.begin();
 			Extent<Articulo> extent = pm.getExtent(Articulo.class, true);
 			for (Articulo product : extent) {
-				usr.add(product);
+				ret.add(product);
 			}
 			tx.commit();
 		} catch (Exception ex) {
@@ -57,7 +61,7 @@ public class DAO {
 				tx.rollback();
 			}
 		}
-		return usr;
+		return ret;
 	}
 	
 	//No cerrar la conexion hasta cerrar el programa

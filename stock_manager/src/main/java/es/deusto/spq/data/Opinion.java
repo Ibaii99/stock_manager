@@ -1,21 +1,36 @@
 package es.deusto.spq.data;
 
-public class Opinion {
+import java.io.Serializable;
+
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable(detachable = "true")
+public class Opinion implements Serializable {
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@PrimaryKey
+    private long id;
 	private String texto;
 	private int valoracion;
-	private Cliente id_cliente;
-	private int codigo_opinion;
+	
+	
+	private Cliente cliente;
+
 
 	public Opinion(){
 
 	}
 
-	public Opinion(String texto, int valoracion, Cliente id_cliente, int codigo_opinion) {
-		super();
+	public Opinion(String texto, int valoracion, Cliente id_cliente) {
 		this.texto = texto;
 		this.valoracion = valoracion;
-		this.id_cliente = id_cliente;
-		this.codigo_opinion = codigo_opinion;
+		this.cliente = id_cliente;
 	}
 
 	public String getTexto() {
@@ -31,18 +46,12 @@ public class Opinion {
 		this.valoracion = valoracion;
 	}
 	public Cliente getId_cliente() {
-		return id_cliente;
+		return cliente;
 	}
 	public void setOpinionCliente(Cliente id_cliente) {
-		this.id_cliente = id_cliente;
+		this.cliente = id_cliente;
 	}
-	public int getID_Opinion() {
-		return codigo_opinion;
-	}
-	public void setCodigo_Opinion(int codigo_opinion) {
-		this.codigo_opinion = codigo_opinion;
-	}
-
+	
 	
 
 }

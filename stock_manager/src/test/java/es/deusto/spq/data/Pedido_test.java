@@ -8,9 +8,9 @@ import org.junit.Test;
 
 public class Pedido_test {
 	static Date fechaC = new Date(System.currentTimeMillis());
-	private static Articulo articulo1= new Articulo(1, "manzana", fechaC , 1.20f, 50, "verde", 0.85f, "fruta");
-	private static Vendedor vendedor1 = new Vendedor(1, "Jon", "jon@gmail.com");
-	private static Pedido pedido1 = new Pedido(1, vendedor1, articulo1);
+	private static Articulo articulo1= new Articulo("manzana", fechaC , 1.20f, 50, "verde", 0.85f, "fruta");
+	private static Vendedor vendedor1 = new Vendedor("Jon", "jon@gmail.com");
+	private static Pedido pedido1 = new Pedido(vendedor1, articulo1);
 	
 	@Test
 	public void testgetIDPedido() {
@@ -40,10 +40,10 @@ public class Pedido_test {
 	
 	
 	
-	@Test
-	public void testgetIDArticulo() {
-		assertEquals(articulo1.getID(), 1);
-	}
+//	@Test
+//	public void testgetIDArticulo() {
+//		assertEquals(articulo1.getID(), 1);
+//	}
 	@Test
 	public void testgetNombre() {
 		assertEquals(articulo1.getNombre(), "manzana");
