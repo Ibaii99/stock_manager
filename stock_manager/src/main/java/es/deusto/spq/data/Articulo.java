@@ -1,6 +1,6 @@
-package es.deusto.spq.clases;
+package es.deusto.spq.data;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Articulo {
 
@@ -13,6 +13,10 @@ public class Articulo {
     private float oferta;
     private String categoria;
 
+    
+	public Articulo() {
+	}
+
 	public Articulo(int iD, String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
 			String categoria) {
 		super();
@@ -24,19 +28,8 @@ public class Articulo {
 		this.descripcion = descripcion;
 		this.oferta = oferta;
 		this.categoria = categoria;
-	}
-	public Articulo() {
-		super();
-		this.ID = 0;
-		this.nombre = "";
-		this.caducidad = new Date(0,0,0);
-		this.precio = 0;
-		this.stock = 0;
-		this.descripcion = "";
-		this.oferta = 0;
-		this.categoria = "";
-	}
-
+    }
+    
 	public String getCategoria() {
 		return categoria;
 	}
@@ -99,20 +92,6 @@ public class Articulo {
 
     public void setID(int iD) {
         this.ID = iD;
-    }
-
-    @Override
-	public boolean equals(Object o){
-		
-		if (!(o instanceof Articulo)) return false;
-		
-        Articulo p = (Articulo) o;
-
-        return this.ID==p.ID;
-        
-        //&&this.nombre==p.nombre&&this.caducidad==p.caducidad&&this.categoria==p.categoria&&this.descripcion==p.descripcion
-        //&&this.oferta==p.oferta&&this.precio==p.precio&&this.stock==p.stock;
-
     }
 
     @Override

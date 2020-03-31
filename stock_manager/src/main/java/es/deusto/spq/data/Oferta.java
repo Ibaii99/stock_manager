@@ -1,4 +1,4 @@
-package es.deusto.spq.clases;
+package es.deusto.spq.data;
 
 public class Oferta{
 
@@ -6,12 +6,16 @@ public class Oferta{
     private String nombre_oferta;
     private Articulo articulo_oferta;
 
+	public Oferta(){
+
+	}
+
     public Oferta(int codigo, String nombre, Articulo articulo){
         this.codigo_oferta = codigo;
         this.nombre_oferta = nombre;
         this.articulo_oferta = articulo;
-    }
-//Comentario
+	}
+	
 	public int getCodigo_oferta() {
 		return codigo_oferta;
 	}

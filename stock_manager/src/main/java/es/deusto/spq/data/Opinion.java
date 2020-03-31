@@ -1,12 +1,23 @@
-package es.deusto.spq.clases;
+package es.deusto.spq.data;
 
 public class Opinion {
 	private String texto;
 	private int valoracion;
 	private Cliente id_cliente;
 	private int codigo_opinion;
-	//Comentario
-	
+
+	public Opinion(){
+
+	}
+
+	public Opinion(String texto, int valoracion, Cliente id_cliente, int codigo_opinion) {
+		super();
+		this.texto = texto;
+		this.valoracion = valoracion;
+		this.id_cliente = id_cliente;
+		this.codigo_opinion = codigo_opinion;
+	}
+
 	public String getTexto() {
 		return texto;
 	}
@@ -31,13 +42,7 @@ public class Opinion {
 	public void setCodigo_Opinion(int codigo_opinion) {
 		this.codigo_opinion = codigo_opinion;
 	}
-	public Opinion(String texto, int valoracion, Cliente id_cliente, int codigo_opinion) {
-		super();
-		this.texto = texto;
-		this.valoracion = valoracion;
-		this.id_cliente = id_cliente;
-		this.codigo_opinion = codigo_opinion;
-	}
+
 	
 
 }

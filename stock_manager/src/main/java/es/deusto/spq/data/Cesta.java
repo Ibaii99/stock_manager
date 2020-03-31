@@ -1,4 +1,4 @@
-package es.deusto.spq.clases;
+package es.deusto.spq.data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +16,10 @@ public class Cesta {
     private int ID_cesta;
     private final HashMap<Articulo, Integer> articulos;
     private Estado estado;
+
+    public Cesta(){
+
+    }
 
     public Cesta(int idCesta, int idCliente, Estado estado) {
         this.ID_cesta = idCesta;
@@ -39,7 +43,6 @@ public class Cesta {
         }else this.articulos.put(articulo, cantidad); 
        
     }
-  //Comentario
 
     public Estado getEstado() {
         return this.estado;
@@ -76,7 +79,7 @@ public class Cesta {
        
         return r;
     }
-    
+
     @Override
 	public String toString() {
 
@@ -91,6 +94,5 @@ public class Cesta {
 		return r;
 	}
 
-    
 
 }

@@ -1,11 +1,10 @@
-package es.deusto.spq.clases;
+package es.deusto.spq.data;
 
 import static org.junit.Assert.assertEquals;
-import java.sql.Date;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
-import es.deusto.spq.clases.Cesta.Estado;
+import es.deusto.spq.data.Cesta.Estado;
 
 
 

@@ -1,9 +1,24 @@
-package es.deusto.spq.clases;
+package es.deusto.spq.data;
 
 public class Vendedor {
 	private int ID_vendedor;
 	private String nombre_vendedor;
 	private String email_vendedor;
+	
+	public Vendedor(){
+		
+	}
+	
+	public Vendedor(int iD, String nombre, String email) {
+		this.ID_vendedor = iD;
+		this.nombre_vendedor = nombre;
+		this.email_vendedor = email;
+	}
+
+	public Vendedor(int iD) {
+		this.ID_vendedor = iD;
+	}
+	
 	public int getID() {
 		return ID_vendedor;
 	}
@@ -26,18 +41,6 @@ public class Vendedor {
 
 	public void setEmail(String email) {
 		this.email_vendedor = email;
-	}
-
-	public Vendedor(int iD, String nombre, String email) {
-		super();
-		this.ID_vendedor = iD;
-		this.nombre_vendedor = nombre;
-		this.email_vendedor = email;
-	}
-
-	public Vendedor(int iD) {
-		super();
-		this.ID_vendedor = iD;
 	}
 
 	@Override

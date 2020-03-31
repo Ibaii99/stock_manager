@@ -1,4 +1,4 @@
-package es.deusto.spq.clases;
+package es.deusto.spq.data;
 
 public class Cliente {
     private int ID_cliente;
@@ -6,6 +6,10 @@ public class Cliente {
     private String email_cliente;
     private String contrasenya_cliente;
     private String direccion_cliente;
+
+    public Cliente(){
+        
+    }
 
     public Cliente(int ID, String _nombre, String _email, String _contrasenya, String _direccion) {
         this.ID_cliente = ID;
