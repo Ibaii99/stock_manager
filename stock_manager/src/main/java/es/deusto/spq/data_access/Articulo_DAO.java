@@ -22,20 +22,17 @@ public class Articulo_DAO {
 	@POST
 	@Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Articulo test() {
-		DAO db = new DAO();
+    public Articulo test(String codigo) {
+		DAO dao = new DAO();
+		dao.getUsuarios();
 		Articulo a = new Articulo("Manzana", new Date(05/9/120), 1.59f, 400, "Manzana Golden, al peso, compra mínima 1 kg", 1.20f, Categoria.FRUTA);
-		todosArticulos.add(a);
-		
+		for(int i = 0; i<todosArticulos.size(); i++) {
+    		a = todosArticulos.get(i);
+    		if(codigo == a.getNombre()) {
+    			return a;
+    		}
+    	}
 		return a;
 	}
-	
-    @GET
-    @Path("get")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getIt() {
-        return "Got it!";
-    
-    
-    }
+
 }
