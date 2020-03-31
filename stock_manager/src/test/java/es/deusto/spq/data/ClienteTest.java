@@ -62,7 +62,7 @@ public class ClienteTest {
 
    
 
- //ddd
+
     
 //	@Test
 //    public void testEnviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
