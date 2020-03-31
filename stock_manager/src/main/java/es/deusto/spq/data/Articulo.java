@@ -11,16 +11,26 @@ public class Articulo implements Serializable {
 	/**
 	 * 
 	 */
+	public enum Categoria {
+		FRUTA,
+		VEGETAL, 
+		CARNICERIA,
+		PESCADERIA, 
+		BEBIDA,
+		DULCE
+	
+}
+	
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
     private long id;
     private String nombre;
     private Date caducidad;
-    private double precio;
+    private float precio;
     private int stock;
     private String descripcion;
-    private double oferta;
-    private String categoria;
+    private float oferta;
+    private Categoria categoria;
     
     
     private Vendedor vendedor;
@@ -29,7 +39,7 @@ public class Articulo implements Serializable {
 	}
 
 	public Articulo(String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
-			String categoria) {
+			Categoria categoria) {
         super();
 		this.nombre = nombre;
 		this.caducidad = caducidad;
@@ -40,11 +50,11 @@ public class Articulo implements Serializable {
 		this.categoria = categoria;
     }
     
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
@@ -99,7 +109,7 @@ public class Articulo implements Serializable {
 
     @Override
 	public String toString() {
-        return "Articulo [Nombre=" + this.nombre + ", Caducidad=" + this.categoria + ", Precio" + this.precio +
+        return "Articulo [Nombre=" + this.nombre + ", Caducidad=" + this.caducidad + ", Precio" + this.precio +
         ", Stock" + this.stock + ", Descrpción" + this.descripcion + ", Oferta" + this.oferta + ", Categoria" + this.categoria +     "]";
 	}
 

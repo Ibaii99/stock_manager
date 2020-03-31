@@ -7,9 +7,11 @@ import java.sql.Date;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import es.deusto.spq.data.Articulo.Categoria;
+
 public class Articulo_test {
 	static Date fechaC = new Date(System.currentTimeMillis());
-	private static Articulo articulo= new Articulo("manzana", fechaC , 1.20f, 50, "verde", 0.85f, "fruta");
+	private static Articulo articulo= new Articulo("manzana", fechaC , 1.20f, 50, "verde", 0.85f, Categoria.FRUTA);
 	
 	// @Test
 	// public void testgetID() {
