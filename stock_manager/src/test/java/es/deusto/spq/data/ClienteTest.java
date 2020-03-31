@@ -1,23 +1,14 @@
-package es.deusto.spq.clases;
+package es.deusto.spq.data;
 
 import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 
-import es.deusto.spq.clases.Cliente;
-
 import org.junit.Test;
 
 public class ClienteTest {
 	
-	private static Cliente c;
-
-	@BeforeClass
-	public static void initializationError() {
-		c = new Cliente(001, "Mikel", "mikelmartinez999@opendeusto.es", "12345", "Universidad de Deusto");
-		
-	}
-	
+	private static Cliente c = new Cliente(001, "Mikel", "mikelmartinez999@opendeusto.es", "12345", "Universidad de Deusto");
 	@Test
 	public void testGetEmail_cliente() {
         String email = c.getEmail_cliente();
