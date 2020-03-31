@@ -10,28 +10,30 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 import javax.ws.rs.Path;
 
-import es.deusto.spq.data.Articulo;
+import es.deusto.spq.data.Cesta;
+import es.deusto.spq.data.Opinion;
+import es.deusto.spq.data.Vendedor;
 
 
 public class DAO {
 	//JDO
 	
-	private PersistenceManagerFactory pmf;
-	private PersistenceManager pm;
+	private final PersistenceManagerFactory pmf;
+	private final PersistenceManager pm;
 
 	public DAO() {
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		pm = pmf.getPersistenceManager();
 	}
-	
-	public void store(Object u) {
-		Transaction tx = this.pm.currentTransaction();
+
+	public void store(final Object u) {
+		final Transaction tx = this.pm.currentTransaction();
 		try {
 			tx.begin();
 			System.out.println("   * Storing an object: " + u);
 			pm.makePersistent(u);
 			tx.commit();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("   $ Error storing an object: " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
@@ -41,18 +43,18 @@ public class DAO {
 		}
 	}
 
-	public List<Articulo> getUsuarios(){
-		List <Articulo> ret = new ArrayList<Articulo>();
-		Transaction tx = pm.currentTransaction();
+	public List<Articulo> getUsuarios() {
+		final List<Articulo> ret = new ArrayList<Articulo>();
+		final Transaction tx = pm.currentTransaction();
 		try {
 			System.out.println("   * Retrieving an Extent for Articulos.");
 			tx.begin();
-			Extent<Articulo> extent = pm.getExtent(Articulo.class, true);
-			for (Articulo product : extent) {
+			final Extent<Articulo> extent = pm.getExtent(Articulo.class, true);
+			for (final Articulo product : extent) {
 				ret.add(product);
 			}
 			tx.commit();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
