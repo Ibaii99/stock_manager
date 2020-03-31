@@ -10,8 +10,10 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 import javax.ws.rs.Path;
 
-import es.deusto.spq.data.Cesta;
 
+import es.deusto.spq.data.Cesta;
+import es.deusto.spq.data.Opinion;
+import es.deusto.spq.data.Vendedor;
 
 public class DACesta {
 	//JDO
