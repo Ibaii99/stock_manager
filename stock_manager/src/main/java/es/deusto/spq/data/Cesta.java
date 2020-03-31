@@ -18,7 +18,10 @@ public class Cesta {
     private Estado estado;
 
     public Cesta(){
-
+    	this.ID_cesta = 0;
+    	this.ID_cliente= 0;
+    	this.articulos = new HashMap<Articulo, Integer>();
+    	this.estado=null;
     }
 
     public Cesta(int idCesta, int idCliente, Estado estado) {
