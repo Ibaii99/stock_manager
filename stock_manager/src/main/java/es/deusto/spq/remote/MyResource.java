@@ -25,10 +25,11 @@ public class MyResource {
 	@POST
 	@Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void test() {
+    public Cliente test() {
 		DAO db = new DAO();
 		Cliente c = new Cliente("ibai", "asdnhujkasdnas", "adsasdsad", "sadaddas");
 		db.store(c);
+		return c;
 	}
 	
     @GET
