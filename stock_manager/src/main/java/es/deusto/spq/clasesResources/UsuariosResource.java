@@ -10,7 +10,6 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import es.deusto.spq.clases.Usuario;
 
 import java.util.List;
 import java.util.ArrayList;

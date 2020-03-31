@@ -1,0 +1,95 @@
+//Artículos
+
+insert into articulo values(1, "Manzana", 05/09/2020, 1.59f, 400, "Manzana Golden, al peso, compra mínima 1 kg", 1.20f, null, "fruta");
+insert into articulo values(2, "Lechuga", 05/03/2020, 1.25f, 250, "Lechuga batavia EUSKO LABEL , bolsa 250 g", 1.15f, null, "vegetal");
+insert into articulo values(3, "Solomillo", 05/04/2020, 16.48f, 100, "500 g;Espectacular solomillo de ternera con garantía euskolabel",15.00f, null, "carniceria");
+insert into articulo values(4, "Platano", 05/05/2020, 2.99f, 500, "Plátano de Canarias, al peso, compra mínima 1 kg", 2.79f, null, "fruta");
+insert into articulo values(5, "Chocolate", 02/24/2021,2.29f, 150, "Chocolate 70% cacao LINDT Excellence, tableta 100 g", 1.99f, null, "dulce");
+insert into articulo values(6, "Jamon york", 05/25/2020, 2.65f, 300, "Jamón cocido artesano URKABE, sobre 200 g", 2.45f, null, "carniceria");
+insert into articulo values(7, "Galletas", 03/10/2021, 2.07f, 200, "Galleta La Buena María FONTANEDA, caja 800 g", 1.89f, null, "dulce");
+insert into articulo values(8, "Naranja", 05/13/2020, 3.99f, 350, "Naranja de postre PREMIUM, bolsa 2 kg", 3.70f, null, "fruta");
+insert into articulo values(9, "Zanahoria", 05/01/2020, 1.89f, 210, "Zanahoria con hoja, manojo 800 g", 1.78f, null, "vegetal");
+insert into articulo values(10, "Bacalao", 05/02/2020, 14.70f, 80, "Lomo de bacalao esencial GIRALDO, al peso, compra mínima 600 g", 13.99f, null, "pescaderia");
+insert into articulo values(11, "Leche", 06/11/2021, 0.87f, 800, "Leche semidesnatada KAIKU, brik 1 litro", 0.82f, null, "bebida");
+insert into articulo values(12, "Cebolla", 05/20/2020, 1.99f, 100, "Cebolla blanca, malla 2 kg", 1.79f, null, "vegetal");
+insert into articulo values(13, "Agua", 07/18/2022, 0.81f, 100, "Agua mineral FONT VELLA, botella 2 litros", 0.70f, null, "bebida");
+insert into articulo values(14, "Merluza", 05/01/2020, 9.45f, 150, "Lomo de merluza, al peso, compra mínima 500 g", 8.99f, null, "pescaderia");
+insert into articulo values(15, "Brócoli", 05/06/2020, 2.30f, 150, "Puerro del País Vasco, manojo", 2.10f, null, "vegetal");
+
+//cliente
+insert into cliente values(1, "Nerea", "nerea@gmail.com", "Deusto1", "Deusto kalea 1");
+insert into cliente values(2, "Jon", "jon@gmail.com", "Deusto2", "Deusto kalea 2");
+insert into cliente values(3, "Aitor", "aitor@gmail.com", "Deusto3", "Deusto kalea 3");
+insert into cliente values(4, "Leire", "leire@gmail.com", "Deusto4", "Deusto kalea 4");
+insert into cliente values(5, "Iker", "iker@gmail.com", "Deusto5", "Deusto kalea 5");
+
+//cesta_compra (n a n)
+insert into cesta_compra values(1, , 8);
+insert into cesta_compra values(2, , 14);
+insert into cesta_compra values(3, , 6);
+insert into cesta_compra values(4, , 10);
+insert into cesta_compra values(5, , 15);
+
+
+//cesta_pedido (n a n)
+insert into cesta_compra values(1, , 1);
+insert into cesta_compra values(2, , 2);
+insert into cesta_compra values(3, , 3);
+insert into cesta_compra values(4, , 4);
+insert into cesta_compra values(5, , 5);
+
+
+//oferta
+insert into oferta values(1, "oferta en manzanas", 1);
+insert into oferta values(2, "oferta en lechugas", 2);
+insert into oferta values(3, "oferta en solomillos", 3);
+insert into oferta values(4, "oferta en platanos", 4);
+insert into oferta values(5, "oferta en chocolates", 5);
+insert into oferta values(6, "oferta en jamon yorks", 6);
+insert into oferta values(7, "oferta en galletas", 7);
+insert into oferta values(8, "oferta en naranjas", 8);
+insert into oferta values(9, "oferta en zanahorias", 9);
+insert into oferta values(10, "oferta en bacalaos", 10);
+insert into oferta values(11, "oferta en leches", 11);
+insert into oferta values(12, "oferta en cebollas", 12);
+insert into oferta values(13, "oferta en aguas", 13);
+insert into oferta values(14, "oferta en merluzas", 14);
+insert into oferta values(15, "oferta en brócolis", 15);
+
+//opinion
+insert into opinion values("No está mal, aunque se podría mejorar", 6, 1, 1);
+insert into opinion values("No me gusta nada", 3, 2, 2);
+insert into opinion values("Me gusta bastante, tiene mucha calidad", 8, 3, 3);
+insert into opinion values("Me encanta, y además lo recomendaría", 9, 4, 4);
+insert into opinion values("Me gusta, aun así hay cosas que no son excelentes", 5, 5);
+
+//opiniones_por_articulo(n a n)
+insert into opiniones_por_articulo values(1, 1);
+insert into opiniones_por_articulo values(2, 2);
+insert into opiniones_por_articulo values(3, 3);
+insert into opiniones_por_articulo values(4, 4);
+insert into opiniones_por_articulo values(5, 5);
+insert into opiniones_por_articulo values(6, 3);
+insert into opiniones_por_articulo values(7, 2);
+insert into opiniones_por_articulo values(8, 5);
+insert into opiniones_por_articulo values(9, 4);
+insert into opiniones_por_articulo values(10, 1);
+insert into opiniones_por_articulo values(11, 5);
+insert into opiniones_por_articulo values(12, 4);
+insert into opiniones_por_articulo values(13, 3);
+insert into opiniones_por_articulo values(14, 2);
+insert into opiniones_por_articulo values(15, 1);
+
+//vendedor
+insert into vendedor values(1, "Peio", "peio@gmail.com");
+insert into vendedor values(2, "Ane", "ane@gmail.com");
+insert into vendedor values(3, "Maider", "maider@gmail.com");
+insert into vendedor values(4, "Asier", "asier@gmail.com");
+insert into vendedor values(5, "Miren", "miren@gmail.com");
+
+//pedido(n articulos)
+insert into pedido values(1, 1, );
+insert into pedido values(2, 2, );
+insert into pedido values(3, 3, );
+insert into pedido values(4, 4, );
+insert into pedido values(5, 5, );
