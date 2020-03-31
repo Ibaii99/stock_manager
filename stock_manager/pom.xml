@@ -88,8 +88,8 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/java/es/deusto/spq/clases</sourceDirectory>
-		<testSourceDirectory>src/test/java/es/deusto/spq/clases</testSourceDirectory>
+        <sourceDirectory>src/main/java/es/deusto/spq/data</sourceDirectory>
+		<testSourceDirectory>src/test/java/es/deusto/spq/data</testSourceDirectory>
 
 		<resources>
 			<resource>
@@ -116,7 +116,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>es.deusto.spq.Main</mainClass>
+                    <mainClass>es.deusto.spq.main.Main</mainClass>
                 </configuration>
             </plugin>
 

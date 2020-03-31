@@ -1,4 +1,4 @@
-package es.deusto.spq.clasesResources;
+/* package es.deusto.spq.clasesResources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -50,4 +50,4 @@ public class UsuariosResource{
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-}
+} */

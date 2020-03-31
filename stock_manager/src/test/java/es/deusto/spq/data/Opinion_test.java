@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class Opinion_test {
-	Cliente cliente = new Cliente(1, "jon", "jon@gmail.com", "Deusto1", "Deusto kalea");
-	Opinion opinion = new Opinion("me ha gustado", 6, cliente, 1);
+	Cliente cliente = new Cliente("jon", "jon@gmail.com", "Deusto1", "Deusto kalea");
+	Opinion opinion = new Opinion("me ha gustado", 6, cliente);
 	
 	@Test
 	public void textoTest() {
@@ -24,10 +24,10 @@ public class Opinion_test {
 	public void id_opinionTest() {
 		assertEquals(opinion.getID_Opinion(), 1);
 	}
-	@Test
-	public void id_clienteTest() {
-		assertEquals(cliente.getID(), 1);
-	}
+	// @Test
+	// public void id_clienteTest() {
+	// 	assertEquals(cliente.getID(), 1);
+	// }
 	@Test
 	public void nombre_clienteTest() {
 		assertEquals(cliente.getNombre(), "jon");

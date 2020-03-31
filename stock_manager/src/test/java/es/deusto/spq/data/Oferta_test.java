@@ -8,8 +8,8 @@ import org.junit.Test;
 
 public class Oferta_test {
 	static Date fechaC = new Date(System.currentTimeMillis());
-	private static Articulo articulo1= new Articulo(1, "manzana", fechaC , 1.20f, 50, "verde", 0.85f, "fruta");
-	private static Oferta oferta = new Oferta(1,"3x2",articulo1);
+	private static Articulo articulo1= new Articulo("manzana", fechaC , 1.20f, 50, "verde", 0.85f, "fruta");
+	private static Oferta oferta = new Oferta("3x2",articulo1);
 	
 	@Test
 	public void testgetIDOferta() {
@@ -23,10 +23,10 @@ public class Oferta_test {
 	public void testgetArticulo() {
 		assertEquals(oferta.getArticulo_oferta(), articulo1);
 	}
-	@Test
-	public void testgetIDArticulo() {
-		assertEquals(articulo1.getID(), 1);
-	}
+	// @Test
+	// public void testgetIDArticulo() {
+	// 	assertEquals(articulo1.getID(), 1);
+	// }
 	@Test
 	public void testgetNombre() {
 		assertEquals(articulo1.getNombre(), "manzana");

@@ -1,48 +1,60 @@
 package es.deusto.spq.data;
 
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class Cesta {
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 
-    enum Estado {
+@PersistenceCapable(detachable = "true")
+public class Cesta implements Serializable {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	enum Estado {
         ACTUAL,
         PREPARACION,
         ENCAMINO,
         ENTREGADO
       }
 
-    private int ID_cliente;
-    private int ID_cesta;
-    private final HashMap<Articulo, Integer> articulos;
+	@PrimaryKey
+    private long id;
+    
+	
+    private Cliente cliente;
+    
+    // En el indice 1 de articulos estara el articulo añadido primero
+    // En el indice 1 de cantidades estara las cantidades dedl articulo 1
+    private List<Articulo> articulos;
+    private List<Integer> cantidades;
+    
     private Estado estado;
 
-    public Cesta(){
+    public Cesta() {
+    	articulos = null;
+    } 
 
-    }
-
-    public Cesta(int idCesta, int idCliente, Estado estado) {
-        this.ID_cesta = idCesta;
-        this.ID_cliente = idCliente;
-        this.articulos = new HashMap<>();
+    public Cesta(Cliente cliente, Estado estado) {
+        super();
+        this.cliente = cliente;
+        
         this.estado = estado;
     }
 
-    public int getID_cesta() {
-        return ID_cesta;
-    }
 
-    public void setID_cesta(int iD_cesta) {
-        this.ID_cesta = iD_cesta;
-    }
-
-    public void addArticulo(final Articulo articulo, final int cantidad) {
-        
-        if (this.articulos.containsKey(articulo)) {
-            this.articulos.replace(articulo, articulos.get(articulo)+cantidad);
-        }else this.articulos.put(articulo, cantidad); 
-       
-    }
+//    public void addArticulo(final Articulo articulo, final int cantidad) {
+//        
+//        if (this.articulos.containsKey(articulo)) {
+//            this.articulos.replace(articulo, articulos.get(articulo)+cantidad);
+//        }else this.articulos.put(articulo, cantidad); 
+//       
+//    }
 
     public Estado getEstado() {
         return this.estado;
@@ -56,43 +68,43 @@ public class Cesta {
         this.estado = estado;
     }
 
-    public int getIDCliente() {
-        return this.ID_cliente;
+    public Cliente getIDCliente() {
+        return this.cliente;
     }
 
-    public void setIDCliente(final int ID_cliente) {
-        this.ID_cliente = ID_cliente;
+    public void setIDCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public HashMap<Articulo,Integer> getArticulos() {
-        return this.articulos;
-    }
-
-    //A modificar por Oferta
-    public float getRecibo() {
-
-        int r = 0;
-
-        for (final Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
-           r += entry.getKey().getPrecio()*entry.getValue();
-        }
-       
-        return r;
-    }
-
-    @Override
-	public String toString() {
-
-        String r = "";
-
-        for (final Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
-
-           r += "Cesta {" + entry.getKey().toString() + ", Cantidad: " + entry.getValue() + "  }";
-
-        }
-
-		return r;
-	}
-
+//	public HashMap<Articulo,Integer> getArticulos() {
+//        return this.articulos;
+//    }
+//
+//    //A modificar por Oferta
+//    public float getRecibo() {
+//
+//        int r = 0;
+//
+//        for (final Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
+//           r += entry.getKey().getPrecio()*entry.getValue();
+//        }
+//       
+//        return r;
+//    }
+//
+//    @Override
+//	public String toString() {
+//
+//        String r = "";
+//
+//        for (final Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
+//
+//           r += "Cesta {" + entry.getKey().toString() + ", Cantidad: " + entry.getValue() + "  }";
+//
+//        }
+//
+//		return r;
+//	}
+//
 
 }

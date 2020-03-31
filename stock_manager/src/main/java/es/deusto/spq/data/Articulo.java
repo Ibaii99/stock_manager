@@ -1,26 +1,36 @@
 package es.deusto.spq.data;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 
-public class Articulo {
+@PersistenceCapable(detachable = "true")
+public class Articulo implements Serializable {
 
-    private int ID;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@PrimaryKey
+    private long id;
     private String nombre;
     private Date caducidad;
-    private float precio;
+    private double precio;
     private int stock;
     private String descripcion;
-    private float oferta;
+    private double oferta;
     private String categoria;
-
+    
+    
+    private Vendedor vendedor;
     
 	public Articulo() {
 	}
 
-	public Articulo(int iD, String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
+	public Articulo(String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
 			String categoria) {
-		super();
-		this.ID = iD;
+        super();
 		this.nombre = nombre;
 		this.caducidad = caducidad;
 		this.precio = precio;
@@ -38,7 +48,7 @@ public class Articulo {
 		this.categoria = categoria;
 	}
 
-	public float getOferta() {
+	public double getOferta() {
         return oferta;
     }
 
@@ -62,7 +72,7 @@ public class Articulo {
         this.stock = stock;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
@@ -85,18 +95,11 @@ public class Articulo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int iD) {
-        this.ID = iD;
-    }
+ 
 
     @Override
 	public String toString() {
-        return "Articulo [ID=" + this.ID + ", nombre=" + this.nombre + ", Caducidad=" + this.categoria + ", Precio" + this.precio +
+        return "Articulo [Nombre=" + this.nombre + ", Caducidad=" + this.categoria + ", Precio" + this.precio +
         ", Stock" + this.stock + ", Descrpción" + this.descripcion + ", Oferta" + this.oferta + ", Categoria" + this.categoria +     "]";
 	}
 
@@ -104,8 +107,7 @@ public class Articulo {
     @Override
 	public int hashCode() {
 		
-        int hash = 31 * this.ID;
-        hash += 31 * this.caducidad.hashCode();
+        int hash = 31 * this.caducidad.hashCode();
         hash += 31 * this.stock;
         hash += 31 * this.categoria.hashCode();
         hash += 31 * this.descripcion.hashCode();

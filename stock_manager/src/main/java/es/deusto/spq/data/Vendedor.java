@@ -1,30 +1,36 @@
 package es.deusto.spq.data;
 
-public class Vendedor {
-	private int ID_vendedor;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.jdo.annotations.Join;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable(detachable = "true")
+public class Vendedor implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@PrimaryKey
+    private long id;
 	private String nombre_vendedor;
 	private String email_vendedor;
+	
+	@Persistent(mappedBy = "vendedor")
+	@Join
+	private List<Articulo> articulos;
 	
 	public Vendedor(){
 		
 	}
 	
-	public Vendedor(int iD, String nombre, String email) {
-		this.ID_vendedor = iD;
+	public Vendedor(String nombre, String email) {
 		this.nombre_vendedor = nombre;
 		this.email_vendedor = email;
-	}
-
-	public Vendedor(int iD) {
-		this.ID_vendedor = iD;
-	}
-	
-	public int getID() {
-		return ID_vendedor;
-	}
-
-	public void setID(int iD) {
-		ID_vendedor = iD;
 	}
 
 	public String getNombre() {
@@ -45,7 +51,7 @@ public class Vendedor {
 
 	@Override
 	public String toString() {
-		return "ID del vendedor=" + ID_vendedor + ", nombre=" + email_vendedor + ", email=" + email_vendedor + "]";
+		return "Nombre=" + nombre_vendedor + ", email=" + email_vendedor + "]";
 	}
 	
 

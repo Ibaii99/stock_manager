@@ -15,12 +15,12 @@ class Cesta_test {
 
         final int idCliente = 0;
         final int idCesta = 999;
-        final Articulo a1 = new Articulo(10, "manzana", new Date(2020, 3, 23), 0.23f, 120, "Manzana Naturas", 0.10f, "FRUTA");
-        final Articulo a2 = new Articulo(14, "pera", new Date(2020, 3, 23), 0.40f, 120, "Pera Naturas", 0.20f, "FRUTA");
-        final Articulo a3 = new Articulo(26, "mandarina", new Date(2020, 3, 23), 0.13f, 120, "Mandarina Naturas", 0.5f, "FRUTA");
-        final Articulo a4 = new Articulo(14, "naranja", new Date(2020, 3, 23), 0.40f, 120, "Naranja Naturas", 0.25f, "FRUTA");
-        final Articulo a5 = new Articulo(56, "manzana", new Date(2020, 3, 23), 0.23f, 120, "Manzana Naturas", 0.10f, "FRUTA");
-        Cesta cesta = new Cesta(idCesta, idCliente, Estado.ACTUAL);
+        final Articulo a1 = new Articulo("manzana", new Date(2020, 3, 23), 0.23f, 120, "Manzana Naturas", 0.10f, "FRUTA");
+        final Articulo a2 = new Articulo("pera", new Date(2020, 3, 23), 0.40f, 120, "Pera Naturas", 0.20f, "FRUTA");
+        final Articulo a3 = new Articulo("mandarina", new Date(2020, 3, 23), 0.13f, 120, "Mandarina Naturas", 0.5f, "FRUTA");
+        final Articulo a4 = new Articulo("naranja", new Date(2020, 3, 23), 0.40f, 120, "Naranja Naturas", 0.25f, "FRUTA");
+        final Articulo a5 = new Articulo("manzana", new Date(2020, 3, 23), 0.23f, 120, "Manzana Naturas", 0.10f, "FRUTA");
+        Cesta cesta = new Cesta(new Cliente(), Estado.ACTUAL);
 
         cesta.addArticulo(a1, 40);
         cesta.addArticulo(a2, 30);

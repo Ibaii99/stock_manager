@@ -1,21 +1,41 @@
 package es.deusto.spq.data;
 
-public class Cliente {
-    private int ID_cliente;
-    private String nombre_cliente;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.jdo.annotations.Join;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable(detachable = "true")
+public class Cliente implements Serializable{
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@PrimaryKey
+    private long id;
     private String email_cliente;
+    private String nombre_cliente;
     private String contrasenya_cliente;
     private String direccion_cliente;
 
+    @Persistent(mappedBy = "cliente")
+	@Join
+    private List<Cesta> cestas; 
+    
     public Cliente(){
         
     }
 
-    public Cliente(int ID, String _nombre, String _email, String _contrasenya, String _direccion) {
-        this.ID_cliente = ID;
+    public Cliente(String _nombre, String _email, String _contrasenya, String _direccion) {
         this.contrasenya_cliente = _contrasenya;
-        this.contrasenya_cliente = _email;
-        this.contrasenya_cliente = _nombre;
+        this.email_cliente = _email;
+        this.nombre_cliente = _nombre;
         this.direccion_cliente = _direccion;
     }
 
@@ -33,13 +53,6 @@ public class Cliente {
 
     public void setNombre_cliente(String nombre_cliente) {
         this.nombre_cliente = nombre_cliente;
-    }
-
-    /**
-     * @param ID the contrasenya to set
-     */
-    public void setID(int ID) {
-        this.ID_cliente = ID;
     }
 
     /**
@@ -68,13 +81,6 @@ public class Cliente {
      */
     public void setNombre(String nombre) {
         this.contrasenya_cliente = nombre;
-    }
-
-    /**
-     * @return the ID
-     */
-    public int getID() {
-        return ID_cliente;
     }
 
     /**
