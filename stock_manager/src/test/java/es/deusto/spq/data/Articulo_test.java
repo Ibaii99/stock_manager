@@ -2,12 +2,15 @@ package es.deusto.spq.data;
 
 import java.sql.Date;
 
+import es.deusto.spq.data.Articulo.Categoria;
+
 public class Articulo_test{
-	//Articulo a1 = new Articulo("manzana", , precio, stock, descripcion, oferta, categoria)
-	//Date f1 = new Date(120,04,12);
+	Date f1 = new Date(120,04,12);
+	Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
 	
-	public static void main(String[] args) {
-		Date f1 = new Date(120,04,12);
-		System.out.println(f1);
+	@Before
+	public void inicializarClases() {
+		
 	}
+	
 }
