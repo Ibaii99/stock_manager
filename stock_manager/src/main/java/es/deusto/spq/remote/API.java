@@ -11,10 +11,10 @@ import es.deusto.spq.data.Cliente;
 import es.deusto.spq.data_access.DAO;
 
 /**
- * Root resource (exposed at "myresource" path)
+ * Root resource (exposed at "api" path)
  */
-@Path("myresource")
-public class MyResource {
+@Path("api")
+public class API {
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -25,11 +25,12 @@ public class MyResource {
 	@POST
 	@Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Cliente test() {
+    @Produces(MediaType.APPLICATION_JSON)
+    public boolean register() {
 		DAO db = new DAO();
 		Cliente c = new Cliente("ibai", "asdnhujkasdnas", "adsasdsad", "sadaddas");
 		db.store(c);
-		return c;
+		return true;
 	}
 	
     @GET

@@ -1,4 +1,4 @@
-package deusto.spq.data;
+package es.deusto.spq.data;
 
 import es.deusto.spq.data.Opinion;
 
