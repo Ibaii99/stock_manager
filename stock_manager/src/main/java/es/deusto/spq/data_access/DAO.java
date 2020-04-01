@@ -8,7 +8,10 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Opinion;
@@ -16,7 +19,9 @@ import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
 
-
+@Path("usuarios")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class DAO {
 	//JDO
 	
@@ -209,4 +214,5 @@ public class DAO {
 	public void closeConection() {
 		pmf.close();
 	}
+	
 }
