@@ -1,64 +1,31 @@
-package es.deusto.spq.data;
+package deusto.spq.data;
+
+import es.deusto.spq.data.Opinion;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class Opinion_test {
-	Cliente cliente = new Cliente("jon", "mikel@gmail.com", "Deusto1", "Deusto kalea");
-	Opinion opinion = new Opinion("me ha gustado", 6, cliente);
+import es.deusto.spq.data.Cliente;
 
-		
+public class Opinion_test{
+	Cliente c = new Cliente("jokin", "jokin@gmail.com", "Deusto1", "Deusto kalea 1");
+	Opinion o = new Opinion("me gusta", 8, c);
 	
 	@Test
-	public void textoTest() {
-		assertEquals(opinion.getTexto(), "me ha gustado");
+	public void testTexto(){
+		assertEquals(o.getTexto(), "me gusta");
 	}
 	@Test
-	public void valoracionTest() {
-		assertEquals(opinion.getValoracion(), 6);
-	}
-	
-	 @Test
-	 public void id_clienteTest() {
-	 	assertEquals(cliente.getEmail_cliente(), "mikel@gmail.com");
-	 }
-	
-	
-	
-
-	@Test
-	public void id_opinion_clienteTest() {
-		assertEquals(opinion.getID_Opinion(), cliente);
+	public void testValoracion() {
+		assertEquals(o.getValoracion(), 8);
 	}
 	@Test
-	public void id_opinionTest() {
-		assertEquals(opinion.getID_Opinion(), 1);
-	}
-
-	@Test
-	public void id_clienteTest() {
-		assertEquals(cliente.getID_cliente(), 1);
-	}
-	// @Test
-	// public void id_clienteTest() {
-	// 	assertEquals(cliente.getID(), 1);
-	// }
-	@Test
-	public void nombre_clienteTest() {
-		assertEquals(cliente.getNombre_cliente(), "jon");
+	public void testCliente() {
+		assertEquals(o.getCliente(), c);
 	}
 	@Test
-	public void email_clienteTest() {
-		assertEquals(cliente.getEmail_cliente(), "jon@gmail.com");
+	public void testId() {
+		assertEquals(o.getId(), 1);
 	}
-	@Test 
-	public void contrasenya_cliente() {
-		assertEquals(cliente.getContrasenya_cliente(), "Deusto1");
-	}
-	@Test
-	public void direccion_cliente() {
-		assertEquals(cliente.getDireccion_cliente(), "Deusto kalea");
-	}
-
 }

@@ -16,7 +16,7 @@ public class Cesta implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	enum Estado {
+	public enum Estado {
         ACTUAL,
         PREPARACION,
         ENCAMINO,
@@ -33,20 +33,19 @@ public class Cesta implements Serializable {
     // En el indice 1 de cantidades estara las cantidades dedl articulo 1
     private List<Articulo> articulos;
     private List<Integer> cantidades;
-    
     private Estado estado;
 
-    public Cesta() {
-    	articulos = null;
-    } 
+   
 
 
-    public Cesta(Cliente cliente, Estado estado) {
-        super();
-        this.cliente = cliente;
-        
-        this.estado = estado;
-    }
+	public Cesta(long id, Cliente cliente, List<Articulo> articulos, List<Integer> cantidades, Estado estado) {
+		super();
+		this.id = id;
+		this.cliente = cliente;
+		this.articulos = articulos;
+		this.cantidades = cantidades;
+		this.estado = estado;
+	}
 
 
 	public long getId() {
