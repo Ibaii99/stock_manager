@@ -12,3 +12,4 @@ buildNumber.properties
 .pyc
 /.metadata/
 .properties
+.log
