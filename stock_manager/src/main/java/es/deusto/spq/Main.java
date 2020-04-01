@@ -24,7 +24,7 @@ public class Main {
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers
         // in es.deusto.spq package
-        final ResourceConfig rc = new ResourceConfig().packages("es.deusto.spq.remote");
+        final ResourceConfig rc = new ResourceConfig().packages("es.deusto.spq");
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI

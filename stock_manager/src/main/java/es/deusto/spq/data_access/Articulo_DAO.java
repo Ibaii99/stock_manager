@@ -13,28 +13,34 @@ import javax.ws.rs.core.MediaType;
 
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Articulo.Categoria;
+import es.deusto.spq.data_access.DAO;
 
 /**
- * Root resource (exposed at "myresource" path)
+ * Root resource (exposed at "articulo_dao" path)
  */
 @Path("articulo_dao")
 public class Articulo_DAO {
-	private ArrayList<Articulo>todosArticulos = new ArrayList<Articulo>();
 	
 	@POST
 	@Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Articulo test(String codigo) {
+    public ArrayList<Articulo> lista() {
 		DAO dao = new DAO();
-		dao.getUsuarios();
-		Articulo a = new Articulo("Manzana", new Date(05/9/120), 1.59f, 400, "Manzana Golden, al peso, compra mínima 1 kg", 1.20f, Categoria.FRUTA);
-		for(int i = 0; i<todosArticulos.size(); i++) {
-    		a = todosArticulos.get(i);
-    		if(codigo == a.getNombre()) {
-    			return a;
-    		}
-    	}
-		return a;
+		ArrayList<Articulo> listaArticulos= new ArrayList<Articulo>();
+		Articulo a = new Articulo("manzana", new Date(04/03/120), 1.20f, 400, "rica manzana", 0.95f, Categoria.FRUTA);
+		Articulo b = new Articulo("lechuga", new Date(04/03/120), 1.20f, 400, "rica lechuga", 0.95f, Categoria.VEGETAL);
+		listaArticulos.add(a);
+		listaArticulos.add(b);
+		dao.store(a);
+		dao.store(b);
+		return listaArticulos;
 	}
-
+	@GET
+    @Path("get")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getIt() {
+        return "Articulo devuelto!";
+    
+    
+    }
 }
