@@ -19,15 +19,6 @@ public class Opinion implements Serializable {
 	private String texto;
 	private int valoracion;
 	private Cliente cliente;
-	
-	
-	public long getId() {
-		return id;
-	}
-
-
-	
-
 
 	public Opinion(){
 
@@ -39,25 +30,38 @@ public class Opinion implements Serializable {
 		this.cliente = id_cliente;
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getTexto() {
 		return texto;
 	}
+
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
+
 	public int getValoracion() {
 		return valoracion;
 	}
+
 	public void setValoracion(int valoracion) {
 		this.valoracion = valoracion;
 	}
-	public Cliente getId_cliente() {
+
+	public Cliente getCliente() {
 		return cliente;
 	}
-	public void setOpinionCliente(Cliente id_cliente) {
-		this.cliente = id_cliente;
-	}
-	
-	
 
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	
+	
 }

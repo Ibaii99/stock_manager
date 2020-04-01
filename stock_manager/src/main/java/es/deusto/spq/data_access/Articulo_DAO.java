@@ -19,7 +19,8 @@ import es.deusto.spq.data.Articulo.Categoria;
  */
 @Path("articulo_dao")
 public class Articulo_DAO {
-	ArrayList<Articulo>todosArticulos = new ArrayList<Articulo>();
+	private ArrayList<Articulo>todosArticulos = new ArrayList<Articulo>();
+	
 	@POST
 	@Path("post")
     @Consumes(MediaType.APPLICATION_JSON)

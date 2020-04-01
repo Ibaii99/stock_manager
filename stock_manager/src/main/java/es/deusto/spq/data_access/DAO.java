@@ -93,7 +93,7 @@ public class DAO {
 	public Cliente getCliente(long id) {
 		Cliente c = null;
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-		clientes = (ArrayList<Cliente>) dao.getClientes();
+		clientes = (ArrayList<Cliente>) this.getClientes();
 		for(int i = 0; i<clientes.size(); i++) {
 			c = clientes.get(i);
 			if(id == c.getId()) {
@@ -127,7 +127,7 @@ public class DAO {
 	public Cesta getCesta(long id) {
 		Cesta c = null;
 		ArrayList<Cesta> cestas = new ArrayList<Cesta>();
-		cestas = (ArrayList<Cesta>) dao.getCestas();
+		cestas = (ArrayList<Cesta>) this.getCestas();
 		for(int i = 0; i<cestas.size(); i++) {
 			c = cestas.get(i);
 			if(id == c.getId()) {
@@ -161,7 +161,7 @@ public class DAO {
 	public Opinion getOpinion(long id) {
 		Opinion c = null;
 		ArrayList<Opinion> Opiniones = new ArrayList<Opinion>();
-		Opiniones = (ArrayList<Opinion>) dao.getOpiniones();
+		Opiniones = (ArrayList<Opinion>) this.getOpiniones();
 		for(int i = 0; i<Opiniones.size(); i++) {
 			c = Opiniones.get(i);
 			if(id == c.getId()) {
@@ -195,7 +195,7 @@ public class DAO {
 	public Vendedor getVendedor(long id) {
 		Vendedor c = null;
 		ArrayList<Vendedor> Vendedores = new ArrayList<Vendedor>();
-		Vendedores = (ArrayList<Vendedor>) dao.getVendedores();
+		Vendedores = (ArrayList<Vendedor>) this.getVendedores();
 		for(int i = 0; i<Vendedores.size(); i++) {
 			c = Vendedores.get(i);
 			if(id == c.getId()) {

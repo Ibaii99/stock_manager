@@ -39,7 +39,32 @@ public class Cliente implements Serializable{
         this.direccion_cliente = _direccion;
     }
 
-    public String getContrasenya_cliente() {
+   
+    public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getEmail_cliente() {
+		return email_cliente;
+	}
+
+	public void setEmail_cliente(String email_cliente) {
+		this.email_cliente = email_cliente;
+	}
+
+	public String getNombre_cliente() {
+		return nombre_cliente;
+	}
+
+	public void setNombre_cliente(String nombre_cliente) {
+		this.nombre_cliente = nombre_cliente;
+	}
+
+	public String getContrasenya_cliente() {
 		return contrasenya_cliente;
 	}
 
@@ -47,45 +72,23 @@ public class Cliente implements Serializable{
 		this.contrasenya_cliente = contrasenya_cliente;
 	}
 
-	public String getEmail_cliente() {
-        return email_cliente;
-    }
-
-    public void setEmail_cliente(String email_cliente) {
-        this.email_cliente = email_cliente;
-    }
-
-    public String getNombre_cliente() {
-        return nombre_cliente;
-    }
-
-    public void setNombre_cliente(String nombre_cliente) {
-        this.nombre_cliente = nombre_cliente;
-    }
-
-    /**
-     * @param direccion the direccion to set
-     */
-    public void setDireccion_cliente(String direccion) {
-        this.direccion_cliente = direccion;
-    }
-
- 
-
-    public long getId() {
-		return id;
+	public String getDireccion_cliente() {
+		return direccion_cliente;
 	}
 
+	public void setDireccion_cliente(String direccion_cliente) {
+		this.direccion_cliente = direccion_cliente;
+	}
 
-	/**
-     * @return the direccion
-     */
-    public String getDireccion_cliente() {
-        return direccion_cliente;
-    }
+	public List<Cesta> getCestas() {
+		return cestas;
+	}
 
-   
-    public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
+	public void setCestas(List<Cesta> cestas) {
+		this.cestas = cestas;
+	}
+
+	public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
     	
 	}
 

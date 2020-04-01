@@ -49,6 +49,57 @@ public class Cesta implements Serializable {
     }
 
 
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+
+	public List<Articulo> getArticulos() {
+		return articulos;
+	}
+
+
+	public void setArticulos(List<Articulo> articulos) {
+		this.articulos = articulos;
+	}
+
+
+	public List<Integer> getCantidades() {
+		return cantidades;
+	}
+
+
+	public void setCantidades(List<Integer> cantidades) {
+		this.cantidades = cantidades;
+	}
+
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+
+
 //    public void addArticulo(final Articulo articulo, final int cantidad) {
 //        
 //        if (this.articulos.containsKey(articulo)) {
@@ -57,25 +108,7 @@ public class Cesta implements Serializable {
 //       
 //    }
 
-    public Estado getEstado() {
-        return this.estado;
-    }
-
-    public String getEstadoString() {
-        return this.estado.toString();
-    }
-
-    public void setEstado(final Estado estado) {
-        this.estado = estado;
-    }
-
-    public Cliente getIDCliente() {
-        return this.cliente;
-    }
-
-    public void setIDCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+ 
 
 //	public HashMap<Articulo,Integer> getArticulos() {
 //        return this.articulos;

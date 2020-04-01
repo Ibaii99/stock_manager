@@ -1,5 +1,4 @@
 package es.deusto.spq.data;
-
 import java.io.Serializable;
 import java.util.Date;
 import javax.jdo.annotations.PersistenceCapable;
@@ -54,60 +53,76 @@ public class Articulo implements Serializable {
 		return categoria;
 	}
 
+	
+    public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Date getCaducidad() {
+		return caducidad;
+	}
+
+	public void setCaducidad(Date caducidad) {
+		this.caducidad = caducidad;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public float getOferta() {
+		return oferta;
+	}
+
+	public void setOferta(float oferta) {
+		this.oferta = oferta;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
-	public double getOferta() {
-        return oferta;
-    }
-
-    public void setOferta(float oferta) {
-        this.oferta = oferta;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
-    }
-
-    public Date getCaducidad() {
-        return caducidad;
-    }
-
-    public void setCaducidad(Date caducidad) {
-        this.caducidad = caducidad;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
- 
-
-    @Override
+	@Override
 	public String toString() {
         return "Articulo [Nombre=" + this.nombre + ", Caducidad=" + this.caducidad + ", Precio" + this.precio +
         ", Stock" + this.stock + ", Descrpción" + this.descripcion + ", Oferta" + this.oferta + ", Categoria" + this.categoria +     "]";
