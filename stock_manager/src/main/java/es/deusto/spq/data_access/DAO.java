@@ -209,36 +209,7 @@ public class DAO {
 		}
 		return c;
 	}
-	@POST
-	@Path("post")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ArrayList<Cliente> listaClientes() {
-		ArrayList<Cliente> listaClientes= new ArrayList<Articulo>();
-		Cliente a = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
-		Cliente b = new Cliente("jokin", "jokin@gmail.com", "1234", "Universidad Deusto");
-		Cliente c = new Cliente("ibai", "ibail@gmail.com", "1234", "Bilbao");
-		Cliente d = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
-		Cliente e = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
-		listaClientes.add(a);
-		listaClientes.add(b);
-		listaClientes.add(c);
-		listaClientes.add(d);
-		listaClientes.add(e);
-		this.store(a);
-		this.store(b);
-		this.store(c);
-		this.store(d);
-		this.store(e);
-		return listaClientes;
-	}
-	@GET
-    @Path("get")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getItClietnes() {
-        return "Cliente devuelto!";
-    
-    
-    }
+	
 	//No cerrar la conexion hasta cerrar el programa
 	public void closeConection() {
 		pmf.close();

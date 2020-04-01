@@ -24,6 +24,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="es/deusto/spq/resources/" kind="src" path="src/main/java"/>
+<<<<<<< HEAD
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
 		<attributes>
@@ -33,5 +34,9 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
+=======
+	<classpathentry kind="src" path="src/test/java/es"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+>>>>>>> 2aa07422dfa6b45a9ef1c88bc7bc9cf473dda2f0
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
