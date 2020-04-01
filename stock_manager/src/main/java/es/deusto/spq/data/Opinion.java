@@ -18,9 +18,15 @@ public class Opinion implements Serializable {
     private long id;
 	private String texto;
 	private int valoracion;
-	
-	
 	private Cliente cliente;
+	
+	
+	public long getId() {
+		return id;
+	}
+
+
+	
 
 
 	public Opinion(){
