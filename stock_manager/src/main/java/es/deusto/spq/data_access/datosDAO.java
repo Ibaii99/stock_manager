@@ -82,7 +82,7 @@ public class datosDAO {
     }
 
     @POST
-	@Path("post1")
+	@Path("post")
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Articulo> listaArticulos() {
 		DAO dao = new DAO();
