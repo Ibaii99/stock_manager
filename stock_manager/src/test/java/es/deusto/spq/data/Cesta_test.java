@@ -2,6 +2,7 @@ package es.deusto.spq.data;
 
 
 import es.deusto.spq.data.Cesta;
+
 import es.deusto.spq.data.Cesta.Estado;
 import es.deusto.spq.data.Cliente;
 
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import es.deusto.spq.data.Articulo;
@@ -24,15 +27,19 @@ public class Cesta_test{
 	private Articulo a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
 	private List<Articulo>listaArticulos = new ArrayList<Articulo>();
 	private List<Integer> listaCantidades = new ArrayList<Integer>();
-
-	listaArticulos.add(a1);
-	listaArticulos.add(a2);
 	Integer cantidad1 = 400;
 	Integer cantidad2 = 500;
-	listaCantidades.add(cantidad1);
-	listaCantidades.add(cantidad2);
+
 	private Cesta c = new Cesta(1, c1, listaArticulos, listaCantidades, Estado.ACTUAL);
 	
+	@Before
+	public void insertarDatos() {
+		listaArticulos.add(a1);
+		listaArticulos.add(a2);
+		listaCantidades.add(cantidad1);
+		listaCantidades.add(cantidad2);
+		
+	}
 	
 	@Test
 	public void testId() {

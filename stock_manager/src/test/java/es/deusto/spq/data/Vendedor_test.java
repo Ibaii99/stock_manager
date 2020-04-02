@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import es.deusto.spq.data.Vendedor;
@@ -17,20 +18,27 @@ public class Vendedor_test{
 	private Date f1 = new Date(120,04,12);
 	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
 	private Articulo a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
-	listaArticulos.add(a1);
-	listaArticulos.add(a2);
+	
+	
+	
+	@Before
+	public void insertarDatos() {
+		listaArticulos.add(a1);
+		listaArticulos.add(a2);
+		v.setArticulos(listaArticulos);
+	}
 	
 	@Test
 	public void testNombre() {
-		assertEquals(v.getNombre_vendedor(), "jokin");
+		assertEquals(v.getNombre_vendedor(), "Jokin");
 	}
 	@Test
 	public void testId() {
-		assertEquals(v.getId(), 1);
+		assertEquals(v.getId(), 0);
 	}
 	@Test
 	public void testEmail() {
-		assertEquals(v.getEmail_vendedor(), "jokin@gmail.com");
+		assertEquals(v.getEmail_vendedor(), "Jokin@gmail.com");
 	}
 	@Test
 	public void testArticulos() {

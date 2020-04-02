@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import es.deusto.spq.data.Cliente;
 import es.deusto.spq.data.Articulo.Categoria;
@@ -16,30 +17,40 @@ import es.deusto.spq.data.Cesta;
 
 public class Cliente_test{
 	//Creamos distintas cestas, con distintos articulos dentro del mismo cliente
-	private Cliente c = new Cliente("jokin", "jokin@gmail.com", "Deusto1", "Deusto kalea 1");
+	private Cliente c = new Cliente("mikel@gmail.com", "mikel", "Deusto1", "Deusto kalea 1");
 	private List<Cesta> cestas = new ArrayList<Cesta>();
 	private Date f1 = new Date(120,04,12);
 	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
 	private Articulo a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
 	private List<Articulo>listaArticulos = new ArrayList<Articulo>();
 	private List<Integer> listaCantidades = new ArrayList<Integer>();
-	listaArticulos.add(a1);
-	listaArticulos.add(a2);
+	
 	Integer cantidad1 = 400;
 	Integer cantidad2 = 500;
-	listaCantidades.add(cantidad1);
-	listaCantidades.add(cantidad2);
+	
 	private Cesta cesta1 = new Cesta(1, c, listaArticulos, listaCantidades, Estado.ACTUAL);
 	private Cesta cesta2 = new Cesta(2, c, listaArticulos, listaCantidades, Estado.ACTUAL);
-	cestas.add(cesta1);
-	cestas.add(cesta2);
+	
+	
+	@Before
+	public void insertarDatos() {
+		listaArticulos.add(a1);
+		listaArticulos.add(a2);
+		listaCantidades.add(cantidad1);
+		listaCantidades.add(cantidad2);
+		cestas.add(cesta1);
+		cestas.add(cesta2);
+		c.setCestas(cestas);
+		
+	}
+	
 	@Test
 	public void testNombre() {
-		assertEquals(c.getNombre_cliente(), "jokin");
+		assertEquals(c.getNombre_cliente(), "mikel");
 	}
 	@Test
 	public void testEmail() {
-		assertEquals(c.getEmail_cliente(), "jokin@gmail.com");
+		assertEquals(c.getEmail_cliente(), "mikel@gmail.com");
 	}
 	@Test
 	public void testContrasenya() {
@@ -51,7 +62,7 @@ public class Cliente_test{
 	}
 	@Test
 	public void testId() {
-		assertEquals(c.getId(), 1);
+		assertEquals(c.getId(), 0);
 	}
 	@Test
 	public void cestas() {
