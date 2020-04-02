@@ -25,8 +25,6 @@ import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
 
 @Path("dao")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class DAO {
 	// JDO
 
@@ -241,14 +239,10 @@ public class DAO {
 		}
 		return c;
 	}
-	// GET de vendedores
-	// @GET
-	// @Path("get1")
-	// @Produces(MediaType.APPLICATION_JSON)
-	// public String devuelveVendedores() {
-	// return "Vendedores devuelto!";
-	// }
-	public void meter_datos() {
+	// Meter varios datos a la base de datos
+	 @POST
+	 @Path("meter_datos")
+	 public void meter_datos() {
 
 		Cliente a = new Cliente("pepe", "pepe@gmail.com", "1234", "Barakaldo");
 		Cliente b = new Cliente("luis", "luis@gmail.com", "1234", "Universidad Deusto");
@@ -293,7 +287,7 @@ public class DAO {
 		Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
 		Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
 		Opinion o = new Opinion("Habeis hecho un excelente trabajo", 10, unai);
-
+		
 		ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
@@ -313,7 +307,7 @@ public class DAO {
 		store(fresa);
 		store(calabaza);
 		store(manzana);
-
+		
 		ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 		listaClientes.add(a);
 		listaClientes.add(b);
@@ -335,7 +329,7 @@ public class DAO {
 		store(ibai);
 		store(izai);
 		store(unai);
-
+		
 		List<Articulo> listaArticulos1 = new ArrayList<Articulo>();
 		List<Articulo> listaArticulos2 = new ArrayList<Articulo>();
 		List<Integer> listaCantidades1 = new ArrayList<Integer>();
@@ -348,11 +342,12 @@ public class DAO {
 		listaCantidades1.add(cantidad2);
 		listaCantidades2.add(cantidad3);
 		listaCantidades2.add(cantidad4);
+		
 		Cesta aa = new Cesta(1, c1, listaArticulos1, listaCantidades1, Estado.ACTUAL);
 		Cesta bb = new Cesta(2, c2, listaArticulos2, listaCantidades2, Estado.ACTUAL);
 		store(aa);
 		store(bb);
-
+		
 		ArrayList<Opinion> listaOpiniones = new ArrayList<Opinion>();
 		ArrayList<Vendedor> listaVendedores = new ArrayList<Vendedor>();
 		listaVendedores.add(f);
@@ -365,7 +360,7 @@ public class DAO {
 		store(h);
 		store(i);
 		store(j);
-
+		
 		listaOpiniones.add(k);
 		listaOpiniones.add(l);
 		listaOpiniones.add(m);
