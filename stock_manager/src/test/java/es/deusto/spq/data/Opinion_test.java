@@ -1,4 +1,4 @@
-package deusto.spq.data;
+package es.deusto.spq.data;
 
 import es.deusto.spq.data.Opinion;
 
@@ -9,8 +9,8 @@ import org.junit.Test;
 import es.deusto.spq.data.Cliente;
 
 public class Opinion_test{
-	Cliente c = new Cliente("jokin", "jokin@gmail.com", "Deusto1", "Deusto kalea 1");
-	Opinion o = new Opinion("me gusta", 8, c);
+	private Cliente c = new Cliente("jokin", "jokin@gmail.com", "Deusto1", "Deusto kalea 1");
+	private Opinion o = new Opinion("me gusta", 8, c);
 	
 	@Test
 	public void testTexto(){

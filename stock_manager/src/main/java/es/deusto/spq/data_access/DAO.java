@@ -209,7 +209,7 @@ public class DAO {
 		}
 		return c;
 	}
-
+	
 	//No cerrar la conexion hasta cerrar el programa
 	public void closeConection() {
 		pmf.close();

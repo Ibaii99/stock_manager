@@ -1,4 +1,4 @@
-package deusto.spq.data;
+package es.deusto.spq.data;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,8 +9,8 @@ import org.junit.Test;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Articulo;
 public class Articulo_test{
-	Date f1 = new Date(120,04,12);
-	Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
+	private Date f1 = new Date(120,04,12);
+	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
 	
 	
 	@Test
