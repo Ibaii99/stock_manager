@@ -149,4 +149,31 @@ public void anyadirCesta(Articulo articulo, Integer cantidad) {
 	DAO dao = new DAO();
 	dao.store(this);
 }
+
+public void eliminarCesta(Articulo articulo, Integer cantidad) {
+	DAO dao = new DAO();
+	Cesta cesta = dao.getCesta(this.getId());
+	if(cesta!=null) {
+		if(cesta.getArticulos().contains(articulo)) {
+			int i = articulos.indexOf(articulo);
+			if (cantidad == 0) {
+				articulos.remove(i);
+				cantidades.remove(i);
+			}else {
+				cantidades.remove(i);
+				cantidades.add(i, cantidad);
+			}
+		}
+	}
+}
+
+public void eliminarCestaEntera() {
+	for (int i = 0;i<articulos.size();i++) {
+		articulos.remove(i);
+		cantidades.remove(i);
+	}
+}
+
+
+
 }

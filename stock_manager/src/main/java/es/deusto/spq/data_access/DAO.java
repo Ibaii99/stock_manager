@@ -53,7 +53,80 @@ public class DAO {
 		}
 	}
 
-	// GET de lista de artículos
+	
+	
+	//Hacer stores de cada clase
+	//Hacer 
+	
+	//DATOS_DAO
+	private Cliente a = new Cliente("pepe", "pepe@gmail.com", "1234", "Barakaldo");
+	private Cliente b = new Cliente("luis", "luis@gmail.com", "1234", "Universidad Deusto");
+	private Cliente c = new Cliente("mani", "mani@gmail.com", "1234", "Bilbao");
+	private Cliente d = new Cliente("sandra", "sandra@gmail.com", "1234", "Universidad");
+	private Cliente e = new Cliente("Ane", "ane@gmail.com", "1234", "DeustoTech");
+	private Cliente c1 = new Cliente("miren", "miren@gmail.com", "hola", "Deusto kalea 1");
+	private Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
+	private Cliente mikel = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
+	private	Cliente jokin = new Cliente("jokin", "jokin@gmail.com", "1234", "Universidad Deusto");
+	private	Cliente ibai = new Cliente("ibai", "ibail@gmail.com", "1234", "Bilbao");
+	private	Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
+	private	Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
+	private Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
+	private Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com");
+	private Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com");
+	private Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com");
+	private Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com");
+	private Articulo manzana = new Articulo("manzana", new Date(04/03/120), 1.20f, 400, "rica manzana", 0.95f, Categoria.FRUTA);
+	private Articulo lechuga = new Articulo("lechuga", new Date(04/03/120), 1.20f, 400, "rica lechuga", 0.95f, Categoria.VEGETAL);
+	private Articulo fresa = new Articulo("pimiento", new Date(04/03/120), 1.20f, 400, "rica fresa", 0.95f, Categoria.VEGETAL);
+	private Articulo calabaza = new Articulo("lechuga", new Date(04/03/120), 1.20f, 400, "rica calabza", 0.95f, Categoria.VEGETAL);
+	private Articulo pimiento = new Articulo("lechuga", new Date(04/03/120), 1.20f, 400, "rico pimiento", 0.95f, Categoria.VEGETAL);
+	private Articulo a1 = new Articulo("coliflor",new Date(04/03/120), 1.20f, 400, "rica coliflor", 1.05f, Categoria.FRUTA);
+	private Articulo a2 = new Articulo("pan",new Date(04/03/120), 1.20f, 400, "rica pan", 1.05f, Categoria.FRUTA);
+	private Articulo a3 = new Articulo("agua",new Date(04/03/120), 1.20f, 400, "rica agua", 1.05f, Categoria.BEBIDA);
+	private Articulo a4 = new Articulo("Mandarina",new Date(04/03/120), 1.20f, 400, "rica mandarina", 1.05f, Categoria.CARNICERIA);
+	private ArrayList<Cesta> listaCestas= new ArrayList<Cesta>();
+	private Integer cantidad1 = 400;
+	private Integer cantidad2 = 500;
+	private Integer cantidad3 = 300;
+	private Integer cantidad4 = 600;
+	private	Opinion k = new Opinion("Me ha encantado la lechuga", 7,mikel);
+	private	Opinion l = new Opinion("No me ha gusatdo el pimiento",1,jokin);
+	private	Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
+	private	Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
+	private	Opinion o = new Opinion("Habeis hecho un excelente trabajo",10,unai);
+	DAO dao = new DAO();
+
+	 @POST
+		@Path("postArticulos")
+	    @Consumes(MediaType.APPLICATION_JSON)
+	    @Produces(MediaType.APPLICATION_JSON)
+	    public ArrayList<Articulo> listaArticulos() {
+			DAO dao = new DAO();
+			ArrayList<Articulo> listaArticulos= new ArrayList<Articulo>();
+			listaArticulos.add(a1);
+			listaArticulos.add(a2);
+			listaArticulos.add(a3);
+			listaArticulos.add(a4);
+			listaArticulos.add(lechuga);
+			listaArticulos.add(pimiento);
+			listaArticulos.add(fresa);
+			listaArticulos.add(calabaza);
+			listaArticulos.add(manzana);
+			store(a1);
+			store(a2);
+			store(a3);
+			store(a4);
+			store(lechuga);
+			store(pimiento);
+			store(fresa);
+			store(calabaza);
+			store(manzana);
+			return listaArticulos;
+		}
+	
+	//GET de lista de artículos
+
 	public List<Articulo> getArticulos() {
 		final List<Articulo> ret = new ArrayList<Articulo>();
 		final Transaction tx = pm.currentTransaction();
@@ -75,6 +148,47 @@ public class DAO {
 		return ret;
 	}
 
+
+	 
+//GET de artículos	 
+//		@GET
+//	    @Path("get2")
+//	    @Produces(MediaType.APPLICATION_JSON)
+//	    public String devuelveArticulos() {
+//	        return "Articulo devuelto!";
+//	    }
+	
+		
+//CLIENTES
+		//STORE de clientes
+	 @POST
+		@Path("postClientes")
+	    @Consumes(MediaType.APPLICATION_JSON)
+	    @Produces(MediaType.APPLICATION_JSON)
+	    public ArrayList<Cliente> listaClientes() {
+			ArrayList<Cliente> listaClientes= new ArrayList<Cliente>();
+			listaClientes.add(a);
+			listaClientes.add(b);
+			listaClientes.add(c);
+			listaClientes.add(d);
+			listaClientes.add(e);
+			listaClientes.add(mikel);
+			listaClientes.add(jokin);
+			listaClientes.add(ibai);
+			listaClientes.add(izai);
+			listaClientes.add(unai);
+			store(a);
+			store(b);
+			store(c);
+			store(d);
+			store(e);
+			store(mikel);
+			store(jokin);
+			store(ibai);
+			store(izai);
+			store(unai);
+			return listaClientes;
+	 }
 	// GET de un artículo
 	public Articulo getArticulo(long idArticulo) {
 		Articulo a = null;
@@ -118,22 +232,45 @@ public class DAO {
 		clientes = (ArrayList<Cliente>) this.getClientes();
 		for (int i = 0; i < clientes.size(); i++) {
 			c = clientes.get(i);
+
 			if (email.equals(c.getEmail_cliente()) && email.equals(c.getContrasenya_cliente())) {
+
 				return c;
 			}
 		}
 		return c;
 	}
 
-	// GET de clientes
-	// @GET
-	// @Path("get0")
-	// @Produces(MediaType.APPLICATION_JSON)
-	// public String devuelveClientes() {
-	// return "Cliente devuelto!";
-	// }
 
-	// GET de lista de cestas
+//CESTAS
+	//STORE de cestas
+	@POST
+	@Path("postCestas")
+	@Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<Cesta> listaCestas() {
+		DAO dao = new DAO();
+		
+		List<Articulo>listaArticulos1 = new ArrayList<Articulo>();
+		List<Articulo>listaArticulos2 = new ArrayList<Articulo>();
+		List<Integer> listaCantidades1 = new ArrayList<Integer>();
+		List<Integer> listaCantidades2 = new ArrayList<Integer>();
+		listaArticulos1.add(a1);
+		listaArticulos1.add(a2);
+		listaArticulos2.add(a3);
+		listaArticulos2.add(a4);
+		listaCantidades1.add(cantidad1);
+		listaCantidades1.add(cantidad2);
+		listaCantidades2.add(cantidad3);
+		listaCantidades2.add(cantidad4);
+		Cesta a = new Cesta(1, c1, listaArticulos1, listaCantidades1, Estado.ACTUAL);
+		Cesta b = new Cesta(2, c2, listaArticulos2, listaCantidades2, Estado.ACTUAL);
+		store(a);
+		store(b);
+		return listaCestas;
+	}
+	
+
 	public List<Cesta> getCestas() {
 		List<Cesta> ret = new ArrayList<Cesta>();
 		Transaction tx = pm.currentTransaction();
@@ -167,6 +304,36 @@ public class DAO {
 		}
 		return c;
 	}
+//GET de cestas
+//	@GET
+//    @Path("get3")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public String devuelveCestas() {
+//        return "Cesta devuelta!";
+//	}
+    
+//OPINION
+	//STORE de opiniones
+    @POST
+	@Path("postOpiniones")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<Opinion> listaOpiniones() {
+        ArrayList<Opinion> listaOpiniones= new ArrayList<Opinion>();
+       
+		listaOpiniones.add(k);
+		listaOpiniones.add(l);
+		listaOpiniones.add(m);
+		listaOpiniones.add(n);
+		listaOpiniones.add(o);
+		store(k);
+		store(l);
+		store(m);
+		store(n);
+		store(o);
+		return listaOpiniones;
+	}
+
 
 	// GET de lista de opiniones
 	public List<Opinion> getOpiniones() {
@@ -202,6 +369,25 @@ public class DAO {
 			}
 		}
 		return c;
+	}
+
+	@POST
+	@Path("postVendedores")
+	@Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<Vendedor> listaVendedores() {
+		ArrayList<Vendedor> listaVendedores= new ArrayList<Vendedor>();
+		listaVendedores.add(f);
+		listaVendedores.add(g);
+		listaVendedores.add(h);
+		listaVendedores.add(i);
+		listaVendedores.add(j);
+		store(f);
+		store(g);
+		store(h);
+		store(i);
+		store(j);
+		return listaVendedores;
 	}
 
 	// GET de lista de vendedores
