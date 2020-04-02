@@ -24,10 +24,10 @@ public class Opinion implements Serializable {
 
 	}
 
-	public Opinion(String texto, int valoracion, Cliente id_cliente) {
+	public Opinion(String texto, int valoracion, Cliente cliente) {
 		this.texto = texto;
 		this.valoracion = valoracion;
-		this.cliente = id_cliente;
+		this.cliente = cliente;
 	}
 
 	public long getId() {

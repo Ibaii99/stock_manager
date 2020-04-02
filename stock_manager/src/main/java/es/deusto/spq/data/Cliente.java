@@ -8,6 +8,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import es.deusto.spq.data_access.DAO;
+
 @PersistenceCapable(detachable = "true")
 public class Cliente implements Serializable{
 	
@@ -32,7 +34,7 @@ public class Cliente implements Serializable{
         
     }
 
-    public Cliente(String _nombre, String _email, String _contrasenya, String _direccion) {
+    public Cliente(String _email, String _nombre, String _contrasenya, String _direccion) {
         this.contrasenya_cliente = _contrasenya;
         this.email_cliente = _email;
         this.nombre_cliente = _nombre;
@@ -89,7 +91,28 @@ public class Cliente implements Serializable{
 	}
 
 	public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
+		
     	
+	}
+	
+	public void opinar(Articulo articulo, int valoracion, String texto) {
+		Opinion opinion = new Opinion(texto, valoracion, this);
+		DAO dao = new DAO();
+		dao.store(opinion);
+	}
+	
+	public boolean loggin(String email, String contrasenya) {
+		DAO dao = new DAO();
+		if(dao.getCliente(email, contrasenya)!=null)
+			return true;
+		else
+			return false;
+	}
+	
+	public void registro(String email, String nombre, String contrasenya, String direccion) {
+		DAO dao = new DAO();
+		Cliente c = new Cliente(email, nombre, contrasenya, direccion);
+		dao.store(c);
 	}
 
 	

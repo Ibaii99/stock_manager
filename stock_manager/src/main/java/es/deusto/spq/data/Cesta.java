@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
+import es.deusto.spq.data_access.DAO;
+
 @PersistenceCapable(detachable = "true")
 public class Cesta implements Serializable {
 
@@ -139,5 +141,10 @@ public class Cesta implements Serializable {
 //		return r;
 //	}
 //
-
+public void anyadirCesta(Articulo articulo, Integer cantidad) {
+	articulos.add(articulo);
+	cantidades.add(cantidad);
+	DAO dao = new DAO();
+	dao.store(this);
+}
 }
