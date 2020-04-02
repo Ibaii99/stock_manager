@@ -139,5 +139,8 @@ public class Cesta implements Serializable {
 //		return r;
 //	}
 //
-
+public void anyadirCesta() {
+	Articulo articulo = new Articulo();
+	articulos.add(articulo);
+}
 }

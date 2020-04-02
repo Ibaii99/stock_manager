@@ -24,7 +24,7 @@ import es.deusto.spq.data.Cesta.Estado;
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
 
-@Path("usuarios")
+@Path("dao")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class DAO {
@@ -178,7 +178,7 @@ public class DAO {
 //CLIENTES
 		//STORE de clientes
 	 @POST
-		@Path("post0")
+		@Path("postClientes")
 	    @Consumes(MediaType.APPLICATION_JSON)
 	    @Produces(MediaType.APPLICATION_JSON)
 	    public ArrayList<Cliente> listaClientes() {
@@ -251,7 +251,7 @@ public class DAO {
 //CESTAS
 	//STORE de cestas
 	@POST
-	@Path("post3")
+	@Path("postCestas")
 	@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Cesta> listaCestas() {
@@ -321,7 +321,7 @@ public class DAO {
 //OPINION
 	//STORE de opiniones
     @POST
-	@Path("post4")
+	@Path("postOpiniones")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Opinion> listaOpiniones() {
@@ -385,7 +385,7 @@ public class DAO {
 //VENDEDOR
 	//STORE de vendedores
 	@POST
-	@Path("post1")
+	@Path("postVendedores")
 	@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Vendedor> listaVendedores() {
