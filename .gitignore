@@ -16,3 +16,4 @@ buildNumber.properties
 stock_manager/datanucleus.log
 .classpath
 /bin/
+*.log
