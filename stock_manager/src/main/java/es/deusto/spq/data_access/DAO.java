@@ -67,6 +67,13 @@ public class DAO {
 	private Cliente c = new Cliente("mani", "mani@gmail.com", "1234", "Bilbao");
 	private Cliente d = new Cliente("sandra", "sandra@gmail.com", "1234", "Universidad");
 	private Cliente e = new Cliente("Ane", "ane@gmail.com", "1234", "DeustoTech");
+	private Cliente c1 = new Cliente("miren", "miren@gmail.com", "hola", "Deusto kalea 1");
+	private Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
+	private Cliente mikel = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
+	private	Cliente jokin = new Cliente("jokin", "jokin@gmail.com", "1234", "Universidad Deusto");
+	private	Cliente ibai = new Cliente("ibai", "ibail@gmail.com", "1234", "Bilbao");
+	private	Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
+	private	Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
 	private Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
 	private Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com");
 	private Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com");
@@ -82,17 +89,10 @@ public class DAO {
 	private Articulo a3 = new Articulo("agua",new Date(04/03/120), 1.20f, 400, "rica agua", 1.05f, Categoria.BEBIDA);
 	private Articulo a4 = new Articulo("Mandarina",new Date(04/03/120), 1.20f, 400, "rica mandarina", 1.05f, Categoria.CARNICERIA);
 	private ArrayList<Cesta> listaCestas= new ArrayList<Cesta>();
-	private Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
-	private Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
 	private Integer cantidad1 = 400;
 	private Integer cantidad2 = 500;
 	private Integer cantidad3 = 300;
 	private Integer cantidad4 = 600;
-	private Cliente mikel = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
-	private	Cliente jokin = new Cliente("jokin", "jokin@gmail.com", "1234", "Universidad Deusto");
-	private	Cliente ibai = new Cliente("ibai", "ibail@gmail.com", "1234", "Bilbao");
-	private	Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
-	private	Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
 	private	Opinion k = new Opinion("Me ha encantado la lechuga", 7,mikel);
 	private	Opinion l = new Opinion("No me ha gusatdo el pimiento",1,jokin);
 	private	Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
@@ -118,15 +118,15 @@ public class DAO {
 			listaArticulos.add(fresa);
 			listaArticulos.add(calabaza);
 			listaArticulos.add(manzana);
-			dao.store(a1);
-			dao.store(a2);
-			dao.store(a3);
-			dao.store(a4);
-			dao.store(lechuga);
-			dao.store(pimiento);
-			dao.store(fresa);
-			dao.store(calabaza);
-			dao.store(manzana);
+			store(a1);
+			store(a2);
+			store(a3);
+			store(a4);
+			store(lechuga);
+			store(pimiento);
+			store(fresa);
+			store(calabaza);
+			store(manzana);
 			return listaArticulos;
 		}
 	
@@ -193,16 +193,16 @@ public class DAO {
 			listaClientes.add(ibai);
 			listaClientes.add(izai);
 			listaClientes.add(unai);
-			dao.store(a);
-			dao.store(b);
-			dao.store(c);
-			dao.store(d);
-			dao.store(e);
-			dao.store(mikel);
-			dao.store(jokin);
-			dao.store(ibai);
-			dao.store(izai);
-			dao.store(unai);
+			store(a);
+			store(b);
+			store(c);
+			store(d);
+			store(e);
+			store(mikel);
+			store(jokin);
+			store(ibai);
+			store(izai);
+			store(unai);
 			return listaClientes;
 		}
 	//GET de lista de clientes
@@ -233,7 +233,7 @@ public class DAO {
 		clientes = (ArrayList<Cliente>) this.getClientes();
 		for(int i = 0; i<clientes.size(); i++) {
 			c = clientes.get(i);
-			if(email.equals(c.getEmail_cliente()) && email.equals(c.getContrasenya_cliente())) {
+			if(email.equals(c.getEmail_cliente()) && email.equals(contrasenya)) {
 				return c;
 			}
 		}
@@ -271,8 +271,8 @@ public class DAO {
 		listaCantidades2.add(cantidad4);
 		Cesta a = new Cesta(1, c1, listaArticulos1, listaCantidades1, Estado.ACTUAL);
 		Cesta b = new Cesta(2, c2, listaArticulos2, listaCantidades2, Estado.ACTUAL);
-		dao.store(a);
-		dao.store(b);
+		store(a);
+		store(b);
 		return listaCestas;
 	}
 	
@@ -332,11 +332,11 @@ public class DAO {
 		listaOpiniones.add(m);
 		listaOpiniones.add(n);
 		listaOpiniones.add(o);
-		dao.store(k);
-		dao.store(l);
-		dao.store(m);
-		dao.store(n);
-		dao.store(o);
+		store(k);
+		store(l);
+		store(m);
+		store(n);
+		store(o);
 		return listaOpiniones;
 	}
 	//GET de lista de opiniones
@@ -395,11 +395,11 @@ public class DAO {
 		listaVendedores.add(h);
 		listaVendedores.add(i);
 		listaVendedores.add(j);
-		dao.store(f);
-		dao.store(g);
-		dao.store(h);
-		dao.store(i);
-		dao.store(j);
+		store(f);
+		store(g);
+		store(h);
+		store(i);
+		store(j);
 		return listaVendedores;
 	}
 	//GET de lista de vendedores
