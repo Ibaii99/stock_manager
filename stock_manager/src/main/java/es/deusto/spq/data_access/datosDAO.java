@@ -2,29 +2,29 @@ package es.deusto.spq.data_access;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.jdo.Extent;
-import javax.jdo.JDOHelper;
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.Transaction;
-import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import es.deusto.spq.data.Articulo;
+import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta;
+import es.deusto.spq.data.Cesta.Estado;
+import es.deusto.spq.data.Cliente;
 import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
-import es.deusto.spq.data.Articulo;
-import es.deusto.spq.data.Cliente;
 
 public class datosDAO {
-    DAO dao = new DAO();
+	DAO dao = new DAO();
+	
     @POST
 	@Path("post")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Cliente> listaClientes() {
 		ArrayList<Cliente> listaClientes= new ArrayList<Cliente>();
 		Cliente a = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
@@ -54,7 +54,7 @@ public class datosDAO {
 
 	@POST
 	@Path("post")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Vendedor> listaVendedores() {
 		ArrayList<Vendedor> listaVendedores= new ArrayList<Vendedor>();
 		Vendedor a = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
@@ -83,7 +83,7 @@ public class datosDAO {
 
     @POST
 	@Path("post1")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Articulo> listaArticulos() {
 		DAO dao = new DAO();
 		ArrayList<Articulo> listaArticulos= new ArrayList<Articulo>();
@@ -105,7 +105,7 @@ public class datosDAO {
     }
 	@POST
 	@Path("post2")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Cesta> listaCestas() {
 		DAO dao = new DAO();
 		ArrayList<Cesta> listaCestas= new ArrayList<Cesta>();
@@ -146,7 +146,7 @@ public class datosDAO {
 
     @POST
 	@Path("post")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<Opinion> listaOpiniones() {
         ArrayList<Opinion> listaOpiniones= new ArrayList<Opinion>();
         Cliente mikel = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");

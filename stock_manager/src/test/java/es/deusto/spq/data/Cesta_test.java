@@ -1,4 +1,4 @@
-package deusto.spq.data;
+package es.deusto.spq.data;
 
 
 import es.deusto.spq.data.Cesta;
@@ -7,13 +7,14 @@ import es.deusto.spq.data.Cliente;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
 
 import es.deusto.spq.data.Articulo;
+
 import es.deusto.spq.data.Articulo.Categoria;
 
 public class Cesta_test{
@@ -23,6 +24,7 @@ public class Cesta_test{
 	private Articulo a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
 	private List<Articulo>listaArticulos = new ArrayList<Articulo>();
 	private List<Integer> listaCantidades = new ArrayList<Integer>();
+
 	listaArticulos.add(a1);
 	listaArticulos.add(a2);
 	Integer cantidad1 = 400;
