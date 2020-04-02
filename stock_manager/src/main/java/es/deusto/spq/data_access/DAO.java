@@ -244,10 +244,11 @@ public class DAO {
 		return c;
 	}
 	// Meter varios datos a la base de datos
-	 @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	@POST
-	 @Path("meter_datos")
-	 public void meter_datos() {
+	@Path("meter_datos")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String meter_datos() {
 
 		Cliente a = new Cliente("pepe", "pepe@gmail.com", "1234", "Barakaldo");
 		Cliente b = new Cliente("luis", "luis@gmail.com", "1234", "Universidad Deusto");
@@ -376,6 +377,8 @@ public class DAO {
 		store(m);
 		store(n);
 		store(o);
+		
+		return "Todos los datos han sido añadidos bien";
 
 	}
 
