@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 
@@ -25,7 +27,7 @@ public class Articulo implements Serializable {
 }
 	
 	private static final long serialVersionUID = 1L;
-	@PrimaryKey
+	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
     private String nombre;
     private Date caducidad;

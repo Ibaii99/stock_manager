@@ -3,6 +3,7 @@ package es.deusto.spq.data;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -19,7 +20,7 @@ public class Cliente implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@PrimaryKey
+	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
     private String email_cliente;
     private String nombre_cliente;
