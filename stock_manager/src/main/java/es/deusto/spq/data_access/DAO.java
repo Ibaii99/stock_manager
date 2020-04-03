@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Opinion;
+import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
@@ -139,6 +140,43 @@ public class DAO {
 		}
 		return null;
 	}
+	
+	public List<Usuario> getUsuarios() {
+		List<Usuario> ret = new ArrayList<Cliente>();
+		Transaction tx = pm.currentTransaction();
+		try {
+			System.out.println("   * Retrieving an Extent for Usuario.");
+			tx.begin();
+			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
+			for (Usuario product : extent) {
+				ret.add(product);
+			}
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		}
+		return ret;
+	}
+
+	// GET de un cliente
+	public Usuario getUsuario(String usuario, String contrasenya) {
+		Usuario u = null;
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios = (ArrayList<Usuario>) this.getUsuario();
+		for (int i = 0; i < usuarios.size(); i++) {
+			c = usuarios.get(i);
+			if (usuario.equals(u.getUsuario()) && contrasenya.equals(u.getContrasenya())) {
+				return u;
+			}
+		}
+		return null;
+	}
+	
+	
 
 
 	
@@ -240,17 +278,17 @@ public class DAO {
 	}
 
 	// GET de un unico vendedor
-	public Vendedor getVendedor(long id) {
-		Vendedor c = null;
-		ArrayList<Vendedor> Vendedores = new ArrayList<Vendedor>();
-		Vendedores = (ArrayList<Vendedor>) this.getVendedores();
-		for (int i = 0; i < Vendedores.size(); i++) {
-			c = Vendedores.get(i);
-			if (id == c.getId()) {
-				return c;
+	public Vendedor getVendedor(String email) {
+		Vendedor v = null;
+		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
+		vendedores = (ArrayList<Vendedor>) this.getVendedores();
+		for (int i = 0; i < vendedores.size(); i++) {
+			v = vendedores.get(i);
+			if (email.equals(v.getEmail_vendedor())) {
+				return v;
 			}
 		}
-		return c;
+		return v;
 	}
 	// Meter varios datos a la base de datos
 	@SuppressWarnings("deprecation")
@@ -261,11 +299,18 @@ public class DAO {
 		Cliente c = new Cliente("mani", "mani@gmail.com", "1234", "Bilbao");
 		Cliente d = new Cliente("sandra", "sandra@gmail.com", "1234", "Universidad");
 		Cliente e = new Cliente("Ane", "ane@gmail.com", "1234", "DeustoTech");
+		Cliente mikel = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
+		Cliente jokin = new Cliente("jokin", "jokin@gmail.com", "1234", "Universidad Deusto");
+		Cliente ibai = new Cliente("ibai", "ibail@gmail.com", "1234", "Bilbao");
+		Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
+		Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
 		Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
 		Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com");
 		Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com");
 		Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com");
 		Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com");
+		Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
+		Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
 		Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,
 				Categoria.FRUTA);
 		Articulo lechuga = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rica lechuga", 0.95f,
@@ -283,22 +328,22 @@ public class DAO {
 		Articulo a4 = new Articulo("Mandarina", new Date(121, 3, 21), 1.20f, 400, "rica mandarina", 1.05f,
 				Categoria.CARNICERIA);
 		ArrayList<Cesta> listaCestas = new ArrayList<Cesta>();
-		Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
-		Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
 		Integer cantidad1 = 400;
 		Integer cantidad2 = 500;
 		Integer cantidad3 = 300;
 		Integer cantidad4 = 600;
-		Cliente mikel = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
-		Cliente jokin = new Cliente("jokin", "jokin@gmail.com", "1234", "Universidad Deusto");
-		Cliente ibai = new Cliente("ibai", "ibail@gmail.com", "1234", "Bilbao");
-		Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
-		Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
 		Opinion k = new Opinion("Me ha encantado la lechuga", 7, mikel);
 		Opinion l = new Opinion("No me ha gusatdo el pimiento", 1, jokin);
 		Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
 		Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
 		Opinion o = new Opinion("Habeis hecho un excelente trabajo", 10, unai);
+		Usuario mikelAdmin = new Usuario("mikel", "1234");
+		Usuario ibaiAdmin = new Usuario("ibai", "1234");
+		Usuario jokinAdmin = new Usuario("jokin", "1234");
+		Usuario izaiAdmin = new Usuario("izai", "1234");
+		Usuario unaiAdmin = new Usuario("unai", "1234");
+		Usuario admin = new Usuario("admin", "admin");
+		
 		
 		ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 		listaArticulos.add(a1);
@@ -341,6 +386,22 @@ public class DAO {
 		store(ibai);
 		store(izai);
 		store(unai);
+		
+		
+		ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+		listaUsuarios.add(admin);
+		listaUsuarios.add(mikelAdmin);
+		listaUsuarios.add(jokinAdmin);
+		listaUsuarios.add(ibaiAdmin);
+		listaUsuarios.add(izaiAdmin);
+		listaUsuarios.add(unaiAdmin);
+		store(admin);
+		store(mikelAdmin);
+		store(jokinAdmin);
+		store(ibaiAdmin);
+		store(izaiAdmin);
+		store(unaiAdmin);
+		
 		
 		List<Articulo> listaArticulos1 = new ArrayList<Articulo>();
 		List<Articulo> listaArticulos2 = new ArrayList<Articulo>();
