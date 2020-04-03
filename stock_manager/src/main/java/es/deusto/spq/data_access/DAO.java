@@ -74,6 +74,18 @@ public class DAO {
 		}
 		return ret;
 	}
+	
+	//Si existe un mensaje salga por pantalla(el metodo si existe en Admin)
+	public String existe() {
+		String a= "Ya existe";
+		return a;
+	}
+	
+	public String noExiste() {
+		String a= "No existe";
+		return a;
+	}
+	
 
 
 
@@ -375,6 +387,7 @@ public class DAO {
 		return "Todos los datos han sido añadidos bien";
 
 	}
+
 
 	// No cerrar la conexion hasta cerrar el programa
 	public void closeConection() {

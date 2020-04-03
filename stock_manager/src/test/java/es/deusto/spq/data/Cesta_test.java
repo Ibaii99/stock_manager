@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import es.deusto.spq.data.Articulo;
