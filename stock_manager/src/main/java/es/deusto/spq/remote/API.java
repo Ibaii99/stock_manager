@@ -32,8 +32,6 @@ public class API {
 	@POST
 	@Path("log_in")
 	public String log_in(JsonObject json) {
-		System.out.println(json);
-		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		String nombre = new Cliente().loggin(get_from_json(json, "email"), get_from_json(json, "password"));
 		System.out.println(nombre);
 		return "{ \"nombre\": \""+nombre + "\" }";
@@ -42,17 +40,22 @@ public class API {
 	@POST
 	@Path("register")
 	public String register(JsonObject json) {
-		DAO db = new DAO();
-		System.out.println(json);
-		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
-
-		Cliente cliente = new Cliente(get_from_json(json, "nombre"), get_from_json(json, "email"), get_from_json(json, "password"), 
-		get_from_json(json, "direccion"));
-		
+		Cliente cliente = new Cliente(get_from_json(json, "name"), get_from_json(json, "email"), get_from_json(json, "password"), 
+		get_from_json(json, "address"));
 		cliente.registrarme();
 
-		return "Done";
+		return "{ \"nombre\": \""+cliente.getNombre_cliente() + "\" }";
 	}
+	
+	@POST
+	@Path("get_cliente")
+	public Cliente get_cliente(JsonObject json) {
+		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
+		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.toString();
+		return c;
+	}
+	
 	
 	@GET
 	@Path("meter_datos")

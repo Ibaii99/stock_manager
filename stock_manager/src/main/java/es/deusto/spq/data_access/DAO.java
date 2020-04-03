@@ -291,7 +291,7 @@ public class DAO {
 		Integer cantidad4 = 600;
 		Cliente mikel = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
 		Cliente jokin = new Cliente("jokin", "jokin@gmail.com", "1234", "Universidad Deusto");
-		Cliente ibai = new Cliente("ibai", "ibail@gmail.com", "1234", "Bilbao");
+		Cliente ibai = new Cliente("ibai", "ibai@gmail.com", "1234", "Bilbao");
 		Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
 		Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
 		Opinion k = new Opinion("Me ha encantado la lechuga", 7, mikel);
