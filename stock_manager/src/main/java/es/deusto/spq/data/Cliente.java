@@ -8,6 +8,7 @@ import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Unique;
 
 import es.deusto.spq.data_access.DAO;
 
@@ -22,6 +23,7 @@ public class Cliente implements Serializable{
 	
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
+	@Unique
     private String email_cliente;
     private String nombre_cliente;
     private String contrasenya_cliente;
@@ -35,7 +37,7 @@ public class Cliente implements Serializable{
         
     }
 
-    public Cliente(String _email, String _nombre, String _contrasenya, String _direccion) {
+    public Cliente(String _nombre, String _email, String _contrasenya, String _direccion) {
         this.contrasenya_cliente = _contrasenya;
         this.email_cliente = _email;
         this.nombre_cliente = _nombre;
@@ -92,7 +94,7 @@ public class Cliente implements Serializable{
 	}
 
 	public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
-		
+		//Hay que crearlo
     	
 	}
 	
@@ -102,14 +104,26 @@ public class Cliente implements Serializable{
 		dao.store(opinion);
 	}
 	
-	public boolean loggin(String email, String contrasenya) {
+	public String loggin(String email, String contrasenya) {
 		DAO dao = new DAO();
-		if(dao.getCliente(email, contrasenya)!=null)
-			return true;
-		else
-			return false;
+		try {
+			Cliente c = dao.getCliente(email, contrasenya);
+			if(c !=null) {
+				System.out.println("Cliente encontrado.");
+				return c.getNombre_cliente();
+			}
+			else {
+				System.out.println("Cliente no encontrado.");
+				return null;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Cliente no encontrado, error.");
+			return null;
+		}
 	}
-	
+		
 	public void registro(String email, String nombre, String contrasenya, String direccion) {
 		DAO dao = new DAO();
 		Cliente c = new Cliente(email, nombre, contrasenya, direccion);

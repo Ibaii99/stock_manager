@@ -24,7 +24,6 @@ import es.deusto.spq.data.Cesta.Estado;
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
 
-@Path("dao")
 public class DAO {
 	// JDO
 
@@ -75,6 +74,18 @@ public class DAO {
 		}
 		return ret;
 	}
+	
+	//Si existe un mensaje salga por pantalla(el metodo si existe en Admin)
+	public String existe() {
+		String a= "Ya existe";
+		return a;
+	}
+	
+	public String noExiste() {
+		String a= "No existe";
+		return a;
+	}
+	
 
 
 
@@ -122,13 +133,11 @@ public class DAO {
 		clientes = (ArrayList<Cliente>) this.getClientes();
 		for (int i = 0; i < clientes.size(); i++) {
 			c = clientes.get(i);
-
-			if (email.equals(c.getEmail_cliente()) && email.equals(c.getContrasenya_cliente())) {
-
+			if (email.equals(c.getEmail_cliente()) && contrasenya.equals(c.getContrasenya_cliente())) {
 				return c;
 			}
 		}
-		return c;
+		return null;
 	}
 
 
@@ -244,10 +253,8 @@ public class DAO {
 		return c;
 	}
 	// Meter varios datos a la base de datos
-	 @SuppressWarnings("deprecation")
-	@POST
-	 @Path("meter_datos")
-	 public void meter_datos() {
+	@SuppressWarnings("deprecation")
+	public String meter_datos() {
 
 		Cliente a = new Cliente("pepe", "pepe@gmail.com", "1234", "Barakaldo");
 		Cliente b = new Cliente("luis", "luis@gmail.com", "1234", "Universidad Deusto");
@@ -376,8 +383,11 @@ public class DAO {
 		store(m);
 		store(n);
 		store(o);
+		
+		return "Todos los datos han sido añadidos bien";
 
 	}
+
 
 	// No cerrar la conexion hasta cerrar el programa
 	public void closeConection() {
