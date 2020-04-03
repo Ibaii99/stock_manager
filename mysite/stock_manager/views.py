@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import datetime
 from mysite import settings
 import requests
+import json
+
 
 # Create your views here.
 
@@ -28,19 +30,29 @@ def register(request):
 
 def login(request):
     if(request.method == 'POST'):
-        email = request.POST.get('email')
-        password = request.POST.get('password')
         
         headers = {'Content-Type': 'application/json'}
-        info={}
-        resp = requests.post('http://'+settings.STOCK_MANAGER_API_URL +'/',json=info, headers=headers)
+        info={
+            "email": request.POST.get('email'),
+	        "password": request.POST.get('password')
+        }
+        
+        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/log_in', json=info)
+        #print(resp.json())
+        
+        save_session(request, request.COOKIES['sessionid'], resp.json()["nombre"], request.POST.get('email'), request.POST.get('password') )
+        
+        request.session['nombre'] = resp.json()["nombre"]
+        request.session['email'] = request.POST.get('email')
+        
+        
+        return redirect("/index/")
+        
     return render(request, "login.html")
 
 def shop(request):
     
     print(request.COOKIES)
-    request.session['nombre'] = "Ibai"
-    request.session['pass'] = "pass"
     
     for key, value in request.session.items():
         print('{} => {}'.format(key, value))
@@ -48,9 +60,6 @@ def shop(request):
     return render(request, "shop.html")
 
 def index(request):
-    
-    
-    
     print(request.COOKIES)
     print(request.session)
     for key, value in request.session.items():
@@ -58,7 +67,7 @@ def index(request):
         
     if 'nombre' in request.session:
         del request.session['nombre']
-        del request.session['pass'] 
+        del request.session['email'] 
     
     for key, value in request.session.items():
         print('{} => {}'.format(key, value))
@@ -79,11 +88,58 @@ def get_vars(request):
     None
 
 #Guardara el valor de la ip y la sesion
-def save_session(request, session_id):
+def save_session(request, session_id, user_name, email, password):
     global sessions
-    sessions[get_client_ip(request)] = session_id
+    
+    store= {
+            "ip": get_client_ip(request),
+            "nombre": user_name,
+            "email": email,
+            "sessionid": session_id,
+            "password": password,
+            "fecha_caducidad": datetime.date.today()
+    }
+    
+    sessions[get_client_ip(request)] = store
+    
+    print(sessions)
 
+def close_session(request):
+    global sessions
+    
+    try:
+        
+    except:
+    
+    try:
+        sesion = sessions[get_client_ip(request)]
+        
+        if sesion is None:
+            return True
+        else:
+            del sessions[sessions.index(sesion)]
+            return True
+    except:
+        return False
 
+def is_session_alive(request):
+    global sessions
+    try:
+        sesion = sessions[get_client_ip(request)]
+        if sesion is None:
+            return False
+        else:
+            if ((sesion.json()["ip"] == get_client_ip(request)) and ( sesion.json()["nombre"] == request.session['nombre']) and 
+                (sesion.json()["email"] == request.session['email']) and ( sesion.json()["sessionid"] == request.COOKIES['sessionid']) and
+                (sesion.json()["fecha_caducidad"] >= datetime.date.today())):
+                
+                return True
+            
+            return False
+    except:
+        return False
+    
+    
 #Para conseguir la ip de un usuario y obtener asi el id de la sesion
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
