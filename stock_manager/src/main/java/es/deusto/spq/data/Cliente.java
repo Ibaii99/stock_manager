@@ -92,7 +92,7 @@ public class Cliente implements Serializable{
 	}
 
 	public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
-		
+		//Hay que crearlo
     	
 	}
 	
