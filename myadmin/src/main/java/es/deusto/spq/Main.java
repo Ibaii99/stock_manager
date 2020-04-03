@@ -6,8 +6,7 @@ package es.deusto.spq;
  */
 public class Main 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hola" );
-    }
+    //Main del admin
+	
+	
 }
