@@ -81,7 +81,7 @@ public class API {
 		Float oferta = Float.parseFloat(get_from_json(json, "oferta")); //13.2
 
 		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
-		//FRUTA, VEGETAL, CARNICERIA, PESCADERIA, BEBIDA, DULCE
+		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
 		
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria);
 

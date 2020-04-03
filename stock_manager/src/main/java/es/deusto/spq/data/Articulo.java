@@ -19,11 +19,9 @@ public class Articulo implements Serializable {
 	 */
 	public enum Categoria {
 		FRUTAS,
-		VEGETALES, 
-		CARNES,
-		PESCADOS, 
-		BEBIDAS,
-		DULCES
+		FRUTOSSECOS, 
+		VERDURAS,
+		ZUMOS
 	}
 	
 	private static final long serialVersionUID = 1L;
