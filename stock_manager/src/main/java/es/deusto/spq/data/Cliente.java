@@ -130,6 +130,11 @@ public class Cliente implements Serializable{
 		dao.store(c);
 	}
 
+	public void registrarme() {
+		DAO dao = new DAO();
+		Cliente c = new Cliente(this.email_cliente, this.nombre_cliente, this.contrasenya_cliente, this.direccion_cliente);
+		dao.store(c);
+	}
 	
 
 }

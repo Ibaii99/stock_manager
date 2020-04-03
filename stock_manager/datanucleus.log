@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 17:04:12,360 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
 17:04:12,397 (main) DEBUG [DataNucleus.General] - Registering bundle org.sonatype.inject version 2.3.0 at URL file:/C:/Users/ibaig_vi6j6bo/.m2/repository/org/sonatype/sisu/sisu-inject-bean/2.3.0/sisu-inject-bean-2.3.0.jar.
 17:04:12,440 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/ibaig_vi6j6bo/.m2/repository/org/sonatype/sisu/sisu-inject-bean/2.3.0/sisu-inject-bean-2.3.0.jar!/plugin.xml.
@@ -2322,3 +2323,5 @@
 17:26:23,181 (grizzly-http-server-2) DEBUG [DataNucleus.Lifecycle] - Objeto "es.deusto.spq.data.Cliente@193f6d09" (id="es.deusto.spq.data.Cliente:66") tiene cambio de lifeycle : "HOLLOW"->"P_NONTRANS"
 17:26:23,181 (grizzly-http-server-2) DEBUG [DataNucleus.Lifecycle] - Objeto "es.deusto.spq.data.Cliente@56cef41c" (id="es.deusto.spq.data.Cliente:67") tiene cambio de lifeycle : "HOLLOW"->"P_NONTRANS"
 17:26:23,181 (grizzly-http-server-2) DEBUG [DataNucleus.Lifecycle] - Objeto "es.deusto.spq.data.Cliente@16353d7e" (id="es.deusto.spq.data.Cliente:68") tiene cambio de lifeycle : "HOLLOW"->"P_NONTRANS"
+=======
+>>>>>>> 126fff6c86e3247b818a2f7a1d828f4fbd63d434

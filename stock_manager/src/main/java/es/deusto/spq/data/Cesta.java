@@ -168,10 +168,15 @@ public void eliminarCesta(Articulo articulo, Integer cantidad) {
 }
 
 public void eliminarCestaEntera() {
+	/*
 	for (int i = 0;i<articulos.size();i++) {
 		articulos.remove(i);
 		cantidades.remove(i);
 	}
+	*/
+	articulos.clear();
+	cantidades.clear();
+
 }
 
 

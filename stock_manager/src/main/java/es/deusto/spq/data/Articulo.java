@@ -23,8 +23,7 @@ public class Articulo implements Serializable {
 		PESCADERIA, 
 		BEBIDA,
 		DULCE
-	
-}
+	}
 	
 	private static final long serialVersionUID = 1L;
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")

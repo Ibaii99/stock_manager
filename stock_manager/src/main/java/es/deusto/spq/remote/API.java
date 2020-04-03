@@ -31,14 +31,27 @@ public class API {
      */
 	@POST
 	@Path("log_in")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	public String log_in(JsonObject json) {
 		System.out.println(json);
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		String nombre = new Cliente().loggin(get_from_json(json, "email"), get_from_json(json, "password"));
 		System.out.println(nombre);
 		return "{ \"nombre\": \""+nombre + "\" }";
+	}
+
+	@POST
+	@Path("register")
+	public String register(JsonObject json) {
+		DAO db = new DAO();
+		System.out.println(json);
+		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
+
+		Cliente cliente = new Cliente(get_from_json(json, "nombre"), get_from_json(json, "email"), get_from_json(json, "password"), 
+		get_from_json(json, "direccion"));
+		
+		cliente.registrarme();
+
+		return "Done";
 	}
 	
 	@GET

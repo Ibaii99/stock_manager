@@ -51,7 +51,7 @@ public class Admin {
 		this.contrasenya_admin = contrasenya_admin;
 	}
 	
-	//Eliminar art�culo
+	//Eliminar articulo
 	public void eliminarArticulo(Articulo articulo) {
 		DAO dao = new DAO();
 		List<Articulo> articulos = dao.getArticulos();
@@ -61,7 +61,7 @@ public class Admin {
 			dao.noExiste();//Devuelve un String diciendo que no existe
 		}
 	}
-	//Anyadir art�culo
+	//Crear nuevo articulo
 	public void anyadirArticulo(Articulo articulo) {
 		DAO dao = new DAO();
 		List<Articulo> articulos = dao.getArticulos();
