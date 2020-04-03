@@ -1,5 +1,9 @@
 package es.deusto.spq.remote;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -11,7 +15,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 
 import com.fasterxml.jackson.core.JsonParser;
+import es.deusto.spq.data.Articulo;
+
 import es.deusto.spq.data.Cliente;
+import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
 
 /**
@@ -23,17 +30,15 @@ import es.deusto.spq.data_access.DAO;
 @Produces(MediaType.APPLICATION_JSON)
 public class API {
 
-    /**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "text/plain" media type.
-     *
-     * @return String that will be returned as a text/plain response.
-     */
+	/**
+	 * Method handling HTTP GET requests. The returned object will be sent to the
+	 * client as "text/plain" media type.
+	 *
+	 * @return String that will be returned as a text/plain response.
+	 */
 	@POST
 	@Path("log_in")
 	public String log_in(JsonObject json) {
-		System.out.println(json);
-		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		String nombre = new Cliente().loggin(get_from_json(json, "email"), get_from_json(json, "password"));
 		System.out.println(nombre);
 		return "{ \"nombre\": \""+nombre + "\" }";
@@ -42,17 +47,48 @@ public class API {
 	@POST
 	@Path("register")
 	public String register(JsonObject json) {
+		Cliente cliente = new Cliente(get_from_json(json, "name"), get_from_json(json, "email"), get_from_json(json, "password"), 
+		get_from_json(json, "address"));
+		cliente.registrarme();
+
+		return "{ \"nombre\": \""+cliente.getNombre_cliente() + "\" }";
+	}
+
+	@POST
+	@Path("ingresarArticulo")
+	public String ingresarArticulo(JsonObject json) throws ParseException {
 		DAO db = new DAO();
 		System.out.println(json);
-		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 
-		Cliente cliente = new Cliente(get_from_json(json, "nombre"), get_from_json(json, "email"), get_from_json(json, "password"), 
-		get_from_json(json, "direccion"));
+		String nombre = get_from_json(json, "nombre");
+
+		Date caducidad = new SimpleDateFormat("dd/MM/yyyy").parse(get_from_json(json, "caducidad")); // "31/12/1998"
+
+		Float precio = Float.parseFloat(get_from_json(json, "precio")); //13.2
+
+		int stock = Integer.parseInt(get_from_json(json, "stock"));
+
+		String descripcion = get_from_json(json, "descripcion");
+
+		Float oferta = Float.parseFloat(get_from_json(json, "oferta")); //13.2
+
+		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
+		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
 		
-		cliente.registrarme();
+		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria);
 
 		return "Done";
 	}
+	
+	@POST
+	@Path("get_cliente")
+	public Cliente get_cliente(JsonObject json) {
+		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
+		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.toString();
+		return c;
+	}
+	
 	
 	@GET
 	@Path("meter_datos")
