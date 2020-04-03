@@ -15,8 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 
 import com.fasterxml.jackson.core.JsonParser;
-
 import es.deusto.spq.data.Articulo;
+
 import es.deusto.spq.data.Cliente;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
@@ -42,7 +42,8 @@ public class API {
 		System.out.println(json);
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: " + get_from_json(json, "password"));
 		String nombre = new Cliente().loggin(get_from_json(json, "email"), get_from_json(json, "password"));
-		return nombre;
+		System.out.println(nombre);
+		return "{ \"nombre\": \""+nombre + "\" }";
 	}
 
 	@POST

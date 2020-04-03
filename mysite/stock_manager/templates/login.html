@@ -16,10 +16,12 @@
             </div>
         </div>
         </div>
-
         <section class="ftco-section contact-section bg-light">
         <div class="container">
-                <form action="#" class="bg-white p-5 contact-form">
+        
+ibail@gmail.com
+                <form method="POST">
+                {% csrf_token %}
                 <p>¿No tienes una cuenta aún?<a href="/user/register"> Resgistrate </a></p>
                     <div class="form-group">
                     <input type="text" class="form-control" name="email" placeholder="Email">
