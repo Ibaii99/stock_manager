@@ -2,7 +2,7 @@ package es.deusto.spq.data;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 

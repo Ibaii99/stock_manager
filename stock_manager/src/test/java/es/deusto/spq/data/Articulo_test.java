@@ -2,14 +2,14 @@ package es.deusto.spq.data;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.junit.Test;
 
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Articulo;
 public class Articulo_test{
-	private Date f1 = new Date(120,04,12);
+	private Date f1 = new Date(120, 04, 12);
 	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
 	
 	
@@ -23,7 +23,7 @@ public class Articulo_test{
 	}
 	@Test
 	public void testPrecio() {
-		assertEquals(a1.getPrecio(), 1.20f);
+		assertEquals(a1.getPrecio(), 1.20f,0);
 	}
 	@Test
 	public void testStock() {
@@ -35,7 +35,7 @@ public class Articulo_test{
 	}
 	@Test
 	public void testOferta() {
-		assertEquals(a1.getOferta(), 1.05f);
+		assertEquals(a1.getOferta(), 1.05f,0);
 	}
 	@Test
 	public void testCategoria() {

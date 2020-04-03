@@ -75,6 +75,18 @@ public class DAO {
 		}
 		return ret;
 	}
+	
+	//Si existe un mensaje salga por pantalla(el metodo si existe en Admin)
+	public String existe() {
+		String a= "Ya existe";
+		return a;
+	}
+	
+	public String noExiste() {
+		String a= "No existe";
+		return a;
+	}
+	
 
 
 
