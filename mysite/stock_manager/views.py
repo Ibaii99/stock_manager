@@ -18,20 +18,21 @@ def test(request):
     #Prueba de commit
 
 def user(request):
-    if(request.method == 'POST'):
-        None
-    return render(request, "profile.html")
-
+    if(is_session_alive(request)):  
+        if(request.method == 'POST'):
+            None
+        return render(request, "profile.html", {"var": get_vars(request)})
+    else:
+        return redirect("/user/login/")
     
 def register(request):
     if(request.method == 'POST'):
         None
-    return render(request, "register.html")
+    return render(request, "register.html", {"var": get_vars(request)})
 
 def login(request):
     if(request.method == 'POST'):
         
-        headers = {'Content-Type': 'application/json'}
         info={
             "email": request.POST.get('email'),
 	        "password": request.POST.get('password')
@@ -48,7 +49,7 @@ def login(request):
         
         return redirect("/index/")
         
-    return render(request, "login.html")
+    return render(request, "login.html", {"var": get_vars(request)})
 
 def shop(request):
     
@@ -57,37 +58,33 @@ def shop(request):
     for key, value in request.session.items():
         print('{} => {}'.format(key, value))
         
-    return render(request, "shop.html")
+    return render(request, "shop.html", {"var": get_vars(request)})
 
-def index(request):
-    print(request.COOKIES)
-    print(request.session)
-    for key, value in request.session.items():
-        print('{} => {}'.format(key, value))
-        
-    if 'nombre' in request.session:
-        del request.session['nombre']
-        del request.session['email'] 
+def index(request): 
     
-    for key, value in request.session.items():
-        print('{} => {}'.format(key, value))
+    return render(request, "index.html", {"var": get_vars(request)})
 
-    print(request.COOKIES)
-    
-    # print("Cookies")
-    # print(request.COOKIES)
-    
-    # print("Meta")
-    # print(request.META)
-    
-    response = render(request, "index.html")
-    
-    return response
-
+#Devuelve las variables necesarias para la ejecucion generica
 def get_vars(request):
-    None
+    global sessions
+    
+    if is_session_alive(request):
+        if is_data_correct(request):
+            session = sessions.get(get_client_ip(request))
+            var = {
+                    "is_logged": True,
+                    "name": session.get("nombre")
+            }
+            
+            return var
+    
+    var = {
+            "is_logged": False,
+    }
+    
+    return var
 
-#Guardara el valor de la ip y la sesion
+#Guardara el valor de la ip la informaci'on necesaria
 def save_session(request, session_id, user_name, email, password):
     global sessions
     
@@ -104,13 +101,15 @@ def save_session(request, session_id, user_name, email, password):
     
     print(sessions)
 
+#Borra los datos de la sesion
 def close_session(request):
     global sessions
     
     try:
-        
+        del request.COOKIES['sessionid']
     except:
-    
+        None
+        
     try:
         sesion = sessions[get_client_ip(request)]
         
@@ -122,24 +121,45 @@ def close_session(request):
     except:
         return False
 
+#Comprueba que la sesion de la cookie siga activa
 def is_session_alive(request):
     global sessions
+    print(sessions)
+    
     try:
-        sesion = sessions[get_client_ip(request)]
+        sesion = sessions.get(get_client_ip(request))
+        print(sesion)
         if sesion is None:
             return False
         else:
-            if ((sesion.json()["ip"] == get_client_ip(request)) and ( sesion.json()["nombre"] == request.session['nombre']) and 
-                (sesion.json()["email"] == request.session['email']) and ( sesion.json()["sessionid"] == request.COOKIES['sessionid']) and
-                (sesion.json()["fecha_caducidad"] >= datetime.date.today())):
-                
-                return True
-            
+            if ((sesion.get("ip") == get_client_ip(request)) and ( sesion.get("nombre") == request.session['nombre']) and 
+                (sesion.get("email") == request.session['email']) and ( sesion.get("sessionid") == request.COOKIES['sessionid'])):
+                if(sesion.get("fecha_caducidad") >= datetime.date.today()):
+                    return True
+                else:
+                    close_session(request)
             return False
     except:
         return False
+
+#Compruba que los datos metidos sigan siendo los correctos
+def is_data_correct(request):
+    global sessions
+    sesion = sessions.get(get_client_ip(request))
+    info={
+            "email": sesion.get("email"),
+	        "password": sesion.get('password')
+        }
+    
+    resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/log_in', json=info)
+    
+    if  resp.json()["nombre"] is not None:
+        return True
+    
+    return False
     
     
+        
 #Para conseguir la ip de un usuario y obtener asi el id de la sesion
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
