@@ -1,9 +1,11 @@
 package es.deusto.spq.data;
 
+import java.util.Date;
 import java.util.List;
 
 import es.deusto.spq.data.Articulo;//Para eliminar/anyadir articulos
 import es.deusto.spq.data.Cliente;//Para eliminar usuarios
+import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
 
 public class Admin {
@@ -79,9 +81,5 @@ public class Admin {
 			dao.noExiste();//Devuelve un String diciendo que no existe
 		}
 	}
-	
-	
-	
-	
 	
 }

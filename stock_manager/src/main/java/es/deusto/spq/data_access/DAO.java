@@ -394,6 +394,7 @@ public class DAO {
 
 	}
 
+
 	// No cerrar la conexion hasta cerrar el programa
 	public void closeConection() {
 		pmf.close();
