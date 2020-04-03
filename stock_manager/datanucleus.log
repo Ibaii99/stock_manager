@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 13:32:03,018 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
 13:32:03,048 (main) DEBUG [DataNucleus.General] - Registering bundle org.sonatype.inject version 2.3.0 at URL file:/C:/Users/jokin/.m2/repository/org/sonatype/sisu/sisu-inject-bean/2.3.0/sisu-inject-bean-2.3.0.jar.
 13:32:03,077 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/jokin/.m2/repository/org/sonatype/sisu/sisu-inject-bean/2.3.0/sisu-inject-bean-2.3.0.jar!/plugin.xml.
@@ -825,3 +826,5 @@
 13:32:03,562 (main) INFO  [DataNucleus.Enhancer] - ENHANCED (Persistable) : es.deusto.spq.data.Vendedor
 13:32:03,562 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.data.Vendedor" ha terminado
 13:32:03,563 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con exito para 5 clases. Tiempos : input=251 ms, enhance=95 ms, total=346 ms. Compruebe el LOG para los detalles
+=======
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
