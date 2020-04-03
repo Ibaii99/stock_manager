@@ -1,5 +1,9 @@
 package es.deusto.spq.remote;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -11,7 +15,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 
 import com.fasterxml.jackson.core.JsonParser;
+import es.deusto.spq.data.Articulo;
+
 import es.deusto.spq.data.Cliente;
+import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
 
 /**
@@ -23,12 +30,12 @@ import es.deusto.spq.data_access.DAO;
 @Produces(MediaType.APPLICATION_JSON)
 public class API {
 
-    /**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "text/plain" media type.
-     *
-     * @return String that will be returned as a text/plain response.
-     */
+	/**
+	 * Method handling HTTP GET requests. The returned object will be sent to the
+	 * client as "text/plain" media type.
+	 *
+	 * @return String that will be returned as a text/plain response.
+	 */
 	@POST
 	@Path("log_in")
 	public String log_in(JsonObject json) {
@@ -45,6 +52,32 @@ public class API {
 		cliente.registrarme();
 
 		return "{ \"nombre\": \""+cliente.getNombre_cliente() + "\" }";
+	}
+
+	@POST
+	@Path("ingresarArticulo")
+	public String ingresarArticulo(JsonObject json) throws ParseException {
+		DAO db = new DAO();
+		System.out.println(json);
+
+		String nombre = get_from_json(json, "nombre");
+
+		Date caducidad = new SimpleDateFormat("dd/MM/yyyy").parse(get_from_json(json, "caducidad")); // "31/12/1998"
+
+		Float precio = Float.parseFloat(get_from_json(json, "precio")); //13.2
+
+		int stock = Integer.parseInt(get_from_json(json, "stock"));
+
+		String descripcion = get_from_json(json, "descripcion");
+
+		Float oferta = Float.parseFloat(get_from_json(json, "oferta")); //13.2
+
+		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
+		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
+		
+		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria);
+
+		return "Done";
 	}
 	
 	@POST

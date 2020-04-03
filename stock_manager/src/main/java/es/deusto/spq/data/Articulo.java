@@ -9,6 +9,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import es.deusto.spq.data_access.DAO;
 
 @PersistenceCapable(detachable = "true")
 public class Articulo implements Serializable {
@@ -17,12 +18,10 @@ public class Articulo implements Serializable {
 	 * 
 	 */
 	public enum Categoria {
-		FRUTA,
-		VEGETAL, 
-		CARNICERIA,
-		PESCADERIA, 
-		BEBIDA,
-		DULCE
+		FRUTAS,
+		FRUTOSSECOS, 
+		VERDURAS,
+		ZUMOS
 	}
 	
 	private static final long serialVersionUID = 1L;
@@ -125,6 +124,12 @@ public class Articulo implements Serializable {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public void storeMe() {
+		DAO dao = new DAO();
+		Articulo c = new Articulo(this.nombre,this.caducidad, this.precio, this.stock, this.descripcion, this.oferta, this.categoria);
+		dao.store(c);
 	}
 
 	@Override

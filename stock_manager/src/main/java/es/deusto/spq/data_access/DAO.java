@@ -267,21 +267,21 @@ public class DAO {
 		Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com");
 		Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com");
 		Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,
-				Categoria.FRUTA);
+				Categoria.FRUTAS);
 		Articulo lechuga = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rica lechuga", 0.95f,
-				Categoria.VEGETAL);
+				Categoria.VERDURAS);
 		Articulo fresa = new Articulo("pimiento", new Date(121, 3, 21), 1.20f, 400, "rica fresa", 0.95f,
-				Categoria.VEGETAL);
+				Categoria.VERDURAS);
 		Articulo calabaza = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rica calabza", 0.95f,
-				Categoria.VEGETAL);
+				Categoria.VERDURAS);
 		Articulo pimiento = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rico pimiento", 0.95f,
-				Categoria.VEGETAL);
+				Categoria.VERDURAS);
 		Articulo a1 = new Articulo("coliflor", new Date(121, 3, 21), 1.20f, 400, "rica coliflor", 1.05f,
-				Categoria.FRUTA);
-		Articulo a2 = new Articulo("pan", new Date(121, 3, 21), 1.20f, 400, "rica pan", 1.05f, Categoria.FRUTA);
-		Articulo a3 = new Articulo("agua", new Date(121, 3, 21), 1.20f, 400, "rica agua", 1.05f, Categoria.BEBIDA);
+				Categoria.FRUTAS);
+		Articulo a2 = new Articulo("pan", new Date(121, 3, 21), 1.20f, 400, "rica pan", 1.05f, Categoria.FRUTAS);
+		Articulo a3 = new Articulo("agua", new Date(121, 3, 21), 1.20f, 400, "rica agua", 1.05f, Categoria.ZUMOS);
 		Articulo a4 = new Articulo("Mandarina", new Date(121, 3, 21), 1.20f, 400, "rica mandarina", 1.05f,
-				Categoria.CARNICERIA);
+				Categoria.FRUTAS);
 		ArrayList<Cesta> listaCestas = new ArrayList<Cesta>();
 		Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
 		Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
