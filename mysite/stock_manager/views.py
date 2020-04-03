@@ -1,4 +1,7 @@
 from django.shortcuts import render
+import datetime
+from mysite import settings
+import requests
 
 # Create your views here.
 
@@ -25,14 +28,55 @@ def register(request):
 
 def login(request):
     if(request.method == 'POST'):
-        None
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        headers = {'Content-Type': 'application/json'}
+        info={}
+        resp = requests.post('http://'+settings.STOCK_MANAGER_API_URL +'/',json=info, headers=headers)
     return render(request, "login.html")
 
 def shop(request):
+    
+    print(request.COOKIES)
+    request.session['nombre'] = "Ibai"
+    request.session['pass'] = "pass"
+    
+    for key, value in request.session.items():
+        print('{} => {}'.format(key, value))
+        
     return render(request, "shop.html")
 
 def index(request):
-    return render(request, "index.html")
+    
+    
+    
+    print(request.COOKIES)
+    print(request.session)
+    for key, value in request.session.items():
+        print('{} => {}'.format(key, value))
+        
+    if 'nombre' in request.session:
+        del request.session['nombre']
+        del request.session['pass'] 
+    
+    for key, value in request.session.items():
+        print('{} => {}'.format(key, value))
+
+    print(request.COOKIES)
+    
+    # print("Cookies")
+    # print(request.COOKIES)
+    
+    # print("Meta")
+    # print(request.META)
+    
+    response = render(request, "index.html")
+    
+    return response
+
+def get_vars(request):
+    None
 
 #Guardara el valor de la ip y la sesion
 def save_session(request, session_id):
@@ -48,3 +92,11 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+def set_cookie(response, key, value, days_expire = 2):
+    if days_expire is None:
+        max_age = 365 * 24 * 60 * 60  #one year
+    else:
+        max_age = days_expire * 24 * 60 * 60 
+        expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
+        response.set_cookie(key, value, max_age=max_age, expires=expires, domain=settings.SESSION_COOKIE_DOMAIN, secure=settings.SESSION_COOKIE_SECURE or None)

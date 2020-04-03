@@ -101,6 +101,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+SESSION_COOKIE_DOMAIN = None # example.com
+SESSION_COOKIE_SECURE = False #True for only https
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -123,3 +125,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '/static/media')
+
+STOCK_MANAGER_API_URL = 'http://localhost:8080/stock_manager'
