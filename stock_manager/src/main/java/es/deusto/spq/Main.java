@@ -9,6 +9,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import es.deusto.spq.GUIADMIN.CrearArticulo;
 import es.deusto.spq.GUIADMIN.Inicio;
 import es.deusto.spq.GUIADMIN.ShowArticulos;
 import es.deusto.spq.data_access.DAO;
@@ -48,7 +49,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ShowArticulos frame = new ShowArticulos();
+					Inicio frame = new Inicio();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
