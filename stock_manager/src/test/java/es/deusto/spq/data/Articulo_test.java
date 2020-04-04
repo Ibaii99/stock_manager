@@ -10,7 +10,7 @@ import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Articulo;
 public class Articulo_test{
 	private Date f1 = new Date(120, 04, 12);
-	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
+	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS);
 	
 	
 	@Test
@@ -39,6 +39,6 @@ public class Articulo_test{
 	}
 	@Test
 	public void testCategoria() {
-		assertEquals(a1.getCategoria(), Categoria.FRUTA);
+		assertEquals(a1.getCategoria(), Categoria.FRUTAS);
 	}
 }

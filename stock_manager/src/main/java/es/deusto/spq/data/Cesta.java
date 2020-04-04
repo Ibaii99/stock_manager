@@ -39,7 +39,9 @@ public class Cesta implements Serializable {
     private List<Integer> cantidades;
     private Estado estado;
 
-   
+   public Cesta() {
+	// TODO Auto-generated constructor stub
+}
 
 
 	public Cesta(long id, Cliente cliente, List<Articulo> articulos, List<Integer> cantidades, Estado estado) {

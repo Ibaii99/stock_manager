@@ -9,16 +9,10 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Opinion;
-import es.deusto.spq.data.Usuario;
+//import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
@@ -141,41 +135,41 @@ public class DAO {
 		return null;
 	}
 	
-	public List<Usuario> getUsuarios() {
-		List<Usuario> ret = new ArrayList<Usuario>();
-		Transaction tx = pm.currentTransaction();
-		try {
-			System.out.println("   * Retrieving an Extent for Usuario.");
-			tx.begin();
-			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
-			for (Usuario product : extent) {
-				ret.add(product);
-			}
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		return ret;
-	}
-
-	// GET de un cliente
-	
-	public Usuario getUsuario(String usuario, String contrasenya) {
-		Usuario u = null;
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios = (ArrayList<Usuario>) this.getUsuarios();
-		for (int i = 0; i < usuarios.size(); i++) {
-			u = usuarios.get(i);
-			if (usuario.equals(u.getUser()) && contrasenya.equals(u.getContrasenya())) {
-				return u;
-			}
-		}
-		return null;
-	}
+//	public List<Usuario> getUsuarios() {
+//		List<Usuario> ret = new ArrayList<Usuario>();
+//		Transaction tx = pm.currentTransaction();
+//		try {
+//			System.out.println("   * Retrieving an Extent for Usuario.");
+//			tx.begin();
+//			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
+//			for (Usuario product : extent) {
+//				ret.add(product);
+//			}
+//			tx.commit();
+//		} catch (Exception ex) {
+//			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+//		} finally {
+//			if (tx != null && tx.isActive()) {
+//				tx.rollback();
+//			}
+//		}
+//		return ret;
+//	}
+//
+//	// GET de un cliente
+//	
+//	public Usuario getUsuario(String usuario, String contrasenya) {
+//		Usuario u = null;
+//		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+//		usuarios = (ArrayList<Usuario>) this.getUsuarios();
+//		for (int i = 0; i < usuarios.size(); i++) {
+//			u = usuarios.get(i);
+//			if (usuario.equals(u.getUser()) && contrasenya.equals(u.getContrasenya())) {
+//				return u;
+//			}
+//		}
+//		return null;
+//	}
 	
 	
 
@@ -302,7 +296,7 @@ public class DAO {
 		Cliente e = new Cliente("Ane", "ane@gmail.com", "1234", "DeustoTech");
 		Cliente mikel = new Cliente("mikel", "mikel@gmail.com", "1234", "Barakaldo");
 		Cliente jokin = new Cliente("jokin", "jokin@gmail.com", "1234", "Universidad Deusto");
-		Cliente ibai = new Cliente("ibai", "ibail@gmail.com", "1234", "Bilbao");
+		Cliente ibai = new Cliente("ibai", "ibai@gmail.com", "1234", "Bilbao");
 		Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
 		Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
 		Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
@@ -338,12 +332,12 @@ public class DAO {
 		Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
 		Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
 		Opinion o = new Opinion("Habeis hecho un excelente trabajo", 10, unai);
-		Usuario mikelAdmin = new Usuario("mikel", "1234");
-		Usuario ibaiAdmin = new Usuario("ibai", "1234");
-		Usuario jokinAdmin = new Usuario("jokin", "1234");
-		Usuario izaiAdmin = new Usuario("izai", "1234");
-		Usuario unaiAdmin = new Usuario("unai", "1234");
-		Usuario admin = new Usuario("admin", "admin");
+//		Usuario mikelAdmin = new Usuario("mikel", "1234");
+//		Usuario ibaiAdmin = new Usuario("ibai", "1234");
+//		Usuario jokinAdmin = new Usuario("jokin", "1234");
+//		Usuario izaiAdmin = new Usuario("izai", "1234");
+//		Usuario unaiAdmin = new Usuario("unai", "1234");
+//		Usuario admin = new Usuario("admin", "admin");
 		
 		
 		ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
@@ -389,20 +383,20 @@ public class DAO {
 		store(unai);
 		
 		
-		ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
-		listaUsuarios.add(admin);
-		listaUsuarios.add(mikelAdmin);
-		listaUsuarios.add(jokinAdmin);
-		listaUsuarios.add(ibaiAdmin);
-		listaUsuarios.add(izaiAdmin);
-		listaUsuarios.add(unaiAdmin);
-		store(admin);
-		store(mikelAdmin);
-		store(jokinAdmin);
-		store(ibaiAdmin);
-		store(izaiAdmin);
-		store(unaiAdmin);
-		
+//		ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+//		listaUsuarios.add(admin);
+//		listaUsuarios.add(mikelAdmin);
+//		listaUsuarios.add(jokinAdmin);
+//		listaUsuarios.add(ibaiAdmin);
+//		listaUsuarios.add(izaiAdmin);
+//		listaUsuarios.add(unaiAdmin);
+//		store(admin);
+//		store(mikelAdmin);
+//		store(jokinAdmin);
+//		store(ibaiAdmin);
+//		store(izaiAdmin);
+//		store(unaiAdmin);
+//		
 		
 		List<Articulo> listaArticulos1 = new ArrayList<Articulo>();
 		List<Articulo> listaArticulos2 = new ArrayList<Articulo>();
