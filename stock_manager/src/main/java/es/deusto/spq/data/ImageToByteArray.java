@@ -7,7 +7,7 @@ import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
-import imagenes.*;
+//import imagenes.*;
 import javax.imageio.ImageIO;
 
 
@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 public class ImageToByteArray {
 	
 
-   
+   /*
  public static void main(String[] args) {
 
 	try {
@@ -41,6 +41,7 @@ public class ImageToByteArray {
 	}   
 	
  }
+ */
 }
 
 
