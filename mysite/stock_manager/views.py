@@ -18,16 +18,43 @@ def test(request):
     #Prueba de commit
 
 def user(request):
-    if(is_session_alive(request)):  
+    if is_session_alive(request):
+        sesion = sessions.get(request.COOKIES['sessionid'])
+        info={
+            "email": sesion.get("email"),
+	        "password": sesion.get('password')
+        }
+        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/get_cliente', json=info)
+        
+        # resp.json()["contrasenya_cliente"]
+        
         if(request.method == 'POST'):
             None
-        return render(request, "profile.html", {"var": get_vars(request)})
-    else:
-        return redirect("/user/login/")
+            #TODO el cambio de datos hay que gestionarlo 
+        return render(request, "profile.html", {"var": get_vars(request), "address": resp.json()["direccion_cliente"], "email": resp.json()["email_cliente"], "name":resp.json()["nombre_cliente"]})
+    redirect("/user/login")
     
 def register(request):
     if(request.method == 'POST'):
-        None
+        if( request.POST.get('password_1') == request.POST.get('password_2')):
+            
+            info = {
+                "name": request.POST.get('name'),
+                "email": request.POST.get('email'),
+                "password": request.POST.get('password_1'),
+                "address": request.POST.get('address')
+            }
+            
+            resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/register', json=info)
+            save_session(request, request.COOKIES['sessionid'], resp.json()["nombre"], request.POST.get('email'), request.POST.get('password_1') )
+        
+            request.session['nombre'] = resp.json()["nombre"]
+            request.session['email'] = request.POST.get('email')
+            
+            return redirect("/index/")
+            
+        else:
+            return render(request, "register.html", {"var": get_vars(request), "message": "Error: La contraseña ha coincidir."})
     return render(request, "register.html", {"var": get_vars(request)})
 
 def login(request):
@@ -70,10 +97,13 @@ def get_vars(request):
     
     if is_session_alive(request):
         if is_data_correct(request):
-            session = sessions.get(get_client_ip(request))
+            session = sessions.get(request.COOKIES['sessionid'])
+            
             var = {
                     "is_logged": True,
-                    "name": session.get("nombre")
+                    "name": session.get("nombre"),
+                    "cart": 2,
+                    "favourites": 1,
             }
             
             return var
@@ -97,7 +127,7 @@ def save_session(request, session_id, user_name, email, password):
             "fecha_caducidad": datetime.date.today()
     }
     
-    sessions[get_client_ip(request)] = store
+    sessions[request.COOKIES['sessionid']] = store
     
     print(sessions)
 
@@ -111,7 +141,7 @@ def close_session(request):
         None
         
     try:
-        sesion = sessions[get_client_ip(request)]
+        sesion = sessions[request.COOKIES['sessionid']]
         
         if sesion is None:
             return True
@@ -127,7 +157,7 @@ def is_session_alive(request):
     print(sessions)
     
     try:
-        sesion = sessions.get(get_client_ip(request))
+        sesion = sessions.get(request.COOKIES['sessionid'])
         print(sesion)
         if sesion is None:
             return False
@@ -145,7 +175,7 @@ def is_session_alive(request):
 #Compruba que los datos metidos sigan siendo los correctos
 def is_data_correct(request):
     global sessions
-    sesion = sessions.get(get_client_ip(request))
+    sesion = sessions.get(request.COOKIES['sessionid'])
     info={
             "email": sesion.get("email"),
 	        "password": sesion.get('password')
@@ -153,7 +183,7 @@ def is_data_correct(request):
     
     resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/log_in', json=info)
     
-    if  resp.json()["nombre"] is not None:
+    if  resp.json()["nombre"] is not None and resp.json()["nombre"] != 'null':
         return True
     
     return False
