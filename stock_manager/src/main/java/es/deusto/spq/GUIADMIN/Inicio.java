@@ -1,3 +1,4 @@
+
 package es.deusto.spq.GUIADMIN;
 
 import java.awt.BorderLayout;
@@ -49,7 +50,7 @@ public class Inicio extends JFrame {
 	 */
 	public Inicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 500);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -82,8 +83,12 @@ public class Inicio extends JFrame {
 				String contrasenya = contrasenya_.getText();
 				if(dao.getUsuario(usuarioCogido,contrasenya )!=null) {
 					System.out.println("Usuario correcto");
-					ShowArticulos s = new ShowArticulos();
-					s.setVisible(true);
+					try {
+						ShowArticulos frame = new ShowArticulos();
+						frame.setVisible(true);
+					} catch (Exception es) {
+						es.printStackTrace();
+					}
 				}else {
 					JOptionPane.showMessageDialog(null, "Usuario o contrasenya erroneos", "Usuario/contrasena errones", ERROR);
 				}

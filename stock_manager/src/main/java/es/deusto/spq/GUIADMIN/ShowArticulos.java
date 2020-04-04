@@ -1,6 +1,5 @@
 package es.deusto.spq.GUIADMIN;
 
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Label;
@@ -87,8 +86,8 @@ public class ShowArticulos extends JFrame {
 		
 		btnNewButton_1 = new JButton("Anyadir articulo");
 		if(btnNewButton_1.isSelected()) {
-			//Llamar a la clase cre
-			
+			CrearArticulo cr = new CrearArticulo();
+			cr.setVisible(true);
 		}
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -123,3 +122,6 @@ public class ShowArticulos extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 }
+
+
+
