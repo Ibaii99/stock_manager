@@ -1,8 +1,8 @@
 package es.deusto.spq.GUIADMIN;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Label;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +23,6 @@ import es.deusto.spq.data_access.*;
 
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ListModel;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.AbstractListModel;
@@ -39,6 +38,7 @@ public class ShowArticulos extends JFrame {
 	private JPanel contentPane;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
+	private JList articulos;
 
 	/**
 	 * Launch the application.
@@ -67,20 +67,26 @@ public class ShowArticulos extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		Label lblNewLabel = new Label("              Articulos");
-		 JList articulos = new JList();
-        DefaultListModel<String> listModel = new DefaultListModel();
-        for(int i=0; i<listaArticulos.size(); i++) {
-            listModel.add(i, listaArticulos.get(i).getNombre());
-        }
-        //Asociar el modelo de lista al JList
-        articulos.setModel(listModel);
-        
-        
+		
+
+		JLabel lblNewLabel = new JLabel("                                                        ARTICULOS");
+		
+		
+		
+		articulos = new JList();
+		//Crear un objeto DefaultListModel
+		DefaultListModel<String> listModel = new DefaultListModel();
+		//Recorrer el contenido del ArrayList
+		for(int i=0; i<listaArticulos.size(); i++) {
+		    listModel.add(i, listaArticulos.get(i).getNombre());
+		}
+		//Asociar el modelo de lista al JList
+		articulos.setModel(listModel);
+		
+		
 		btnNewButton = new JButton("Eliminar articulo");
-		int fila = articulos.getSelectedIndex();
 		if(btnNewButton.isSelected()) {
-			articulos.remove(fila);
+			listModel.remove(articulos.getSelectedIndex());
 			
 		}
 		
@@ -88,6 +94,7 @@ public class ShowArticulos extends JFrame {
 		if(btnNewButton_1.isSelected()) {
 			CrearArticulo cr = new CrearArticulo();
 			cr.setVisible(true);
+			
 		}
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -95,26 +102,26 @@ public class ShowArticulos extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(29)
 					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
 					.addComponent(btnNewButton_1)
 					.addGap(30))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(articulos, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(234, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(65, Short.MAX_VALUE)
+					.addComponent(articulos, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
+					.addGap(49))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(lblNewLabel)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(articulos, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-					.addGap(25)
+					.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+					.addComponent(articulos, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(btnNewButton_1)))
@@ -122,6 +129,3 @@ public class ShowArticulos extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 }
-
-
-
