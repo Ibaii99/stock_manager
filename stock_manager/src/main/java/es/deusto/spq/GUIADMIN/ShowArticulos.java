@@ -3,9 +3,9 @@ package es.deusto.spq.GUIADMIN;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Label;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,10 +24,9 @@ import es.deusto.spq.data_access.*;
 
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListModel;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
-import java.awt.Component;
-
 import javax.swing.AbstractListModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
@@ -69,64 +68,54 @@ public class ShowArticulos extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		DefaultTableModel modelotabla = new DefaultTableModel();
-		Object columnas[] = {"Id", "Nombre", "Fecha caducidad", "Precio", "Stock", "Descripcion", "Oferta", "Categoria", "Vendedor"};
-//		for(int i=0;i<listaArticulos.size();i++){
-//		    modelotabla.addRow(new Object[] {listaArticulos.get(i).getId(), listaArticulos.get(i).getNombre(), listaArticulos.get(i).getCaducidad(), listaArticulos.get(i).getPrecio(),listaArticulos.get(i).getStock(),
-//		    		listaArticulos.get(i).getStock(), listaArticulos.get(i).getDescripcion(), listaArticulos.get(i).getOferta(), listaArticulos.get(i).getCategoria(), listaArticulos.get(i).getVendedor()});
-			modelotabla.addRow((Vector<Articulo>) listaArticulos);;
-//		}
-		modelotabla.addColumn(columnas);
-		
-
-		JLabel lblNewLabel = new JLabel("                                                        ARTICULOS");
-		
+		Label lblNewLabel = new Label("              Articulos");
+		 JList articulos = new JList();
+        DefaultListModel<String> listModel = new DefaultListModel();
+        for(int i=0; i<listaArticulos.size(); i++) {
+            listModel.add(i, listaArticulos.get(i).getNombre());
+        }
+        //Asociar el modelo de lista al JList
+        articulos.setModel(listModel);
+        
+        
 		btnNewButton = new JButton("Eliminar articulo");
-//		if(btnNewButton.isSelected()) {
-//			modelotabla.removeRow(fila);
-//			
-//		}
-		
-		btnNewButton_1 = new JButton("Anyadir articulo");
-		if(btnNewButton_1.isSelected()) {
-			Articulo articulo1 = new Articulo();
-			modelotabla.addRow(new Object[] {articulo1.getId(), articulo1.getNombre(), articulo1.getCaducidad(), articulo1.getPrecio(),articulo1.getStock()
-					, articulo1.getDescripcion(), articulo1.getOferta(), articulo1.getVendedor()});
-			dao.store(articulo1);
+		int fila = articulos.getSelectedIndex();
+		if(btnNewButton.isSelected()) {
+			articulos.remove(fila);
 			
 		}
 		
-		JList articulos = new JList();
-		
-		DefaultListModel modelo = new DefaultListModel();
-		for(int i = 1; i<=listaArticulos.size(); i++){
-		        modelo.addElement(i);
+		btnNewButton_1 = new JButton("Anyadir articulo");
+		if(btnNewButton_1.isSelected()) {
+			//Llamar a la clase cre
+			
 		}
-		articulos.setModel(modelo);
-		
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
 					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(29)
 					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(articulos, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton_1))
+					.addPreferredGap(ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+					.addComponent(btnNewButton_1)
 					.addGap(30))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(articulos, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(234, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(lblNewLabel)
-					.addGap(83)
-					.addComponent(articulos, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(articulos, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+					.addGap(25)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(btnNewButton_1)))
