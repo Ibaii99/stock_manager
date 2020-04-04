@@ -19,7 +19,8 @@
 
         <section class="ftco-section contact-section bg-light">
         <div class="container">
-                <form action="#" class="bg-white p-5 contact-form">
+                <form method="POST" class="bg-white p-5 contact-form">
+                    {% csrf_token %}
                     <div class="form-group">
                     <p> Nombre: <input type="text" class="form-control" placeholder= "{{ name }}" ></p>
                     </div>
@@ -30,8 +31,9 @@
                     <p> Dirección: <input type="text" class="form-control" placeholder="{{ address}}"></p>
                     </div>
                     <div class="form-group">
-                    <input type="submit" value="Guardar" class="btn btn-primary py-3 px-5">
-                    <input type="submit" value="Cancelar" class="btn btn-black py-3 px-5"> 
+                    {% comment %} <input type="submit" value="Guardar" class="btn btn-primary py-3 px-5">
+                    <input type="submit" value="Cancelar" class="btn btn-black py-3 px-5">  {% endcomment %}
+                    <input type="submit" name="button_logout" value="Cerrar Sesión" class="btn btn-black py-3 px-5"> 
                     </div>
                     
                 </form>

@@ -3,7 +3,7 @@ import datetime
 from mysite import settings
 import requests
 import json
-
+import io
 
 # Create your views here.
 
@@ -29,10 +29,13 @@ def user(request):
         # resp.json()["contrasenya_cliente"]
         
         if(request.method == 'POST'):
-            None
+            if(request.POST.get("button_logout") is not None):
+                close_session(request)
+                return redirect("/index/")
             #TODO el cambio de datos hay que gestionarlo 
         return render(request, "profile.html", {"var": get_vars(request), "address": resp.json()["direccion_cliente"], "email": resp.json()["email_cliente"], "name":resp.json()["nombre_cliente"]})
-    redirect("/user/login")
+    
+    return redirect("/user/login")
     
 def register(request):
     if(request.method == 'POST'):
@@ -66,7 +69,6 @@ def login(request):
         }
         
         resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/log_in', json=info)
-        #print(resp.json())
         
         save_session(request, request.COOKIES['sessionid'], resp.json()["nombre"], request.POST.get('email'), request.POST.get('password') )
         
@@ -79,7 +81,20 @@ def login(request):
     return render(request, "login.html", {"var": get_vars(request)})
 
 def shop(request):
+    """
     
+    {
+        "caducidad": "2021-04-20T22:00:00Z[UTC]",
+        "categoria": "VERDURAS",
+        "descripcion": "rico pimiento",
+        "id": 6,
+        "nombre": "lechuga",
+        "oferta": 0.95,
+        "precio": 1.2,
+        "stock": 400
+    }
+    
+    """
     print(request.COOKIES)
     
     for key, value in request.session.items():
@@ -134,31 +149,27 @@ def save_session(request, session_id, user_name, email, password):
 #Borra los datos de la sesion
 def close_session(request):
     global sessions
-    
-    try:
-        del request.COOKIES['sessionid']
-    except:
-        None
-        
     try:
         sesion = sessions[request.COOKIES['sessionid']]
-        
         if sesion is None:
-            return True
+            print("sesion does not exist")
         else:
-            del sessions[sessions.index(sesion)]
-            return True
+            del sessions[request.COOKIES['sessionid']]
+            del sesion
     except:
-        return False
-
+        print("No information on server")
+    try:
+        del request.COOKIES['sessionid']
+        del request.session['email']
+        del request.session['nombre']
+    except:
+        print("No information on client")
+        
 #Comprueba que la sesion de la cookie siga activa
 def is_session_alive(request):
     global sessions
-    print(sessions)
-    
     try:
         sesion = sessions.get(request.COOKIES['sessionid'])
-        print(sesion)
         if sesion is None:
             return False
         else:
@@ -187,9 +198,7 @@ def is_data_correct(request):
         return True
     
     return False
-    
-    
-        
+             
 #Para conseguir la ip de un usuario y obtener asi el id de la sesion
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
