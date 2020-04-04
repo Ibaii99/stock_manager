@@ -3,6 +3,7 @@ package es.deusto.spq.remote;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
@@ -87,6 +88,14 @@ public class API {
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.toString();
 		return c;
+	}
+	
+	@GET
+	@Path("get_articulos")
+	public List<Articulo> get_articulos() {
+		System.out.println("Mandando todos los articulos");
+		DAO db = new DAO();
+		return db.getArticulos();
 	}
 	
 	
