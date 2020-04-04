@@ -1,25 +1,33 @@
 package es.deusto.spq.data;
 
 import java.io.Serializable;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.Join;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.Unique;
 
-@PersistenceCapable(detachable = "true")
+import javax.jdo.annotations.PersistenceAware;
+
+@PersistenceAware
 public class Usuario implements Serializable {
-	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
+	
+	private static final long serialVersionUID = 1L;
 	private long id;
-	private String usuario;
+	
+	private String nombre;
 	private String contrasenya;
 	
+	public Usuario() {
+
+	}
+	
+	public Usuario(String usuario, String contrasenya) {
+		this.nombre = usuario;
+		this.contrasenya = contrasenya;
+	}
+	
+	
 	public String getUser() {
-		return usuario;
+		return nombre;
 	}
 	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+		this.nombre = usuario;
 	}
 	public String getContrasenya() {
 		return contrasenya;
@@ -27,11 +35,20 @@ public class Usuario implements Serializable {
 	public void setContrasenya(String contrasenya) {
 		this.contrasenya = contrasenya;
 	}
-	public Usuario(String usuario, String contrasenya) {
-		super();
-		this.usuario = usuario;
-		this.contrasenya = contrasenya;
+
+	public long getId() {
+		return id;
 	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	
 	
 }

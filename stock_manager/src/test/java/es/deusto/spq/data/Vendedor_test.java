@@ -16,8 +16,8 @@ public class Vendedor_test{
 	private Vendedor v = new Vendedor("Jokin", "Jokin@gmail.com");
 	private List<Articulo>listaArticulos = new ArrayList<Articulo>();
 	private Date f1 = new Date(120,04,12);
-	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
-	private Articulo a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
+	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS);
+	private Articulo a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS);
 	
 	
 	

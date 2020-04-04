@@ -20,8 +20,8 @@ public class Cliente_test{
 	private Cliente c = new Cliente("mikel@gmail.com", "mikel", "Deusto1", "Deusto kalea 1");
 	private List<Cesta> cestas = new ArrayList<Cesta>();
 	private Date f1 = new Date(120,04,12);
-	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
-	private Articulo a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTA);
+	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS);
+	private Articulo a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS);
 	private List<Articulo>listaArticulos = new ArrayList<Articulo>();
 	private List<Integer> listaCantidades = new ArrayList<Integer>();
 	

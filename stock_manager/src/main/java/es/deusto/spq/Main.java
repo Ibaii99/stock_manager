@@ -9,10 +9,12 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+
 import es.deusto.spq.GUIADMIN.CrearArticulo;
 import es.deusto.spq.GUIADMIN.Inicio;
 import es.deusto.spq.GUIADMIN.ShowArticulos;
 import es.deusto.spq.data_access.DAO;
+
 
 
 
@@ -43,7 +45,8 @@ public class Main {
      * @param args
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
+    @SuppressWarnings("deprecation")
+	public static void main(String[] args) throws IOException {
         final HttpServer server = startServer();
         DAO dao = new DAO();
         EventQueue.invokeLater(new Runnable() {
@@ -56,6 +59,7 @@ public class Main {
 				}
 			}
 		});
+
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
         System.in.read();
