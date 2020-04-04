@@ -1,9 +1,15 @@
 package es.deusto.spq.data;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -34,7 +40,7 @@ public class Articulo implements Serializable {
     private String descripcion;
     private float oferta;
     private Categoria categoria;
-    
+    byte [] image;
     
     private Vendedor vendedor;
     
@@ -152,6 +158,24 @@ public class Articulo implements Serializable {
         
 		return hash;
 		
+	}
+
+	
+    public byte[] getImage() {
+		return image;
+	}
+    
+
+	public void setImage(String path) throws IOException {
+			 // open image
+		 File imgPath = new File(path);
+		 BufferedImage bufferedImage = ImageIO.read(imgPath);
+	
+		 // get DataBufferBytes from Raster
+		 WritableRaster raster = bufferedImage .getRaster();
+		 DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+
+		this.image =  data.getData();
 	}
     
   
