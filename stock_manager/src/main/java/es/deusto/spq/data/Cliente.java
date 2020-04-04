@@ -1,6 +1,7 @@
 package es.deusto.spq.data;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;

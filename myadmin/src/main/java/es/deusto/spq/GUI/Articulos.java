@@ -1,4 +1,4 @@
-package es.deusto.spq.GUI;
+package main.java.es.deusto.spq.GUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -16,10 +16,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
-import es.deusto.spq.data.Admin;
-import es.deusto.spq.data.Articulo;
-import es.deusto.spq.data.Articulo.Categoria;
-import es.deusto.spq.data_access.DAO;
+import clases_stock_manager.*;
+
+import main.java.es.deusto.spq.dataAdmin.Admin;
+
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.BevelBorder;

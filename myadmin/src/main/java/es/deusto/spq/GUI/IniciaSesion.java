@@ -1,4 +1,4 @@
-package es.deusto.spq.GUI;
+package main.java.es.deusto.spq.GUI;
 
 import java.awt.BorderLayout;
 
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import es.deusto.spq.data_access.DAO;
+import clases_stock_manager.*;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
