@@ -142,7 +142,7 @@ public class DAO {
 	}
 	
 	public List<Usuario> getUsuarios() {
-		List<Usuario> ret = new ArrayList<Cliente>();
+		List<Usuario> ret = new ArrayList<Usuario>();
 		Transaction tx = pm.currentTransaction();
 		try {
 			System.out.println("   * Retrieving an Extent for Usuario.");
@@ -163,6 +163,7 @@ public class DAO {
 	}
 
 	// GET de un cliente
+	/*
 	public Usuario getUsuario(String usuario, String contrasenya) {
 		Usuario u = null;
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
@@ -175,7 +176,7 @@ public class DAO {
 		}
 		return null;
 	}
-	
+	*/
 	
 
 
