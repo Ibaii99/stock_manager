@@ -163,20 +163,20 @@ public class DAO {
 	}
 
 	// GET de un cliente
-	/*
+	
 	public Usuario getUsuario(String usuario, String contrasenya) {
 		Usuario u = null;
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios = (ArrayList<Usuario>) this.getUsuario();
+		usuarios = (ArrayList<Usuario>) this.getUsuarios();
 		for (int i = 0; i < usuarios.size(); i++) {
-			c = usuarios.get(i);
-			if (usuario.equals(u.getUsuario()) && contrasenya.equals(u.getContrasenya())) {
+			u = usuarios.get(i);
+			if (usuario.equals(u.getUser()) && contrasenya.equals(u.getContrasenya())) {
 				return u;
 			}
 		}
 		return null;
 	}
-	*/
+	
 	
 
 
