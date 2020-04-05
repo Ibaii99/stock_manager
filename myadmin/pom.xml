@@ -203,7 +203,12 @@
   					<groupId>org.codehaus.mojo</groupId>
   					<artifactId>exec-maven-plugin</artifactId>
   					<configuration>
+<<<<<<< HEAD
   						<mainClass>src.main.java.es.deusto.spq.InicioSesion</mainClass>
+=======
+  						<mainClass>es.deusto.spq.GUI.Inicio</mainClass>
+  						<mainClass>es.deusto.spq.GUI.InicioSesion</mainClass>
+>>>>>>> 827c0872f6249fd0a720a2e8185cd03bf4ed0b51
   					</configuration>
   				</plugin>
   			</plugins>
