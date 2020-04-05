@@ -1,5 +1,6 @@
 package es.deusto.spq.data_access;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -322,6 +323,21 @@ public class DAO {
 		Articulo a3 = new Articulo("agua", new Date(121, 3, 21), 1.20f, 400, "rica agua", 1.05f, Categoria.ZUMOS);
 		Articulo a4 = new Articulo("Mandarina", new Date(121, 3, 21), 1.20f, 400, "rica mandarina", 1.05f,
 				Categoria.FRUTAS);
+		try {
+			manzana.setImage("src/main/java/imagenes/lechuga.png");
+			lechuga.setImage("src/main/java/imagenes/lechuga.png");
+			fresa.setImage("src/main/java/imagenes/lechuga.png");
+			calabaza.setImage("src/main/java/imagenes/lechuga.png");
+			pimiento.setImage("src/main/java/imagenes/lechuga.png");
+			a1.setImage("src/main/java/imagenes/lechuga.png");
+			a2.setImage("src/main/java/imagenes/lechuga.png");
+			a3.setImage("src/main/java/imagenes/lechuga.png");
+			a4.setImage("src/main/java/imagenes/lechuga.png");
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		ArrayList<Cesta> listaCestas = new ArrayList<Cesta>();
 		Integer cantidad1 = 400;
 		Integer cantidad2 = 500;

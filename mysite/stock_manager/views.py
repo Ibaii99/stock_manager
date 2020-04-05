@@ -4,6 +4,7 @@ from mysite import settings
 import requests
 import json
 import io
+from PIL import Image
 
 # Create your views here.
 
@@ -81,26 +82,26 @@ def login(request):
     return render(request, "login.html", {"var": get_vars(request)})
 
 def shop(request):
-    """
     
-    {
-        "caducidad": "2021-04-20T22:00:00Z[UTC]",
-        "categoria": "VERDURAS",
-        "descripcion": "rico pimiento",
-        "id": 6,
-        "nombre": "lechuga",
-        "oferta": 0.95,
-        "precio": 1.2,
-        "stock": 400
-    }
-    
-    """
+    resp = requests.get(settings.STOCK_MANAGER_API_URL +'/api/get_articulos')
+    articulos = {}
+    print("saasdsda")
+    # for articulo in resp:
+    #     print(articulo)
+    #     print(articulo.get("image"))
+    #     j: {
+    #         "image":Image.open(io.BytesIO(articulo.get("image")))
+    #     }
+        
+    #     image = Image.open(io.BytesIO(articulo.get("image")))
+    #     image.save("static\\images\\")
+    #     return render(request, "shop.html", {"var": get_vars(request)})
     print(request.COOKIES)
     
     for key, value in request.session.items():
         print('{} => {}'.format(key, value))
         
-    return render(request, "shop.html", {"var": get_vars(request)})
+    return render(request, "shop.html", {"var": get_vars(request), "articulos": articulos })
 
 def index(request): 
     
