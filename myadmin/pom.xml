@@ -30,10 +30,7 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-  </dependencies>
-  
-  
-  
+  </dependencies>  
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -87,10 +84,10 @@
   		<build>
   			<plugins>
   				<plugin>
-  					<groupId>es.deusto.spq</groupId>
+  					<groupId>org.codehaus.mojo</groupId>
   					<artifactId>exec-maven-plugin</artifactId>
   					<configuration>
-  						<mainClass>es.deusto.spq.GUI.Inicio</mainClass>
+  						<mainClass>es.deusto.spq.GUI.InicioSesion</mainClass>
   					</configuration>
   				</plugin>
   			</plugins>

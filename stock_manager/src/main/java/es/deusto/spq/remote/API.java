@@ -22,9 +22,18 @@ import com.fasterxml.jackson.core.JsonParser;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
+<<<<<<< HEAD
 import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
+=======
+
+import es.deusto.spq.data.Usuario;
+
+import es.deusto.spq.data.Opinion;
+import es.deusto.spq.data.Vendedor;
+
+>>>>>>> 7e06b3b71aab783708a554c2c14aad56dcab0ae4
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
@@ -175,6 +184,12 @@ public class API {
 		return db.getCestas();
 	}
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 7e06b3b71aab783708a554c2c14aad56dcab0ae4
 	@POST
 	@Path("get_cesta")//por ID
 	public Cesta get_cesta(JsonObject json) {
@@ -319,6 +334,12 @@ public class API {
 	}
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 7e06b3b71aab783708a554c2c14aad56dcab0ae4
 	@GET
 	@Path("meter_datos")
 	public String api_meter_datos() {
