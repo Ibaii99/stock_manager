@@ -88,6 +88,7 @@
   					<artifactId>exec-maven-plugin</artifactId>
   					<configuration>
   						<mainClass>es.deusto.spq.GUI.Inicio</mainClass>
+  						<mainClass>es.deusto.spq.GUI.InicioSesion</mainClass>
   					</configuration>
   				</plugin>
   			</plugins>

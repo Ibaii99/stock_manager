@@ -28,10 +28,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import src.main.java.es.deusto.spq.data.*;
 
-import es.deusto.spq.data.*;
-
-public class Inicio extends JFrame {
+public class InicioSesion extends JFrame {
 	/**
 	 * 
 	 */
@@ -61,7 +60,7 @@ public class Inicio extends JFrame {
 	
 	 // Create the frame.
 	 
-	public Inicio() {
+	public InicioSesion() {
 		client = ClientBuilder.newClient();
 		WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
 		WebTarget usuariosTarget = appTarget.path("get_usuarios");
