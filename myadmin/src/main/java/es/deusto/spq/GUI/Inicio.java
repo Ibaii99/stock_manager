@@ -28,7 +28,6 @@ public class Inicio extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private DAO dao = new DAO();
 	private JPanel contentPane;
 	private JTextField usuario;
 	private JPasswordField contrasenya_;
