@@ -92,6 +92,8 @@ public class ShowArticulos extends JFrame {
 		btnNewButton = new JButton("Eliminar articulo");
 		if(btnNewButton.isSelected()) {
 			listModel.remove(articulos.getSelectedIndex());
+			int fila = listaArticulos.indexOf(articulos.getSelectedIndex());
+			listaArticulos.remove(fila);
 			
 		}
 		
