@@ -46,7 +46,6 @@ public class Cesta implements Serializable {
 
 	public Cesta(long id, Cliente cliente, List<Articulo> articulos, List<Integer> cantidades, Estado estado) {
 		super();
-		this.id = id;
 		this.cliente = cliente;
 		this.articulos = articulos;
 		this.cantidades = cantidades;
@@ -146,8 +145,14 @@ public class Cesta implements Serializable {
 //	}
 //
 public void anyadirCesta(Articulo articulo, Integer cantidad) {
-	articulos.add(articulo);
-	cantidades.add(cantidad);
+	if(articulos.contains(articulo)){
+		int i = articulos.indexOf(articulo);
+		int cant = cantidad + cantidades.get(i);
+		cantidades.set(i, cant);
+	}else{
+		articulos.add(articulo);
+		cantidades.add(cantidad);
+	}
 	DAO dao = new DAO();
 	dao.store(this);
 }
