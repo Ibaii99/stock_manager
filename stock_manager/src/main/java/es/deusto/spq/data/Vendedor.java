@@ -10,6 +10,8 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Unique;
 
+import es.deusto.spq.data_access.DAO;
+
 @PersistenceCapable(detachable = "true")
 public class Vendedor implements Serializable {
 	//
@@ -31,9 +33,10 @@ public class Vendedor implements Serializable {
 		
 	}
 	
-	public Vendedor(String nombre, String email) {
+	public Vendedor(String nombre, String email, List<Articulo> articulos) {
 		this.nombre_vendedor = nombre;
 		this.email_vendedor = email;
+		this.articulos = articulos;
 	}
 
 	@Override
@@ -73,6 +76,15 @@ public class Vendedor implements Serializable {
 		this.articulos = articulos;
 	}
 	
-	
+	public void addArticulo(Articulo articulo) {
+		this.articulos.add(articulo);
+		DAO dao = new DAO();
+		dao.store(this);
+	}
+
+	public void registrar() {
+		DAO dao = new DAO();
+		dao.store(this);
+	}
 
 }

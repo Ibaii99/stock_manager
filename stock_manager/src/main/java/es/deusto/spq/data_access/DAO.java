@@ -257,7 +257,21 @@ public class DAO {
 		return v;
 	}
 
+	public Opinion nuevaOpinion(String txt, int valoracion, long ID){
 
+		Cliente c = new Cliente();
+
+		for (Cliente cliente : getClientes()) {
+
+			if (cliente.getId() == ID) {
+				c = cliente;
+			}
+		}
+
+		Opinion o = new Opinion(txt, valoracion, c);		
+		
+		return o;
+	}
 
 
 
@@ -289,11 +303,11 @@ public class DAO {
 		 Cliente ibai = new Cliente("ibai", "ibai@gmail.com", "1234", "Bilbao");
 		 Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
 		 Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
-		 Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
-		 Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com");
-		 Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com");
-		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com");
-		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com");
+		 Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com", new ArrayList<Articulo>());
 		 Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
 		 Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
 		 Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,
