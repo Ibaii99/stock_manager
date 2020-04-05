@@ -16,6 +16,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 
 import com.fasterxml.jackson.core.JsonParser;
+
+import es.deusto.spq.data.Admin;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
@@ -147,7 +149,17 @@ public class API {
 		"ID": "1"
 		}
 	*/
-
+	//Conseguir administradores
+	@POST
+	@Path("get_admin")
+	public Admin get_admin(JsonObject json) {
+		System.out.println("Usuario: " + get_from_json(json, "usuario") + " Pass: "+  get_from_json(json, "password"));
+		Admin a = new DAO().getAdmin(get_from_json(json, "usuario"), get_from_json(json, "password"));
+		a.toString();
+		return a;
+	}
+	
+	
 	@GET
 	@Path("get_cestas")
 	public List<Cesta> get_cestas() {

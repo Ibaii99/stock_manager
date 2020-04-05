@@ -1,8 +1,10 @@
-package main.java.es.deusto.spq.dataAdmin;
+package es.deusto.spq.data;
 
 import java.util.Date;
 import java.util.List;
-import clases_stock_manager.*;
+
+import es.deusto.spq.data_access.DAO;
+
 
 
 public class Admin {
@@ -69,9 +71,9 @@ public class Admin {
 		}
 	}
 	//Eliminar usuario
-	public void eliminarUsuario(Cliente usuario) {
+	public void eliminarUsuario(Usuario usuario) {
 		DAO dao = new DAO();
-		List<Cliente> usuarios = dao.getClientes();
+		List<Usuario> usuarios = dao.getUsuarios();
 		if(usuarios.contains(usuario)) {
 			usuarios.remove(usuario);
 		}else {

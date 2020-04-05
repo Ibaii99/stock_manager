@@ -17,6 +17,7 @@ import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
+import es.deusto.spq.data.Admin;
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
 
@@ -133,41 +134,76 @@ public class DAO {
 	}
 	
 
-//	public List<Usuario> getUsuarios() {
-//		List<Usuario> ret = new ArrayList<Usuario>();
-//		Transaction tx = pm.currentTransaction();
-//		try {
-//			System.out.println("   * Retrieving an Extent for Usuario.");
-//			tx.begin();
-//			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
-//			for (Usuario product : extent) {
-//				ret.add(product);
-//			}
-//			tx.commit();
-//		} catch (Exception ex) {
-//			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
-//		} finally {
-//			if (tx != null && tx.isActive()) {
-//				tx.rollback();
-//			}
-//		}
-//		return ret;
-//	}
-//
-//	// GET de un cliente
-//	
-//	public Usuario getUsuario(String usuario, String contrasenya) {
-//		Usuario u = null;
-//		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-//		usuarios = (ArrayList<Usuario>) this.getUsuarios();
-//		for (int i = 0; i < usuarios.size(); i++) {
-//			u = usuarios.get(i);
-//			if (usuario.equals(u.getUser()) && contrasenya.equals(u.getContrasenya())) {
-//				return u;
-//			}
-//		}
-//		return null;
-//	}
+	public List<Usuario> getUsuarios() {
+		List<Usuario> ret = new ArrayList<Usuario>();
+		Transaction tx = pm.currentTransaction();
+		try {
+			System.out.println("   * Retrieving an Extent for Usuario.");
+			tx.begin();
+			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
+			for (Usuario product : extent) {
+				ret.add(product);
+			}
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		}
+		return ret;
+	}
+
+	// GET de un cliente
+	
+	public Usuario getUsuario(String usuario, String contrasenya) {
+		Usuario u = null;
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios = (ArrayList<Usuario>) this.getUsuarios();
+		for (int i = 0; i < usuarios.size(); i++) {
+			u = usuarios.get(i);
+			if (usuario.equals(u.getUser()) && contrasenya.equals(u.getContrasenya())) {
+				return u;
+			}
+		}
+		return null;
+	}
+	public List<Admin> getAdmins() {
+		List<Admin> ret = new ArrayList<Admin>();
+		Transaction tx = pm.currentTransaction();
+		try {
+			System.out.println("   * Retrieving an Extent for Admin.");
+			tx.begin();
+			Extent<Admin> extent = pm.getExtent(Admin.class, true);
+			for (Admin product : extent) {
+				ret.add(product);
+			}
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error retrieving an admin: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		}
+		return ret;
+	}
+
+	//ADMIN
+	
+	public Admin getAdmin(String usuario, String contrasenya) {
+		Admin a = null;
+		ArrayList<Admin> admins = new ArrayList<Admin>();
+		admins = (ArrayList<Admin>) this.getAdmins();
+		for (int i = 0; i < admins.size(); i++) {
+			a = admins.get(i);
+			if (usuario.equals(a.getEmail_admin()) && contrasenya.equals(a.getContrasenya_admin())) {
+				return a;
+			}
+		}
+		return null;
+	}
 
 	public List<Cesta> getCestas() {
 		List<Cesta> ret = new ArrayList<Cesta>();

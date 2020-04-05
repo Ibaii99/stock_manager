@@ -82,7 +82,7 @@ public class Inicio extends JFrame {
 				
 				String usuarioCogido = usuario.getText();
 				String contrasenya = contrasenya_.getText();
-				if(dao.getUsuario(usuarioCogido,contrasenya )!=null) {
+				if(dao.getUsuario (usuarioCogido,contrasenya )!=null) {
 					System.out.println("Usuario correcto");
 					try {
 						ShowArticulos frame = new ShowArticulos();
