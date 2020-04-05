@@ -1,4 +1,3 @@
-
 package es.deusto.spq.data_access;
 
 
@@ -52,7 +51,7 @@ public class DAO {
 		}
 	}
 
-	// GET de lista de artículos
+	// GET de lista de artÃ­culos
 
 	public List<Articulo> getArticulos() {
 		 List<Articulo> ret = new ArrayList<Articulo>();
@@ -86,7 +85,7 @@ public class DAO {
 		return a;
 	}
 
-	// GET de un artículo
+	// GET de un artÃ­culo
 	public Articulo getArticulo( long idArticulo) {
 		Articulo a = null;
 		ArrayList<Articulo> articulos = new ArrayList<Articulo>();
@@ -307,21 +306,7 @@ public class DAO {
 		return v;
 	}
 
-	public Opinion nuevaOpinion(String txt, int valoracion, long ID){
 
-		Cliente c = new Cliente();
-
-		for (Cliente cliente : getClientes()) {
-
-			if (cliente.getId() == ID) {
-				c = cliente;
-			}
-		}
-
-		Opinion o = new Opinion(txt, valoracion, c);		
-		
-		return o;
-	}
 
 
 
@@ -353,11 +338,11 @@ public class DAO {
 		 Cliente ibai = new Cliente("ibai", "ibai@gmail.com", "1234", "Bilbao");
 		 Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
 		 Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
-		 Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com", new ArrayList<Articulo>());
-		 Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com", new ArrayList<Articulo>());
-		 Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com", new ArrayList<Articulo>());
-		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com", new ArrayList<Articulo>());
-		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
+		 Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com");
+		 Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com");
+		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com");
+		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com");
 		 Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
 		 Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
 		 Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,
@@ -528,7 +513,7 @@ public class DAO {
 		store(n);
 		store(o);
 		
-		return "Todos los datos han sido añadidos bien";
+		return "Todos los datos han sido aÃ±adidos bien";
 
 	}
 

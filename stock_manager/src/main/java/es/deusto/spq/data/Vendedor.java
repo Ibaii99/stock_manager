@@ -7,7 +7,6 @@ import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Unique;
 
 import es.deusto.spq.data_access.DAO;
@@ -37,6 +36,11 @@ public class Vendedor implements Serializable {
 		this.nombre_vendedor = nombre;
 		this.email_vendedor = email;
 		this.articulos = articulos;
+	}
+	
+	public Vendedor(String nombre, String email) {
+		this.nombre_vendedor = nombre;
+		this.email_vendedor = email;
 	}
 
 	@Override
