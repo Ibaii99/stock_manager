@@ -12,6 +12,7 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Opinion;
+import es.deusto.spq.data.Usuario;
 //import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
@@ -131,6 +132,7 @@ public class DAO {
 		return null;
 	}
 	
+
 //	public List<Usuario> getUsuarios() {
 //		List<Usuario> ret = new ArrayList<Usuario>();
 //		Transaction tx = pm.currentTransaction();
