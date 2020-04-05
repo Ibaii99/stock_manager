@@ -2,9 +2,12 @@
 package src.main.java.es.deusto.spq.GUI;
 
 import java.awt.BorderLayout;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.*;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.GenericType;
 
 
 
@@ -25,8 +28,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import src.main.java.es.deusto.spq.data.*;
 
-public class Inicio extends JFrame {
+public class InicioSesion extends JFrame {
 	/**
 	 * 
 	 */
@@ -56,10 +60,10 @@ public class Inicio extends JFrame {
 	
 	 // Create the frame.
 	 
-	public Inicio() {
+	public InicioSesion() {
 		client = ClientBuilder.newClient();
 		WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
-		WebTarget usuariosTarget = appTarget.path("Usuario");
+		WebTarget usuariosTarget = appTarget.path("get_usuarios");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -93,17 +97,20 @@ public class Inicio extends JFrame {
 				
 				String usuarioCogido = usuario.getText();
 				String contrasenya = contrasenya_.getText();
-
-				usuariosTarget.request()
+				GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
 				
-					try {
-						ShowArticulos frame = new ShowArticulos();
-						frame.setVisible(true);
-					} catch (Exception es) {
-						es.printStackTrace();
+				List<Usuario> usuarios = usuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+				for(Usaurio u: usuarios) {
+					if(usuarioCogido.equals(u.getNombre()) && usuarioCogido.equals(u.getContrasenya())) {
+						try {
+							ShowArticulos frame = new ShowArticulos();
+							frame.setVisible(true);
+						} catch (Exception es) {
+							es.printStackTrace();
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Usuario o contrasenya erroneos, Usuariocontrasena errones");
 					}
-				}else {
-					JOptionPane.showMessageDialog(null, "Usuario o contrasenya erroneos, Usuariocontrasena errones");
 				}
 			}
 		});

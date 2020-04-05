@@ -21,12 +21,12 @@ import com.fasterxml.jackson.core.JsonParser;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
-<<<<<<< HEAD
+
 import es.deusto.spq.data.Usuario;
-=======
+
 import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
+
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
@@ -177,9 +177,9 @@ public class API {
 		return db.getCestas();
 	}
 
-<<<<<<< HEAD
 
-=======
+
+
 	@POST
 	@Path("get_cesta")//por ID
 	public Cesta get_cesta(JsonObject json) {
@@ -188,7 +188,6 @@ public class API {
 		Cesta a = new DAO().getCesta(l);
 		return a;
 	}
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 	/*
 		{
 		"ID": "1"
@@ -296,7 +295,7 @@ public class API {
 
 
 
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
+
 
 
 	@GET
