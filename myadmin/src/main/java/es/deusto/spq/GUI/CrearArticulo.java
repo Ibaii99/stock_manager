@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq.GUI;
+package es.deusto.spq.GUI;
 
 import java.awt.BorderLayout;
 import java.text.ParseException;
@@ -24,6 +24,9 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+
+
+
 
 public class CrearArticulo extends JFrame {
 
