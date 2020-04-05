@@ -17,7 +17,7 @@ import javax.ws.rs.client.*;
 
 import javax.ws.rs.core.MediaType;
 
-import es.deusto.spq.data.Articulo;
+
 
 import javax.ws.rs.core.GenericType;
 

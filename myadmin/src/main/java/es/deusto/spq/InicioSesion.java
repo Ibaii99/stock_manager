@@ -1,5 +1,5 @@
 
-package src.main.java.es.deusto.spq.GUI;
+package src.main.java.es.deusto.spq;
 
 import java.awt.BorderLayout;
 
@@ -17,7 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
-
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -47,7 +49,7 @@ public class InicioSesion extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Inicio frame = new Inicio();
+					InicioSesion frame = new InicioSesion();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,13 +59,14 @@ public class InicioSesion extends JFrame {
 	}
 
 	private Client client;
+	private final WebTarget usuariosTarget;
 	
 	 // Create the frame.
 	 
 	public InicioSesion() {
 		client = ClientBuilder.newClient();
 		WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
-		WebTarget usuariosTarget = appTarget.path("get_usuarios");
+		usuariosTarget = appTarget.path("get_usuarios");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -100,11 +103,12 @@ public class InicioSesion extends JFrame {
 				GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
 				
 				List<Usuario> usuarios = usuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-				for(Usaurio u: usuarios) {
+				for(Usuario u: usuarios) {
 					if(usuarioCogido.equals(u.getNombre()) && usuarioCogido.equals(u.getContrasenya())) {
 						try {
-							ShowArticulos frame = new ShowArticulos();
-							frame.setVisible(true);
+							System.out.println("Correcto");
+//							ShowArticulos frame = new ShowArticulos();
+//							frame.setVisible(true);
 						} catch (Exception es) {
 							es.printStackTrace();
 						}
