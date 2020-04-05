@@ -1,14 +1,20 @@
-package main.java.es.deusto.spq.GUI;
+
+package src.main.java.es.deusto.spq.GUI;
 
 import java.awt.BorderLayout;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.*;
+
+
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
-import clases_stock_manager.*;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,20 +26,24 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class IniciaSesion extends JFrame {
-	private DAO dao = new DAO();
+public class Inicio extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField usuario;
-	private JTextField contrasenya_;
+	private JPasswordField contrasenya_;
 
-	/**
-	 * Launch the application.
-	 */
+	
+	  //Launch the application.
+	 
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IniciaSesion frame = new IniciaSesion();
+					Inicio frame = new Inicio();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,12 +52,17 @@ public class IniciaSesion extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public IniciaSesion() {
+	private Client client;
+	
+	 // Create the frame.
+	 
+	public Inicio() {
+		client = ClientBuilder.newClient();
+		WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
+		WebTarget usuariosTarget = appTarget.path("Usuario");
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 500);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -56,9 +71,9 @@ public class IniciaSesion extends JFrame {
 		JPanel _contrasenya = new JPanel();
 		contentPane.add(_contrasenya, BorderLayout.CENTER);
 		
-		JLabel lblNewLabel = new JLabel("Usuario:");
+		JLabel lblNewLabel = new JLabel("Usuario");
 		
-		JLabel lblNewLabel_1 = new JLabel("Contrasenya:");
+		JLabel lblNewLabel_1 = new JLabel("Contrasenya");
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -78,10 +93,17 @@ public class IniciaSesion extends JFrame {
 				
 				String usuarioCogido = usuario.getText();
 				String contrasenya = contrasenya_.getText();
-				if(dao.getUsuario(usuarioCogido, contrasenya)!=null) {
-					System.out.println("");
+
+				usuariosTarget.request()
+				
+					try {
+						ShowArticulos frame = new ShowArticulos();
+						frame.setVisible(true);
+					} catch (Exception es) {
+						es.printStackTrace();
+					}
 				}else {
-					JOptionPane.showMessageDialog(null, "Usuario o contrasenya erroneos", "Usuario/contrasena errones", ERROR);
+					JOptionPane.showMessageDialog(null, "Usuario o contrasenya erroneos, Usuariocontrasena errones");
 				}
 			}
 		});
@@ -89,8 +111,10 @@ public class IniciaSesion extends JFrame {
 		usuario = new JTextField();
 		usuario.setColumns(10);
 		
-		contrasenya_ = new JTextField();
+		contrasenya_ = new JPasswordField();
+		contrasenya_.setEchoChar('*');
 		contrasenya_.setColumns(10);
+		
 		GroupLayout gl__contrasenya = new GroupLayout(_contrasenya);
 		gl__contrasenya.setHorizontalGroup(
 			gl__contrasenya.createParallelGroup(Alignment.LEADING)

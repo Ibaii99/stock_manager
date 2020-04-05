@@ -7,6 +7,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import es.deusto.spq.data_access.DAO;
+
 @PersistenceCapable(detachable = "true")
 public class Opinion implements Serializable {
 
@@ -64,6 +66,9 @@ public class Opinion implements Serializable {
 		this.cliente = cliente;
 	}
 
-	
+	public void publicar() {
+		DAO dao = new DAO();
+		dao.store(this);
+	}
 	
 }
