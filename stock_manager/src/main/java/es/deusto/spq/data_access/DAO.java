@@ -1,3 +1,4 @@
+
 package es.deusto.spq.data_access;
 
 
@@ -260,43 +261,6 @@ public class DAO {
 		}
 		return v;
 	}
-	
-	//Get de usuarios
-	public List<Usuario> getUsuarios() {
-		List<Usuario> ret = new ArrayList<Usuario>();
-		Transaction tx = pm.currentTransaction();
-		try {
-			System.out.println("   * Retrieving an Extent for Usuarios.");
-			tx.begin();
-			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
-			for (Usuario product : extent) {
-				ret.add(product);
-			}
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		return ret;
-	}
-	
-	//GET de un unico usuario
-	public Usuario getUsuario(String usuario, String contrasenya) {
-		Usuario u = null;
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios = (ArrayList<Usuario>) this.getUsuarios();
-		for (int i = 0; i < usuarios.size(); i++) {
-			u = usuarios.get(i);
-			if (usuario.equals(u.getNombre()) && contrasenya.equals(u.getContrasenya())) {
-				return u;
-			}
-		}
-		return null;
-	}
-	
 	// Meter varios datos a la base de datos
 	@SuppressWarnings("deprecation")
 	public String meter_datos() {
@@ -355,7 +319,17 @@ public class DAO {
 		Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
 		Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
 		Opinion o = new Opinion("Habeis hecho un excelente trabajo", 10, unai);
-
+		Usuario mikelAdmin = new Usuario("mikel", "mikel");
+		Usuario ibaiAdmin = new Usuario("ibai", "ibai");
+		Usuario jokinAdmin = new Usuario("jokin", "jokin");
+		Usuario izaiAdmin = new Usuario("izai", "izai");
+		Usuario unaiAdmin = new Usuario("unai", "unai");
+		Usuario admin = new Usuario("admin", "admin");
+		Usuario lauraAdmin = new Usuario("laura", "laura");
+		Usuario sofiaAdmin = new Usuario("sofia", "sofia");
+		Usuario luciaAdmin = new Usuario("lucia", "lucia");
+		Usuario henarAdmin = new Usuario("henar", "henar");
+		
 		ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
@@ -375,6 +349,30 @@ public class DAO {
 		store(fresa);
 		store(calabaza);
 		store(manzana);
+		
+		
+		ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+		listaUsuarios.add(mikelAdmin);
+		listaUsuarios.add(ibaiAdmin);
+		listaUsuarios.add(jokinAdmin);
+		listaUsuarios.add(izaiAdmin);
+		listaUsuarios.add(unaiAdmin);
+		listaUsuarios.add(admin);
+		listaUsuarios.add(lauraAdmin);
+		listaUsuarios.add(sofiaAdmin);
+		listaUsuarios.add(luciaAdmin);
+		listaUsuarios.add(henarAdmin);
+		store(mikelAdmin);
+		store(ibaiAdmin);
+		store(jokinAdmin);
+		store(izaiAdmin);
+		store(unaiAdmin);
+		store(admin);
+		store(lauraAdmin);
+		store(sofiaAdmin);
+		store(luciaAdmin);
+		store(henarAdmin);
+
 		
 		ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 		listaClientes.add(a);
