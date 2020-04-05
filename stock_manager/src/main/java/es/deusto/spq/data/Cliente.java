@@ -1,7 +1,7 @@
 package es.deusto.spq.data;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -11,6 +11,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Unique;
 
+import es.deusto.spq.data.Cesta.Estado;
 import es.deusto.spq.data_access.DAO;
 
 @PersistenceCapable(detachable = "true")
@@ -134,6 +135,8 @@ public class Cliente implements Serializable{
 	public void registrarme() {
 		DAO dao = new DAO();
 		dao.store(this);
+		Cesta c = new Cesta(1, this, new ArrayList<Articulo>(), new ArrayList<Integer>(), Estado.ACTUAL);
+		dao.store(c);
 	}
 	
 
