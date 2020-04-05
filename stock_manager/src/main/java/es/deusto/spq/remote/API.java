@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
+import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
 
@@ -45,6 +46,13 @@ public class API {
 		return "{ \"nombre\": \""+nombre + "\" }";
 	}
 
+	/*
+	{
+ 	  "email": "izaianda@gmail.com",
+  	  "password": "123"
+	}
+	*/	
+
 	@POST
 	@Path("register")
 	public String register(JsonObject json) {
@@ -54,6 +62,15 @@ public class API {
 
 		return "{ \"nombre\": \""+cliente.getNombre_cliente() + "\" }";
 	}
+
+	/*
+	{
+	  "name": "Jon Joseba",
+ 	  "email": "izaianda@gmail.com",
+  	  "password": "123",
+	  "address": "Altzaga"
+	}
+	*/
 
 	@POST
 	@Path("ingresarArticulo")
@@ -78,8 +95,22 @@ public class API {
 		
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria);
 
+		c.storeMe();
+
 		return "Done";
 	}
+
+	/*
+		{
+		"nombre": "Manzana",
+		"caducidad": "02/03/2021",
+		"precio": "0.46",
+		"stock": "120",
+		"descripcion" : "Manzana Ibiza",
+		"oferta" : "0.23",
+		"categoria" : "FRUTAS"
+		}
+	*/ 
 	
 	@POST
 	@Path("get_cliente")
@@ -89,7 +120,12 @@ public class API {
 		c.toString();
 		return c;
 	}
-	
+	/*
+		{
+		"email": "izaianda@gmail.com",
+		"password": "123"
+		}
+	*/
 	@GET
 	@Path("get_articulos")
 	public List<Articulo> get_articulos() {
@@ -97,8 +133,44 @@ public class API {
 		DAO db = new DAO();
 		return db.getArticulos();
 	}
-	
-	
+		
+	@POST
+	@Path("get_articulo")//por ID
+	public Articulo get_articulos(JsonObject json) {
+		System.out.println("Mandando un articulo");
+		long l = Long.parseLong(get_from_json(json, "ID"));
+		Articulo a = new DAO().getArticulo(l);
+		return a;
+	}
+	/*
+		{
+		"ID": "1"
+		}
+	*/
+
+	@GET
+	@Path("get_cestas")
+	public List<Cesta> get_cestas() {
+		System.out.println("Mandando todos los cestas");
+		DAO db = new DAO();
+		return db.getCestas();
+	}
+
+	@POST
+	@Path("get_cesta")//por ID
+	public Articulo get_cesta(JsonObject json) {
+		System.out.println("Mandando una cesta");
+		long l = Long.parseLong(get_from_json(json, "ID"));
+		Articulo a = new DAO().getArticulo(l);
+		return a;
+	}
+	/*
+		{
+		"ID": "1"
+		}
+	*/
+
+
 	@GET
 	@Path("meter_datos")
 	public String api_meter_datos() {
