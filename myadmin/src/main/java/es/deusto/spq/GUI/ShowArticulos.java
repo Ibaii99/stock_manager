@@ -20,9 +20,11 @@ import javax.ws.rs.core.MediaType;
 import es.deusto.spq.data.Articulo;
 
 import javax.ws.rs.core.GenericType;
+import javax.swing.JPanel;
 
 public class ShowArticulos extends JFrame {
 	private Client client;
+	private DefaultListModel<Articulo>articuloListModel = new DefaultListModel<>();
 	
 	public ShowArticulos() {
 		client = ClientBuilder.newClient();
@@ -33,7 +35,7 @@ public class ShowArticulos extends JFrame {
 		WebTarget allArticulosTarget = articulosTarget.path("get_articulos");
 		List<Articulo> articulos = allArticulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 	
-		final DefaultListModel<Articulo>articuloListModel = new DefaultListModel<>();
+		
 		JList<Articulo> listArticulos = new JList<>(articuloListModel);
 		
 		articuloListModel.clear();
@@ -58,22 +60,22 @@ public class ShowArticulos extends JFrame {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(53)
+					.addGap(48)
 					.addComponent(anyadirBoton)
-					.addPreferredGap(ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
 					.addComponent(eliminarBoton)
-					.addGap(72))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(198)
-					.addComponent(listArticulos, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(235, Short.MAX_VALUE))
+					.addGap(55))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(217, Short.MAX_VALUE)
+					.addComponent(listArticulos)
+					.addGap(217))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(83)
-					.addComponent(listArticulos, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+					.addGap(12)
+					.addComponent(listArticulos)
+					.addGap(215)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(anyadirBoton)
 						.addComponent(eliminarBoton))

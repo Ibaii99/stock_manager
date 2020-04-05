@@ -207,7 +207,7 @@
   					<groupId>org.codehaus.mojo</groupId>
   					<artifactId>exec-maven-plugin</artifactId>
   					<configuration>
-  						<mainClass>es.deusto.spq.GUIADMIN.ShowArticulos</mainClass>
+  						<mainClass>es.deusto.spq.GUIADMIN.Inicio</mainClass>
   					</configuration>
   				</plugin>
   			</plugins>
