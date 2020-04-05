@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
+import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
@@ -170,19 +171,30 @@ public class API {
 		return db.getCestas();
 	}
 
-	@POST
-	@Path("get_cesta")//por ID
-	public Articulo get_cesta(JsonObject json) {
-		System.out.println("Mandando una cesta");
-		long l = Long.parseLong(get_from_json(json, "ID"));
-		Articulo a = new DAO().getArticulo(l);
-		return a;
-	}
+
 	/*
 		{
 		"ID": "1"
 		}
 	*/
+	
+	
+	@GET
+	@Path("get_usuarios")
+	public List<Usuario> get_usuarios() {
+		System.out.println("Mandando todos los usuarios");
+		DAO db = new DAO();
+		return db.getUsuarios();
+	}
+	
+	@POST
+	@Path("get_usuario")
+	public Usuario get_usuario(JsonObject json) {
+		System.out.println("Nombre: " + get_from_json(json, "nombre") + " Pass: "+  get_from_json(json, "password"));
+		Usuario u = new DAO().getUsuario(get_from_json(json, "nombre"), get_from_json(json, "password"));
+		u.toString();
+		return u;
+	}
 
 
 	@GET
