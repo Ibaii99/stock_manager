@@ -18,3 +18,4 @@ stock_manager/datanucleus.log
 /bin/
 *.log
 *.log
+*.sqlite3
