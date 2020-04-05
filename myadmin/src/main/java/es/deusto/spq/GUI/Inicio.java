@@ -1,5 +1,5 @@
 
-package es.deusto.spq.GUI;
+package src.main.java.es.deusto.spq.GUI;
 
 import java.awt.BorderLayout;
 
