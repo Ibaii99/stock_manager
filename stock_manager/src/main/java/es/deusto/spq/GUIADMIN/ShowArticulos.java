@@ -67,11 +67,17 @@ public class ShowArticulos extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		DefaultTableModel modelotabla = new DefaultTableModel();
+		Object columnas[] = {"Id", "Nombre", "Fecha caducidad", "Precio", "Stock", "Descripcion", "Oferta", "Categoria", "Vendedor"};
+		for(int i=0;i<listaArticulos.size();i++){
+		    modelotabla.addRow(new Object[] {listaArticulos.get(i).getId(), listaArticulos.get(i).getNombre(), listaArticulos.get(i).getCaducidad(), listaArticulos.get(i).getPrecio(),listaArticulos.get(i).getStock(),
+		    		listaArticulos.get(i).getStock(), listaArticulos.get(i).getDescripcion(), listaArticulos.get(i).getOferta(), listaArticulos.get(i).getCategoria(), listaArticulos.get(i).getVendedor()});
+		}
+		modelotabla.addColumn(columnas);
 		
 
 		JLabel lblNewLabel = new JLabel("                                                        ARTICULOS");
-		
-		
+
 		
 		articulos = new JList();
 		//Crear un objeto DefaultListModel
@@ -82,7 +88,6 @@ public class ShowArticulos extends JFrame {
 		}
 		//Asociar el modelo de lista al JList
 		articulos.setModel(listModel);
-		
 		
 		btnNewButton = new JButton("Eliminar articulo");
 		if(btnNewButton.isSelected()) {
@@ -129,3 +134,4 @@ public class ShowArticulos extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 }
+	

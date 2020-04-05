@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import es.deusto.spq.data.Usuario;
@@ -26,7 +27,7 @@ public class Inicio extends JFrame {
 	private DAO dao = new DAO();
 	private JPanel contentPane;
 	private JTextField usuario;
-	private JTextField contrasenya_;
+	private JPasswordField contrasenya_;
 
 	/**
 	 * Launch the application.
@@ -98,8 +99,10 @@ public class Inicio extends JFrame {
 		usuario = new JTextField();
 		usuario.setColumns(10);
 		
-		contrasenya_ = new JTextField();
+		contrasenya_ = new JPasswordField();
+		contrasenya_.setEchoChar('*');
 		contrasenya_.setColumns(10);
+		
 		GroupLayout gl__contrasenya = new GroupLayout(_contrasenya);
 		gl__contrasenya.setHorizontalGroup(
 			gl__contrasenya.createParallelGroup(Alignment.LEADING)
