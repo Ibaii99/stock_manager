@@ -41,7 +41,9 @@ public class Articulo implements Serializable {
     private String descripcion;
     private float oferta;
     private Categoria categoria;
-    byte [] image;
+    private byte [] image;
+    
+    private String image_url;
     
     private Vendedor vendedor;
     
@@ -49,7 +51,7 @@ public class Articulo implements Serializable {
 	}
 
 	public Articulo(String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
-			Categoria categoria) {
+			Categoria categoria, String image_url) {
         super();
 		this.nombre = nombre;
 		this.caducidad = caducidad;
@@ -58,6 +60,7 @@ public class Articulo implements Serializable {
 		this.descripcion = descripcion;
 		this.oferta = oferta;
 		this.categoria = categoria;
+		this.image_url = image_url;
     }
     
 	public Categoria getCategoria() {
@@ -133,10 +136,19 @@ public class Articulo implements Serializable {
 		this.categoria = categoria;
 	}
 
+	
+	
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
 	public void storeMe() {
 		DAO dao = new DAO();
-		Articulo c = new Articulo(this.nombre,this.caducidad, this.precio, this.stock, this.descripcion, this.oferta, this.categoria);
-		dao.store(c);
+		dao.store(this);
 	}
 
 	@Override

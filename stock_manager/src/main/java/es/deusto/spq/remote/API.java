@@ -17,7 +17,7 @@ import javax.ws.rs.core.Request;
 
 import com.fasterxml.jackson.core.JsonParser;
 
-import es.deusto.spq.data.Admin;
+//import es.deusto.spq.data.Admin;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
@@ -77,7 +77,7 @@ public class API {
 	@POST
 	@Path("ingresarArticulo")
 	public String ingresarArticulo(JsonObject json) throws ParseException {
-		DAO db = new DAO();
+		
 		System.out.println(json);
 
 		String nombre = get_from_json(json, "nombre");
@@ -95,7 +95,9 @@ public class API {
 		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
 		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
 		
-		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria);
+		String url_image = get_from_json(json, "image_url");
+		
+		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, url_image);
 
 		c.storeMe();
 
@@ -150,14 +152,14 @@ public class API {
 		}
 	*/
 	//Conseguir administradores
-	@POST
-	@Path("get_admin")
-	public Admin get_admin(JsonObject json) {
-		System.out.println("Usuario: " + get_from_json(json, "usuario") + " Pass: "+  get_from_json(json, "password"));
-		Admin a = new DAO().getAdmin(get_from_json(json, "usuario"), get_from_json(json, "password"));
-		a.toString();
-		return a;
-	}
+//	@POST
+//	@Path("get_admin")
+//	public Admin get_admin(JsonObject json) {
+//		System.out.println("Usuario: " + get_from_json(json, "usuario") + " Pass: "+  get_from_json(json, "password"));
+//		Admin a = new DAO().getAdmin(get_from_json(json, "usuario"), get_from_json(json, "password"));
+//		a.toString();
+//		return a;
+//	}
 	
 	
 	@GET

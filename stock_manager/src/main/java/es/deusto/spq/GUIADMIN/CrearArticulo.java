@@ -136,8 +136,8 @@ public class CrearArticulo extends JFrame {
 				int o = Integer.parseInt(ofer);
 				String cat = tcategoria.getText();
 				Categoria c = Categoria.valueOf(cat);
-//				
-				Articulo a = new Articulo(nom, date, p, s, des, o, c);
+//				TODO aqui falta meter la url de la imagen al final
+				Articulo a = new Articulo(nom, date, p, s, des, o, c, "");
 				DAO dao = new DAO();
 				dao.store(a);
 				System.out.println("GUARDADO!!!");

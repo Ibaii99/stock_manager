@@ -1,6 +1,6 @@
 package es.deusto.spq.data_access;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,12 +13,11 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Opinion;
-import es.deusto.spq.data.Usuario;
 //import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
-import es.deusto.spq.data.Admin;
+//import es.deusto.spq.data.Admin;
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
 
@@ -135,76 +134,6 @@ public class DAO {
 	}
 	
 
-	public List<Usuario> getUsuarios() {
-		List<Usuario> ret = new ArrayList<Usuario>();
-		Transaction tx = pm.currentTransaction();
-		try {
-			System.out.println("   * Retrieving an Extent for Usuario.");
-			tx.begin();
-			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
-			for (Usuario product : extent) {
-				ret.add(product);
-			}
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		return ret;
-	}
-
-	// GET de un cliente
-	
-	public Usuario getUsuario(String usuario, String contrasenya) {
-		Usuario u = null;
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios = (ArrayList<Usuario>) this.getUsuarios();
-		for (int i = 0; i < usuarios.size(); i++) {
-			u = usuarios.get(i);
-			if (usuario.equals(u.getUser()) && contrasenya.equals(u.getContrasenya())) {
-				return u;
-			}
-		}
-		return null;
-	}
-	public List<Admin> getAdmins() {
-		List<Admin> ret = new ArrayList<Admin>();
-		Transaction tx = pm.currentTransaction();
-		try {
-			System.out.println("   * Retrieving an Extent for Admin.");
-			tx.begin();
-			Extent<Admin> extent = pm.getExtent(Admin.class, true);
-			for (Admin product : extent) {
-				ret.add(product);
-			}
-			tx.commit();
-		} catch (Exception ex) {
-			System.out.println("   $ Error retrieving an admin: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		return ret;
-	}
-
-	//ADMIN
-	
-	public Admin getAdmin(String usuario, String contrasenya) {
-		Admin a = null;
-		ArrayList<Admin> admins = new ArrayList<Admin>();
-		admins = (ArrayList<Admin>) this.getAdmins();
-		for (int i = 0; i < admins.size(); i++) {
-			a = admins.get(i);
-			if (usuario.equals(a.getEmail_admin()) && contrasenya.equals(a.getContrasenya_admin())) {
-				return a;
-			}
-		}
-		return null;
-	}
 
 	public List<Cesta> getCestas() {
 		List<Cesta> ret = new ArrayList<Cesta>();
@@ -352,22 +281,22 @@ public class DAO {
 		Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
 		Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
 		Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,
-				Categoria.FRUTAS);
+				Categoria.FRUTAS, "https://i.pinimg.com/originals/63/64/fb/6364fbeede3157aac881ed9c088d9c26.png");
 		Articulo lechuga = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rica lechuga", 0.95f,
-				Categoria.VERDURAS);
-		Articulo fresa = new Articulo("pimiento", new Date(121, 3, 21), 1.20f, 400, "rica fresa", 0.95f,
-				Categoria.VERDURAS);
-		Articulo calabaza = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rica calabza", 0.95f,
-				Categoria.VERDURAS);
-		Articulo pimiento = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rico pimiento", 0.95f,
-				Categoria.VERDURAS);
+				Categoria.VERDURAS, "https://www.frutasramirez.com/wp-content/uploads/2015/09/distribucionlechuga-iceberg-frutas-ramirez.jpg");
+		Articulo fresa = new Articulo("pimiento", new Date(121, 3, 21), 1.20f, 400, "rico pimiento", 0.95f,
+				Categoria.VERDURAS, "https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/201811/26/00118107400048____2__600x600.jpg");
+		Articulo calabaza = new Articulo("Calabaza", new Date(121, 3, 21), 1.20f, 400, "rica calabza", 0.95f,
+				Categoria.VERDURAS, "https://bonduelle.es/media/zoo/images/calabaza_bd186bc04231bf6c392b16a57a50b431.jpg");
+		Articulo pimiento = new Articulo("fresa", new Date(121, 3, 21), 1.20f, 400, "rica fresa", 0.95f,
+				Categoria.VERDURAS, "https://ecocosas.com/wp-content/uploads/2012/10/img_cuales_son_los_beneficios_de_las_fresas_7561_orig.jpg");
 		Articulo a1 = new Articulo("coliflor", new Date(121, 3, 21), 1.20f, 400, "rica coliflor", 1.05f,
-				Categoria.FRUTAS);
-		Articulo a2 = new Articulo("pan", new Date(121, 3, 21), 1.20f, 400, "rica pan", 1.05f, Categoria.FRUTAS);
-		Articulo a3 = new Articulo("agua", new Date(121, 3, 21), 1.20f, 400, "rica agua", 1.05f, Categoria.ZUMOS);
+				Categoria.FRUTAS, "https://gastronomiaycia.republica.com/wp-content/uploads/2013/04/quitar_manchas_coliflor.jpg");
+		Articulo a2 = new Articulo("pan", new Date(121, 3, 21), 1.20f, 400, "rica pan", 1.05f, Categoria.FRUTOSSECOS, "https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
+		Articulo a3 = new Articulo("agua", new Date(121, 3, 21), 1.20f, 400, "rica agua", 1.05f, Categoria.ZUMOS, "https://a2.soysuper.com/6691b3f472af6f9f7624ada9eea52250.1500.0.0.0.wmark.f4d7e9d0.jpg");
 		Articulo a4 = new Articulo("Mandarina", new Date(121, 3, 21), 1.20f, 400, "rica mandarina", 1.05f,
-				Categoria.FRUTAS);
-		try {
+				Categoria.FRUTAS, "https://static.eldiariomontanes.es/www/pre2017/multimedia/noticias/201610/15/media/cortadas/webmandarina-kQ6G-U203574520628HAH-575x323@Diario%20Montanes.jpg");
+		/*
 			manzana.setImage("src/main/java/imagenes/lechuga.png");
 			lechuga.setImage("src/main/java/imagenes/lechuga.png");
 			fresa.setImage("src/main/java/imagenes/lechuga.png");
@@ -377,11 +306,7 @@ public class DAO {
 			a2.setImage("src/main/java/imagenes/lechuga.png");
 			a3.setImage("src/main/java/imagenes/lechuga.png");
 			a4.setImage("src/main/java/imagenes/lechuga.png");
-			
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		*/
 		ArrayList<Cesta> listaCestas = new ArrayList<Cesta>();
 		Integer cantidad1 = 400;
 		Integer cantidad2 = 500;
@@ -392,14 +317,7 @@ public class DAO {
 		Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
 		Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
 		Opinion o = new Opinion("Habeis hecho un excelente trabajo", 10, unai);
-//		Usuario mikelAdmin = new Usuario("mikel", "1234");
-//		Usuario ibaiAdmin = new Usuario("ibai", "1234");
-//		Usuario jokinAdmin = new Usuario("jokin", "1234");
-//		Usuario izaiAdmin = new Usuario("izai", "1234");
-//		Usuario unaiAdmin = new Usuario("unai", "1234");
-//		Usuario admin = new Usuario("admin", "admin");
-		
-		
+
 		ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
@@ -442,21 +360,6 @@ public class DAO {
 		store(izai);
 		store(unai);
 		
-		
-//		ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
-//		listaUsuarios.add(admin);
-//		listaUsuarios.add(mikelAdmin);
-//		listaUsuarios.add(jokinAdmin);
-//		listaUsuarios.add(ibaiAdmin);
-//		listaUsuarios.add(izaiAdmin);
-//		listaUsuarios.add(unaiAdmin);
-//		store(admin);
-//		store(mikelAdmin);
-//		store(jokinAdmin);
-//		store(ibaiAdmin);
-//		store(izaiAdmin);
-//		store(unaiAdmin);
-//		
 		
 		List<Articulo> listaArticulos1 = new ArrayList<Articulo>();
 		List<Articulo> listaArticulos2 = new ArrayList<Articulo>();
