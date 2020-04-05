@@ -136,6 +136,56 @@ public class DAO {
 		return null;
 	}
 
+	
+	////////////////////////////////////////////////////////////////////
+	// GET de lista de clientes
+		public List<Usuario> getUsuarios() {
+			List<Usuario> ret = new ArrayList<Usuario>();
+			Transaction tx = pm.currentTransaction();
+			try {
+				System.out.println("   * Retrieving an Extent for Usuario.");
+				tx.begin();
+				Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
+				for (Usuario product : extent) {
+					ret.add(product);
+				}
+				tx.commit();
+			} catch (Exception ex) {
+				System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+			} finally {
+				if (tx != null && tx.isActive()) {
+					tx.rollback();
+				}
+			}
+			return ret;
+		}
+
+		// GET de un cliente
+		public Usuario getUsuario(String nombre, String contrasenya) {
+			Usuario u = null;
+			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+			usuarios = (ArrayList<Usuario>) this.getUsuarios();
+			for (int i = 0; i < usuarios.size(); i++) {
+				u = usuarios.get(i);
+				if (nombre.equals(u.getNombre()) && contrasenya.equals(u.getContrasenya())) {
+					return u;
+				}
+			}
+			return null;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	///////////////////////////////////////////////////////////////////
+
+
+
 	public List<Cesta> getCestas() {
 		 List<Cesta> ret = new ArrayList<Cesta>();
 		 Transaction tx = pm.currentTransaction();
