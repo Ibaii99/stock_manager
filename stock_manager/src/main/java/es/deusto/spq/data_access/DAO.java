@@ -26,7 +26,7 @@ public class DAO {
 
 	private PersistenceManagerFactory pmf;
 	private PersistenceManager pm;
-
+	//
 	public DAO() {
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		pm = pmf.getPersistenceManager();

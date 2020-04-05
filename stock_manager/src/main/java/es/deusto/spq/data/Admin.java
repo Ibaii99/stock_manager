@@ -6,7 +6,7 @@
 //import javax.jdo.annotations.PersistenceAware;
 //
 //import es.deusto.spq.data_access.DAO;
-//
+////
 //
 //@PersistenceAware
 //public class Admin {

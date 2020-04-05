@@ -12,7 +12,7 @@ import javax.jdo.annotations.Unique;
 
 @PersistenceCapable(detachable = "true")
 public class Vendedor implements Serializable {
-	
+	//
 	/**
 	 * 
 	 */

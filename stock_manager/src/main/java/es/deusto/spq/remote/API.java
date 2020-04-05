@@ -33,7 +33,7 @@ import es.deusto.spq.data_access.DAO;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class API {
-
+	//
 	/**
 	 * Method handling HTTP GET requests. The returned object will be sent to the
 	 * client as "text/plain" media type.

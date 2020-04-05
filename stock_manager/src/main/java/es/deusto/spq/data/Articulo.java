@@ -17,7 +17,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import es.deusto.spq.data_access.DAO;
-
+//
 @PersistenceCapable(detachable = "true")
 public class Articulo implements Serializable {
 

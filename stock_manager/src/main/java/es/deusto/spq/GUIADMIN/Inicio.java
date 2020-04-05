@@ -28,7 +28,7 @@ public class Inicio extends JFrame {
 //	private JPanel contentPane;
 //	private JTextField usuario;
 //	private JPasswordField contrasenya_;
-//
+////
 //	/**
 //	 * Launch the application.
 //	 */

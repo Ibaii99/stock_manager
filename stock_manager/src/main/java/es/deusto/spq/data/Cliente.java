@@ -16,7 +16,7 @@ import es.deusto.spq.data_access.DAO;
 @PersistenceCapable(detachable = "true")
 public class Cliente implements Serializable{
 	
-
+	//
 	/**
 	 * 
 	 */

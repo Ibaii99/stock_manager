@@ -16,7 +16,7 @@ import es.deusto.spq.GUIADMIN.ShowArticulos;
 import es.deusto.spq.data_access.DAO;
 
 
-
+//
 
 /**
  * Main class.

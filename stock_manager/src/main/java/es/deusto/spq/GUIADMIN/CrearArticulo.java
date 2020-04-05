@@ -35,7 +35,7 @@ public class CrearArticulo extends JFrame {
 	private JTextField tcategoria;
 	private JTextField tprecio;
 	private Date date;
-
+	//
 	/**
 	 * Launch the application.
 	 */

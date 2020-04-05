@@ -39,7 +39,7 @@ public class ShowArticulos extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JList articulos;
-
+	//
 	/**
 	 * Launch the application.
 	 */
