@@ -13,6 +13,7 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Opinion;
+import es.deusto.spq.data.Usuario;
 //import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
@@ -317,7 +318,17 @@ public class DAO {
 		Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
 		Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
 		Opinion o = new Opinion("Habeis hecho un excelente trabajo", 10, unai);
-
+		Usuario mikelAdmin = new Usuario("mikel", "mikel");
+		Usuario ibaiAdmin = new Usuario("ibai", "ibai");
+		Usuario jokinAdmin = new Usuario("jokin", "jokin");
+		Usuario izaiAdmin = new Usuario("izai", "izai");
+		Usuario unaiAdmin = new Usuario("unai", "unai");
+		Usuario admin = new Usuario("admin", "admin");
+		Usuario lauraAdmin = new Usuario("laura", "laura");
+		Usuario sofiaAdmin = new Usuario("sofia", "sofia");
+		Usuario luciaAdmin = new Usuario("lucia", "lucia");
+		Usuario henarAdmin = new Usuario("henar", "henar");
+		
 		ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
@@ -337,6 +348,30 @@ public class DAO {
 		store(fresa);
 		store(calabaza);
 		store(manzana);
+		
+		
+		ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+		listaUsuarios.add(mikelAdmin);
+		listaUsuarios.add(ibaiAdmin);
+		listaUsuarios.add(jokinAdmin);
+		listaUsuarios.add(izaiAdmin);
+		listaUsuarios.add(unaiAdmin);
+		listaUsuarios.add(admin);
+		listaUsuarios.add(lauraAdmin);
+		listaUsuarios.add(sofiaAdmin);
+		listaUsuarios.add(luciaAdmin);
+		listaUsuarios.add(henarAdmin);
+		store(mikelAdmin);
+		store(ibaiAdmin);
+		store(jokinAdmin);
+		store(izaiAdmin);
+		store(unaiAdmin);
+		store(admin);
+		store(lauraAdmin);
+		store(sofiaAdmin);
+		store(luciaAdmin);
+		store(henarAdmin);
+
 		
 		ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 		listaClientes.add(a);

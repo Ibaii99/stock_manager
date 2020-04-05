@@ -49,16 +49,17 @@ public class Main {
 	public static void main(String[] args) throws IOException {
         final HttpServer server = startServer();
         DAO dao = new DAO();
-        EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Inicio frame = new Inicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+        dao.meter_datos();
+//        EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Inicio frame = new Inicio();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
 
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
