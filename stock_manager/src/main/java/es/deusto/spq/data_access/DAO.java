@@ -136,6 +136,56 @@ public class DAO {
 		return null;
 	}
 
+	
+	////////////////////////////////////////////////////////////////////
+	// GET de lista de clientes
+		public List<Usuario> getUsuarios() {
+			List<Usuario> ret = new ArrayList<Usuario>();
+			Transaction tx = pm.currentTransaction();
+			try {
+				System.out.println("   * Retrieving an Extent for Usuario.");
+				tx.begin();
+				Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
+				for (Usuario product : extent) {
+					ret.add(product);
+				}
+				tx.commit();
+			} catch (Exception ex) {
+				System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+			} finally {
+				if (tx != null && tx.isActive()) {
+					tx.rollback();
+				}
+			}
+			return ret;
+		}
+
+		// GET de un cliente
+		public Usuario getUsuario(String nombre, String contrasenya) {
+			Usuario u = null;
+			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+			usuarios = (ArrayList<Usuario>) this.getUsuarios();
+			for (int i = 0; i < usuarios.size(); i++) {
+				u = usuarios.get(i);
+				if (nombre.equals(u.getNombre()) && contrasenya.equals(u.getContrasenya())) {
+					return u;
+				}
+			}
+			return null;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	///////////////////////////////////////////////////////////////////
+
+
+
 	public List<Cesta> getCestas() {
 		 List<Cesta> ret = new ArrayList<Cesta>();
 		 Transaction tx = pm.currentTransaction();
@@ -257,7 +307,21 @@ public class DAO {
 		return v;
 	}
 
+	public Opinion nuevaOpinion(String txt, int valoracion, long ID){
 
+		Cliente c = new Cliente();
+
+		for (Cliente cliente : getClientes()) {
+
+			if (cliente.getId() == ID) {
+				c = cliente;
+			}
+		}
+
+		Opinion o = new Opinion(txt, valoracion, c);		
+		
+		return o;
+	}
 
 
 
@@ -289,11 +353,11 @@ public class DAO {
 		 Cliente ibai = new Cliente("ibai", "ibai@gmail.com", "1234", "Bilbao");
 		 Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
 		 Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
-		 Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
-		 Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com");
-		 Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com");
-		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com");
-		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com");
+		 Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com", new ArrayList<Articulo>());
 		 Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
 		 Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
 		 Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,

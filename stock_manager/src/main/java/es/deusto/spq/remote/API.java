@@ -2,6 +2,7 @@ package es.deusto.spq.remote;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +22,12 @@ import com.fasterxml.jackson.core.JsonParser;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
+<<<<<<< HEAD
+import es.deusto.spq.data.Usuario;
+=======
 import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
@@ -173,6 +178,9 @@ public class API {
 		return db.getCestas();
 	}
 
+<<<<<<< HEAD
+
+=======
 	@POST
 	@Path("get_cesta")//por ID
 	public Cesta get_cesta(JsonObject json) {
@@ -181,12 +189,32 @@ public class API {
 		Cesta a = new DAO().getCesta(l);
 		return a;
 	}
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 	/*
 		{
 		"ID": "1"
 		}
 	*/
 	
+
+	
+	@GET
+	@Path("get_usuarios")
+	public List<Usuario> get_usuarios() {
+		System.out.println("Mandando todos los usuarios");
+		DAO db = new DAO();
+		return db.getUsuarios();
+	}
+	
+	@POST
+	@Path("get_usuario")
+	public Usuario get_usuario(JsonObject json) {
+		System.out.println("Nombre: " + get_from_json(json, "nombre") + " Pass: "+  get_from_json(json, "password"));
+		Usuario u = new DAO().getUsuario(get_from_json(json, "nombre"), get_from_json(json, "password"));
+		u.toString();
+		return u;
+	}
+
 	@POST
 	@Path("addCesta")
 	public Cesta addToCesta(JsonObject json) {
@@ -245,6 +273,27 @@ public class API {
 		}
 	*/
 
+	@POST
+	@Path("nuevaOpinion")
+	public Opinion nuevaOpinion(JsonObject json) {
+
+		String txt = get_from_json(json, "txt");
+		int valoracion = Integer.parseInt(get_from_json(json, "valoracion"));
+		long idCliente = Long.parseLong(get_from_json(json, "idCliente"));
+
+		Opinion o = new DAO().nuevaOpinion(txt, valoracion, idCliente);
+
+		return o;
+	}
+
+	/*
+		{
+		"idCliente": "1",
+		"txt": "Venia pocha",
+		"valoracion": "1"
+		}
+	*/
+
 	@GET
 	@Path("get_Vendedores")
 	public List<Vendedor> get_Vendedores() {
@@ -266,9 +315,18 @@ public class API {
 		}
 	*/
 
+	@POST
+	@Path("nuevoVendedor")
+	public String nuevoVendedor(JsonObject json) {
+
+		Vendedor vendedor = new Vendedor(get_from_json(json, "name"), get_from_json(json, "email"), new ArrayList<Articulo>());
+		vendedor.registrar();
+
+		return "{ \"nombre\": \""+vendedor.getNombre_vendedor() + "\" }";
+	}
 
 
-
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 
 
 	@GET

@@ -2,6 +2,11 @@
 package src.main.java.es.deusto.spq.GUI;
 
 import java.awt.BorderLayout;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.*;
+
+
 
 import java.awt.EventQueue;
 
@@ -10,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
-import es.deusto.spq.data.Usuario;
-import es.deusto.spq.data_access.DAO;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -50,10 +53,15 @@ public class Inicio extends JFrame {
 		});
 	}
 
+	private Client client;
 	
 	 // Create the frame.
 	 
 	public Inicio() {
+		client = ClientBuilder.newClient();
+		WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
+		WebTarget usuariosTarget = appTarget.path("Usuario");
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -86,8 +94,9 @@ public class Inicio extends JFrame {
 				
 				String usuarioCogido = usuario.getText();
 				String contrasenya = contrasenya_.getText();
-				if(dao.getUsuario (usuarioCogido,contrasenya )!=null) {
-					System.out.println("Usuario correcto");
+
+				usuariosTarget.request()
+				
 					try {
 						ShowArticulos frame = new ShowArticulos();
 						frame.setVisible(true);
