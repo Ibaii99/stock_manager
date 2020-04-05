@@ -71,8 +71,13 @@
               <div class="dropdown-menu" aria-labelledby="dropdown04">
                 <a class="dropdown-item" href="{% if var.is_logged %} /user/ {% else %} /user/login/ {% endif %}"><img border="0" alt="Account" src="{% static 'images/icon_account.png' %}" width="auto" height="12">{% if var.is_logged %} {{ var.name }} {% else %} Log In {% endif %}</a>
                 {% comment %} <a class="dropdown-item" href="product-single.html"><span class="ion-ios-menu"> Ajustes</a> {% endcomment %}
-              	<a class="dropdown-item" href="{% if var.is_logged %} /user/cart {% else %} /user/login/ {% endif %}"><span class="icon-shopping_cart"> Carrito</a>
-              	<a class="dropdown-item" href="{% if var.is_logged %} /user/favourites {% else %} /user/login/ {% endif %}"><span class="ion-ios-heart"> Favoritos</a>
+                {% if var.is_logged %}
+                <a class="dropdown-item" href="/user/cart/"><span class="icon-shopping_cart">[] Carrito</a>
+              	<a class="dropdown-item" href="/user/favourites"><span class="ion-ios-heart">[] Favoritos</a>
+                {% else %}
+              	<a class="dropdown-item" href="/user/login/"><span class="icon-shopping_cart"> Carrito</a>
+              	<a class="dropdown-item" href="/user/login/"><span class="ion-ios-heart"> Favoritos</a>
+                {% endif %}
               	{% comment %} <a class="dropdown-item" href="wishlist.html"> Help</a> {% endcomment %}
               </div>
             </li>

@@ -84,8 +84,13 @@ def login(request):
 def shop(request):
     
     resp = requests.get(settings.STOCK_MANAGER_API_URL +'/api/get_articulos')
-    articulos = {}
+    
     print("saasdsda")
+
+    articulos = json.loads(resp.text)
+    
+    for articulo in articulos:
+        print(articulo)
     # for articulo in resp:
     #     print(articulo)
     #     print(articulo.get("image"))
@@ -103,6 +108,10 @@ def shop(request):
         
     return render(request, "shop.html", {"var": get_vars(request), "articulos": articulos })
 
+def article(request, id):
+    None
+    
+    
 def index(request): 
     
     return render(request, "index.html", {"var": get_vars(request)})

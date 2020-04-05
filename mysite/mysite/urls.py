@@ -30,6 +30,7 @@ urlpatterns = [
     path('user/register/', views.register),
     path('user/cart', views.user),
     path('user/favourites', views.user),
+    path('article/<int:id>', views.article),
     path('', views.index),
 ]
 
