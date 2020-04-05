@@ -13,6 +13,7 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Opinion;
+import es.deusto.spq.data.Usuario;
 //import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
@@ -259,6 +260,43 @@ public class DAO {
 		}
 		return v;
 	}
+	
+	//Get de usuarios
+	public List<Usuario> getUsuarios() {
+		List<Usuario> ret = new ArrayList<Usuario>();
+		Transaction tx = pm.currentTransaction();
+		try {
+			System.out.println("   * Retrieving an Extent for Usuarios.");
+			tx.begin();
+			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
+			for (Usuario product : extent) {
+				ret.add(product);
+			}
+			tx.commit();
+		} catch (Exception ex) {
+			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		}
+		return ret;
+	}
+	
+	//GET de un unico usuario
+	public Usuario getUsuario(String usuario, String contrasenya) {
+		Usuario u = null;
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios = (ArrayList<Usuario>) this.getUsuarios();
+		for (int i = 0; i < usuarios.size(); i++) {
+			u = usuarios.get(i);
+			if (usuario.equals(u.getNombre()) && contrasenya.equals(u.getContrasenya())) {
+				return u;
+			}
+		}
+		return null;
+	}
+	
 	// Meter varios datos a la base de datos
 	@SuppressWarnings("deprecation")
 	public String meter_datos() {
