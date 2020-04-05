@@ -1,3 +1,4 @@
+
 package es.deusto.spq.data_access;
 
 
@@ -13,6 +14,7 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Opinion;
+import es.deusto.spq.data.Usuario;
 //import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
@@ -320,28 +322,39 @@ public class DAO {
 				Categoria.FRUTAS,
 				"https://static.eldiariomontanes.es/www/pre2017/multimedia/noticias/201610/15/media/cortadas/webmandarina-kQ6G-U203574520628HAH-575x323@Diario%20Montanes.jpg");
 		/*
-		 * manzana.setImage("src/main/java/imagenes/lechuga.png");
-		 * lechuga.setImage("src/main/java/imagenes/lechuga.png");
-		 * fresa.setImage("src/main/java/imagenes/lechuga.png");
-		 * calabaza.setImage("src/main/java/imagenes/lechuga.png");
-		 * pimiento.setImage("src/main/java/imagenes/lechuga.png");
-		 * a1.setImage("src/main/java/imagenes/lechuga.png");
-		 * a2.setImage("src/main/java/imagenes/lechuga.png");
-		 * a3.setImage("src/main/java/imagenes/lechuga.png");
-		 * a4.setImage("src/main/java/imagenes/lechuga.png");
-		 */
-		 ArrayList<Cesta> listaCestas = new ArrayList<Cesta>();
-		 Integer cantidad1 = 400;
-		 Integer cantidad2 = 500;
-		 Integer cantidad3 = 300;
-		 Integer cantidad4 = 600;
-		 Opinion k = new Opinion("Me ha encantado la lechuga", 7, mikel);
-		 Opinion l = new Opinion("No me ha gusatdo el pimiento", 1, jokin);
-		 Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
-		 Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
-		 Opinion o = new Opinion("Habeis hecho un excelente trabajo", 10, unai);
+			manzana.setImage("src/main/java/imagenes/lechuga.png");
+			lechuga.setImage("src/main/java/imagenes/lechuga.png");
+			fresa.setImage("src/main/java/imagenes/lechuga.png");
+			calabaza.setImage("src/main/java/imagenes/lechuga.png");
+			pimiento.setImage("src/main/java/imagenes/lechuga.png");
+			a1.setImage("src/main/java/imagenes/lechuga.png");
+			a2.setImage("src/main/java/imagenes/lechuga.png");
+			a3.setImage("src/main/java/imagenes/lechuga.png");
+			a4.setImage("src/main/java/imagenes/lechuga.png");
+		*/
+		ArrayList<Cesta> listaCestas = new ArrayList<Cesta>();
+		Integer cantidad1 = 400;
+		Integer cantidad2 = 500;
+		Integer cantidad3 = 300;
+		Integer cantidad4 = 600;
+		Opinion k = new Opinion("Me ha encantado la lechuga", 7, mikel);
+		Opinion l = new Opinion("No me ha gusatdo el pimiento", 1, jokin);
+		Opinion m = new Opinion("No estaba buena del todo la calabaza pero estaba fresca", 6, ibai);
+		Opinion n = new Opinion("No estaban fresca del todo las fresas pero estaban buenas", 5, izai);
+		Opinion o = new Opinion("Habeis hecho un excelente trabajo", 10, unai);
+		Usuario mikelAdmin = new Usuario("mikel", "mikel");
+		Usuario ibaiAdmin = new Usuario("ibai", "ibai");
+		Usuario jokinAdmin = new Usuario("jokin", "jokin");
+		Usuario izaiAdmin = new Usuario("izai", "izai");
+		Usuario unaiAdmin = new Usuario("unai", "unai");
+		Usuario admin = new Usuario("admin", "admin");
+		Usuario lauraAdmin = new Usuario("laura", "laura");
+		Usuario sofiaAdmin = new Usuario("sofia", "sofia");
+		Usuario luciaAdmin = new Usuario("lucia", "lucia");
+		Usuario henarAdmin = new Usuario("henar", "henar");
+		
+		ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 
-		 ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
 		listaArticulos.add(a3);
@@ -361,7 +374,33 @@ public class DAO {
 		store(calabaza);
 		store(manzana);
 
-		 ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+		
+		
+		ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+		listaUsuarios.add(mikelAdmin);
+		listaUsuarios.add(ibaiAdmin);
+		listaUsuarios.add(jokinAdmin);
+		listaUsuarios.add(izaiAdmin);
+		listaUsuarios.add(unaiAdmin);
+		listaUsuarios.add(admin);
+		listaUsuarios.add(lauraAdmin);
+		listaUsuarios.add(sofiaAdmin);
+		listaUsuarios.add(luciaAdmin);
+		listaUsuarios.add(henarAdmin);
+		store(mikelAdmin);
+		store(ibaiAdmin);
+		store(jokinAdmin);
+		store(izaiAdmin);
+		store(unaiAdmin);
+		store(admin);
+		store(lauraAdmin);
+		store(sofiaAdmin);
+		store(luciaAdmin);
+		store(henarAdmin);
+
+		
+		ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+
 		listaClientes.add(a);
 		listaClientes.add(b);
 		listaClientes.add(c);

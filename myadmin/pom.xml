@@ -26,6 +26,9 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+ 
+  
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -72,4 +75,23 @@
       </plugins>
     </pluginManagement>
   </build>
+  
+   <profiles>
+  	<profile>
+  		<id>myadmin</id>
+  		<build>
+  			<plugins>
+  				<plugin>
+  					<groupId>es.deusto.spq</groupId>
+  					<artifactId>exec-maven-plugin</artifactId>
+  					<configuration>
+  						<mainClass>es.deusto.spq.GUI.Inicio</mainClass>
+  					</configuration>
+  				</plugin>
+  			</plugins>
+  		</build>
+  	</profile>
+  </profiles>
+  
+  
 </project>
