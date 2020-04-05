@@ -2,6 +2,7 @@ package es.deusto.spq.remote;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -271,6 +272,27 @@ public class API {
 		}
 	*/
 
+	@POST
+	@Path("nuevaOpinion")
+	public Opinion nuevaOpinion(JsonObject json) {
+
+		String txt = get_from_json(json, "txt");
+		int valoracion = Integer.parseInt(get_from_json(json, "valoracion"));
+		long idCliente = Long.parseLong(get_from_json(json, "idCliente"));
+
+		Opinion o = new DAO().nuevaOpinion(txt, valoracion, idCliente);
+
+		return o;
+	}
+
+	/*
+		{
+		"idCliente": "1",
+		"txt": "Venia pocha",
+		"valoracion": "1"
+		}
+	*/
+
 	@GET
 	@Path("get_Vendedores")
 	public List<Vendedor> get_Vendedores() {
@@ -292,7 +314,15 @@ public class API {
 		}
 	*/
 
+	@POST
+	@Path("nuevoVendedor")
+	public String nuevoVendedor(JsonObject json) {
 
+		Vendedor vendedor = new Vendedor(get_from_json(json, "name"), get_from_json(json, "email"), new ArrayList<Articulo>());
+		vendedor.registrar();
+
+		return "{ \"nombre\": \""+vendedor.getNombre_vendedor() + "\" }";
+	}
 
 
 

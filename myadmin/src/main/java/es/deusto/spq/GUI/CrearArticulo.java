@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq.GUI;
+package es.deusto.spq.GUI;
 
 import java.awt.BorderLayout;
 import java.text.ParseException;
@@ -25,6 +25,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.*;
+
+
 public class CrearArticulo extends JFrame {
 
 	private JPanel contentPane;
@@ -37,6 +42,7 @@ public class CrearArticulo extends JFrame {
 	private JTextField tprecio;
 	private Date date;
 	private JTextField timagen;
+	private Client client;
 
 	/**
 	 * Launch the application.
@@ -58,6 +64,13 @@ public class CrearArticulo extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearArticulo() {
+		
+		client = ClientBuilder.newClient();
+		WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
+		WebTarget usersTarget = appTarget.path("Articulo");
+		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();

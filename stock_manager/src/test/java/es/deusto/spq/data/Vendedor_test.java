@@ -13,7 +13,7 @@ import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Articulo;
 public class Vendedor_test{
-	private Vendedor v = new Vendedor("Jokin", "Jokin@gmail.com");
+	private Vendedor v = new Vendedor("Jokin", "Jokin@gmail.com", new ArrayList<Articulo>());
 	private List<Articulo>listaArticulos = new ArrayList<Articulo>();
 	private Date f1 = new Date(120,04,12);
 	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
