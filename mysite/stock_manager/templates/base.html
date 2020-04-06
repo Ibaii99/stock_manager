@@ -73,10 +73,10 @@
                 {% comment %} <a class="dropdown-item" href="product-single.html"><span class="ion-ios-menu"> Ajustes</a> {% endcomment %}
                 {% if var.is_logged %}
                 <a class="dropdown-item" href="/user/cart/"><span class="icon-shopping_cart">[{{ var.cart }}] Carrito</a>
-              	<a class="dropdown-item" href="/user/favourites"><span class="ion-ios-heart">[{{ var.favourites }}] Favoritos</a>
+              	{% comment %} <a class="dropdown-item" href="/user/favourites"><span class="ion-ios-heart">[{{ var.favourites }}] Favoritos</a> {% endcomment %}
                 {% else %}
               	<a class="dropdown-item" href="/user/login/"><span class="icon-shopping_cart"> Carrito</a>
-              	<a class="dropdown-item" href="/user/login/"><span class="ion-ios-heart"> Favoritos</a>
+              	{% comment %} <a class="dropdown-item" href="/user/login/"><span class="ion-ios-heart"> Favoritos</a> {% endcomment %}
                 {% endif %}
               	{% comment %} <a class="dropdown-item" href="wishlist.html"> Help</a> {% endcomment %}
               </div>

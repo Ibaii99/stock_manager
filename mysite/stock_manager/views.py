@@ -6,6 +6,7 @@ import json
 import io
 from PIL import Image
 
+sessions = {}
 
 def test(request):
     #return render(request, "index.html")
@@ -15,37 +16,48 @@ def test(request):
     #Prueba de commit
 
 def cart(request):
-    
-   # if is_session_alive(request):
-    # sesion = sessions.get(request.COOKIES['sessionid'])
-    # info={
-    #     "email": sesion.get("email"),
-    #     "password": sesion.get('password')
-    # }
-    info={
-        "email":"jokin@gmail.com",
-        "password": "1234"
-    }
-    resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getCarrito', json=info)
-    
-    cesta = json.loads(resp.text)
-    e=0
-    print(len(cesta.get("articulos")))
-    while (e < len(cesta.get("articulos"))):
-        print(cesta.get("articulos")[e])
-        cesta.get("articulos")[e]["cantidad"] = cesta.get("cantidades")[e]
-        e+=1
+    if is_session_alive(request):
+        sesion = sessions.get(request.COOKIES['sessionid'])
         
+        if request.method == "POST":
+            z = {
+                "id_articulo": request.POST.get("borrar"),
+                "email": sesion.get("email"),
+                "password": sesion.get('password')
+            }
+            
+            resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/removeCarrito', json=z)
+            
+        info={
+            "email": sesion.get("email"),
+            "password": sesion.get('password')
+        }
         
+        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getCarrito', json=info)
+        
+        cesta = json.loads(resp.text)
+        e=0
+        print(len(cesta.get("articulos")))
+        preciototal = 0
+        while (e < len(cesta.get("articulos"))):
+            print(cesta.get("articulos")[e])
+            cesta.get("articulos")[e]["cantidad"] = cesta.get("cantidades")[e]
+            
+            cesta.get("articulos")[e]["precio_articulo"] =  int(cesta.get("cantidades")[e]) * float(cesta.get("articulos")[e]["oferta"])
+            preciototal +=  int(cesta.get("cantidades")[e]) * cesta.get("articulos")[e]["oferta"]
+            e+=1
+            
+            
+        cesta["precio_total"] = preciototal
+        return render(request, "cart.html", {"var": get_vars(request), "cesta": cesta} ) 
     
-    return render(request, "cart.html", {"var": get_vars(request), "cesta": cesta} ) 
-    
-    #return redirect("/user/login")
+    return redirect("/user/login")
 
 def favourites(request):
     None    
 
 def user(request):
+    global sessions
     if is_session_alive(request):
         sesion = sessions.get(request.COOKIES['sessionid'])
         info={
@@ -109,6 +121,21 @@ def login(request):
     return render(request, "login.html", {"var": get_vars(request)})
 
 def shop(request):
+    
+    if is_session_alive(request):
+        sesion = sessions.get(request.COOKIES['sessionid'])
+        
+        if request.method == "POST":
+            print( request.POST.get("anyadir"))
+            z = {
+                "id_articulo": request.POST.get("anyadir"),
+                "email": sesion.get("email"),
+                "password": sesion.get('password'),
+                "cantidad": "1"
+            }
+
+            resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/addCarrito', json=z)
+    
     resp = requests.get(settings.STOCK_MANAGER_API_URL +'/api/getArticulos')
     articulos = json.loads(resp.text)
     return render(request, "shop.html", {"var": get_vars(request), "articulos": articulos })
@@ -151,12 +178,17 @@ def get_vars(request):
     if is_session_alive(request):
         if is_data_correct(request):
             session = sessions.get(request.COOKIES['sessionid'])
+            b = {
+                "password": session.get("password"),
+                "email": session.get("email"),
+            }
+            resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/tamanyoCarrito', json=b)
             
             var = {
                     "is_logged": True,
                     "name": session.get("nombre"),
-                    "cart": 2,
-                    "favourites": 1,
+                    "cart": resp.json()["tamanyo"],
+                    "favourites": 0,
             }
             
             return var
@@ -182,8 +214,6 @@ def save_session(request, session_id, user_name, email, password):
     
     sessions[request.COOKIES['sessionid']] = store
     
-    print(sessions)
-
 #Borra los datos de la sesion
 def close_session(request):
     global sessions
@@ -254,7 +284,6 @@ def set_cookie(response, key, value, days_expire = 2):
         expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
         response.set_cookie(key, value, max_age=max_age, expires=expires, domain=settings.SESSION_COOKIE_DOMAIN, secure=settings.SESSION_COOKIE_SECURE or None)
         
-
 def erro_handler(request, exception=None):
     # make a redirect to homepage
     # you can use the name of url or just the plain link

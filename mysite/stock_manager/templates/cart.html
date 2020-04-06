@@ -22,7 +22,7 @@
 				<div class="row">
     			<div class="col-md-12 ftco-animate">
     				<div class="cart-list">
-	    				<table class="table">
+	    				<table class="table" id="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">
 						        <th>&nbsp;</th>
@@ -34,9 +34,12 @@
 						      </tr>
 						    </thead>
 						    <tbody>
+							<form method="POST">
+									{% csrf_token %}
 						      {% for articulo in cesta.articulos %}
 								<tr class="text-center" id="row" name="{{ articulo.nombre }}">
-									<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+									
+										<td class="product-remove"> <button class="ion-ios-close" name="borrar" value="{{ articulo.id }}"></span></td>
 									
 									<td class="image-prod"><div class="img" style="background-image:url({{ articulo.imageUrl }});"></div></td>
 									
@@ -45,17 +48,18 @@
 										<p> {{ articulo.descripcion }}</p>
 									</td>
 									
-									<td class="price" id="price{{ articulo.nombre }}">{{ articulo.oferta }}</td>
+									<td class="price" id="precio_{{ articulo.nombre }}" value="{{ articulo.oferta }}">{{ articulo.oferta }}</td>
 									
 									<td class="quantity">
 										<div class="input-group mb-3">
-										<input type="text" id="cantidad{{ articulo.nombre }}" class="quantity form-control input-number" value="{{ articulo.cantidad }}" onchange="calcular_precio({{ articulo.nombre }})" min="1" max="1000">
+										<input type="number" step="1" id="cantidad_{{ articulo.nombre }}" name="{{ articulo.nombre }}" class="quantity form-control input-number" value="{{ articulo.cantidad }}" min="1" max="1000">
 									</div>
 								</td>
 									
-									<td class="total" id="resultado{{ articulo.nombre }}">4.90</td>
+									<td class="total" > <input id="resultado_{{ articulo.nombre }}" class"absolute_price" value="{{ articulo.precio_articulo }}" readonly ><span>€</span></td>
 								</tr><!-- END TR-->
 								{% endfor %}
+								</form>
 						    </tbody>
 						  </table>
 					  </div>
@@ -100,8 +104,8 @@
     				<div class="cart-total mb-3">
     					<h3>Cart Totals</h3>
     					<p class="d-flex">
-    						<span id="meteloaqui">Subtotal</span>
-    						<span>$20.60</span>
+    						<span>Subtotal</span>
+    						<span id="total_f">{{ cesta.precio_total }}</span><span>€</span>
     					</p>
     					<p class="d-flex">
     						<span>Delivery</span>
@@ -109,12 +113,12 @@
     					</p>
     					<p class="d-flex">
     						<span>Discount</span>
-    						<span>$3.00</span>
+    						<span>$0.00</span>
     					</p>
     					<hr>
-    					<p class="d-flex total-price">
+    					<p class="d-flex total-price" id="aqui">
     						<span>Total</span>
-    						<span>$17.60</span>
+    						<span id="total_g" >{{ cesta.precio_total }}</span><span>€</span>
     					</p>
     				</div>
     				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
@@ -150,13 +154,31 @@
 
 {% block script %}
 	<script>
-			function calcular_precio(nombre) {
-				var id = "resultado" + nombre
-				document.getElementById("meteloaqui").innerHTML = "Hello World";
-				return a * b;
-			}
-		</script>
+	function calculateSum() {
+			var table = document.getElementById("table"), sumVal = 0;
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                sumVal = sumVal + parseFloat(table.rows[i].cells[5].children[0].value.replace(',', '.'));
+            }
+            document.getElementById("total_f").innerHTML = sumVal;
+            document.getElementById("total_g").innerHTML = sumVal;
+		} 
+
+		$("input").change(function(){
+				var resultado = "#resultado_"+ $(this).attr("name")
+				var precio = "#precio_"+ $(this).attr("name")
+				var r = (parseFloat($(precio).attr("value").replace(',', '.')) * parseInt($(this).val())).toFixed(2); 
+				$(resultado).val(r);
+
+				calculateSum();
+
+			});
+
+			
+
 		
+	</script>
 	{% endblock script %}
 
 	

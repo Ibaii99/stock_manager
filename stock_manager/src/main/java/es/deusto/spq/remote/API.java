@@ -229,11 +229,11 @@ public class API {
 	
 	@POST
 	@Path("tamanyoCarrito")//por ID
-	public int tamanyoCarrito(JsonObject json) {
+	public String tamanyoCarrito(JsonObject json) {
 		System.out.println("Obteniendo tamaño de la cesta de la compra");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-		return c.getCarrito().getArticulos().size();
+		return "{ \"tamanyo\": \""+c.getCarrito().getArticulos().size() + "\" }";
 	}
 
 	@POST
@@ -304,7 +304,15 @@ public class API {
 		"ID": "1"
 		}
 	*/
-	
+	@POST
+    @Path("removeCarrito")//por ID
+    public void removeCarrito(JsonObject json) {
+        System.out.println("Modificando la cesta de la compra");
+        DAO db = new DAO();
+        Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+        Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+        c.getCarrito().removeArticuloCesta(a);;
+    }
 
 	
 	//Conseguir administradores

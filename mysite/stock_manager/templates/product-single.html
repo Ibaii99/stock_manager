@@ -19,7 +19,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="images/product-1.jpg" class="image-popup"><img src="{{ article.image_url }}" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="images/product-1.jpg" class="image-popup"><img src="{{ article.imageUrl }}" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h3>{{ article.nombre }}</h3>
@@ -78,7 +78,7 @@
           	</div>
 				<div class="form-group">
                     <input type="submit" value="Añadir al carrito" name="boton" class="btn btn-primary py-3 px-5"> 
-                    <input type="submit" value="Añadir a favoritos" name= "boton" class="btn btn-black py-3 px-5"> 
+                    {% comment %} <input type="submit" value="Añadir a favoritos" name= "boton" class="btn btn-black py-3 px-5">  {% endcomment %}
 				</div>
 			</form>
 			</div>
