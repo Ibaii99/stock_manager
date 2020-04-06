@@ -1,11 +1,13 @@
 package es.deusto.spq.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -35,7 +37,10 @@ public class Cesta implements Serializable {
     
     // En el indice 1 de articulos estara el articulo añadido primero
     // En el indice 1 de cantidades estara las cantidades dedl articulo 1
+	
+    @Join
     private List<Articulo> articulos;
+    
     private List<Integer> cantidades;
     private Estado estado;
 
@@ -44,7 +49,7 @@ public class Cesta implements Serializable {
 }
 
 
-	public Cesta(long id, Cliente cliente, List<Articulo> articulos, List<Integer> cantidades, Estado estado) {
+	public Cesta(Cliente cliente, List<Articulo> articulos, List<Integer> cantidades, Estado estado) {
 		super();
 		this.cliente = cliente;
 		this.articulos = articulos;

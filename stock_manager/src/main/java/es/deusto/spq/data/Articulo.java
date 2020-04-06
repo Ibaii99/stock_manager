@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -70,6 +71,10 @@ public class Articulo implements Serializable {
 	
     public long getId() {
 		return id;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public void setId(long id) {

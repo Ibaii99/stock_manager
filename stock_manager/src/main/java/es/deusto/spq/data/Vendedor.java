@@ -1,6 +1,7 @@
 package es.deusto.spq.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -29,7 +30,6 @@ public class Vendedor implements Serializable {
 	private List<Articulo> articulos;
 	
 	public Vendedor(){
-		
 	}
 	
 	public Vendedor(String nombre, String email, List<Articulo> articulos) {

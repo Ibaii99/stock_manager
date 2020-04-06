@@ -72,8 +72,8 @@
                 <a class="dropdown-item" href="{% if var.is_logged %} /user/ {% else %} /user/login/ {% endif %}"><img border="0" alt="Account" src="{% static 'images/icon_account.png' %}" width="auto" height="12">{% if var.is_logged %} {{ var.name }} {% else %} Log In {% endif %}</a>
                 {% comment %} <a class="dropdown-item" href="product-single.html"><span class="ion-ios-menu"> Ajustes</a> {% endcomment %}
                 {% if var.is_logged %}
-                <a class="dropdown-item" href="/user/cart/"><span class="icon-shopping_cart">[] Carrito</a>
-              	<a class="dropdown-item" href="/user/favourites"><span class="ion-ios-heart">[] Favoritos</a>
+                <a class="dropdown-item" href="/user/cart/"><span class="icon-shopping_cart">[{{ var.cart }}] Carrito</a>
+              	<a class="dropdown-item" href="/user/favourites"><span class="ion-ios-heart">[{{ var.favourites }}] Favoritos</a>
                 {% else %}
               	<a class="dropdown-item" href="/user/login/"><span class="icon-shopping_cart"> Carrito</a>
               	<a class="dropdown-item" href="/user/login/"><span class="ion-ios-heart"> Favoritos</a>

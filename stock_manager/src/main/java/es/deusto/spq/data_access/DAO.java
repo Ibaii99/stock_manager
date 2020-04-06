@@ -93,6 +93,7 @@ public class DAO {
 		for (int i = 0; i < articulos.size(); i++) {
 			a = articulos.get(i);
 			if (idArticulo == a.getId()) {
+				System.out.println("Articulo encontrado.");
 				return a;
 			}
 		}
@@ -129,6 +130,7 @@ public class DAO {
 		for (int i = 0; i < clientes.size(); i++) {
 			c = clientes.get(i);
 			if (email.equals(c.getEmail_cliente()) && contrasenya.equals(c.getContrasenya_cliente())) {
+				System.out.println("Cliente encontrado.");
 				return c;
 			}
 		}
@@ -194,6 +196,7 @@ public class DAO {
 			 Extent<Cesta> extent = pm.getExtent(Cesta.class, true);
 			for ( Cesta cesta : extent) {
 				ret.add(cesta);
+				cesta.getArticulos().toString();
 			}
 			tx.commit();
 		} catch ( Exception ex) {
@@ -344,7 +347,9 @@ public class DAO {
 		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com");
 		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com");
 		 Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
+		 
 		 Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
+		 
 		 Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,
 				Categoria.FRUTAS, "https://i.pinimg.com/originals/63/64/fb/6364fbeede3157aac881ed9c088d9c26.png");
 		 Articulo lechuga = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rica lechuga", 0.95f,
@@ -483,9 +488,14 @@ public class DAO {
 		listaCantidades1.add(cantidad2);
 		listaCantidades2.add(cantidad3);
 		listaCantidades2.add(cantidad4);
-
-		 Cesta aa = new Cesta(1, c1, listaArticulos1, listaCantidades1, Estado.ACTUAL);
-		 Cesta bb = new Cesta(2, c2, listaArticulos2, listaCantidades2, Estado.ACTUAL);
+		
+		ArrayList<Cesta> ac = new ArrayList<>();
+		Cesta aa = new Cesta(jokin, listaArticulos1, listaCantidades1, Estado.ACTUAL);
+		Cesta bb = new Cesta(jokin, listaArticulos2, listaCantidades2, Estado.ACTUAL);
+		ac.add(aa);
+		ac.add(bb);
+		jokin.setCestas(ac);
+		store(c1);
 		store(aa);
 		store(bb);
 

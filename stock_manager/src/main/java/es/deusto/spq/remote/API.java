@@ -22,18 +22,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
-<<<<<<< HEAD
 import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
-=======
 
-import es.deusto.spq.data.Usuario;
-
-import es.deusto.spq.data.Opinion;
-import es.deusto.spq.data.Vendedor;
-
->>>>>>> 7e06b3b71aab783708a554c2c14aad56dcab0ae4
 import es.deusto.spq.data.Cesta;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
@@ -165,6 +157,35 @@ public class API {
 		"ID": "1"
 		}
 	*/
+	
+	@POST
+	@Path("add_carrito")//por ID
+	public void anyadir_carrito(JsonObject json) {
+		System.out.println("Añadiendo a la cesta de la compra");
+		DAO db = new DAO();
+		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+		System.out.println("asbgdjgbadsjashdbuik");
+		System.out.println("TOSTRING: " + a.toString());
+		System.out.println("NOMBRE: " + a.getNombre());
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		
+		c.get_compra().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
+		for (Articulo art : c.get_compra().getArticulos()) {
+			System.out.println(art.toString());
+		}
+	}
+	
+	@POST
+	@Path("add_favoritos")//por ID
+	public void anyadir_favoritos(JsonObject json) {
+		System.out.println("Añadiendo a la cesta de la compra");
+		DAO db = new DAO();
+		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.get_favoritos().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
+	}
+	
+	
 	//Conseguir administradores
 //	@POST
 //	@Path("get_admin")
@@ -184,12 +205,7 @@ public class API {
 		return db.getCestas();
 	}
 
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> 7e06b3b71aab783708a554c2c14aad56dcab0ae4
 	@POST
 	@Path("get_cesta")//por ID
 	public Cesta get_cesta(JsonObject json) {
@@ -334,12 +350,6 @@ public class API {
 	}
 
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 7e06b3b71aab783708a554c2c14aad56dcab0ae4
 	@GET
 	@Path("meter_datos")
 	public String api_meter_datos() {
