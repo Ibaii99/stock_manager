@@ -183,65 +183,59 @@ public class DAO {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	///////////////////////////////////////////////////////////////////
 
-
-
-	public List<Cesta> getCestas() {
-		 List<Cesta> ret = new ArrayList<Cesta>();
-		 Transaction tx = pm.currentTransaction();
-		try {
-			System.out.println("   * Retrieving an Extent for Cestas.");
-			tx.begin();
-			 Extent<Cesta> extent = pm.getExtent(Cesta.class, true);
-			for ( Cesta cesta : extent) {
-				ret.add(cesta);
-				cesta.getArticulos().toString();
-			}
-			tx.commit();
-		} catch ( Exception ex) {
-			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-		}
-		return ret;
-	}
-
-	public Cesta getCesta( long idCesta) {
-		Cesta c = null;
-		ArrayList<Cesta> cestas = new ArrayList<Cesta>();
-		cestas = (ArrayList<Cesta>) this.getCestas();
-		for (int i = 0; i < cestas.size(); i++) {
-			c = cestas.get(i);
-			if (idCesta == c.getId()) {
-				return c;
-			}
-		}
-		return c;
-	}
-
-	public Cesta addCesta( long idCesta,  long idArticulo,  int cantidad) {
-		Cesta c = getCesta(idCesta);
-		Articulo a = getArticulo(idArticulo);
-		c.anyadirCesta(a, cantidad);
-		return c;
-	}
-
-	public Cesta removeCesta( long idCesta,  long idArticulo,  int cantidad) {
-
-		 Cesta c = getCesta(idCesta);
-		 Articulo a = getArticulo(idArticulo);
-		c.eliminarCesta(a, cantidad);
-		return c;
-	}
+//
+//
+//	public List<Cesta> getCestas() {
+//		 List<Cesta> ret = new ArrayList<Cesta>();
+//		 Transaction tx = pm.currentTransaction();
+//		try {
+//			System.out.println("   * Retrieving an Extent for Cestas.");
+//			tx.begin();
+//			 Extent<Cesta> extent = pm.getExtent(Cesta.class, true);
+//			for ( Cesta cesta : extent) {
+//				ret.add(cesta);
+//				cesta.getArticulos().toString();
+//			}
+//			tx.commit();
+//		} catch ( Exception ex) {
+//			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+//		} finally {
+//			if (tx != null && tx.isActive()) {
+//				tx.rollback();
+//			}
+//		}
+//		return ret;
+//	}
+//
+//	public Cesta getCesta( long idCesta) {
+//		Cesta c = null;
+//		ArrayList<Cesta> cestas = new ArrayList<Cesta>();
+//		cestas = (ArrayList<Cesta>) this.getCestas();
+//		for (int i = 0; i < cestas.size(); i++) {
+//			c = cestas.get(i);
+//			if (idCesta == c.getId()) {
+//				return c;
+//			}
+//		}
+//		return c;
+//	}
+//
+//	public Cesta addCesta( long idCesta,  long idArticulo,  int cantidad) {
+//		Cesta c = getCesta(idCesta);
+//		Articulo a = getArticulo(idArticulo);
+//		c.anyadirCesta(a, cantidad);
+//		return c;
+//	}
+//
+//	public Cesta removeCesta( long idCesta,  long idArticulo,  int cantidad) {
+//
+//		 Cesta c = getCesta(idCesta);
+//		 Articulo a = getArticulo(idArticulo);
+//		c.eliminarCesta(a, cantidad);
+//		return c;
+//	}
 
 	// GET de lista de opiniones
 	public List<Opinion> getOpiniones() {
@@ -495,13 +489,12 @@ public class DAO {
 		listaCantidades2.add(cantidad3);
 		listaCantidades2.add(cantidad4);
 		
-		ArrayList<Cesta> ac = new ArrayList<>();
+		
 		Cesta aa = new Cesta(listaArticulos1, listaCantidades1, Estado.ACTUAL);
 		Cesta bb = new Cesta(listaArticulos2, listaCantidades2, Estado.ACTUAL);
-		ac.add(aa);
-		ac.add(bb);
-		jokin.setCestas(ac);
-		store(c1);
+		jokin.setCarrito(aa);
+		jokin.setFavoritos(bb);
+		store(jokin);
 		store(aa);
 		store(bb);
 

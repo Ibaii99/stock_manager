@@ -32,9 +32,6 @@ public class Cesta implements Serializable {
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
     
-	
-    private Cliente cliente;
-    
     // En el indice 1 de articulos estara el articulo añadido primero
     // En el indice 1 de cantidades estara las cantidades dedl articulo 1
 	
@@ -42,7 +39,7 @@ public class Cesta implements Serializable {
     private List<Articulo> articulos = new ArrayList<>();
     
     private List<Integer> cantidades = new ArrayList<>();
-    private Estado estado;
+    private Estado estado = Estado.ACTUAL;
 
    public Cesta() {
 	// TODO Auto-generated constructor stub
@@ -67,13 +64,10 @@ public class Cesta implements Serializable {
 	}
 
 
-	public Cliente getCliente() {
-		return cliente;
-	}
 
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 
@@ -148,47 +142,47 @@ public class Cesta implements Serializable {
 //		return r;
 //	}
 //
-public void anyadirCesta(Articulo articulo, Integer cantidad) {
-	if(articulos.contains(articulo)){
-		int i = articulos.indexOf(articulo);
-		int cant = cantidad + cantidades.get(i);
-		cantidades.set(i, cant);
-	}else{
-		articulos.add(articulo);
-		cantidades.add(cantidad);
-	}
-	DAO dao = new DAO();
-	dao.store(this);
-}
-
-public void eliminarCesta(Articulo articulo, Integer cantidad) {
-	DAO dao = new DAO();
-	Cesta cesta = dao.getCesta(this.getId());
-	if(cesta!=null) {
-		if(cesta.getArticulos().contains(articulo)) {
-			int i = articulos.indexOf(articulo);
-			if (cantidad == 0) {
-				articulos.remove(i);
-				cantidades.remove(i);
-			}else {
-				cantidades.remove(i);
-				cantidades.add(i, cantidad);
-			}
-		}
-	}
-}
-
-public void eliminarCestaEntera() {
-	/*
-	for (int i = 0;i<articulos.size();i++) {
-		articulos.remove(i);
-		cantidades.remove(i);
-	}
-	*/
-	articulos.clear();
-	cantidades.clear();
-
-}
+//public void anyadirCesta(Articulo articulo, Integer cantidad) {
+//	if(articulos.contains(articulo)){
+//		int i = articulos.indexOf(articulo);
+//		int cant = cantidad + cantidades.get(i);
+//		cantidades.set(i, cant);
+//	}else{
+//		articulos.add(articulo);
+//		cantidades.add(cantidad);
+//	}
+//	DAO dao = new DAO();
+//	dao.store(this);
+//}
+//
+//public void eliminarCesta(Articulo articulo, Integer cantidad) {
+//	DAO dao = new DAO();
+//	Cesta cesta = dao.getCesta(this.getId());
+//	if(cesta!=null) {
+//		if(cesta.getArticulos().contains(articulo)) {
+//			int i = articulos.indexOf(articulo);
+//			if (cantidad == 0) {
+//				articulos.remove(i);
+//				cantidades.remove(i);
+//			}else {
+//				cantidades.remove(i);
+//				cantidades.add(i, cantidad);
+//			}
+//		}
+//	}
+//}
+//
+//public void eliminarCestaEntera() {
+//	/*
+//	for (int i = 0;i<articulos.size();i++) {
+//		articulos.remove(i);
+//		cantidades.remove(i);
+//	}
+//	*/
+//	articulos.clear();
+//	cantidades.clear();
+//
+//}
 
 
 

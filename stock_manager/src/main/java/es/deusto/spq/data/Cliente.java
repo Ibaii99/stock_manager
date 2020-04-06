@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
@@ -31,15 +32,14 @@ public class Cliente implements Serializable{
     private String contrasenya_cliente;
     private String direccion_cliente;
 
-    @Persistent(mappedBy = "cliente")
-    private List<Cesta> cestas = new ArrayList<>(); 
+    @Column
+    private Cesta carrito = new Cesta();
+    
+    @Column
+    private Cesta favoritos = new Cesta();
     
     public Cliente(){
 
-        Cesta compra = new Cesta();
-        Cesta favoritos = new Cesta();
-        this.cestas.add(compra);
-        this.cestas.add(favoritos);
     }
 
     public Cliente(String _nombre, String _email, String _contrasenya, String _direccion) {
@@ -47,10 +47,6 @@ public class Cliente implements Serializable{
         this.email_cliente = _email;
         this.nombre_cliente = _nombre;
         this.direccion_cliente = _direccion;
-        Cesta compra = new Cesta();
-        Cesta favoritos = new Cesta();
-        this.cestas.add(compra);
-        this.cestas.add(favoritos);
     }
 
    
@@ -94,26 +90,33 @@ public class Cliente implements Serializable{
 		this.direccion_cliente = direccion_cliente;
 	}
 
-	public List<Cesta> getCestas() {
-		return cestas;
-	}
 
-	public void setCestas(List<Cesta> cestas) {
-		this.cestas = cestas;
-	}
 
 	public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
 		//Hay que crearlo
     	
 	}
-	
-	public Cesta get_compra() {
-		return this.cestas.get(0);
+
+	public Cesta getCarrito() {
+		return carrito;
 	}
-	
-	public Cesta get_favoritos() {
-		return this.cestas.get(1);
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
+
+	public void setCarrito(Cesta carrito) {
+		this.carrito = carrito;
+	}
+
+	public Cesta getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(Cesta favoritos) {
+		this.favoritos = favoritos;
+	}
+
 	public void opinar(Articulo articulo, int valoracion, String texto) {
 		Opinion opinion = new Opinion(texto, valoracion, this);
 		DAO dao = new DAO();
@@ -149,8 +152,8 @@ public class Cliente implements Serializable{
 	public void registrarme() {
 		DAO dao = new DAO();
 		dao.store(this);
-		Cesta c = new Cesta(new ArrayList<Articulo>(), new ArrayList<Integer>(), Estado.ACTUAL);
-		dao.store(c);
+		//Cesta c = new Cesta(new ArrayList<Articulo>(), new ArrayList<Integer>(), Estado.ACTUAL);
+		//dao.store(c);
 	}
 	
 
