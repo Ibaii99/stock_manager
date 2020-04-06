@@ -29,7 +29,9 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.EventQueue;
 import java.awt.Dimension;
+
 
 
 
@@ -42,9 +44,15 @@ public class Articulos_bien extends JFrame{
 	public Articulos_bien() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
+
+
 		
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 
 		setSize(1000, 500);
 

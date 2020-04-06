@@ -12,13 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+
 
 //
-@PersistenceCapable(detachable = "true")
+
 public class Articulo implements Serializable {
 
 	/**

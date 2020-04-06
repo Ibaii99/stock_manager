@@ -1,6 +1,7 @@
 package es.deusto.spq.remote;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +19,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
+<<<<<<< HEAD
 import javax.ws.rs.DELETE;
+=======
+import javax.ws.rs.core.MediaType;
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -112,6 +117,7 @@ public class API {
 	@POST
 	@Path("ingresarArticulo")
 	public String ingresarArticulo(JsonObject json) throws ParseException {
+		DAO dao = new DAO();
 		
 		System.out.println(json);
 
@@ -130,11 +136,25 @@ public class API {
 		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
 		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
 		
-		String url_image = get_from_json(json, "image_url");
+		String urlImage = get_from_json(json, "imageUrl");
 		
-		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, url_image);
-
-		c.storeMe();
+		
+		System.out.println(nombre);
+		System.out.println(caducidad);
+		System.out.println(precio);
+		System.out.println(stock);
+		System.out.println(descripcion);
+		System.out.println(oferta);
+		System.out.println(categoria);
+		System.out.println(urlImage);
+		
+		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, urlImage);
+		
+		
+		
+		System.out.println(c.toString());
+		dao.store(c);
+		
 
 		return "Done";
 	}
@@ -400,6 +420,9 @@ public class API {
 
 		return "{ \"nombre\": \""+vendedor.getNombreVendedor() + "\" }";
 	}
+	
+	
+
 
 	@GET
 	@Path("meter_datos")
@@ -420,5 +443,26 @@ public class API {
 		return json.get(attribute).toString().replace("\"", "");
 	}
 	
+
+	
+//	
+//	@POST
+//	@Path("post")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public boolean register() {
+//		DAO db = new DAO();
+//		Cliente c = new Cliente("ibai", "asdnhujkasdnas", "adsasdsad", "sadaddas");
+//		db.store(c);
+//		return true;
+//	}
+//	
+//    @GET
+//    @Path("get")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public String getIt() {
+//        return "Got it!";
+//    }
+
     
 }

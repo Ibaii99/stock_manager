@@ -1,9 +1,15 @@
 package src.main.java.es.deusto.spq.app;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 public class Vendedor implements Serializable {
 	//
 	/**
@@ -11,8 +17,14 @@ public class Vendedor implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
     private long id;
+
 	private String nombreVendedor;
 	private String emailVendedor;
+<<<<<<< HEAD
+=======
+
+	
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 	private List<Articulo> articulos;
 	
 	public Vendedor(){
