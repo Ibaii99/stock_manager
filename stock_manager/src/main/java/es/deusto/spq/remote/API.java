@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.core.MediaType;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
@@ -35,7 +36,7 @@ import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
 
-//import es.deusto.spq.data.Admin;
+
 
 
 /**
@@ -86,7 +87,7 @@ public class API {
 	*/
 	
 	@DELETE
-	@Path("{code}")
+	@Path("code")
 	public Response eliminarArticulo(@PathParam("code") int code) {
 		if (code == 10) {
 			System.out.println("Eliminando articulo...");
@@ -97,6 +98,7 @@ public class API {
 		}
 	}
 	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -146,6 +148,7 @@ public class API {
 	
 	
 	
+
 
 	@POST
 	@Path("ingresarArticulo")
@@ -202,7 +205,7 @@ public class API {
 		dao.store(c);
 		
 
-		return "Done";
+		return "Creado";
 	}
 
 	/*
@@ -265,11 +268,11 @@ public class API {
 	
 	@POST
 	@Path("tamanyoCarrito")//por ID
-	public int tamanyoCarrito(JsonObject json) {
+	public String tamanyoCarrito(JsonObject json) {
 		System.out.println("Obteniendo tamaño de la cesta de la compra");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-		return c.getCarrito().getArticulos().size();
+		return "{ \"tamanyo\": \""+c.getCarrito().getArticulos().size() + "\" }";
 	}
 
 	@POST
@@ -340,7 +343,15 @@ public class API {
 		"ID": "1"
 		}
 	*/
-	
+	@POST
+    @Path("removeCarrito")//por ID
+    public void removeCarrito(JsonObject json) {
+        System.out.println("Modificando la cesta de la compra");
+        DAO db = new DAO();
+        Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+        Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+        c.getCarrito().removeArticuloCesta(a);;
+    }
 
 	
 	//Conseguir administradores
@@ -490,25 +501,6 @@ public class API {
 	}
 	
 
-	
-//	
-//	@POST
-//	@Path("post")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public boolean register() {
-//		DAO db = new DAO();
-//		Cliente c = new Cliente("ibai", "asdnhujkasdnas", "adsasdsad", "sadaddas");
-//		db.store(c);
-//		return true;
-//	}
-//	
-//    @GET
-//    @Path("get")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getIt() {
-//        return "Got it!";
-//    }
 
     
 }

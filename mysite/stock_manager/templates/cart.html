@@ -22,7 +22,7 @@
 				<div class="row">
     			<div class="col-md-12 ftco-animate">
     				<div class="cart-list">
-	    				<table class="table">
+	    				<table class="table" id="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">
 						        <th>&nbsp;</th>
@@ -34,47 +34,32 @@
 						      </tr>
 						    </thead>
 						    <tbody>
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url({% static 'images/product-3.jpg' %});"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>Bell Pepper</h3>
-						        	<p>Far far away, behind the word mountains, far from the countries</p>
-						        </td>
-						        
-						        <td class="price">$4.90</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">$4.90</td>
-						      </tr><!-- END TR-->
-
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url({% static 'images/product-4.jpg' %});"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>Bell Pepper</h3>
-						        	<p>Far far away, behind the word mountains, far from the countries</p>
-						        </td>
-						        
-						        <td class="price">$15.70</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">$15.70</td>
-						      </tr><!-- END TR-->
+							<form method="POST">
+									{% csrf_token %}
+						      {% for articulo in cesta.articulos %}
+								<tr class="text-center" id="row" name="{{ articulo.nombre }}">
+									
+										<td class="product-remove"> <button class="ion-ios-close" name="borrar" value="{{ articulo.id }}"></span></td>
+									
+									<td class="image-prod"><div class="img" style="background-image:url({{ articulo.imageUrl }});"></div></td>
+									
+									<td class="product-name">
+										<h3> {{ articulo.nombre }}</h3>
+										<p> {{ articulo.descripcion }}</p>
+									</td>
+									
+									<td class="price" id="precio_{{ articulo.nombre }}" value="{{ articulo.oferta }}">{{ articulo.oferta }}</td>
+									
+									<td class="quantity">
+										<div class="input-group mb-3">
+										<input type="number" step="1" id="cantidad_{{ articulo.nombre }}" name="{{ articulo.nombre }}" class="quantity form-control input-number" value="{{ articulo.cantidad }}" min="1" max="1000">
+									</div>
+								</td>
+									
+									<td class="total" > <input id="resultado_{{ articulo.nombre }}" class"absolute_price" value="{{ articulo.precio_articulo }}" readonly ><span>€</span></td>
+								</tr><!-- END TR-->
+								{% endfor %}
+								</form>
 						    </tbody>
 						  </table>
 					  </div>
@@ -120,7 +105,7 @@
     					<h3>Cart Totals</h3>
     					<p class="d-flex">
     						<span>Subtotal</span>
-    						<span>$20.60</span>
+    						<span id="total_f">{{ cesta.precio_total }}</span><span>€</span>
     					</p>
     					<p class="d-flex">
     						<span>Delivery</span>
@@ -128,12 +113,12 @@
     					</p>
     					<p class="d-flex">
     						<span>Discount</span>
-    						<span>$3.00</span>
+    						<span>$0.00</span>
     					</p>
     					<hr>
-    					<p class="d-flex total-price">
+    					<p class="d-flex total-price" id="aqui">
     						<span>Total</span>
-    						<span>$17.60</span>
+    						<span id="total_g" >{{ cesta.precio_total }}</span><span>€</span>
     					</p>
     				</div>
     				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
@@ -169,42 +154,31 @@
 
 {% block script %}
 	<script>
-			$(document).ready(function(){
+	function calculateSum() {
+			var table = document.getElementById("table"), sumVal = 0;
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                sumVal = sumVal + parseFloat(table.rows[i].cells[5].children[0].value.replace(',', '.'));
+            }
+            document.getElementById("total_f").innerHTML = sumVal;
+            document.getElementById("total_g").innerHTML = sumVal;
+		} 
 
-			var quantitiy=0;
-			$('.quantity-right-plus').click(function(e){
-					
-					// Stop acting like a button
-					e.preventDefault();
-					// Get the field name
-					var quantity = parseInt($('#quantity').val());
-					
-					// If is not undefined
-						
-						$('#quantity').val(quantity + 1);
+		$("input").change(function(){
+				var resultado = "#resultado_"+ $(this).attr("name")
+				var precio = "#precio_"+ $(this).attr("name")
+				var r = (parseFloat($(precio).attr("value").replace(',', '.')) * parseInt($(this).val())).toFixed(2); 
+				$(resultado).val(r);
 
-					
-						// Increment
-					
-				});
+				calculateSum();
 
-				$('.quantity-left-minus').click(function(e){
-					// Stop acting like a button
-					e.preventDefault();
-					// Get the field name
-					var quantity = parseInt($('#quantity').val());
-					
-					// If is not undefined
-				
-						// Increment
-						if(quantity>0){
-						$('#quantity').val(quantity - 1);
-						}
-				});
-				
 			});
-		</script>
+
+			
+
 		
+	</script>
 	{% endblock script %}
 
 	

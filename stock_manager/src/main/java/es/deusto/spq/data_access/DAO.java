@@ -110,7 +110,7 @@ public class DAO {
 	
 	
 
-	// GET de lista de artÃ­culos
+	// GET de lista de articulos
 	
 
 	public List<Articulo> getArticulos() {
@@ -134,18 +134,8 @@ public class DAO {
 		return ret;
 	}
 
-	// Si existe un mensaje salga por pantalla(el metodo si existe en Admin)
-	public String existe() {
-		 String a = "Ya existe";
-		return a;
-	}
 
-	public String noExiste() {
-		 String a = "No existe";
-		return a;
-	}
-
-	// GET de un artÃ­culo
+	// GET de un articulo
 	public Articulo getArticulo( long idArticulo) {
 		Articulo a = null;
 		ArrayList<Articulo> articulos = new ArrayList<Articulo>();
@@ -200,7 +190,7 @@ public class DAO {
 	}
 
 	
-	////////////////////////////////////////////////////////////////////
+	//GET de una lista de usuarios
 
 		public List<Usuario> getUsuarios() {
 			List<Usuario> ret = new ArrayList<Usuario>();
@@ -223,7 +213,7 @@ public class DAO {
 			return ret;
 		}
 
-		// GET de un cliente
+		// GET de un usuario
 		public Usuario getUsuario(String nombre, String contrasenya) {
 			Usuario u = null;
 			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
@@ -239,7 +229,7 @@ public class DAO {
 	
 	
 	
-	///////////////////////////////////////////////////////////////////
+	//GET de una lista de cestas
 
 
 
@@ -264,7 +254,7 @@ public class DAO {
 		}
 		return ret;
 	}
-
+	//GET de una cesta
 	public Cesta getCesta( long idCesta) {
 		Cesta c = null;
 		ArrayList<Cesta> cestas = new ArrayList<Cesta>();
@@ -277,14 +267,14 @@ public class DAO {
 		}
 		return c;
 	}
-
+	//Metodo para modificar cestas
 	public Cesta modifyCesta( long idCesta,  long idArticulo,  int cantidad) {
 		Cesta c = getCesta(idCesta);
 		Articulo a = getArticulo(idArticulo);
 		c.modifyCesta(a, cantidad);
 		return c;
 	}
-
+	//Metodo para vaciar cestas
 	public Cesta cleanCesta( long idCesta) {
 
 		Cesta c = getCesta(idCesta);
@@ -292,7 +282,7 @@ public class DAO {
 		return c;
 	}
 
-	// GET de lista de opiniones
+	// GET de una lista de opiniones
 	public List<Opinion> getOpiniones() {
 		 List<Opinion> ret = new ArrayList<Opinion>();
 		 Transaction tx = pm.currentTransaction();
@@ -314,7 +304,7 @@ public class DAO {
 		return ret;
 	}
 
-	// GET de una unica opinion
+	// GET de una opinion
 	public Opinion getOpinion( long id) {
 		Opinion c = null;
 		ArrayList<Opinion> Opiniones = new ArrayList<Opinion>();
@@ -328,7 +318,7 @@ public class DAO {
 		return c;
 	}
 
-	// GET de lista de vendedores
+	// GET de una lista de vendedores
 	public List<Vendedor> getVendedores() {
 		 List<Vendedor> ret = new ArrayList<Vendedor>();
 		 Transaction tx = pm.currentTransaction();
@@ -350,7 +340,7 @@ public class DAO {
 		return ret;
 	}
 
-	// GET de un unico vendedor
+	// GET de un vendedor
 	public Vendedor getVendedor( String email) {
 		Vendedor v = null;
 		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
@@ -366,23 +356,7 @@ public class DAO {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Meter varios datos a la base de datos
+	// Meter para introducir datos a la Base de Datos
 	@SuppressWarnings("deprecation")
 	public String meter_datos() {
 

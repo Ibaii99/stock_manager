@@ -162,7 +162,9 @@ public class Articulo implements Serializable {
 
 	@Override
 	public String toString() {
-        return this.ID + "Articulo [Nombre=" + this.nombre + ", Caducidad=" + this.caducidad + ", Precio" + this.precio +
+
+        return "Articulo [Id=" + this.ID + "Nombre=" + this.nombre + ", Caducidad=" + this.caducidad + ", Precio" + this.precio +
+
         ", Stock" + this.stock + ", Descrpción" + this.descripcion + ", Oferta" + this.oferta + ", Categoria" + this.categoria +     "]";
 	}
 

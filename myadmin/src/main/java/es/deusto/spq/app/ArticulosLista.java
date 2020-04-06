@@ -35,24 +35,23 @@ import java.awt.Dimension;
 
 
 
-public class Articulos_bien extends JFrame{
+public class ArticulosLista extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private Client client;
 	private Date date;
 	
-	public Articulos_bien() {
+	public ArticulosLista() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
-
-
-		
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
-		final WebTarget articuloTarget = appTarget.path("eliminarArticulo");
+		final WebTarget eliminarTarget = appTarget.path("code");
 
 
-		setSize(1000, 500);
+		setSize(1200, 500);
+
+		
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -110,43 +109,32 @@ public class Articulos_bien extends JFrame{
 		getContentPane().add(listScrollPane, BorderLayout.WEST);
 		
 		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
-		List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-	
+		final List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 		articulosListModel.clear();
 		for(Articulo articulo: articulos) {
 			articulosListModel.addElement(articulo);
+			
 		}
 		
 		JPanel derecha = new JPanel();
 		getContentPane().add(derecha,BorderLayout.EAST);
 		
+		final JTextField codeTextField = new JTextField("",2);
+		derecha.add(codeTextField);
 
 		
 		eliminarBoton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Articulo a = articulosLista.getSelectedValue();
-				System.out.println(a);
-				articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
-			    System.out.println("Articulo Eliminado");
-//				if(response.getStatus() == Status.OK.getStatusCode()) {
-//					JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
-//				}else {
-//					JOptionPane.showMessageDialog(Articulos_bien.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
-//				}
 				
-				
-//				WebTarget deleteTarget = appTarget.path(codeTextField.getText());
-//                Response response = deleteTarget.request().delete();
-//                if(response.getStatus() == Status.OK.getStatusCode()) {
-//                 JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
-//                }else {
-//                    JOptionPane.showMessageDialog(Articulos_bien.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
-//                }
-//				
-				
-				
+				WebTarget deleteTarget = eliminarTarget.path(codeTextField.getText());
+				Response response = deleteTarget.request().delete(codeTextField.getText());
+				if(response.getStatus() == Status.OK.getStatusCode()) {
+					JOptionPane.showMessageDialog(ArticulosLista.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(ArticulosLista.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}
 		});
@@ -159,7 +147,7 @@ public class Articulos_bien extends JFrame{
 			
 			@Override
 			public void run() {
-				new Articulos_bien();
+				new ArticulosLista();
 				
 			}
 		});
