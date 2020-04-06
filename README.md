@@ -1,9 +1,9 @@
 # Stock Manager
 
 Esta es el repositorio del proyecto del **Grupo 2**, incluye:
-- **API REST** desarrollada en Java 1.8(Oracle) con maven.
+- **API REST** desarrollada en Java 1.8 (Oracle) con maven.
 - **CLIENTE** desarrollado en python 3 (Python 3) y django.
-- **ADMINISTRADOR** dessarrollado en Java 1.8(Oracle) con maven.
+- **ADMINISTRADOR** dessarrollado en Java 1.8 (Oracle) con maven.
 
 ## Tecnologias usadas:
 -  virtualenvwrapper --> **Entornos virtuales** que se van a usar
