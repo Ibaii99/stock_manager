@@ -19,11 +19,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
-<<<<<<< HEAD
 import javax.ws.rs.DELETE;
-=======
-import javax.ws.rs.core.MediaType;
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
+
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.core.JsonParser;
