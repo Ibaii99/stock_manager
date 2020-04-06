@@ -32,7 +32,6 @@ public class Articulo implements Serializable {
 	}
 	
 	private static final long serialVersionUID = 1L;
-	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
     private String nombre;
     private Date caducidad;

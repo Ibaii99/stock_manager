@@ -1,12 +1,23 @@
 package src.main.java.es.deusto.spq.app;
 
-import java.awt.BorderLayout;
-import java.text.SimpleDateFormat;
-import java.awt.EventQueue;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ProcessingException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.*;
+
+
 
 import src.main.java.es.deusto.spq.app.Articulo.Categoria;
 
@@ -22,15 +33,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ProcessingException;
 
 public class CrearArticulo extends JFrame {
 
@@ -44,7 +46,7 @@ public class CrearArticulo extends JFrame {
 	private JTextField tnombre;
 	private JTextField tcaducidad;
 	private Date date;
-	private Client client;
+
 	/**
 	 * Launch the application.
 	 */
@@ -60,15 +62,24 @@ public class CrearArticulo extends JFrame {
 			}
 		});
 	}
+	
+	
+	private Client client;
 
 	/**
 	 * Create the frame.
 	 */
 	public CrearArticulo() {
-		
 		client = ClientBuilder.newClient();
+<<<<<<< Upstream, based on branch 'master' of https://github.com/Ibaii99/stock_manager.git
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
+		final WebTarget articuloTarget = appTarget.path("ingresarArticulo");
+		
+
+=======
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
 		final WebTarget articulosTarget = appTarget.path("api");
+>>>>>>> 416a37d metodos en la api para eliminarArticulo
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
@@ -137,6 +148,35 @@ public class CrearArticulo extends JFrame {
 		btnaceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+<<<<<<< Upstream, based on branch 'master' of https://github.com/Ibaii99/stock_manager.git
+
+				String nombre = tnombre.getText();
+				String cadu = tcaducidad.getText();
+				Date caduci = null;
+				 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+	                try {
+	                	 caduci = formatter1.parse(cadu);
+	                } catch (ParseException e1) {
+	                    // TODO Auto-generated catch block
+	                    e1.printStackTrace();
+	                }
+			    String pre = tprecio.getText();
+			    float precio = Float.parseFloat(pre);
+			    String s = tstock.getText();
+			    int stock = Integer.parseInt(s);
+			    String descripcion = tdescripcion.getText();
+			    String of = toferta.getText();
+			    float oferta=Float.parseFloat(of);
+			    String cat = tcategoria.getText();
+			    Categoria categoria = Categoria.valueOf(cat);
+			    String image_url = tUrl.getText();
+			    
+			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
+			    System.out.println(articulo);
+			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
+			    System.out.println("Usuario anadido");
+
+
 				
 				
 				String cat = tcategoria.getText();
@@ -155,7 +195,7 @@ public class CrearArticulo extends JFrame {
 						c, tUrl.getText());
 				
 				Entity<Articulo> entity = Entity.entity(articuloN, MediaType.APPLICATION_JSON);
-				articulosTarget.request(MediaType.TEXT_PLAIN).post(entity);
+				articulosTarget.request(MediaType.TEXT_PLAIN).post(entity);;
 				System.out.println(articuloN);
 //				String cadu = tcaducidad.getText();
 //				Date caduci = null;
@@ -179,6 +219,7 @@ public class CrearArticulo extends JFrame {
 //			    
 //			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
 //			    System.out.println(articulo);
+
 			}
 		});
 
