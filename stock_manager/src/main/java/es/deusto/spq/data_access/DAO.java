@@ -135,7 +135,7 @@ public class DAO {
 		clientes = (ArrayList<Cliente>) this.getClientes();
 		for (int i = 0; i < clientes.size(); i++) {
 			c = clientes.get(i);
-			if (email.equals(c.getEmail_cliente()) && contrasenya.equals(c.getContrasenya_cliente())) {
+			if (email.equals(c.getEmailCliente()) && contrasenya.equals(c.getContrasenyaCliente())) {
 				System.out.println("Cliente encontrado.");
 				return c;
 			}
@@ -302,7 +302,7 @@ public class DAO {
 		vendedores = (ArrayList<Vendedor>) this.getVendedores();
 		for (int i = 0; i < vendedores.size(); i++) {
 			v = vendedores.get(i);
-			if (email.equals(v.getEmail_vendedor())) {
+			if (email.equals(v.getEmailVendedor())) {
 				return v;
 			}
 		}

@@ -52,13 +52,12 @@ public class API {
 	 * @return String that will be returned as a text/plain response.
 	 */
 	@POST
-	@Path("log_in")
-	public String log_in(JsonObject json) {
+	@Path("logIn")
+	public String logIn(JsonObject json) {
 		String nombre = new Cliente().loggin(get_from_json(json, "email"), get_from_json(json, "password"));
 		System.out.println(nombre);
 		return "{ \"nombre\": \""+nombre + "\" }";
 	}
-
 	/*
 	{
  	  "email": "izaianda@gmail.com",
@@ -73,9 +72,8 @@ public class API {
 		get_from_json(json, "address"));
 		cliente.registrarme();
 
-		return "{ \"nombre\": \""+cliente.getNombre_cliente() + "\" }";
+		return "{ \"nombre\": \""+cliente.getNombreCliente() + "\" }";
 	}
-
 	/*
 	{
 	  "name": "Jon Joseba",
@@ -155,8 +153,8 @@ public class API {
 	*/ 
 	
 	@POST
-	@Path("get_cliente")
-	public Cliente get_cliente(JsonObject json) {
+	@Path("getCliente")
+	public Cliente getCliente(JsonObject json) {
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		
@@ -164,53 +162,90 @@ public class API {
 	}
 
 	@POST
-	@Path("get_carrito")
-	public Cesta get_carrito(JsonObject json) {
+	@Path("getCarrito")
+	public Cesta getCarrito(JsonObject json) {
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		return c.getCarrito();
 	}
 	
 	@POST
-	@Path("get_favoritos")
-	public Cesta get_favoritos(JsonObject json) {
+	@Path("getFavoritos")
+	public Cesta getFavoritos(JsonObject json) {
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		return c.getFavoritos();
 	}
 	
 	@POST
-	@Path("add_carrito")//por ID
-	public void anyadir_carrito(JsonObject json) {
+	@Path("addCarrito")//por ID
+	public void anyadirCarrito(JsonObject json) {
 		System.out.println("Añadiendo a la cesta de la compra");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getCarrito().addCesta(a, Integer.parseInt(get_from_json(json,"cantidad")));
 	}
+
+	@POST
+	@Path("modifyCarrito")//por ID
+	public void modifyCarrito(JsonObject json) {
+		System.out.println("Modificando la cesta de la compra");
+		DAO db = new DAO();
+		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.getCarrito().modifyCesta(a, Integer.parseInt(get_from_json(json,"cantidad")));
+	}
 	
 	@POST
-	@Path("add_favoritos")//por ID
-	public void anyadir_favoritos(JsonObject json) {
+	@Path("tamanyoCarrito")//por ID
+	public int tamanyoCarrito(JsonObject json) {
+		System.out.println("Obteniendo tamaño de la cesta de la compra");
+		DAO db = new DAO();
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		return c.getCarrito().getArticulos().size();
+	}
+
+	@POST
+	@Path("addFavoritos")//por ID
+	public void anyadirFavoritos(JsonObject json) {
+		System.out.println("Añadiendo a la cesta de favoritos");
+		DAO db = new DAO();
+		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.getFavoritos().addCesta(a, 1);
+	}
+	
+	@POST
+	@Path("modifyFavoritos")//por ID
+	public void modifyFavoritos(JsonObject json) {
 		System.out.println("Añadiendo a la cesta de favoritos");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getFavoritos().modifyCesta(a, 1);
 	}
-	
+
+	@POST
+	@Path("tamanyoFavoritos")//por ID
+	public int tamanyoFavoritos(JsonObject json) {
+		System.out.println("Obteniendo tamaño de la cesta de favoritos");
+		DAO db = new DAO();
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		return c.getCarrito().getArticulos().size();
+	}
 	
 	@GET
-	@Path("get_articulos")
-	public List<Articulo> get_articulos() {
+	@Path("getArticulos")
+	public List<Articulo> getArticulos() {
 		System.out.println("Mandando todos los articulos");
 		DAO db = new DAO();
 		return db.getArticulos();
 	}
 		
 	@POST
-	@Path("get_articulo")//por ID
-	public Articulo get_articulos(JsonObject json) {
+	@Path("getArticulo")//por ID
+	public Articulo getArticulos(JsonObject json) {
 		System.out.println("Mandando un articulo");
 		long l = Long.parseLong(get_from_json(json, "ID"));
 		Articulo a = new DAO().getArticulo(l);
@@ -236,16 +271,16 @@ public class API {
 	
 	
 	@GET
-	@Path("get_cestas")
-	public List<Cesta> get_cestas() {
+	@Path("getCestas")
+	public List<Cesta> getCestas() {
 		System.out.println("Mandando todos los cestas");
 		DAO db = new DAO();
 		return db.getCestas();
 	}
 
 	@POST
-	@Path("get_cesta")//por ID
-	public Cesta get_cesta(JsonObject json) {
+	@Path("getCesta")//por ID
+	public Cesta getCesta(JsonObject json) {
 		System.out.println("Mandando la cesta");
 		long l = Long.parseLong(get_from_json(json, "ID"));
 		Cesta a = new DAO().getCesta(l);
@@ -258,61 +293,25 @@ public class API {
 	*/
 	
 	@GET
-	@Path("get_usuarios")
-	public List<Usuario> get_usuarios() {
+	@Path("getUsuarios")
+	public List<Usuario> getUsuarios() {
 		System.out.println("Mandando todos los usuarios");
 		DAO db = new DAO();
 		return db.getUsuarios();
 	}
 	
 	@GET
-	@Path("get_usuario")
-	public Usuario get_usuario(JsonObject json) {
+	@Path("getUsuario")
+	public Usuario getUsuario(JsonObject json) {
 		System.out.println("Nombre: " + get_from_json(json, "nombre") + " Pass: "+  get_from_json(json, "contrasenya"));
 		Usuario u = new DAO().getUsuario(get_from_json(json, "nombre"), get_from_json(json, "contrasenya"));
 		u.toString();
 		return u;
 	}
-
-//	@POST
-//	@Path("addCesta")
-//	public Cesta addToCesta(JsonObject json) {
-//		System.out.println("Aniadiendo a la cesta");
-//		long idCesta = Long.parseLong(get_from_json(json, "idCesta"));
-//		long idArticulo = Long.parseLong(get_from_json(json, "idArticulo"));
-//		int cantidad = Integer.parseInt(get_from_json(json, "cantidad"));
-//		Cesta a = new DAO().addCesta(idCesta, idArticulo, cantidad);
-//		return a;
-//	}
-//	/*
-//		{
-//			"idCesta": "1",
-//			"idArticulo": "2",
-//			"cantidad": "5"
-//		}
-//	*/
-//	
-//	@POST
-//	@Path("removeCesta")
-//	public Cesta removeToCesta(JsonObject json) {
-//		System.out.println("Aniadiendo a la cesta");
-//		long idCesta = Long.parseLong(get_from_json(json, "idCesta"));
-//		long idArticulo = Long.parseLong(get_from_json(json, "idArticulo"));
-//		int cantidad = Integer.parseInt(get_from_json(json, "cantidad"));
-//		Cesta a = new DAO().removeCesta(idCesta, idArticulo, cantidad);
-//		return a;
-//	}
-	/*
-		{
-			"idCesta": "1",
-			"idArticulo": "2",
-			"cantidad": "5"
-		}
-	*/
 	
 	@GET
-	@Path("get_Opiniones")
-	public List<Opinion> get_Opiniones() {
+	@Path("getOpiniones")
+	public List<Opinion> getOpiniones() {
 		System.out.println("Mandando todos los cestas");
 		DAO db = new DAO();
 		return db.getOpiniones();
@@ -320,7 +319,7 @@ public class API {
 
 	@POST
 	@Path("get_Opinion")//por ID
-	public Opinion get_Opinion(JsonObject json) {
+	public Opinion getOpinion(JsonObject json) {
 		System.out.println("Mandando la cesta");
 		long l = Long.parseLong(get_from_json(json, "ID"));
 		Opinion a = new DAO().getOpinion(l);
@@ -354,16 +353,16 @@ public class API {
 	*/
 
 	@GET
-	@Path("get_Vendedores")
-	public List<Vendedor> get_Vendedores() {
+	@Path("getVendedores")
+	public List<Vendedor> getVendedores() {
 		System.out.println("Mandando todos los cestas");
 		DAO db = new DAO();
 		return db.getVendedores();
 	}
 
 	@POST
-	@Path("get_Vendedor")//por ID
-	public Vendedor get_Vendedor(JsonObject json) {
+	@Path("getVendedor")//por ID
+	public Vendedor getVendedor(JsonObject json) {
 		System.out.println("Mandando la cesta");
 		Vendedor a = new DAO().getVendedor(get_from_json(json, "email"));
 		return a;
@@ -381,10 +380,8 @@ public class API {
 		Vendedor vendedor = new Vendedor(get_from_json(json, "name"), get_from_json(json, "email"), new ArrayList<Articulo>());
 		vendedor.registrar();
 
-		return "{ \"nombre\": \""+vendedor.getNombre_vendedor() + "\" }";
+		return "{ \"nombre\": \""+vendedor.getNombreVendedor() + "\" }";
 	}
-
-
 
 	@GET
 	@Path("meter_datos")
@@ -405,23 +402,5 @@ public class API {
 		return json.get(attribute).toString().replace("\"", "");
 	}
 	
-//	
-//	@POST
-//	@Path("post")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public boolean register() {
-//		DAO db = new DAO();
-//		Cliente c = new Cliente("ibai", "asdnhujkasdnas", "adsasdsad", "sadaddas");
-//		db.store(c);
-//		return true;
-//	}
-//	
-//    @GET
-//    @Path("get")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getIt() {
-//        return "Got it!";
-//    }
     
 }
