@@ -21,9 +21,9 @@ public class Vendedor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
-	private String nombre_vendedor;
+	private String nombreVendedor;
 	@Unique
-	private String email_vendedor;
+	private String emailVendedor;
 	
 	@Persistent(mappedBy = "vendedor")
 	@Join
@@ -34,14 +34,14 @@ public class Vendedor implements Serializable {
 	}
 	
 	public Vendedor(String nombre, String email, List<Articulo> articulos) {
-		this.nombre_vendedor = nombre;
-		this.email_vendedor = email;
+		this.nombreVendedor = nombre;
+		this.emailVendedor = email;
 		this.articulos = articulos;
 	}
 
 	@Override
 	public String toString() {
-		return "Nombre=" + nombre_vendedor + ", email=" + email_vendedor + "]";
+		return "Nombre=" + nombreVendedor + ", email=" + emailVendedor + "]";
 	}
 
 	public long getId() {
@@ -52,20 +52,20 @@ public class Vendedor implements Serializable {
 		this.id = id;
 	}
 
-	public String getNombre_vendedor() {
-		return nombre_vendedor;
+	public String getNombreVendedor() {
+		return nombreVendedor;
 	}
 
-	public void setNombre_vendedor(String nombre_vendedor) {
-		this.nombre_vendedor = nombre_vendedor;
+	public void setNombreVendedor(String nombreVendedor) {
+		this.nombreVendedor = nombreVendedor;
 	}
 
-	public String getEmail_vendedor() {
-		return email_vendedor;
+	public String getEmailVendedor() {
+		return emailVendedor;
 	}
 
-	public void setEmail_vendedor(String email_vendedor) {
-		this.email_vendedor = email_vendedor;
+	public void setEmailVendedor(String emailVendedor) {
+		this.emailVendedor = emailVendedor;
 	}
 
 	public List<Articulo> getArticulos() {
