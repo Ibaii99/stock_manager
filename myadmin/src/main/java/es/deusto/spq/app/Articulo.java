@@ -144,6 +144,7 @@ public class Articulo implements Serializable {
 
 	public void setImage_url(String image_url) {
 		this.image_url = image_url;
+		
 	}
 
 //	public void storeMe() {
@@ -153,8 +154,8 @@ public class Articulo implements Serializable {
 
 	@Override
 	public String toString() {
-        return "Articulo [Nombre=" + this.nombre + ", Caducidad=" + this.caducidad + ", Precio" + this.precio +
-        ", Stock" + this.stock + ", Descrpción" + this.descripcion + ", Oferta" + this.oferta + ", Categoria" + this.categoria +     "]";
+        return "Articulo:" + "[Nombre: " + this.nombre + ", Caducidad: " + this.caducidad + ", Precio: " + this.precio +
+        ", Stock: " + this.stock + ", Descripción: " + this.descripcion + ", Oferta: " + this.oferta + ", Categoria: " + this.categoria +     "]";
 	}
 
 

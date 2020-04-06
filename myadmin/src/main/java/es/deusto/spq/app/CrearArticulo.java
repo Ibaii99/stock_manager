@@ -22,6 +22,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ProcessingException;
+
 public class CrearArticulo extends JFrame {
 
 	private JPanel contentPane;
@@ -33,7 +43,8 @@ public class CrearArticulo extends JFrame {
 	private JTextField tprecio;
 	private JTextField tnombre;
 	private JTextField tcaducidad;
-
+	private Date date;
+	private Client client;
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +65,10 @@ public class CrearArticulo extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearArticulo() {
+		
+		client = ClientBuilder.newClient();
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
+		final WebTarget articulosTarget = appTarget.path("ingresarArticulo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
@@ -66,7 +81,7 @@ public class CrearArticulo extends JFrame {
 		
 		JLabel lnombre = new JLabel("Nombre:");
 		
-		
+		JLabel lcaducidad = new JLabel("Fecha caducidad:");
 		
 		JLabel lprecio = new JLabel("Precio:");
 		
@@ -98,6 +113,9 @@ public class CrearArticulo extends JFrame {
 		tprecio = new JTextField();
 		tprecio.setColumns(10);
 		
+		tcaducidad = new JTextField();
+		tcaducidad.setColumns(10);
+		
 		tnombre = new JTextField();
 		tnombre.setColumns(10);
 		
@@ -119,36 +137,50 @@ public class CrearArticulo extends JFrame {
 		btnaceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String nombre = tnombre.getText();
-				String cadu = tcaducidad.getText();
-				Date caduci = null;
-				 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-	                try {
-	                	 caduci = formatter1.parse(cadu);
-	                } catch (ParseException e1) {
-	                    // TODO Auto-generated catch block
-	                    e1.printStackTrace();
-	                }
-			    String pre = tprecio.getText();
-			    float precio = Float.parseFloat(pre);
-			    String s = tstock.getText();
-			    int stock = Integer.parseInt(s);
-			    String descripcion = tdescripcion.getText();
-			    String of = toferta.getText();
-			    float oferta=Float.parseFloat(of);
-			    String cat = tcategoria.getText();
-			    Categoria categoria = Categoria.valueOf(cat);
-			    String image_url = tUrl.getText();
-			    
-			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
-			    System.out.println(articulo);
+				
+				
+				String cat = tcategoria.getText();
+				Categoria c = Categoria.valueOf(cat);//???
+				
+				String cad = tcaducidad.getText();
+                SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    date = formatter1.parse(cad);
+                } catch (ParseException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+				Articulo articuloN = new Articulo(tnombre.getText(), date, Float.parseFloat(tprecio.getText()),
+						Integer.parseInt(tstock.getText()), tdescripcion.getText(), Float.parseFloat(toferta.getText()),
+						c, tUrl.getText());
+				articulosTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(articuloN, MediaType.APPLICATION_JSON));
+				
+				System.out.println(articuloN);
+//				String cadu = tcaducidad.getText();
+//				Date caduci = null;
+//				 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+//	                try {
+//	                	 caduci = formatter1.parse(cadu);
+//	                } catch (ParseException e1) {
+//	                    // TODO Auto-generated catch block
+//	                    e1.printStackTrace();
+//	                }
+//			    String pre = tprecio.getText();
+//			    float precio = Float.parseFloat(pre);
+//			    String s = tstock.getText();
+//			    int stock = Integer.parseInt(s);
+//			    String descripcion = tdescripcion.getText();
+//			    String of = toferta.getText();
+//			    float oferta=Float.parseFloat(of);
+//			    String cat = tcategoria.getText();
+//			    Categoria categoria = Categoria.valueOf(cat);
+//			    String image_url = tUrl.getText();
+//			    
+//			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
+//			    System.out.println(articulo);
 			}
 		});
-		
-		JLabel lcaducidad = new JLabel("Caducidad:");
-		
-		tcaducidad = new JTextField();
-		tcaducidad.setColumns(10);
+
 		GroupLayout gl_caducidad = new GroupLayout(caducidad);
 		gl_caducidad.setHorizontalGroup(
 			gl_caducidad.createParallelGroup(Alignment.LEADING)

@@ -55,6 +55,7 @@ public class DAO {
 	}
 
 	// GET de lista de artÃ­culos
+	
 
 	public List<Articulo> getArticulos() {
 		 List<Articulo> ret = new ArrayList<Articulo>();
