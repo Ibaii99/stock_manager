@@ -1,6 +1,6 @@
 # Stock Manager
 
-Esta es el repositorio del proyecto del **Grupo 2**, incluye:
+Este es el repositorio del proyecto del **Grupo 2**, incluye:
 - **API REST** desarrollada en Java 1.8 (Oracle) con maven. *[Stock_manager]*
 - **CLIENTE** desarrollado en python 3 (Python 3) y django. *[Mysite]*
 - **ADMINISTRADOR** dessarrollado en Java 1.8 (Oracle) con maven. *[Myadmin]*
