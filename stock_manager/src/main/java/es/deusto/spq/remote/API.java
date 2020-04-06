@@ -179,6 +179,15 @@ public class API {
 	}
 
 	@POST
+	@Path("VaciarCarrito")//por ID
+	public void VaciarCarrito(JsonObject json) {
+		System.out.println("Limpiando a la cesta de la compra");
+		DAO db = new DAO();
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.getCarrito().vaciarCesta();
+	}
+
+	@POST
 	@Path("addFavoritos")//por ID
 	public void anyadirFavoritos(JsonObject json) {
 		System.out.println("Añadiendo a la cesta de favoritos");
@@ -207,6 +216,15 @@ public class API {
 		return c.getCarrito().getArticulos().size();
 	}
 	
+	@POST
+	@Path("VaciarFavoritos")//por ID
+	public void VaciarFavoritos(JsonObject json) {
+		System.out.println("Limpiando a la cesta de la compra");
+		DAO db = new DAO();
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.getCarrito().vaciarCesta();
+	}
+
 	@GET
 	@Path("getArticulos")
 	public List<Articulo> getArticulos() {
