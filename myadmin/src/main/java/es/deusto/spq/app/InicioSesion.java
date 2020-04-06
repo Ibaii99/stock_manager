@@ -1,10 +1,14 @@
 
-package src.main.java.es.deusto.spq.GUI;
+package src.main.java.es.deusto.spq.app;
 
 import java.awt.BorderLayout;
+
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.*;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.GenericType;
 
 
 
@@ -14,7 +18,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
-
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -26,7 +32,8 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Inicio extends JFrame {
+
+public class InicioSesion extends JFrame {
 	/**
 	 * 
 	 */
@@ -43,7 +50,7 @@ public class Inicio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Inicio frame = new Inicio();
+					InicioSesion frame = new InicioSesion();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,13 +60,14 @@ public class Inicio extends JFrame {
 	}
 
 	private Client client;
+	private final WebTarget usuariosTarget;
 	
 	 // Create the frame.
 	 
-	public Inicio() {
+	public InicioSesion() {
 		client = ClientBuilder.newClient();
-		WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
-		WebTarget usuariosTarget = appTarget.path("Usuario");
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
+		usuariosTarget = appTarget.path("get_usuarios");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -92,18 +100,22 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				String usuarioCogido = usuario.getText();
-				String contrasenya = contrasenya_.getText();
-
-				usuariosTarget.request()
+				char[] c = contrasenya_.getPassword();
+				String contrasenya = c.toString();
+				GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
 				
-					try {
-						ShowArticulos frame = new ShowArticulos();
-						frame.setVisible(true);
-					} catch (Exception es) {
-						es.printStackTrace();
-					}
-				}else {
-					JOptionPane.showMessageDialog(null, "Usuario o contrasenya erroneos, Usuariocontrasena errones");
+				List<Usuario> usuarios = usuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+				for(Usuario u: usuarios) {
+//					if(usuarioCogido.equals(u.getUser()) && usuarioCogido.equals(u.getContrasenya())) {
+//						try {
+//							System.out.println("Correcto");
+////							ShowArticulos frame = new ShowArticulos();
+////							frame.setVisible(true);
+//						} catch (Exception es) {
+//							es.printStackTrace();
+//						}
+//					}
+					System.out.println(u);
 				}
 			}
 		});

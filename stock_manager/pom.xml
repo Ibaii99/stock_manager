@@ -198,6 +198,23 @@
 
         </plugins>
     </build>
+    <profiles>
+  	<profile>
+  		<id>myadmin</id>
+  		<build>
+  			<plugins>
+  				<plugin>
+  					<groupId>org.codehaus.mojo</groupId>
+  					<artifactId>exec-maven-plugin</artifactId>
+  					<configuration>
+  						<mainClass>es.deusto.spq.GUIADMIN.Inicio</mainClass>
+  					</configuration>
+  				</plugin>
+  			</plugins>
+  		</build>
+  	</profile>
+  </profiles>
+
 
 
 </project>

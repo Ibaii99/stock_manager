@@ -1,4 +1,3 @@
-
 package es.deusto.spq.data_access;
 
 
@@ -19,6 +18,8 @@ import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
+import es.deusto.spq.remote.GET;
+import es.deusto.spq.remote.Path;
 //import es.deusto.spq.data.Admin;
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
@@ -52,7 +53,7 @@ public class DAO {
 		}
 	}
 
-	// GET de lista de artículos
+	// GET de lista de artÃ­culos
 
 	public List<Articulo> getArticulos() {
 		 List<Articulo> ret = new ArrayList<Articulo>();
@@ -86,7 +87,7 @@ public class DAO {
 		return a;
 	}
 
-	// GET de un artículo
+	// GET de un artÃ­culo
 	public Articulo getArticulo( long idArticulo) {
 		Articulo a = null;
 		ArrayList<Articulo> articulos = new ArrayList<Articulo>();
@@ -94,6 +95,7 @@ public class DAO {
 		for (int i = 0; i < articulos.size(); i++) {
 			a = articulos.get(i);
 			if (idArticulo == a.getId()) {
+				System.out.println("Articulo encontrado.");
 				return a;
 			}
 		}
@@ -101,6 +103,8 @@ public class DAO {
 	}
 
 	// GET de lista de clientes
+	@GET
+	@Path("get_clientesss")
 	public List<Cliente> getClientes() {
 		 List<Cliente> ret = new ArrayList<Cliente>();
 		 Transaction tx = pm.currentTransaction();
@@ -130,6 +134,7 @@ public class DAO {
 		for (int i = 0; i < clientes.size(); i++) {
 			c = clientes.get(i);
 			if (email.equals(c.getEmail_cliente()) && contrasenya.equals(c.getContrasenya_cliente())) {
+				System.out.println("Cliente encontrado.");
 				return c;
 			}
 		}
@@ -138,7 +143,8 @@ public class DAO {
 
 	
 	////////////////////////////////////////////////////////////////////
-	// GET de lista de clientes
+	@GET
+	@Path("get_users")
 		public List<Usuario> getUsuarios() {
 			List<Usuario> ret = new ArrayList<Usuario>();
 			Transaction tx = pm.currentTransaction();
@@ -195,6 +201,7 @@ public class DAO {
 			 Extent<Cesta> extent = pm.getExtent(Cesta.class, true);
 			for ( Cesta cesta : extent) {
 				ret.add(cesta);
+				cesta.getArticulos().toString();
 			}
 			tx.commit();
 		} catch ( Exception ex) {
@@ -307,21 +314,7 @@ public class DAO {
 		return v;
 	}
 
-	public Opinion nuevaOpinion(String txt, int valoracion, long ID){
 
-		Cliente c = new Cliente();
-
-		for (Cliente cliente : getClientes()) {
-
-			if (cliente.getId() == ID) {
-				c = cliente;
-			}
-		}
-
-		Opinion o = new Opinion(txt, valoracion, c);		
-		
-		return o;
-	}
 
 
 
@@ -353,13 +346,15 @@ public class DAO {
 		 Cliente ibai = new Cliente("ibai", "ibai@gmail.com", "1234", "Bilbao");
 		 Cliente izai = new Cliente("izaia", "izai@gmail.com", "1234", "Universidad");
 		 Cliente unai = new Cliente("Unai", "unai@gmail.com", "1234", "DeustoTech");
-		 Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com", new ArrayList<Articulo>());
-		 Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com", new ArrayList<Articulo>());
-		 Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com", new ArrayList<Articulo>());
-		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com", new ArrayList<Articulo>());
-		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com", new ArrayList<Articulo>());
+		 Vendedor f = new Vendedor("MikelVendedor", "mikelVendedor@gmail.com");
+		 Vendedor g = new Vendedor("JokinVendedor", "jokinVendedor@gmail.com");
+		 Vendedor h = new Vendedor("IbaiVendedor", "ibailVendedor@gmail.com");
+		 Vendedor i = new Vendedor("IzaiVendedor", "izaiVendedor@gmail.com");
+		 Vendedor j = new Vendedor("UnaiVendedor", "unaiVendedor@gmail.com");
 		 Cliente c1 = new Cliente("jokin", "jokin@gmail.com", "hola", "Deusto kalea 1");
+		 
 		 Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
+		 
 		 Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,
 				Categoria.FRUTAS, "https://i.pinimg.com/originals/63/64/fb/6364fbeede3157aac881ed9c088d9c26.png");
 		 Articulo lechuga = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rica lechuga", 0.95f,
@@ -498,9 +493,14 @@ public class DAO {
 		listaCantidades1.add(cantidad2);
 		listaCantidades2.add(cantidad3);
 		listaCantidades2.add(cantidad4);
-
-		 Cesta aa = new Cesta(1, c1, listaArticulos1, listaCantidades1, Estado.ACTUAL);
-		 Cesta bb = new Cesta(2, c2, listaArticulos2, listaCantidades2, Estado.ACTUAL);
+		
+		ArrayList<Cesta> ac = new ArrayList<>();
+		Cesta aa = new Cesta(jokin, listaArticulos1, listaCantidades1, Estado.ACTUAL);
+		Cesta bb = new Cesta(jokin, listaArticulos2, listaCantidades2, Estado.ACTUAL);
+		ac.add(aa);
+		ac.add(bb);
+		jokin.setCestas(ac);
+		store(c1);
 		store(aa);
 		store(bb);
 
@@ -528,7 +528,7 @@ public class DAO {
 		store(n);
 		store(o);
 		
-		return "Todos los datos han sido añadidos bien";
+		return "Todos los datos han sido aÃ±adidos bien";
 
 	}
 

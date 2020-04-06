@@ -32,11 +32,14 @@ public class Cliente implements Serializable{
     private String direccion_cliente;
 
     @Persistent(mappedBy = "cliente")
-	@Join
     private List<Cesta> cestas; 
     
     public Cliente(){
-        
+//
+//        Cesta compra = new Cesta();
+//        Cesta favoritos = new Cesta();
+//        this.cestas.add(compra);
+//        this.cestas.add(favoritos);
     }
 
     public Cliente(String _nombre, String _email, String _contrasenya, String _direccion) {
@@ -44,6 +47,11 @@ public class Cliente implements Serializable{
         this.email_cliente = _email;
         this.nombre_cliente = _nombre;
         this.direccion_cliente = _direccion;
+//        this.cestas = new ArrayList<Cesta>();
+//        Cesta compra = new Cesta();
+//        Cesta favoritos = new Cesta();
+//        this.cestas.add(compra);
+//        this.cestas.add(favoritos);
     }
 
    
@@ -100,6 +108,13 @@ public class Cliente implements Serializable{
     	
 	}
 	
+	public Cesta get_compra() {
+		return this.cestas.get(0);
+	}
+	
+	public Cesta get_favoritos() {
+		return this.cestas.get(1);
+	}
 	public void opinar(Articulo articulo, int valoracion, String texto) {
 		Opinion opinion = new Opinion(texto, valoracion, this);
 		DAO dao = new DAO();
@@ -135,7 +150,7 @@ public class Cliente implements Serializable{
 	public void registrarme() {
 		DAO dao = new DAO();
 		dao.store(this);
-		Cesta c = new Cesta(1, this, new ArrayList<Articulo>(), new ArrayList<Integer>(), Estado.ACTUAL);
+		Cesta c = new Cesta(this, new ArrayList<Articulo>(), new ArrayList<Integer>(), Estado.ACTUAL);
 		dao.store(c);
 	}
 	

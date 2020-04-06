@@ -109,7 +109,28 @@ def shop(request):
     return render(request, "shop.html", {"var": get_vars(request), "articulos": articulos })
 
 def article(request, id):
-    None
+    if request.method == "POST":
+        if is_session_alive(request):
+            print(request.POST.get("boton"))
+            if (request.POST.get("boton") == "Añadir al carrito") and ( int(request.POST.get("cantidad")) > 0):
+                global sessions
+                sesion = sessions[request.COOKIES['sessionid']]
+                json = {
+                    "id_articulo": id,
+                    "password": sesion.get("password"),
+                    "email": sesion.get("email"),
+                    "cantidad": request.POST.get("cantidad")
+                }
+                resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/add_carrito', json=json)
+                
+            elif request.POST.get("boton") == "Añadir a favoritos":
+                None
+    info={
+            "ID": id,
+        }
+    resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/get_articulo', json=info)
+        
+    return render(request, "product-single.html", {"var": get_vars(request), "article": resp.json()})
     
     
 def index(request): 

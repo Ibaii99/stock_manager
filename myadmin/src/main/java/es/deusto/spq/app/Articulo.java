@@ -1,4 +1,5 @@
-package es.deusto.spq.data;
+package src.main.java.es.deusto.spq.app;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
@@ -12,12 +13,10 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.data_access.DAO;
 //
 @PersistenceCapable(detachable = "true")
 public class Articulo implements Serializable {
@@ -71,10 +70,6 @@ public class Articulo implements Serializable {
 	
     public long getId() {
 		return id;
-	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
 	}
 
 	public void setId(long id) {
@@ -151,10 +146,10 @@ public class Articulo implements Serializable {
 		this.image_url = image_url;
 	}
 
-	public void storeMe() {
-		DAO dao = new DAO();
-		dao.store(this);
-	}
+//	public void storeMe() {
+//		DAO dao = new DAO();
+//		dao.store(this);
+//	}
 
 	@Override
 	public String toString() {

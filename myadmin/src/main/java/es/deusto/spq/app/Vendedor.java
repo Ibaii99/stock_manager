@@ -1,16 +1,16 @@
-package es.deusto.spq.data;
+package src.main.java.es.deusto.spq.app;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Unique;
 
-import es.deusto.spq.data_access.DAO;
+
 
 @PersistenceCapable(detachable = "true")
 public class Vendedor implements Serializable {
@@ -30,17 +30,13 @@ public class Vendedor implements Serializable {
 	private List<Articulo> articulos;
 	
 	public Vendedor(){
+		
 	}
 	
 	public Vendedor(String nombre, String email, List<Articulo> articulos) {
 		this.nombre_vendedor = nombre;
 		this.email_vendedor = email;
 		this.articulos = articulos;
-	}
-	
-	public Vendedor(String nombre, String email) {
-		this.nombre_vendedor = nombre;
-		this.email_vendedor = email;
 	}
 
 	@Override
@@ -79,16 +75,16 @@ public class Vendedor implements Serializable {
 	public void setArticulos(List<Articulo> articulos) {
 		this.articulos = articulos;
 	}
-	
-	public void addArticulo(Articulo articulo) {
-		this.articulos.add(articulo);
-		DAO dao = new DAO();
-		dao.store(this);
-	}
-
-	public void registrar() {
-		DAO dao = new DAO();
-		dao.store(this);
-	}
+//	
+//	public void addArticulo(Articulo articulo) {
+//		this.articulos.add(articulo);
+//		DAO dao = new DAO();
+//		dao.store(this);
+//	}
+//
+//	public void registrar() {
+//		DAO dao = new DAO();
+//		dao.store(this);
+//	}
 
 }

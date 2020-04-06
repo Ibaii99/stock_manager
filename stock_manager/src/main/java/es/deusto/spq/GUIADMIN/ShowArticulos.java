@@ -1,3 +1,4 @@
+
 package es.deusto.spq.GUIADMIN;
 
 
@@ -42,7 +43,7 @@ public class ShowArticulos extends JFrame {
 	//
 	/**
 	 * Launch the application.
-	 */
+//	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -136,4 +137,6 @@ public class ShowArticulos extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 }
+
 	
+
