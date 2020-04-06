@@ -121,7 +121,7 @@ public class InicioSesion extends JFrame {
 				
 				if(correcto) {
 					try {
-						Articulos_bien frame = new Articulos_bien();
+						ArticulosLista frame = new ArticulosLista();
 						frame.setVisible(true);
 					} catch (Exception er) {
 						er.printStackTrace();

@@ -19,11 +19,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
-<<<<<<< HEAD
 import javax.ws.rs.DELETE;
-=======
 import javax.ws.rs.core.MediaType;
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
+
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -100,19 +98,6 @@ public class API {
 		}
 	}
 	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String addArticulo(Articulo articulo) {
-		System.out.println("Nuevo articulo" + articulo.getNombre() + ", " + articulo.getCaducidad() + ", " + articulo.getPrecio() + 
-				", " + articulo.getDescripcion() + ", " + articulo.getOferta() + ", " + articulo.getCategoria() + ", " + articulo.getImageUrl());
-		return "articulo añadido correctamente";
-	}
-	
-	
-	
-	
-	
 
 	@POST
 	@Path("ingresarArticulo")
@@ -156,7 +141,7 @@ public class API {
 		dao.store(c);
 		
 
-		return "Done";
+		return "Creado";
 	}
 
 	/*

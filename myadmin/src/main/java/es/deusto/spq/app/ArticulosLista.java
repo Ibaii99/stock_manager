@@ -22,6 +22,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ProcessingException;
 
 
+
 import src.main.java.es.deusto.spq.app.Articulo.Categoria;
 import src.main.java.es.deusto.spq.app.*;
 
@@ -35,28 +36,22 @@ import java.awt.Dimension;
 
 
 
-public class Articulos_bien extends JFrame{
+public class ArticulosLista extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private Client client;
 	private Date date;
 	
-	public Articulos_bien() {
+	public ArticulosLista() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
-
-
-		
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
-<<<<<<< HEAD
-=======
+
+
+		setSize(1200, 500);
+
 		
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
-
-		setSize(1000, 500);
-
-		//setSize(600,700);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -114,8 +109,7 @@ public class Articulos_bien extends JFrame{
 		getContentPane().add(listScrollPane, BorderLayout.WEST);
 		
 		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
-		List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-	
+		final List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 		articulosListModel.clear();
 		for(Articulo articulo: articulos) {
 			articulosListModel.addElement(articulo);
@@ -124,26 +118,27 @@ public class Articulos_bien extends JFrame{
 		JPanel derecha = new JPanel();
 		getContentPane().add(derecha,BorderLayout.EAST);
 		
+		final JTextField idEliminar = new JTextField("");
+		derecha.add(idEliminar);
 
 		
 		eliminarBoton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-//				int indice = articulosLista.getSelectedIndex();
-				Articulo a = articulosLista.getSelectedValue();
-				int fila = articulosLista.getSelectedIndex();
-				articulosLista.remove(fila);
-				
-				
-				System.out.println(a);
-				WebTarget deleteTarget = articulosTarget.path(Integer.toString(fila));//Aqui meto un nombre, pero funciona con id ?
-				Response response = deleteTarget.request().delete();
-				if(response.getStatus() == Status.OK.getStatusCode()) {
-					JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(Articulos_bien.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
+				for(int i=0; i<articulos.size();i++) {
+					articulosLista.remove(articulosLista.getSelectedIndex());
+					articulos.remove(articulosLista.getSelectedValue());
+					System.out.println("Articulo borrado");
 				}
+//				System.out.println(a);
+//				WebTarget deleteTarget = articulosTarget.path(idEliminar.getText());
+//				Response response = deleteTarget.request().delete();
+//				if(response.getStatus() == Status.OK.getStatusCode()) {
+//					JOptionPane.showMessageDialog(ArticulosLista.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
+//				}else {
+//					JOptionPane.showMessageDialog(ArticulosLista.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
+//				}
 				
 			}
 		});
@@ -156,7 +151,7 @@ public class Articulos_bien extends JFrame{
 			
 			@Override
 			public void run() {
-				new Articulos_bien();
+				new ArticulosLista();
 				
 			}
 		});

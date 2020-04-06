@@ -38,7 +38,6 @@ public class Articulo implements Serializable {
     private float oferta;
     private Categoria categoria;
     private byte [] image;
-    
     private String imageUrl;
     
     private Vendedor vendedor;
@@ -188,7 +187,4 @@ public class Articulo implements Serializable {
 		this.image =  data.getData();
 	}
     
-  
-
-
 }
