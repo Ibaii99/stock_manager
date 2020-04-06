@@ -28,11 +28,14 @@ urlpatterns = [
     path('user/', views.user),
     path('user/login/', views.login),
     path('user/register/', views.register),
-    path('user/cart', views.user),
-    path('user/favourites', views.user),
+    path('user/cart/', views.cart),
+    path('user/favourites/', views.favourites),
     path('article/<int:id>', views.article),
     path('', views.index),
 ]
+
+handler404 = 'stock_manager.views.erro_handler'
+handler500 = 'stock_manager.views.erro_handler'
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

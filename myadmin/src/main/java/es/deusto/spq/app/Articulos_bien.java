@@ -42,9 +42,10 @@ public class Articulos_bien extends JFrame{
 	public Articulos_bien() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
+		
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
-		
+
 		setSize(1000, 500);
 
 		//setSize(600,700);

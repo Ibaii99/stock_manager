@@ -155,7 +155,7 @@ public class CrearArticulo extends JFrame {
 						c, tUrl.getText());
 				
 				Entity<Articulo> entity = Entity.entity(articuloN, MediaType.APPLICATION_JSON);
-				articulosTarget.request(MediaType.TEXT_PLAIN).post(entity);;
+				articulosTarget.request(MediaType.TEXT_PLAIN).post(entity);
 				System.out.println(articuloN);
 //				String cadu = tcaducidad.getText();
 //				Date caduci = null;

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 import datetime
 from mysite import settings
 import requests
@@ -18,6 +18,12 @@ def test(request):
     return render(request, "shop.html") 
     #Prueba de commit
 
+def cart(request):
+    return render(request, "cart.html") 
+
+def favourites(request):
+    None    
+
 def user(request):
     if is_session_alive(request):
         sesion = sessions.get(request.COOKIES['sessionid'])
@@ -25,7 +31,7 @@ def user(request):
             "email": sesion.get("email"),
 	        "password": sesion.get('password')
         }
-        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/get_cliente', json=info)
+        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getCliente', json=info)
         
         # resp.json()["contrasenya_cliente"]
         
@@ -34,9 +40,9 @@ def user(request):
                 close_session(request)
                 return redirect("/index/")
             #TODO el cambio de datos hay que gestionarlo 
-        return render(request, "profile.html", {"var": get_vars(request), "address": resp.json()["direccion_cliente"], "email": resp.json()["email_cliente"], "name":resp.json()["nombre_cliente"]})
-    
-    return redirect("/user/login")
+        return render(request, "profile.html", {"var": get_vars(request), "address": resp.json()["direccionCliente"], "email": resp.json()["emailCliente"], "name":resp.json()["nombreCliente"]})
+     
+    return redirect("/user/login") 
     
 def register(request):
     if(request.method == 'POST'):
@@ -69,7 +75,7 @@ def login(request):
 	        "password": request.POST.get('password')
         }
         
-        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/log_in', json=info)
+        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/logIn', json=info)
         
         save_session(request, request.COOKIES['sessionid'], resp.json()["nombre"], request.POST.get('email'), request.POST.get('password') )
         
@@ -82,30 +88,8 @@ def login(request):
     return render(request, "login.html", {"var": get_vars(request)})
 
 def shop(request):
-    
-    resp = requests.get(settings.STOCK_MANAGER_API_URL +'/api/get_articulos')
-    
-    print("saasdsda")
-
+    resp = requests.get(settings.STOCK_MANAGER_API_URL +'/api/getArticulos')
     articulos = json.loads(resp.text)
-    
-    for articulo in articulos:
-        print(articulo)
-    # for articulo in resp:
-    #     print(articulo)
-    #     print(articulo.get("image"))
-    #     j: {
-    #         "image":Image.open(io.BytesIO(articulo.get("image")))
-    #     }
-        
-    #     image = Image.open(io.BytesIO(articulo.get("image")))
-    #     image.save("static\\images\\")
-    #     return render(request, "shop.html", {"var": get_vars(request)})
-    print(request.COOKIES)
-    
-    for key, value in request.session.items():
-        print('{} => {}'.format(key, value))
-        
     return render(request, "shop.html", {"var": get_vars(request), "articulos": articulos })
 
 def article(request, id):
@@ -120,7 +104,7 @@ def article(request, id):
                     "email": sesion.get("email"),
                     "cantidad": request.POST.get("cantidad")
                 }
-                resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/add_carrito', json=json)
+                resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/addCarrito', json=json)
                 
             elif request.POST.get("boton") == "Añadir a favoritos":
                 json = {
@@ -128,17 +112,15 @@ def article(request, id):
                     "password": sesion.get("password"),
                     "email": sesion.get("email"),
                 }
-                resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/add_favoritos', json=json)
+                resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/addFavoritos', json=json)
     info={
             "ID": id,
         }
-    resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/get_articulo', json=info)
+    resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getArticulo', json=info)
         
     return render(request, "product-single.html", {"var": get_vars(request), "article": resp.json()})
     
-    
 def index(request): 
-    
     return render(request, "index.html", {"var": get_vars(request)})
 
 #Devuelve las variables necesarias para la ejecucion generica
@@ -227,7 +209,7 @@ def is_data_correct(request):
 	        "password": sesion.get('password')
         }
     
-    resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/log_in', json=info)
+    resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/logIn', json=info)
     
     if  resp.json()["nombre"] is not None and resp.json()["nombre"] != 'null':
         return True
@@ -250,3 +232,11 @@ def set_cookie(response, key, value, days_expire = 2):
         max_age = days_expire * 24 * 60 * 60 
         expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
         response.set_cookie(key, value, max_age=max_age, expires=expires, domain=settings.SESSION_COOKIE_DOMAIN, secure=settings.SESSION_COOKIE_SECURE or None)
+        
+        
+
+
+def erro_handler(request, exception=None):
+    # make a redirect to homepage
+    # you can use the name of url or just the plain link
+    return redirect('/index/') # or redirect('name-of-index-url')
