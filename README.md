@@ -6,7 +6,7 @@ Esta es el repositorio del proyecto del **Grupo 2**, incluye:
 - **ADMINISTRADOR** dessarrollado en Java 1.8 (Oracle) con maven.
 
 ### Tecnologias usadas:
-- virtualenvwrapper --> **Entornos virtuales** que se van a usar
+- virtualenvwrapper-win --> **Entornos virtuales** que se van a usar
    - docu: https://virtualenvwrapper.readthedocs.io/en/latest/index.html 
 - Django --> **Web Framework** que se va a usar para la parte de cliente
    - docu: https://docs.djangoproject.com/en/3.0/
