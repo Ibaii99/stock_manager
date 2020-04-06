@@ -2,20 +2,14 @@ package src.main.java.es.deusto.spq.app;
 
 import java.io.Serializable;
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 public class Usuario implements Serializable {
 	//
 	private static final long serialVersionUID = 1L;
 	private long id;
 	
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 	private String nombre;
 	private String contrasenya;
 	
