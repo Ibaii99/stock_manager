@@ -63,9 +63,6 @@ public class Cesta implements Serializable {
 		this.id = id;
 	}
 
-
-
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -102,87 +99,88 @@ public class Cesta implements Serializable {
 
 
 
-//    public void addArticulo(final Articulo articulo, final int cantidad) {
-//        
-//        if (this.articulos.containsKey(articulo)) {
-//            this.articulos.replace(articulo, articulos.get(articulo)+cantidad);
-//        }else this.articulos.put(articulo, cantidad); 
-//       
-//    }
+    public void addArticulo(final Articulo articulo, final int cantidad) {
+        
+        if (this.articulos.contains(articulo)) {
 
- 
+			this.cantidades.set(this.articulos.indexOf(articulo), cantidad);
+		
+		}else {
+			this.articulos.add(articulo);
+			this.cantidades.add(cantidad);
+		}; 
+       
+    }
 
-//	public HashMap<Articulo,Integer> getArticulos() {
-//        return this.articulos;
-//    }
-//
-//    //A modificar por Oferta
-//    public float getRecibo() {
-//
-//        int r = 0;
-//
-//        for (final Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
-//           r += entry.getKey().getPrecio()*entry.getValue();
-//        }
-//       
-//        return r;
-//    }
-//
+   //A modificar por Oferta
+   public float getRecibo() {
+
+       int r = 0;
+
+	   for (int i = 0; i < this.articulos.size(); i++) {
+		   r += this.articulos.get(i).getPrecio() * this.cantidades.get(i);
+	   }
+      
+       return r;
+   }
+
 //    @Override
-//	public String toString() {
-//
+// 	public String toString() {
+
 //        String r = "";
-//
+
 //        for (final Map.Entry<Articulo, Integer> entry : this.articulos.entrySet()) {
-//
+
 //           r += "Cesta {" + entry.getKey().toString() + ", Cantidad: " + entry.getValue() + "  }";
-//
+
 //        }
-//
-//		return r;
-//	}
-//
-//public void anyadirCesta(Articulo articulo, Integer cantidad) {
-//	if(articulos.contains(articulo)){
-//		int i = articulos.indexOf(articulo);
-//		int cant = cantidad + cantidades.get(i);
-//		cantidades.set(i, cant);
-//	}else{
-//		articulos.add(articulo);
-//		cantidades.add(cantidad);
-//	}
-//	DAO dao = new DAO();
-//	dao.store(this);
-//}
-//
-//public void eliminarCesta(Articulo articulo, Integer cantidad) {
-//	DAO dao = new DAO();
-//	Cesta cesta = dao.getCesta(this.getId());
-//	if(cesta!=null) {
-//		if(cesta.getArticulos().contains(articulo)) {
-//			int i = articulos.indexOf(articulo);
-//			if (cantidad == 0) {
-//				articulos.remove(i);
-//				cantidades.remove(i);
-//			}else {
-//				cantidades.remove(i);
-//				cantidades.add(i, cantidad);
-//			}
-//		}
-//	}
-//}
-//
-//public void eliminarCestaEntera() {
-//	/*
-//	for (int i = 0;i<articulos.size();i++) {
-//		articulos.remove(i);
-//		cantidades.remove(i);
-//	}
-//	*/
-//	articulos.clear();
-//	cantidades.clear();
-//
-//}
+
+// 		return r;
+// 	}
+
+public void modifyThisCesta(Articulo articulo, Integer cantidad) {
+
+	if(this.getArticulos().contains(articulo)) {
+		int i = articulos.indexOf(articulo);
+		if (cantidad == 0) {
+			articulos.remove(i);
+			cantidades.remove(i);
+		}else {
+			cantidades.remove(i);
+			cantidades.add(i, cantidad);
+		}
+	}else{
+		articulos.add(articulo);
+		cantidades.add(cantidad);
+	}
+	
+}
+
+public void addThisCesta(Articulo articulo, Integer cantidad) {
+
+	if(this.getArticulos().contains(articulo)) {
+		int i = articulos.indexOf(articulo);
+		int cant = cantidad + cantidades.get(i);
+		cantidades.remove(i);
+		cantidades.add(i, cant);
+	}else{
+		articulos.add(articulo);
+		cantidades.add(cantidad);
+	}
+	
+}
+
+public void vaciarCesta() {
+	/*
+	for (int i = 0;i<articulos.size();i++) {
+		articulos.remove(i);
+		cantidades.remove(i);
+	}
+	*/
+	articulos.clear();
+	cantidades.clear();
+
+}
 
 
 

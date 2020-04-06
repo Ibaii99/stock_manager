@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 import javax.swing.*;
+import javax.swing.JScrollPane;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -26,6 +27,9 @@ import src.main.java.es.deusto.spq.app.*;
 
 import java.util.Date;
 import java.util.List;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Dimension;
 
 
 
@@ -36,27 +40,69 @@ public class Articulos_bien extends JFrame{
 	private Date date;
 	
 	public Articulos_bien() {
+		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("get_articulos");
 		
-		setSize(500,500);
+		setSize(1000, 500);
+
+		//setSize(600,700);
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		
 		JPanel botonesPanel = new JPanel();
 		
 		JButton eliminarBoton = new JButton("Eliminar articulo");
+
 		JButton anyadirBoton = new JButton("Anyadir articulo");
 		botonesPanel.add(eliminarBoton);
 		botonesPanel.add(anyadirBoton);
-		add(botonesPanel, BorderLayout.SOUTH);
+		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
+
+		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
+		
+		JButton btnanyadir = new JButton("Anyadir Articulo");
+		btnanyadir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					CrearArticulo frame = new CrearArticulo();
+					frame.setVisible(true);
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
+			}
+		});
+		GroupLayout gl_botonesPanel = new GroupLayout(botonesPanel);
+		gl_botonesPanel.setHorizontalGroup(
+			gl_botonesPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_botonesPanel.createSequentialGroup()
+					.addContainerGap(278, Short.MAX_VALUE)
+					.addComponent(eliminarBoton)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnanyadir)
+					.addContainerGap())
+		);
+		gl_botonesPanel.setVerticalGroup(
+			gl_botonesPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_botonesPanel.createSequentialGroup()
+					.addGap(5)
+					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnanyadir)
+						.addComponent(eliminarBoton)))
+		);
+		botonesPanel.setLayout(gl_botonesPanel);
 		
 		final DefaultListModel<Articulo> articulosListModel = new DefaultListModel<>();
-		JList<Articulo> articulosLista = new JList<>(articulosListModel);
+
+
+		final JList<Articulo> articulosLista = new JList<>(articulosListModel);
 		
 		JScrollPane listScrollPane = new JScrollPane(articulosLista);
-		add(listScrollPane, BorderLayout.WEST);
+		getContentPane().add(listScrollPane, BorderLayout.WEST);
 		
 		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
 		List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
@@ -67,60 +113,20 @@ public class Articulos_bien extends JFrame{
 		}
 		
 		JPanel derecha = new JPanel();
-		add(derecha,BorderLayout.EAST);
+		getContentPane().add(derecha,BorderLayout.EAST);
 		
-		final JTextField nombreText = new JTextField("", 10);
-		final JTextField caducidadText = new JTextField("", 10);
-		final JTextField precioText = new JTextField("", 4);
-		final JTextField stockText = new JTextField("", 5);
-		final JTextField descripcionText = new JTextField("", 50);
-		final JTextField ofertaText = new JTextField("", 4);
-		final JTextField categoriaText = new JTextField("", 40);
-		final JTextField imagenText = new JTextField("", 50);//Duda
-		
-		
-		derecha.add(nombreText);
-		derecha.add(caducidadText);
-		derecha.add(precioText);
-		derecha.add(stockText);
-		derecha.add(descripcionText);
-		derecha.add(ofertaText);
-		derecha.add(categoriaText);
-		derecha.add(imagenText);
-		
-		
-		
-		
-		
-		
-		anyadirBoton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				String cat = categoriaText.getText();
-				Categoria c = Categoria.valueOf(cat);//???
-				
-				String cad = caducidadText.getText();
-                SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    date = formatter1.parse(cad);
-                } catch (ParseException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-				Articulo articulo = new Articulo(nombreText.getText(), date, Float.parseFloat(precioText.getText()),
-						Integer.parseInt(stockText.getText()), descripcionText.getText(), Integer.parseInt(ofertaText.getText()),
-						c, imagenText.getText());
-				articulosTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
-				
-			}
-		});
+
 		
 		eliminarBoton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				WebTarget deleteTarget = articulosTarget.path(nombreText.getText());//Aqui meto un nombre, pero funciona con id ?
+//				int indice = articulosLista.getSelectedIndex();
+				Articulo a = articulosLista.getSelectedValue();
+				int fila = articulosLista.getSelectedIndex();
+				
+				System.out.println(a);
+				WebTarget deleteTarget = articulosTarget.path(Integer.toString(fila));//Aqui meto un nombre, pero funciona con id ?
 				Response response = deleteTarget.request().delete();
 				if(response.getStatus() == Status.OK.getStatusCode()) {
 					JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);

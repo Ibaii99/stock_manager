@@ -152,8 +152,6 @@ public class Cliente implements Serializable{
 	public void registrarme() {
 		DAO dao = new DAO();
 		dao.store(this);
-		//Cesta c = new Cesta(new ArrayList<Articulo>(), new ArrayList<Integer>(), Estado.ACTUAL);
-		//dao.store(c);
 	}
 	
 
