@@ -100,7 +100,7 @@ public class API {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String addArticulo(Articulo articulo) {
 		System.out.println("Nuevo articulo" + articulo.getNombre() + ", " + articulo.getCaducidad() + ", " + articulo.getPrecio() + 
-				", " + articulo.getDescripcion() + ", " + articulo.getOferta() + ", " + articulo.getCategoria() + ", " + articulo.getImage_url());
+				", " + articulo.getDescripcion() + ", " + articulo.getOferta() + ", " + articulo.getCategoria() + ", " + articulo.getImageUrl());
 		return "articulo añadido correctamente";
 	}
 	
