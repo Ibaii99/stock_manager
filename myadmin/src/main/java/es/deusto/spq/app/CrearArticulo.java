@@ -1,12 +1,23 @@
 package src.main.java.es.deusto.spq.app;
 
-import java.awt.BorderLayout;
-import java.text.SimpleDateFormat;
-import java.awt.EventQueue;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ProcessingException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.*;
+
+
 
 import src.main.java.es.deusto.spq.app.Articulo.Categoria;
 
@@ -49,11 +60,20 @@ public class CrearArticulo extends JFrame {
 			}
 		});
 	}
+	
+	
+	private Client client;
 
 	/**
 	 * Create the frame.
 	 */
 	public CrearArticulo() {
+		client = ClientBuilder.newClient();
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
+		final WebTarget articuloTarget = appTarget.path("ingresarArticulo");
+		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
@@ -141,7 +161,10 @@ public class CrearArticulo extends JFrame {
 			    String image_url = tUrl.getText();
 			    
 			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
-			    System.out.println(articulo);
+//			    System.out.println(articulo);
+			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
+			    System.out.println("Usuario anadido");
+			    
 			}
 		});
 		

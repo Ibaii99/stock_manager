@@ -1,6 +1,7 @@
 package es.deusto.spq.remote;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -86,6 +88,7 @@ public class API {
 	@POST
 	@Path("ingresarArticulo")
 	public String ingresarArticulo(JsonObject json) throws ParseException {
+		DAO dao = new DAO();
 		
 		System.out.println(json);
 
@@ -108,7 +111,7 @@ public class API {
 		
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, url_image);
 
-		c.storeMe();
+		dao.store(c);;
 
 		return "Done";
 	}
@@ -361,6 +364,21 @@ public class API {
 
 		return "{ \"nombre\": \""+vendedor.getNombre_vendedor() + "\" }";
 	}
+	
+	
+	@POST
+	@Path("storeArticulo")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String nuevoVendedor(JsonObject json) {
+		DAO dao = new DAO();
+		Articulo articulo = new Articulo(get_from_json(json, "name"), 
+				get_from_json(json, "caducidad"), get_from_json(json, "precio"),get_from_json(json, "stock"),
+				get_from_json(json, "descripcion"),get_from_json(json, "oferta"),get_from_json(json, "categoria"),
+				get_from_json(json, "image_url"));
+		dao.store(articulo);
+
+		return "{ \"nombre\": \""+ articulo.getNombre() + "\" }";
+	}
 
 
 
@@ -382,6 +400,7 @@ public class API {
 	private String get_from_json(JsonObject json, String attribute) {
 		return json.get(attribute).toString().replace("\"", "");
 	}
+	
 	
 //	
 //	@POST

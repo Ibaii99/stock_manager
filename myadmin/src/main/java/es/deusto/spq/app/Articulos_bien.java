@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.EventQueue;
 
 
 
@@ -39,7 +40,7 @@ public class Articulos_bien extends JFrame{
 	public Articulos_bien() {
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-		final WebTarget articulosTarget = appTarget.path("get_articulos");
+		final WebTarget articulosTarget = appTarget.path("getArticulos");
 		
 		setSize(600,700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

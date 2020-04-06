@@ -66,7 +66,7 @@ public class InicioSesion extends JFrame {
 	public InicioSesion() {
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-		final WebTarget usuariosTarget = appTarget.path("get_usuarios");
+		final WebTarget usuariosTarget = appTarget.path("getUsuarios");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
