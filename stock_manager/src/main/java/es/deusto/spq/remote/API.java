@@ -205,11 +205,11 @@ public class API {
 		return db.getUsuarios();
 	}
 	
-	@POST
+	@GET
 	@Path("get_usuario")
 	public Usuario get_usuario(JsonObject json) {
-		System.out.println("Nombre: " + get_from_json(json, "nombre") + " Pass: "+  get_from_json(json, "password"));
-		Usuario u = new DAO().getUsuario(get_from_json(json, "nombre"), get_from_json(json, "password"));
+		System.out.println("Nombre: " + get_from_json(json, "nombre") + " Pass: "+  get_from_json(json, "contrasenya"));
+		Usuario u = new DAO().getUsuario(get_from_json(json, "nombre"), get_from_json(json, "contrasenya"));
 		u.toString();
 		return u;
 	}

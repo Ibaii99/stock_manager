@@ -83,7 +83,8 @@ public class Inicio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				String usuarioCogido = usuario.getText();
-				String contrasenya = contrasenya_.getText();
+				char[] c = contrasenya_.getPassword();
+				String contrasenya = c.toString();
 				if(dao.getUsuario (usuarioCogido,contrasenya )!=null) {
 					System.out.println("Usuario correcto");
 					try {

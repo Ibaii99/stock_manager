@@ -19,6 +19,8 @@ import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
+import es.deusto.spq.remote.GET;
+import es.deusto.spq.remote.Path;
 //import es.deusto.spq.data.Admin;
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
@@ -101,6 +103,8 @@ public class DAO {
 	}
 
 	// GET de lista de clientes
+	@GET
+	@Path("get_clientesss")
 	public List<Cliente> getClientes() {
 		 List<Cliente> ret = new ArrayList<Cliente>();
 		 Transaction tx = pm.currentTransaction();
@@ -138,7 +142,8 @@ public class DAO {
 
 	
 	////////////////////////////////////////////////////////////////////
-	// GET de lista de clientes
+	@GET
+	@Path("get_users")
 		public List<Usuario> getUsuarios() {
 			List<Usuario> ret = new ArrayList<Usuario>();
 			Transaction tx = pm.currentTransaction();

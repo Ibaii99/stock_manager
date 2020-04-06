@@ -1,7 +1,8 @@
 
-package src.main.java.es.deusto.spq;
+package src.main.java.es.deusto.spq.app;
 
 import java.awt.BorderLayout;
+
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -30,7 +31,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import src.main.java.es.deusto.spq.data.*;
+
 
 public class InicioSesion extends JFrame {
 	/**
@@ -65,7 +66,7 @@ public class InicioSesion extends JFrame {
 	 
 	public InicioSesion() {
 		client = ClientBuilder.newClient();
-		WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		usuariosTarget = appTarget.path("get_usuarios");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,22 +100,22 @@ public class InicioSesion extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				String usuarioCogido = usuario.getText();
-				String contrasenya = contrasenya_.getText();
+				char[] c = contrasenya_.getPassword();
+				String contrasenya = c.toString();
 				GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
 				
 				List<Usuario> usuarios = usuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 				for(Usuario u: usuarios) {
-					if(usuarioCogido.equals(u.getNombre()) && usuarioCogido.equals(u.getContrasenya())) {
-						try {
-							System.out.println("Correcto");
-//							ShowArticulos frame = new ShowArticulos();
-//							frame.setVisible(true);
-						} catch (Exception es) {
-							es.printStackTrace();
-						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Usuario o contrasenya erroneos, Usuariocontrasena errones");
-					}
+//					if(usuarioCogido.equals(u.getUser()) && usuarioCogido.equals(u.getContrasenya())) {
+//						try {
+//							System.out.println("Correcto");
+////							ShowArticulos frame = new ShowArticulos();
+////							frame.setVisible(true);
+//						} catch (Exception es) {
+//							es.printStackTrace();
+//						}
+//					}
+					System.out.println(u);
 				}
 			}
 		});

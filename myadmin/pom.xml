@@ -204,7 +204,7 @@
   					<artifactId>exec-maven-plugin</artifactId>
   					<configuration>
 
-  						<mainClass>src.main.java.es.deusto.spq.InicioSesion</mainClass>
+  						<mainClass>src.main.java.es.deusto.spq.app.Articulos_bien</mainClass>
 
   					</configuration>
   				</plugin>

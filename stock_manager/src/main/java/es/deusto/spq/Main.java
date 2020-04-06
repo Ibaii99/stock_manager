@@ -50,6 +50,8 @@ public class Main {
         final HttpServer server = startServer();
         DAO dao = new DAO();
         dao.meter_datos();
+        
+        
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
         System.in.read();
