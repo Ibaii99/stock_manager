@@ -67,8 +67,8 @@ public class CrearArticulo extends JFrame {
 	public CrearArticulo() {
 		
 		client = ClientBuilder.newClient();
-		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-		final WebTarget articulosTarget = appTarget.path("ingresarArticulo");
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
+		final WebTarget articulosTarget = appTarget.path("api");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
@@ -153,8 +153,9 @@ public class CrearArticulo extends JFrame {
 				Articulo articuloN = new Articulo(tnombre.getText(), date, Float.parseFloat(tprecio.getText()),
 						Integer.parseInt(tstock.getText()), tdescripcion.getText(), Float.parseFloat(toferta.getText()),
 						c, tUrl.getText());
-				articulosTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(articuloN, MediaType.APPLICATION_JSON));
 				
+				Entity<Articulo> entity = Entity.entity(articuloN, MediaType.APPLICATION_JSON);
+				articulosTarget.request(MediaType.TEXT_PLAIN).post(entity);;
 				System.out.println(articuloN);
 //				String cadu = tcaducidad.getText();
 //				Date caduci = null;
