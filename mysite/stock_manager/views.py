@@ -6,10 +6,6 @@ import json
 import io
 from PIL import Image
 
-# Create your views here.
-
-sessions = {}
-
 
 def test(request):
     #return render(request, "index.html")
@@ -19,7 +15,32 @@ def test(request):
     #Prueba de commit
 
 def cart(request):
-    return render(request, "cart.html") 
+    
+   # if is_session_alive(request):
+    # sesion = sessions.get(request.COOKIES['sessionid'])
+    # info={
+    #     "email": sesion.get("email"),
+    #     "password": sesion.get('password')
+    # }
+    info={
+        "email":"jokin@gmail.com",
+        "password": "1234"
+    }
+    resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getCarrito', json=info)
+    
+    cesta = json.loads(resp.text)
+    e=0
+    print(len(cesta.get("articulos")))
+    while (e < len(cesta.get("articulos"))):
+        print(cesta.get("articulos")[e])
+        cesta.get("articulos")[e]["cantidad"] = cesta.get("cantidades")[e]
+        e+=1
+        
+        
+    
+    return render(request, "cart.html", {"var": get_vars(request), "cesta": cesta} ) 
+    
+    #return redirect("/user/login")
 
 def favourites(request):
     None    
@@ -233,8 +254,6 @@ def set_cookie(response, key, value, days_expire = 2):
         expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
         response.set_cookie(key, value, max_age=max_age, expires=expires, domain=settings.SESSION_COOKIE_DOMAIN, secure=settings.SESSION_COOKIE_SECURE or None)
         
-        
-
 
 def erro_handler(request, exception=None):
     # make a redirect to homepage
