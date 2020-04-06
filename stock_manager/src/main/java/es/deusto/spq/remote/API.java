@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.json.JsonObject;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,11 +16,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.core.JsonParser;
 
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cesta;
+import es.deusto.spq.data.Cesta.Estado;
 import es.deusto.spq.data.Cliente;
 import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Opinion;
@@ -127,8 +131,18 @@ public class API {
 	public Cliente get_cliente(JsonObject json) {
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-		c.toString();
+		
 		return c;
+	}
+
+	@POST
+	@Path("get_cestas_usr")
+	public Cesta get_cestas_usr(JsonObject json) {
+		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
+		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+//		return Response.ok(c.get_compra().getArticulos(), MediaType.APPLICATION_JSON).build();
+//		return c.get_compra().getArticulos();
+		return c.getCarrito();
 	}
 	/*
 		{
@@ -169,10 +183,10 @@ public class API {
 		System.out.println("NOMBRE: " + a.getNombre());
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		
-		c.get_compra().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
-		for (Articulo art : c.get_compra().getArticulos()) {
-			System.out.println(art.toString());
-		}
+//		c.get_compra().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
+//		for (Articulo art : c.get_compra().getArticulos()) {
+//			System.out.println(art.toString());
+//		}
 	}
 	
 	@POST
@@ -182,7 +196,7 @@ public class API {
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-		c.get_favoritos().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
+//		c.get_favoritos().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
 	}
 	
 	
@@ -197,22 +211,22 @@ public class API {
 //	}
 	
 	
-	@GET
-	@Path("get_cestas")
-	public List<Cesta> get_cestas() {
-		System.out.println("Mandando todos los cestas");
-		DAO db = new DAO();
-		return db.getCestas();
-	}
-
-	@POST
-	@Path("get_cesta")//por ID
-	public Cesta get_cesta(JsonObject json) {
-		System.out.println("Mandando la cesta");
-		long l = Long.parseLong(get_from_json(json, "ID"));
-		Cesta a = new DAO().getCesta(l);
-		return a;
-	}
+//	@GET
+//	@Path("get_cestas")
+//	public List<Cesta> get_cestas() {
+//		System.out.println("Mandando todos los cestas");
+//		DAO db = new DAO();
+//		return db.getCestas();
+//	}
+//
+//	@POST
+//	@Path("get_cesta")//por ID
+//	public Cesta get_cesta(JsonObject json) {
+//		System.out.println("Mandando la cesta");
+//		long l = Long.parseLong(get_from_json(json, "ID"));
+//		Cesta a = new DAO().getCesta(l);
+//		return a;
+//	}
 	/*
 		{
 		"ID": "1"
@@ -238,34 +252,34 @@ public class API {
 		return u;
 	}
 
-	@POST
-	@Path("addCesta")
-	public Cesta addToCesta(JsonObject json) {
-		System.out.println("Aniadiendo a la cesta");
-		long idCesta = Long.parseLong(get_from_json(json, "idCesta"));
-		long idArticulo = Long.parseLong(get_from_json(json, "idArticulo"));
-		int cantidad = Integer.parseInt(get_from_json(json, "cantidad"));
-		Cesta a = new DAO().addCesta(idCesta, idArticulo, cantidad);
-		return a;
-	}
-	/*
-		{
-			"idCesta": "1",
-			"idArticulo": "2",
-			"cantidad": "5"
-		}
-	*/
-	
-	@POST
-	@Path("removeCesta")
-	public Cesta removeToCesta(JsonObject json) {
-		System.out.println("Aniadiendo a la cesta");
-		long idCesta = Long.parseLong(get_from_json(json, "idCesta"));
-		long idArticulo = Long.parseLong(get_from_json(json, "idArticulo"));
-		int cantidad = Integer.parseInt(get_from_json(json, "cantidad"));
-		Cesta a = new DAO().removeCesta(idCesta, idArticulo, cantidad);
-		return a;
-	}
+//	@POST
+//	@Path("addCesta")
+//	public Cesta addToCesta(JsonObject json) {
+//		System.out.println("Aniadiendo a la cesta");
+//		long idCesta = Long.parseLong(get_from_json(json, "idCesta"));
+//		long idArticulo = Long.parseLong(get_from_json(json, "idArticulo"));
+//		int cantidad = Integer.parseInt(get_from_json(json, "cantidad"));
+//		Cesta a = new DAO().addCesta(idCesta, idArticulo, cantidad);
+//		return a;
+//	}
+//	/*
+//		{
+//			"idCesta": "1",
+//			"idArticulo": "2",
+//			"cantidad": "5"
+//		}
+//	*/
+//	
+//	@POST
+//	@Path("removeCesta")
+//	public Cesta removeToCesta(JsonObject json) {
+//		System.out.println("Aniadiendo a la cesta");
+//		long idCesta = Long.parseLong(get_from_json(json, "idCesta"));
+//		long idArticulo = Long.parseLong(get_from_json(json, "idArticulo"));
+//		int cantidad = Integer.parseInt(get_from_json(json, "cantidad"));
+//		Cesta a = new DAO().removeCesta(idCesta, idArticulo, cantidad);
+//		return a;
+//	}
 	/*
 		{
 			"idCesta": "1",

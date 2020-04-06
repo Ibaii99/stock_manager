@@ -93,6 +93,10 @@ public class Articulo implements Serializable {
 		return caducidad;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public void setCaducidad(Date caducidad) {
 		this.caducidad = caducidad;
 	}
