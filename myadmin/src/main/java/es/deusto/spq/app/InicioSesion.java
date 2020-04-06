@@ -60,14 +60,13 @@ public class InicioSesion extends JFrame {
 	}
 
 	private Client client;
-	private final WebTarget usuariosTarget;
 	
 	 // Create the frame.
 	 
 	public InicioSesion() {
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-		usuariosTarget = appTarget.path("get_usuarios");
+		final WebTarget usuariosTarget = appTarget.path("get_usuarios");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -100,24 +99,33 @@ public class InicioSesion extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				String usuarioCogido = usuario.getText();
+				System.out.println(usuarioCogido);
 				char[] c = contrasenya_.getPassword();
 				String contrasenya = c.toString();
+				System.out.println(c.equals("admin"));
+				String m = "";
+				for(char ch: c) {
+					m = m+ch;
+				}
+
 				GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
-				
 				List<Usuario> usuarios = usuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-				for(Usuario u: usuarios) {
-					System.out.println(u.toString());
-					System.out.println(u.getUser());
-					if(usuarioCogido.equals(u.getUser()) && usuarioCogido.equals(u.getContrasenya())) {
-						try {
-							System.out.println("Correcto");
-							Articulos_bien frame = new Articulos_bien();
-							frame.setVisible(true);
-						} catch (Exception es) {
-							es.printStackTrace();
-						}
+				boolean correcto = false;
+				for(Usuario usuario: usuarios) {
+					System.out.println("Nombre: " + usuario.getNombre()+" Contrasenya: " + usuario.getContrasenya());
+					if(usuarioCogido.equals(usuario.getNombre()) && m.equals(usuario.getContrasenya())) {
+						correcto = true;
 					}
-					
+				}
+				
+				
+				if(correcto) {
+					try {
+						Articulos_bien frame = new Articulos_bien();
+						frame.setVisible(true);
+					} catch (Exception er) {
+						er.printStackTrace();
+					}
 					
 				}
 			}
