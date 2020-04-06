@@ -40,7 +40,7 @@ public class InicioSesion extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField usuario;
-	private JPasswordField contrasenya_;
+	private JPasswordField contrasenya;
 
 	
 	  //Launch the application.
@@ -87,7 +87,7 @@ public class InicioSesion extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				usuario.setText("");
-				contrasenya_.setText("");
+				contrasenya.setText("");
 			
 				
 			}
@@ -100,7 +100,7 @@ public class InicioSesion extends JFrame {
 				
 				String usuarioCogido = usuario.getText();
 				System.out.println(usuarioCogido);
-				char[] c = contrasenya_.getPassword();
+				char[] c = contrasenya.getPassword();
 				String contrasenya = c.toString();
 //				System.out.println(c.equals("admin"));
 				String m = "";
@@ -134,9 +134,9 @@ public class InicioSesion extends JFrame {
 		usuario = new JTextField();
 		usuario.setColumns(10);
 		
-		contrasenya_ = new JPasswordField();
-		contrasenya_.setEchoChar('*');
-		contrasenya_.setColumns(10);
+		contrasenya = new JPasswordField();
+		contrasenya.setEchoChar('*');
+		contrasenya.setColumns(10);
 		
 		GroupLayout gl__contrasenya = new GroupLayout(_contrasenya);
 		gl__contrasenya.setHorizontalGroup(
@@ -154,7 +154,7 @@ public class InicioSesion extends JFrame {
 								.addComponent(lblNewLabel_1))
 							.addGap(15)
 							.addGroup(gl__contrasenya.createParallelGroup(Alignment.TRAILING)
-								.addComponent(contrasenya_, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+								.addComponent(contrasenya, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 								.addComponent(usuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))))
 					.addContainerGap())
 		);
@@ -168,7 +168,7 @@ public class InicioSesion extends JFrame {
 					.addGap(18)
 					.addGroup(gl__contrasenya.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1)
-						.addComponent(contrasenya_, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(contrasenya, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
 					.addGroup(gl__contrasenya.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)

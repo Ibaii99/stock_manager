@@ -105,11 +105,25 @@ public class API {
 		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
 		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
 		
-		String url_image = get_from_json(json, "image_url");
+		String urlImage = get_from_json(json, "imageUrl");
+		
+		
+		System.out.println(nombre);
+		System.out.println(caducidad);
+		System.out.println(precio);
+		System.out.println(stock);
+		System.out.println(descripcion);
+		System.out.println(oferta);
+		System.out.println(categoria);
+		System.out.println(urlImage);
 		
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, url_image);
-
-		dao.store(c);;
+		
+		
+		
+		System.out.println(c.toString());
+		dao.store(c);
+		
 
 		return "Done";
 	}
@@ -182,6 +196,15 @@ public class API {
 	}
 
 	@POST
+	@Path("VaciarCarrito")//por ID
+	public void VaciarCarrito(JsonObject json) {
+		System.out.println("Limpiando a la cesta de la compra");
+		DAO db = new DAO();
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.getCarrito().vaciarCesta();
+	}
+
+	@POST
 	@Path("addFavoritos")//por ID
 	public void anyadirFavoritos(JsonObject json) {
 		System.out.println("Añadiendo a la cesta de favoritos");
@@ -210,6 +233,15 @@ public class API {
 		return c.getCarrito().getArticulos().size();
 	}
 	
+	@POST
+	@Path("VaciarFavoritos")//por ID
+	public void VaciarFavoritos(JsonObject json) {
+		System.out.println("Limpiando a la cesta de la compra");
+		DAO db = new DAO();
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.getCarrito().vaciarCesta();
+	}
+
 	@GET
 	@Path("getArticulos")
 	public List<Articulo> getArticulos() {
@@ -359,19 +391,7 @@ public class API {
 	}
 	
 	
-	@POST
-	@Path("storeArticulo")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String nuevoArticulo(JsonObject json) {
-		DAO dao = new DAO();
-		Articulo articulo = new Articulo(get_from_json(json, "name"), 
-				get_from_json(json, "caducidad"), get_from_json(json, "precio"),get_from_json(json, "stock"),
-				get_from_json(json, "descripcion"),get_from_json(json, "oferta"),get_from_json(json, "categoria"),
-				get_from_json(json, "image_url"));
-		dao.store(articulo);
 
-		return "{ \"nombre\": \""+ articulo.getNombre() + "\" }";
-	}
 
 	@GET
 	@Path("meter_datos")

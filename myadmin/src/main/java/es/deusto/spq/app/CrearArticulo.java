@@ -166,7 +166,7 @@ public class CrearArticulo extends JFrame {
 			    String image_url = tUrl.getText();
 			    
 			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
-//			    System.out.println(articulo);
+			    System.out.println(articulo);
 			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
 			    System.out.println("Usuario anadido");
 
