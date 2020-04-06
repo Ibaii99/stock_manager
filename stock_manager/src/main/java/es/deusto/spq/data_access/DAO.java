@@ -9,6 +9,7 @@ import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import es.deusto.spq.data.Cesta;
@@ -21,6 +22,8 @@ import es.deusto.spq.data.Cesta.Estado;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+
+
 //import es.deusto.spq.data.Admin;
 import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cliente;
@@ -53,6 +56,59 @@ public class DAO {
 
 		}
 	}
+	
+	
+	public void delete(Articulo u) {
+
+//		Transaction tm = pm.currentTransaction();
+		Transaction tm = pm.currentTransaction();
+		
+		try {
+			tm.begin();
+			   
+//			    System.out.println("   * Deleting an object: " + u);
+			    
+//			    Articulo a = this.getArticulo(u.getId());
+//			    System.out.println(a);
+//			    pm.deletePersistent(a);
+//	    		System.out.println("- Deleted inventory from db: " + u);
+//	    		tm.commit();
+		    
+//		    Extent<Articulo> extent = pm.getExtent(Articulo.class, true);
+		    
+		    
+//		    for (Articulo articulo : extent) {
+		    	Query<Articulo> productsQuery = pm.newQuery("SELECT FROM " + Articulo.class.getName() + " WHERE ID==" + u.getId());
+		    	for (Articulo product : productsQuery.executeList()) {
+			        System.out.println("- Selected product from db: " + product.getId());
+			        pm.deletePersistent(product);
+			        System.out.println("- Deleted product from db: " + product.getId());
+			    }
+//		    	System.out.println("- Deleted inventory from db: " + u);
+//		    }
+		    	
+//		    	for (Articulo articulo : extent) {
+//		    		if(articulo.getId() == u.getId()) {
+//		    			System.out.println(articulo);
+//				    	pm.deletePersistent(articulo);
+//				        System.out.println("- Deleted inventory from db: " + articulo.getId());
+//		    		}
+//			    }
+		    	
+		    	
+		    tm.commit();
+		    
+			} catch ( Exception ex) {
+				System.out.println("   $ Error deleting an object: " + ex.getMessage());
+			} finally {
+				if (tm != null && tm.isActive()) {
+					tm.rollback();
+				}
+
+			}
+		}
+	
+	
 
 	// GET de lista de artÃ­culos
 	

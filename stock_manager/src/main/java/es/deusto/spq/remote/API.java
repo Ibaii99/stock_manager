@@ -107,6 +107,42 @@ public class API {
 	}
 	
 	
+	@POST
+	@Path("eliminarArticulo")
+	public String eliminarArticulo(JsonObject json) {
+		DAO dao = new DAO();
+		long id = Long.parseLong(get_from_json(json, "id"));
+		System.out.println(id);
+		Articulo a = dao.getArticulo(id);
+//		System.out.println(a);
+		dao.delete(a);
+		return "Articulo eliminado";
+	}
+	
+	
+	@DELETE
+    @Path("/{code}")
+    public Response deleteProducto(@PathParam("code") int code){
+        DAO dao = new DAO();
+        boolean existe = false;
+        List<Articulo> articulos = dao.getArticulos();
+
+        for (int i = 0; i < articulos.size(); i++) {
+            if (code == articulos.get(i).getId()){
+                existe = true;
+                dao.delete(articulos.get(i));
+            }
+        }
+        if (existe) {
+            System.out.println("Deleting producto...");
+            return Response.status(Response.Status.OK).build();
+        }else {
+            System.out.println("producto not found");
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+    }
+	
 	
 	
 	
