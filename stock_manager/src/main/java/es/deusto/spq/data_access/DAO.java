@@ -226,7 +226,7 @@ public class DAO {
 	public Cesta modifyCesta( long idCesta,  long idArticulo,  int cantidad) {
 		Cesta c = getCesta(idCesta);
 		Articulo a = getArticulo(idArticulo);
-		c.modifyThisCesta(a, cantidad);
+		c.modifyCesta(a, cantidad);
 		return c;
 	}
 
