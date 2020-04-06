@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq.app;
+package src.main.java.es.deusto.spq.data;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -38,7 +38,6 @@ public class Articulo implements Serializable {
     private float oferta;
     private Categoria categoria;
     private byte [] image;
-    
     private String imageUrl;
     
     private Vendedor vendedor;
@@ -150,7 +149,7 @@ public class Articulo implements Serializable {
 
 	@Override
 	public String toString() {
-        return "Articulo:" + "[Nombre: " + this.nombre + ", Caducidad: " + this.caducidad + ", Precio: " + this.precio +
+        return "Articulo:" + "[Id" + this.id + "Nombre: " + this.nombre + ", Caducidad: " + this.caducidad + ", Precio: " + this.precio +
         ", Stock: " + this.stock + ", Descripción: " + this.descripcion + ", Oferta: " + this.oferta + ", Categoria: " + this.categoria +     "]";
 	}
 
@@ -188,7 +187,4 @@ public class Articulo implements Serializable {
 		this.image =  data.getData();
 	}
     
-  
-
-
 }

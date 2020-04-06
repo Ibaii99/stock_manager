@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.core.MediaType;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
@@ -35,7 +36,7 @@ import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
 
-//import es.deusto.spq.data.Admin;
+
 
 
 /**
@@ -86,7 +87,7 @@ public class API {
 	*/
 	
 	@DELETE
-	@Path("{code}")
+	@Path("code")
 	public Response eliminarArticulo(@PathParam("code") int code) {
 		if (code == 10) {
 			System.out.println("Eliminando articulo...");
@@ -96,19 +97,6 @@ public class API {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 	}
-	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String addArticulo(Articulo articulo) {
-		System.out.println("Nuevo articulo" + articulo.getNombre() + ", " + articulo.getCaducidad() + ", " + articulo.getPrecio() + 
-				", " + articulo.getDescripcion() + ", " + articulo.getOferta() + ", " + articulo.getCategoria() + ", " + articulo.getImageUrl());
-		return "articulo añadido correctamente";
-	}
-	
-	
-	
-	
 	
 
 	@POST
@@ -166,7 +154,7 @@ public class API {
 		dao.store(c);
 		
 
-		return "Done";
+		return "Creado";
 	}
 
 	/*
@@ -462,25 +450,6 @@ public class API {
 	}
 	
 
-	
-//	
-//	@POST
-//	@Path("post")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public boolean register() {
-//		DAO db = new DAO();
-//		Cliente c = new Cliente("ibai", "asdnhujkasdnas", "adsasdsad", "sadaddas");
-//		db.store(c);
-//		return true;
-//	}
-//	
-//    @GET
-//    @Path("get")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getIt() {
-//        return "Got it!";
-//    }
 
     
 }

@@ -16,7 +16,6 @@ import es.deusto.spq.data.Cesta;
 
 
 public class Cliente_test{
-	//Creamos distintas cestas, con distintos articulos dentro del mismo cliente
 	private Cliente c = new Cliente("mikel@gmail.com", "mikel", "Deusto1", "Deusto kalea 1");
 	private List<Cesta> cestas = new ArrayList<Cesta>();
 	private Date f1 = new Date(120,04,12);
@@ -36,22 +35,22 @@ public class Cliente_test{
 		listaCantidades.add(cantidad2);		
 	}
 	
-	// @Test
-	// public void testNombre() {
-	// 	assertEquals(c.getNombre_cliente(), "mikel");
-	// }
-	// @Test
-	// public void testEmail() {
-	// 	assertEquals(c.getEmail_cliente(), "mikel@gmail.com");
-	// }
-	// @Test
-	// public void testContrasenya() {
-	// 	assertEquals(c.getContrasenya_cliente(), "Deusto1");
-	// }
-	// @Test
-	// public void testDireccion() {
-	// 	assertEquals(c.getDireccion_cliente(), "Deusto kalea 1");
-	// }
+	 @Test
+	 public void testNombre() {
+	 	assertEquals(c.getNombreCliente(), "mikel");
+	 }
+	 @Test
+	 public void testEmail() {
+	 	assertEquals(c.getEmailCliente(), "mikel@gmail.com");
+	 }
+	 @Test
+	 public void testContrasenya() {
+	 	assertEquals(c.getContrasenyaCliente(), "Deusto1");
+	 }
+	 @Test
+	 public void testDireccion() {
+	 	assertEquals(c.getDireccionCliente(), "Deusto kalea 1");
+	 }
 	@Test
 	public void testId() {
 		assertEquals(c.getId(), 0);

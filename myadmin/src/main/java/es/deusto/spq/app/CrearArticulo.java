@@ -6,6 +6,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response.Status;
+
+import src.main.java.es.deusto.spq.data.Articulo;
+import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ProcessingException;
@@ -16,10 +20,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.*;
-
-
-
-import src.main.java.es.deusto.spq.app.Articulo.Categoria;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -45,6 +45,7 @@ public class CrearArticulo extends JFrame {
 	private JTextField tprecio;
 	private JTextField tnombre;
 	private JTextField tcaducidad;
+	private JTextField tid;
 	private Date date;
 
 	/**
@@ -72,8 +73,8 @@ public class CrearArticulo extends JFrame {
 	public CrearArticulo() {
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
+
 		final WebTarget articuloTarget = appTarget.path("ingresarArticulo");
-		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
@@ -131,7 +132,7 @@ public class CrearArticulo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					System.out.println("Ha pulsaod cancelar, volver a pagina anterior");
-					Articulos_bien frame = new Articulos_bien();
+					ArticulosLista frame = new ArticulosLista();
 					frame.setVisible(true);
 				} catch (Exception es) {
 					es.printStackTrace();
@@ -141,6 +142,7 @@ public class CrearArticulo extends JFrame {
 		
 		JButton btnaceptar = new JButton("Aceptar");
 		btnaceptar.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String nombre = tnombre.getText();
@@ -168,7 +170,6 @@ public class CrearArticulo extends JFrame {
 			    System.out.println(articulo);
 			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
 			    System.out.println("Usuario anadido");
-
 
 			}
 		});
