@@ -85,37 +85,50 @@ public class API {
 
 	@POST
 	@Path("ingresarArticulo")
-	public String ingresarArticulo(JsonObject json) throws ParseException {
+	public String ingresarArticulo(JsonObject json) {
 		DAO dao = new DAO();
 		
 		System.out.println(json);
 
 		String nombre = get_from_json(json, "nombre");
+		System.out.println(nombre);
+		String cad = get_from_json(json, "caducidad");
+		System.out.println("Cadudcida json");
+		System.out.println(cad);
 
-		Date caducidad = new SimpleDateFormat("dd/MM/yyyy").parse(get_from_json(json, "caducidad")); // "31/12/1998"
+		Date caducidad = null;
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
+		try{
+            caducidad = df.parse(cad);
+            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, "+cad);
+        } catch (Exception e){ System.out.println("invalid format");}
+		
+		
+
+//		System.out.println(caducidad);
 		Float precio = Float.parseFloat(get_from_json(json, "precio")); //13.2
-
+		System.out.println(precio);
 		int stock = Integer.parseInt(get_from_json(json, "stock"));
-
+		System.out.println(stock);
 		String descripcion = get_from_json(json, "descripcion");
-
+		System.out.println(descripcion);
 		Float oferta = Float.parseFloat(get_from_json(json, "oferta")); //13.2
-
+		System.out.println(oferta);
 		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
 		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
-		
-		String urlImage = get_from_json(json, "imageUrl");
-		
-		
-		System.out.println(nombre);
-		System.out.println(caducidad);
-		System.out.println(precio);
-		System.out.println(stock);
-		System.out.println(descripcion);
-		System.out.println(oferta);
 		System.out.println(categoria);
+		String urlImage = get_from_json(json, "imageUrl");
 		System.out.println(urlImage);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, urlImage);
 		
