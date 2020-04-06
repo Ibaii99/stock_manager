@@ -17,6 +17,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 
 import src.main.java.es.deusto.spq.app.Articulo.Categoria;
 
@@ -33,8 +35,8 @@ public class Articulos_bien extends JFrame{
 	
 	public Articulos_bien() {
 		client = ClientBuilder.newClient();
-		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
-		final WebTarget articulosTarget = appTarget.path("Articulo");
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
+		final WebTarget articulosTarget = appTarget.path("get_articulos");
 		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
 
 		WebTarget allArticulosTarget = articulosTarget.path("get_articulos");

@@ -106,16 +106,19 @@ public class InicioSesion extends JFrame {
 				
 				List<Usuario> usuarios = usuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 				for(Usuario u: usuarios) {
-//					if(usuarioCogido.equals(u.getUser()) && usuarioCogido.equals(u.getContrasenya())) {
-//						try {
-//							System.out.println("Correcto");
-////							ShowArticulos frame = new ShowArticulos();
-////							frame.setVisible(true);
-//						} catch (Exception es) {
-//							es.printStackTrace();
-//						}
-//					}
-					System.out.println(u);
+					System.out.println(u.toString());
+					System.out.println(u.getUser());
+					if(usuarioCogido.equals(u.getUser()) && usuarioCogido.equals(u.getContrasenya())) {
+						try {
+							System.out.println("Correcto");
+							Articulos_bien frame = new Articulos_bien();
+							frame.setVisible(true);
+						} catch (Exception es) {
+							es.printStackTrace();
+						}
+					}
+					
+					
 				}
 			}
 		});
