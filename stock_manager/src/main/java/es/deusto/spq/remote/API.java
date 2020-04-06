@@ -36,7 +36,7 @@ import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
 
-//import es.deusto.spq.data.Admin;
+
 
 
 /**
@@ -87,7 +87,7 @@ public class API {
 	*/
 	
 	@DELETE
-	@Path("{code}")
+	@Path("code")
 	public Response eliminarArticulo(@PathParam("code") int code) {
 		if (code == 10) {
 			System.out.println("Eliminando articulo...");
@@ -293,18 +293,6 @@ public class API {
 		}
 	*/
 	
-
-	
-	//Conseguir administradores
-//	@POST
-//	@Path("get_admin")
-//	public Admin get_admin(JsonObject json) {
-//		System.out.println("Usuario: " + get_from_json(json, "usuario") + " Pass: "+  get_from_json(json, "password"));
-//		Admin a = new DAO().getAdmin(get_from_json(json, "usuario"), get_from_json(json, "password"));
-//		a.toString();
-//		return a;
-//	}
-	
 	
 	@GET
 	@Path("getCestas")
@@ -442,25 +430,6 @@ public class API {
 	}
 	
 
-	
-//	
-//	@POST
-//	@Path("post")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public boolean register() {
-//		DAO db = new DAO();
-//		Cliente c = new Cliente("ibai", "asdnhujkasdnas", "adsasdsad", "sadaddas");
-//		db.store(c);
-//		return true;
-//	}
-//	
-//    @GET
-//    @Path("get")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getIt() {
-//        return "Got it!";
-//    }
 
     
 }

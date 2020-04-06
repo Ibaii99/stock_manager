@@ -35,23 +35,23 @@ import java.awt.Dimension;
 
 
 
-public class ArticulosLista extends JFrame{
+public class Articulos_bien extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private Client client;
 	private Date date;
 	
-	public ArticulosLista() {
+	public Articulos_bien() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
-		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-		final WebTarget articulosTarget = appTarget.path("getArticulos");
-		final WebTarget eliminarTarget = appTarget.path("code");
 
-
-		setSize(1200, 500);
 
 		
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
+		final WebTarget articulosTarget = appTarget.path("getArticulos");
+
+
+		setSize(1000, 500);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -109,31 +109,32 @@ public class ArticulosLista extends JFrame{
 		getContentPane().add(listScrollPane, BorderLayout.WEST);
 		
 		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
-		final List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+		List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+	
 		articulosListModel.clear();
 		for(Articulo articulo: articulos) {
 			articulosListModel.addElement(articulo);
-			
 		}
 		
 		JPanel derecha = new JPanel();
 		getContentPane().add(derecha,BorderLayout.EAST);
 		
-		final JTextField codeTextField = new JTextField("",2);
-		derecha.add(codeTextField);
 
 		
 		eliminarBoton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				WebTarget deleteTarget = eliminarTarget.path(codeTextField.getText());
-				Response response = deleteTarget.request().delete(codeTextField.getText());
+				Articulo a = articulosLista.getSelectedValue();
+				int fila = articulosLista.getSelectedIndex();
+				articulosLista.remove(fila);
+				System.out.println(a);
+				WebTarget deleteTarget = articulosTarget.path(Integer.toString(fila));//Aqui meto un nombre, pero funciona con id ?
+				Response response = deleteTarget.request().delete();
 				if(response.getStatus() == Status.OK.getStatusCode()) {
-					JOptionPane.showMessageDialog(ArticulosLista.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
 				}else {
-					JOptionPane.showMessageDialog(ArticulosLista.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(Articulos_bien.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
@@ -147,7 +148,7 @@ public class ArticulosLista extends JFrame{
 			
 			@Override
 			public void run() {
-				new ArticulosLista();
+				new Articulos_bien();
 				
 			}
 		});

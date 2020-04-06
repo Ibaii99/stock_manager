@@ -8,6 +8,9 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+
+import src.main.java.es.deusto.spq.data.Usuario;
+
 import javax.ws.rs.core.GenericType;
 
 
@@ -60,8 +63,6 @@ public class InicioSesion extends JFrame {
 	}
 
 	private Client client;
-	
-	 // Create the frame.
 	 
 	public InicioSesion() {
 		client = ClientBuilder.newClient();
@@ -102,7 +103,6 @@ public class InicioSesion extends JFrame {
 				System.out.println(usuarioCogido);
 				char[] c = contrasenya.getPassword();
 				String contrasenya = c.toString();
-//				System.out.println(c.equals("admin"));
 				String m = "";
 				for(char ch: c) {
 					m = m+ch;

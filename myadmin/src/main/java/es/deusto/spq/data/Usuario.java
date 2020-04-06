@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq.app;
+package src.main.java.es.deusto.spq.data;
 
 import java.io.Serializable;
 
