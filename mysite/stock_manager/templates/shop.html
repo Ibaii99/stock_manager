@@ -11,7 +11,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Tienda</a></span> <span>Productos</span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/index/">Tienda</a></span> <span>Productos</span></p>
             <h1 class="mb-0 bread">Productos</h1>
           </div>
         </div>
@@ -348,11 +348,11 @@
     			{% for articulo in articulos %}
 				<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="{{articulo.image_url}}"  style="height: 250px; width: 100%;  margin-left: auto; margin-right: auto;" alt="Colorlib Template">
+    					<a href="/article/{{articulo.id}}" class="img-prod"><img class="img-fluid" src="{{articulo.image_url}}"  style="height: 250px; width: 100%;  margin-left: auto; margin-right: auto;" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">{{ articulo.nombre}}</a></h3>
+    						<h3><a href="/article/{{articulo.id}}">{{ articulo.nombre}}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 									<p class="price"> {% if articulo.oferta <  articulo.precio %} <span class="mr-2 price-dc">{{articulo.precio}}€</span> {% endif %}<span class="price-sale">{{ articulo.oferta}}€</span></p>

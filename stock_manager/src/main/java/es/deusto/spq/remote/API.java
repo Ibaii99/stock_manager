@@ -22,9 +22,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Cliente;
-
 import es.deusto.spq.data.Usuario;
-
 import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
 
@@ -159,6 +157,35 @@ public class API {
 		"ID": "1"
 		}
 	*/
+	
+	@POST
+	@Path("add_carrito")//por ID
+	public void anyadir_carrito(JsonObject json) {
+		System.out.println("Añadiendo a la cesta de la compra");
+		DAO db = new DAO();
+		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+		System.out.println("asbgdjgbadsjashdbuik");
+		System.out.println("TOSTRING: " + a.toString());
+		System.out.println("NOMBRE: " + a.getNombre());
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		
+		c.get_compra().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
+		for (Articulo art : c.get_compra().getArticulos()) {
+			System.out.println(art.toString());
+		}
+	}
+	
+	@POST
+	@Path("add_favoritos")//por ID
+	public void anyadir_favoritos(JsonObject json) {
+		System.out.println("Añadiendo a la cesta de la compra");
+		DAO db = new DAO();
+		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.get_favoritos().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
+	}
+	
+	
 	//Conseguir administradores
 //	@POST
 //	@Path("get_admin")
@@ -280,7 +307,7 @@ public class API {
 		int valoracion = Integer.parseInt(get_from_json(json, "valoracion"));
 		long idCliente = Long.parseLong(get_from_json(json, "idCliente"));
 
-		Opinion o = new DAO().nuevaOpinion(txt, valoracion, idCliente);
+		Opinion o = null ;//new DAO().nuevaOpinion(txt, valoracion, idCliente);
 
 		return o;
 	}
@@ -323,7 +350,6 @@ public class API {
 
 		return "{ \"nombre\": \""+vendedor.getNombre_vendedor() + "\" }";
 	}
-
 
 
 

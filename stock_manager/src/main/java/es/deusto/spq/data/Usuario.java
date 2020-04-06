@@ -2,23 +2,21 @@ package es.deusto.spq.data;
 
 import java.io.Serializable;
 import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Unique;
 
 
 @PersistenceCapable(detachable = "true")
 public class Usuario implements Serializable {
 	//
-	private static final long serialVersionUID = 1L;
+	
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
 	private long id;
-	
 	@Unique
 	private String nombre;
 	private String contrasenya;
+	private static final long serialVersionUID = 1L;
 	
 	public Usuario() {
 
