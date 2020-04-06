@@ -162,13 +162,22 @@ public class API {
 	@POST
 	@Path("modifyCarrito")//por ID
 	public void modifyCarrito(JsonObject json) {
-		System.out.println("Añadiendo a la cesta de la compra");
+		System.out.println("Modificando la cesta de la compra");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getCarrito().modifyCesta(a, Integer.parseInt(get_from_json(json,"cantidad")));
 	}
 	
+	@POST
+	@Path("tamanyoCarrito")//por ID
+	public int tamanyoCarrito(JsonObject json) {
+		System.out.println("Obteniendo tamaño de la cesta de la compra");
+		DAO db = new DAO();
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		return c.getCarrito().getArticulos().size();
+	}
+
 	@POST
 	@Path("addFavoritos")//por ID
 	public void anyadirFavoritos(JsonObject json) {
@@ -187,6 +196,15 @@ public class API {
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getFavoritos().modifyCesta(a, 1);
+	}
+
+	@POST
+	@Path("tamanyoFavoritos")//por ID
+	public int tamanyoFavoritos(JsonObject json) {
+		System.out.println("Obteniendo tamaño de la cesta de favoritos");
+		DAO db = new DAO();
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		return c.getCarrito().getArticulos().size();
 	}
 	
 	@GET
