@@ -5,7 +5,7 @@ Esta es el repositorio del proyecto del **Grupo 2**, incluye:
 - **CLIENTE** desarrollado en python 3 (Python 3) y django.
 - **ADMINISTRADOR** dessarrollado en Java 1.8(Oracle) con maven.
 
-TecnologÃ­as usadas:
+## Tecnologias usadas:
 -  virtualenvwrapper --> **Entornos virtuales** que se van a usar
    - docu: https://virtualenvwrapper.readthedocs.io/en/latest/index.html 
 - Django --> **Web Framework** que se va a usar para la parte de cliente
