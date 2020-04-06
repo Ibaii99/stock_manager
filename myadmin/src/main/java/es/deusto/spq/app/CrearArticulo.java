@@ -1,12 +1,23 @@
 package src.main.java.es.deusto.spq.app;
 
-import java.awt.BorderLayout;
-import java.text.SimpleDateFormat;
-import java.awt.EventQueue;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ProcessingException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.*;
+
+
 
 import src.main.java.es.deusto.spq.app.Articulo.Categoria;
 
@@ -22,15 +33,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ProcessingException;
 
 public class CrearArticulo extends JFrame {
 
@@ -44,7 +46,7 @@ public class CrearArticulo extends JFrame {
 	private JTextField tnombre;
 	private JTextField tcaducidad;
 	private Date date;
-	private Client client;
+
 	/**
 	 * Launch the application.
 	 */
@@ -60,15 +62,19 @@ public class CrearArticulo extends JFrame {
 			}
 		});
 	}
+	
+	
+	private Client client;
 
 	/**
 	 * Create the frame.
 	 */
 	public CrearArticulo() {
-		
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-		final WebTarget articulosTarget = appTarget.path("ingresarArticulo");
+		final WebTarget articuloTarget = appTarget.path("ingresarArticulo");
+		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
@@ -137,47 +143,33 @@ public class CrearArticulo extends JFrame {
 		btnaceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
-				String cat = tcategoria.getText();
-				Categoria c = Categoria.valueOf(cat);//???
-				
-				String cad = tcaducidad.getText();
-                SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    date = formatter1.parse(cad);
-                } catch (ParseException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-				Articulo articuloN = new Articulo(tnombre.getText(), date, Float.parseFloat(tprecio.getText()),
-						Integer.parseInt(tstock.getText()), tdescripcion.getText(), Float.parseFloat(toferta.getText()),
-						c, tUrl.getText());
-				articulosTarget.request(MediaType.APPLICATION_JSON).post(Entity.entity(articuloN, MediaType.APPLICATION_JSON));
-				
-				System.out.println(articuloN);
-//				String cadu = tcaducidad.getText();
-//				Date caduci = null;
-//				 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
-//	                try {
-//	                	 caduci = formatter1.parse(cadu);
-//	                } catch (ParseException e1) {
-//	                    // TODO Auto-generated catch block
-//	                    e1.printStackTrace();
-//	                }
-//			    String pre = tprecio.getText();
-//			    float precio = Float.parseFloat(pre);
-//			    String s = tstock.getText();
-//			    int stock = Integer.parseInt(s);
-//			    String descripcion = tdescripcion.getText();
-//			    String of = toferta.getText();
-//			    float oferta=Float.parseFloat(of);
-//			    String cat = tcategoria.getText();
-//			    Categoria categoria = Categoria.valueOf(cat);
-//			    String image_url = tUrl.getText();
-//			    
-//			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
-//			    System.out.println(articulo);
+				String nombre = tnombre.getText();
+				String cadu = tcaducidad.getText();
+				Date caduci = null;
+				 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+	                try {
+	                	 caduci = formatter1.parse(cadu);
+	                } catch (ParseException e1) {
+	                    // TODO Auto-generated catch block
+	                    e1.printStackTrace();
+	                }
+			    String pre = tprecio.getText();
+			    float precio = Float.parseFloat(pre);
+			    String s = tstock.getText();
+			    int stock = Integer.parseInt(s);
+			    String descripcion = tdescripcion.getText();
+			    String of = toferta.getText();
+			    float oferta=Float.parseFloat(of);
+			    String cat = tcategoria.getText();
+			    Categoria categoria = Categoria.valueOf(cat);
+			    String image_url = tUrl.getText();
+			    
+			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
+			    System.out.println(articulo);
+			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
+			    System.out.println("Usuario anadido");
+
+
 			}
 		});
 

@@ -1,6 +1,7 @@
 package es.deusto.spq.remote;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,11 +13,14 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.DELETE;
+
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -80,33 +84,87 @@ public class API {
 	  "address": "Altzaga"
 	}
 	*/
+	
+	@DELETE
+	@Path("{code}")
+	public Response eliminarArticulo(@PathParam("code") int code) {
+		if (code == 10) {
+			System.out.println("Eliminando articulo...");
+			return Response.status(Response.Status.OK).build();
+		}else {
+			System.out.println("Articulo no encontrado");
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String addArticulo(Articulo articulo) {
+		System.out.println("Nuevo articulo" + articulo.getNombre() + ", " + articulo.getCaducidad() + ", " + articulo.getPrecio() + 
+				", " + articulo.getDescripcion() + ", " + articulo.getOferta() + ", " + articulo.getCategoria() + ", " + articulo.getImageUrl());
+		return "articulo añadido correctamente";
+	}
+	
+	
+	
+	
+	
 
 	@POST
 	@Path("ingresarArticulo")
-	public String ingresarArticulo(JsonObject json) throws ParseException {
+	public String ingresarArticulo(JsonObject json) {
+		DAO dao = new DAO();
 		
 		System.out.println(json);
 
 		String nombre = get_from_json(json, "nombre");
+		System.out.println(nombre);
+		String cad = get_from_json(json, "caducidad");
+		System.out.println("Cadudcida json");
+		System.out.println(cad);
 
-		Date caducidad = new SimpleDateFormat("dd/MM/yyyy").parse(get_from_json(json, "caducidad")); // "31/12/1998"
+		Date caducidad = null;
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
+		try{
+            caducidad = df.parse(cad);
+            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, "+cad);
+        } catch (Exception e){ System.out.println("invalid format");}
+		
+		
+
+//		System.out.println(caducidad);
 		Float precio = Float.parseFloat(get_from_json(json, "precio")); //13.2
-
+		System.out.println(precio);
 		int stock = Integer.parseInt(get_from_json(json, "stock"));
-
+		System.out.println(stock);
 		String descripcion = get_from_json(json, "descripcion");
-
+		System.out.println(descripcion);
 		Float oferta = Float.parseFloat(get_from_json(json, "oferta")); //13.2
-
+		System.out.println(oferta);
 		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
 		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
+		System.out.println(categoria);
+		String urlImage = get_from_json(json, "imageUrl");
+		System.out.println(urlImage);
 		
-		String url_image = get_from_json(json, "image_url");
 		
-		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, url_image);
-
-		c.storeMe();
+		
+		
+		
+		
+		
+		
+		
+		
+		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, urlImage);
+		
+		
+		
+		System.out.println(c.toString());
+		dao.store(c);
+		
 
 		return "Done";
 	}
@@ -372,6 +430,9 @@ public class API {
 
 		return "{ \"nombre\": \""+vendedor.getNombreVendedor() + "\" }";
 	}
+	
+	
+
 
 	@GET
 	@Path("meter_datos")
@@ -392,5 +453,26 @@ public class API {
 		return json.get(attribute).toString().replace("\"", "");
 	}
 	
+
+	
+//	
+//	@POST
+//	@Path("post")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public boolean register() {
+//		DAO db = new DAO();
+//		Cliente c = new Cliente("ibai", "asdnhujkasdnas", "adsasdsad", "sadaddas");
+//		db.store(c);
+//		return true;
+//	}
+//	
+//    @GET
+//    @Path("get")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public String getIt() {
+//        return "Got it!";
+//    }
+
     
 }

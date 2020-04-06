@@ -1,4 +1,4 @@
-package es.deusto.spq;
+package src.test.java.es.deusto.spq;
 
 import static org.junit.Assert.assertTrue;
 

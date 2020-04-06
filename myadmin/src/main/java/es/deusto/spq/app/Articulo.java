@@ -12,13 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+
 
 //
-@PersistenceCapable(detachable = "true")
+
 public class Articulo implements Serializable {
 
 	/**
@@ -32,7 +29,6 @@ public class Articulo implements Serializable {
 	}
 	
 	private static final long serialVersionUID = 1L;
-	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
     private String nombre;
     private Date caducidad;

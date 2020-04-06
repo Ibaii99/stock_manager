@@ -145,8 +145,7 @@ public class DAO {
 
 	
 	////////////////////////////////////////////////////////////////////
-	@GET
-	@Path("get_users")
+
 		public List<Usuario> getUsuarios() {
 			List<Usuario> ret = new ArrayList<Usuario>();
 			Transaction tx = pm.currentTransaction();

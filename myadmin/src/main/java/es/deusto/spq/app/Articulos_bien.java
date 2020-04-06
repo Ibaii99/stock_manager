@@ -29,7 +29,9 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.EventQueue;
 import java.awt.Dimension;
+
 
 
 
@@ -42,10 +44,13 @@ public class Articulos_bien extends JFrame{
 	public Articulos_bien() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
+
+
 		
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
-		
+
+
 		setSize(1000, 500);
 
 		//setSize(600,700);
@@ -125,7 +130,7 @@ public class Articulos_bien extends JFrame{
 //				int indice = articulosLista.getSelectedIndex();
 				Articulo a = articulosLista.getSelectedValue();
 				int fila = articulosLista.getSelectedIndex();
-				
+				articulosLista.remove(fila);
 				System.out.println(a);
 				WebTarget deleteTarget = articulosTarget.path(Integer.toString(fila));//Aqui meto un nombre, pero funciona con id ?
 				Response response = deleteTarget.request().delete();
