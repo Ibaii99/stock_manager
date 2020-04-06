@@ -3,10 +3,6 @@ package src.main.java.es.deusto.spq.app;
 import java.io.Serializable;
 
 import java.util.List;
-
-
-
-
 public class Vendedor implements Serializable {
 	//
 	/**
@@ -18,7 +14,6 @@ public class Vendedor implements Serializable {
 	private String nombreVendedor;
 	private String emailVendedor;
 
-	
 	private List<Articulo> articulos;
 	
 	public Vendedor(){

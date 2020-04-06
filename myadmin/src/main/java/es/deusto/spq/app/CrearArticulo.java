@@ -71,10 +71,18 @@ public class CrearArticulo extends JFrame {
 	 */
 	public CrearArticulo() {
 		client = ClientBuilder.newClient();
+<<<<<<< Upstream, based on branch 'master' of https://github.com/Ibaii99/stock_manager.git
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articuloTarget = appTarget.path("ingresarArticulo");
 		
 
+<<<<<<< HEAD
+=======
+		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/");
+		final WebTarget articulosTarget = appTarget.path("api");
+>>>>>>> 416a37d metodos en la api para eliminarArticulo
+=======
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
@@ -143,6 +151,8 @@ public class CrearArticulo extends JFrame {
 		btnaceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+<<<<<<< HEAD
+<<<<<<< Upstream, based on branch 'master' of https://github.com/Ibaii99/stock_manager.git
 
 				String nombre = tnombre.getText();
 				String cadu = tcaducidad.getText();
@@ -169,6 +179,78 @@ public class CrearArticulo extends JFrame {
 			    System.out.println(articulo);
 			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
 			    System.out.println("Usuario anadido");
+
+
+				
+				
+				String cat = tcategoria.getText();
+				Categoria c = Categoria.valueOf(cat);//???
+				
+				String cad = tcaducidad.getText();
+                SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    date = formatter1.parse(cad);
+                } catch (ParseException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+				Articulo articuloN = new Articulo(tnombre.getText(), date, Float.parseFloat(tprecio.getText()),
+						Integer.parseInt(tstock.getText()), tdescripcion.getText(), Float.parseFloat(toferta.getText()),
+						c, tUrl.getText());
+				
+				Entity<Articulo> entity = Entity.entity(articuloN, MediaType.APPLICATION_JSON);
+				articulosTarget.request(MediaType.TEXT_PLAIN).post(entity);;
+				System.out.println(articuloN);
+//				String cadu = tcaducidad.getText();
+//				Date caduci = null;
+//				 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+//	                try {
+//	                	 caduci = formatter1.parse(cadu);
+//	                } catch (ParseException e1) {
+//	                    // TODO Auto-generated catch block
+//	                    e1.printStackTrace();
+//	                }
+//			    String pre = tprecio.getText();
+//			    float precio = Float.parseFloat(pre);
+//			    String s = tstock.getText();
+//			    int stock = Integer.parseInt(s);
+//			    String descripcion = tdescripcion.getText();
+//			    String of = toferta.getText();
+//			    float oferta=Float.parseFloat(of);
+//			    String cat = tcategoria.getText();
+//			    Categoria categoria = Categoria.valueOf(cat);
+//			    String image_url = tUrl.getText();
+//			    
+//			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
+//			    System.out.println(articulo);
+=======
+
+				String nombre = tnombre.getText();
+				String cadu = tcaducidad.getText();
+				Date caduci = null;
+				 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
+	                try {
+	                	 caduci = formatter1.parse(cadu);
+	                } catch (ParseException e1) {
+	                    // TODO Auto-generated catch block
+	                    e1.printStackTrace();
+	                }
+			    String pre = tprecio.getText();
+			    float precio = Float.parseFloat(pre);
+			    String s = tstock.getText();
+			    int stock = Integer.parseInt(s);
+			    String descripcion = tdescripcion.getText();
+			    String of = toferta.getText();
+			    float oferta=Float.parseFloat(of);
+			    String cat = tcategoria.getText();
+			    Categoria categoria = Categoria.valueOf(cat);
+			    String image_url = tUrl.getText();
+			    
+			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
+			    System.out.println(articulo);
+			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
+			    System.out.println("Usuario anadido");
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 
 			}
 		});

@@ -49,7 +49,10 @@ public class Articulos_bien extends JFrame{
 		
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
+<<<<<<< HEAD
+=======
 		
+>>>>>>> branch 'master' of https://github.com/Ibaii99/stock_manager.git
 
 		setSize(1000, 500);
 
@@ -130,6 +133,8 @@ public class Articulos_bien extends JFrame{
 //				int indice = articulosLista.getSelectedIndex();
 				Articulo a = articulosLista.getSelectedValue();
 				int fila = articulosLista.getSelectedIndex();
+				articulosLista.remove(fila);
+				
 				
 				System.out.println(a);
 				WebTarget deleteTarget = articulosTarget.path(Integer.toString(fila));//Aqui meto un nombre, pero funciona con id ?
