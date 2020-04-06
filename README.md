@@ -45,6 +45,7 @@ mvn exec:java
 ~~~ 
 mvn datanucleus:schema-delete
 ~~~ 
+*Notas: Si se tiene algún problema con el paso 3 ejecutar las tablas manualmente en mysql con el archivo BD?code.sql en src\main\sql.
 
 # Inicio de aplicación
 
