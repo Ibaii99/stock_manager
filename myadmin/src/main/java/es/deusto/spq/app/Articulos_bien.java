@@ -1,4 +1,3 @@
-
 package src.main.java.es.deusto.spq.app;
 
 
@@ -19,8 +18,11 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ProcessingException;
+
 
 import src.main.java.es.deusto.spq.app.Articulo.Categoria;
+import src.main.java.es.deusto.spq.app.*;
 
 import java.util.Date;
 import java.util.List;
@@ -37,11 +39,7 @@ public class Articulos_bien extends JFrame{
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("get_articulos");
-		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
-
-		WebTarget allArticulosTarget = articulosTarget.path("get_articulos");
-		List<Articulo> articulos = allArticulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-	
+		
 		setSize(500,500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -51,11 +49,18 @@ public class Articulos_bien extends JFrame{
 		JButton eliminarBoton = new JButton("Eliminar articulo");
 		JButton anyadirBoton = new JButton("Anyadir articulo");
 		botonesPanel.add(eliminarBoton);
-		botonesPanel.add(eliminarBoton);
+		botonesPanel.add(anyadirBoton);
 		add(botonesPanel, BorderLayout.SOUTH);
 		
 		final DefaultListModel<Articulo> articulosListModel = new DefaultListModel<>();
 		JList<Articulo> articulosLista = new JList<>(articulosListModel);
+		
+		JScrollPane listScrollPane = new JScrollPane(articulosLista);
+		add(listScrollPane, BorderLayout.WEST);
+		
+		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
+		List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+	
 		articulosListModel.clear();
 		for(Articulo articulo: articulos) {
 			articulosListModel.addElement(articulo);
@@ -82,6 +87,11 @@ public class Articulos_bien extends JFrame{
 		derecha.add(ofertaText);
 		derecha.add(categoriaText);
 		derecha.add(imagenText);
+		
+		
+		
+		
+		
 		
 		anyadirBoton.addActionListener(new ActionListener() {
 			
