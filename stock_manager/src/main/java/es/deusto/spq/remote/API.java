@@ -117,7 +117,7 @@ public class API {
 		System.out.println(categoria);
 		System.out.println(urlImage);
 		
-		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, url_image);
+		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, urlImage);
 		
 		
 		
