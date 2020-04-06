@@ -41,7 +41,7 @@ mvn datanucleus:schema-create
 ~~~ 
 mvn exec:java
 ~~~ 
-X. Borrar las tablas de la base de datos
+0. Borrar las tablas de la base de datos
 ~~~ 
 mvn datanucleus:schema-delete
 ~~~ 
