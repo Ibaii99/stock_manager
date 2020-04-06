@@ -184,6 +184,34 @@ public class Cesta implements Serializable {
 //
 //}
 
+	public void modifyCesta(Articulo articulo, Integer cantidad) {
 
+	    if(this.getArticulos().contains(articulo)) {
+	        int i = articulos.indexOf(articulo);
+	        if (cantidad == 0) {
+	            articulos.remove(i);
+	            cantidades.remove(i);
+	        }else {
+	            cantidades.remove(i);
+	            cantidades.add(i, cantidad);
+	        }
+	    }else{
+	        articulos.add(articulo);
+	        cantidades.add(cantidad);
+	    }
+	}
+	
+	public void addCesta(Articulo articulo, Integer cantidad) {
 
+	    if(this.getArticulos().contains(articulo)) {
+	        int i = articulos.indexOf(articulo);
+	        int cant = cantidad + cantidades.get(i);
+	        cantidades.remove(i);
+	        cantidades.add(i, cant);
+	    }else{
+	        articulos.add(articulo);
+	        cantidades.add(cantidad);
+	    }
+
+	}
 }

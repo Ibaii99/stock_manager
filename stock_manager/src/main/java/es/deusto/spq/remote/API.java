@@ -136,20 +136,42 @@ public class API {
 	}
 
 	@POST
-	@Path("get_cestas_usr")
-	public Cesta get_cestas_usr(JsonObject json) {
+	@Path("get_carrito")
+	public Cesta get_carrito(JsonObject json) {
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-//		return Response.ok(c.get_compra().getArticulos(), MediaType.APPLICATION_JSON).build();
-//		return c.get_compra().getArticulos();
 		return c.getCarrito();
 	}
-	/*
-		{
-		"email": "izaianda@gmail.com",
-		"password": "123"
-		}
-	*/
+	
+	@POST
+	@Path("get_favoritos")
+	public Cesta get_favoritos(JsonObject json) {
+		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
+		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		return c.getFavoritos();
+	}
+	
+	@POST
+	@Path("add_carrito")//por ID
+	public void anyadir_carrito(JsonObject json) {
+		System.out.println("Añadiendo a la cesta de la compra");
+		DAO db = new DAO();
+		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.getCarrito().addCesta(a, Integer.parseInt(get_from_json(json,"cantidad")));
+	}
+	
+	@POST
+	@Path("add_favoritos")//por ID
+	public void anyadir_favoritos(JsonObject json) {
+		System.out.println("Añadiendo a la cesta de favoritos");
+		DAO db = new DAO();
+		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		c.getFavoritos().modifyCesta(a, 1);
+	}
+	
+	
 	@GET
 	@Path("get_articulos")
 	public List<Articulo> get_articulos() {
@@ -172,33 +194,7 @@ public class API {
 		}
 	*/
 	
-	@POST
-	@Path("add_carrito")//por ID
-	public void anyadir_carrito(JsonObject json) {
-		System.out.println("Añadiendo a la cesta de la compra");
-		DAO db = new DAO();
-		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
-		System.out.println("asbgdjgbadsjashdbuik");
-		System.out.println("TOSTRING: " + a.toString());
-		System.out.println("NOMBRE: " + a.getNombre());
-		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-		
-//		c.get_compra().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
-//		for (Articulo art : c.get_compra().getArticulos()) {
-//			System.out.println(art.toString());
-//		}
-	}
-	
-	@POST
-	@Path("add_favoritos")//por ID
-	public void anyadir_favoritos(JsonObject json) {
-		System.out.println("Añadiendo a la cesta de la compra");
-		DAO db = new DAO();
-		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
-		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-//		c.get_favoritos().anyadirCesta(a, Integer.parseInt(get_from_json(json, "cantidad")));
-	}
-	
+
 	
 	//Conseguir administradores
 //	@POST
