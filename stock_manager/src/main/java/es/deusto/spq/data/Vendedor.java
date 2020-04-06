@@ -27,7 +27,7 @@ public class Vendedor implements Serializable {
 	
 	@Persistent(mappedBy = "vendedor")
 	@Join
-	private List<Articulo> articulos;
+	private List<Articulo> articulos = new ArrayList<>();
 	
 	public Vendedor(){
 	}

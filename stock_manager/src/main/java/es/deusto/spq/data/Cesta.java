@@ -39,9 +39,9 @@ public class Cesta implements Serializable {
     // En el indice 1 de cantidades estara las cantidades dedl articulo 1
 	
     @Join
-    private List<Articulo> articulos;
+    private List<Articulo> articulos = new ArrayList<>();
     
-    private List<Integer> cantidades;
+    private List<Integer> cantidades = new ArrayList<>();
     private Estado estado;
 
    public Cesta() {
@@ -49,9 +49,8 @@ public class Cesta implements Serializable {
 }
 
 
-	public Cesta(Cliente cliente, List<Articulo> articulos, List<Integer> cantidades, Estado estado) {
+	public Cesta(List<Articulo> articulos, List<Integer> cantidades, Estado estado) {
 		super();
-		this.cliente = cliente;
 		this.articulos = articulos;
 		this.cantidades = cantidades;
 		this.estado = estado;

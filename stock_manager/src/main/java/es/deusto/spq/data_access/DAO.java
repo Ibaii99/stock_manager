@@ -496,8 +496,8 @@ public class DAO {
 		listaCantidades2.add(cantidad4);
 		
 		ArrayList<Cesta> ac = new ArrayList<>();
-		Cesta aa = new Cesta(jokin, listaArticulos1, listaCantidades1, Estado.ACTUAL);
-		Cesta bb = new Cesta(jokin, listaArticulos2, listaCantidades2, Estado.ACTUAL);
+		Cesta aa = new Cesta(listaArticulos1, listaCantidades1, Estado.ACTUAL);
+		Cesta bb = new Cesta(listaArticulos2, listaCantidades2, Estado.ACTUAL);
 		ac.add(aa);
 		ac.add(bb);
 		jokin.setCestas(ac);

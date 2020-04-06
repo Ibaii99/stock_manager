@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.json.JsonObject;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -127,7 +128,7 @@ public class API {
 	public Cliente get_cliente(JsonObject json) {
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-		c.toString();
+		System.out.println(c.get_compra().getArticulos().toString());
 		return c;
 	}
 	/*
