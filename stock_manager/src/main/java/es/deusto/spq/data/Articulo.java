@@ -147,11 +147,11 @@ public class Articulo implements Serializable {
 
 	
 	
-	public String getImage_url() {
+	public String getImageUrl() {
 		return imageUrl;
 	}
 
-	public void setImage_url(String image_url) {
+	public void setImageUrl(String image_url) {
 		this.imageUrl = image_url;
 	}
 
