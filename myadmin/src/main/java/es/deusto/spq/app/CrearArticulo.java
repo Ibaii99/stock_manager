@@ -33,6 +33,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class CrearArticulo extends JFrame {
 
 	private JPanel contentPane;
@@ -44,6 +45,7 @@ public class CrearArticulo extends JFrame {
 	private JTextField tprecio;
 	private JTextField tnombre;
 	private JTextField tcaducidad;
+	private Date date;
 
 	/**
 	 * Launch the application.
@@ -72,8 +74,7 @@ public class CrearArticulo extends JFrame {
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articuloTarget = appTarget.path("ingresarArticulo");
 		
-		
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
@@ -86,7 +87,7 @@ public class CrearArticulo extends JFrame {
 		
 		JLabel lnombre = new JLabel("Nombre:");
 		
-		
+		JLabel lcaducidad = new JLabel("Fecha caducidad:");
 		
 		JLabel lprecio = new JLabel("Precio:");
 		
@@ -118,6 +119,9 @@ public class CrearArticulo extends JFrame {
 		tprecio = new JTextField();
 		tprecio.setColumns(10);
 		
+		tcaducidad = new JTextField();
+		tcaducidad.setColumns(10);
+		
 		tnombre = new JTextField();
 		tnombre.setColumns(10);
 		
@@ -139,6 +143,7 @@ public class CrearArticulo extends JFrame {
 		btnaceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				String nombre = tnombre.getText();
 				String cadu = tcaducidad.getText();
 				Date caduci = null;
@@ -164,14 +169,10 @@ public class CrearArticulo extends JFrame {
 //			    System.out.println(articulo);
 			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
 			    System.out.println("Usuario anadido");
-			    
+
 			}
 		});
-		
-		JLabel lcaducidad = new JLabel("Caducidad:");
-		
-		tcaducidad = new JTextField();
-		tcaducidad.setColumns(10);
+
 		GroupLayout gl_caducidad = new GroupLayout(caducidad);
 		gl_caducidad.setHorizontalGroup(
 			gl_caducidad.createParallelGroup(Alignment.LEADING)

@@ -27,10 +27,10 @@ public class Cliente implements Serializable{
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
 	@Unique
-    private String email_cliente;
-    private String nombre_cliente;
-    private String contrasenya_cliente;
-    private String direccion_cliente;
+    private String emailCliente;
+    private String nombreCliente;
+    private String contrasenyaCliente;
+    private String direccionCliente;
 
     @Column
     private Cesta carrito = new Cesta();
@@ -42,11 +42,11 @@ public class Cliente implements Serializable{
 
     }
 
-    public Cliente(String _nombre, String _email, String _contrasenya, String _direccion) {
-        this.contrasenya_cliente = _contrasenya;
-        this.email_cliente = _email;
-        this.nombre_cliente = _nombre;
-        this.direccion_cliente = _direccion;
+    public Cliente(String nombre, String email, String contrasenya, String direccion) {
+        this.contrasenyaCliente = contrasenya;
+        this.emailCliente = email;
+        this.nombreCliente = nombre;
+        this.direccionCliente = direccion;
     }
 
    
@@ -58,36 +58,36 @@ public class Cliente implements Serializable{
 		this.id = id;
 	}
 
-	public String getEmail_cliente() {
-		return email_cliente;
+	public String getEmailCliente() {
+		return emailCliente;
 	}
 
-	public void setEmail_cliente(String email_cliente) {
-		this.email_cliente = email_cliente;
+	public void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
 	}
 
-	public String getNombre_cliente() {
-		return nombre_cliente;
+	public String getNombreCliente() {
+		return nombreCliente;
 	}
 
-	public void setNombre_cliente(String nombre_cliente) {
-		this.nombre_cliente = nombre_cliente;
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
 	}
 
-	public String getContrasenya_cliente() {
-		return contrasenya_cliente;
+	public String getContrasenyaCliente() {
+		return contrasenyaCliente;
 	}
 
-	public void setContrasenya_cliente(String contrasenya_cliente) {
-		this.contrasenya_cliente = contrasenya_cliente;
+	public void setContrasenyaCliente(String contrasenyaCliente) {
+		this.contrasenyaCliente = contrasenyaCliente;
 	}
 
-	public String getDireccion_cliente() {
-		return direccion_cliente;
+	public String getDireccionCliente() {
+		return direccionCliente;
 	}
 
-	public void setDireccion_cliente(String direccion_cliente) {
-		this.direccion_cliente = direccion_cliente;
+	public void setDireccionCliente(String direccionCliente) {
+		this.direccionCliente = direccionCliente;
 	}
 
 
@@ -129,7 +129,7 @@ public class Cliente implements Serializable{
 			Cliente c = dao.getCliente(email, contrasenya);
 			if(c !=null) {
 				System.out.println("Cliente encontrado.");
-				return c.getNombre_cliente();
+				return c.getNombreCliente();
 			}
 			else {
 				System.out.println("Cliente no encontrado.");
@@ -152,8 +152,6 @@ public class Cliente implements Serializable{
 	public void registrarme() {
 		DAO dao = new DAO();
 		dao.store(this);
-		//Cesta c = new Cesta(new ArrayList<Articulo>(), new ArrayList<Integer>(), Estado.ACTUAL);
-		//dao.store(c);
 	}
 	
 

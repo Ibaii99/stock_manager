@@ -102,7 +102,7 @@ public class InicioSesion extends JFrame {
 				System.out.println(usuarioCogido);
 				char[] c = contrasenya_.getPassword();
 				String contrasenya = c.toString();
-				System.out.println(c.equals("admin"));
+//				System.out.println(c.equals("admin"));
 				String m = "";
 				for(char ch: c) {
 					m = m+ch;

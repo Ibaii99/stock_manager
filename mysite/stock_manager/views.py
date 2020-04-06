@@ -111,10 +111,9 @@ def shop(request):
 def article(request, id):
     if request.method == "POST":
         if is_session_alive(request):
-            print(request.POST.get("boton"))
+            global sessions
+            sesion = sessions[request.COOKIES['sessionid']]
             if (request.POST.get("boton") == "Añadir al carrito") and ( int(request.POST.get("cantidad")) > 0):
-                global sessions
-                sesion = sessions[request.COOKIES['sessionid']]
                 json = {
                     "id_articulo": id,
                     "password": sesion.get("password"),
@@ -124,7 +123,12 @@ def article(request, id):
                 resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/add_carrito', json=json)
                 
             elif request.POST.get("boton") == "Añadir a favoritos":
-                None
+                json = {
+                    "id_articulo": id,
+                    "password": sesion.get("password"),
+                    "email": sesion.get("email"),
+                }
+                resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/add_favoritos', json=json)
     info={
             "ID": id,
         }

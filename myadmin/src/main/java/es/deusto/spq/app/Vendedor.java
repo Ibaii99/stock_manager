@@ -1,32 +1,22 @@
 package src.main.java.es.deusto.spq.app;
 
 import java.io.Serializable;
+
 import java.util.List;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.Join;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.Unique;
 
 
 
-@PersistenceCapable(detachable = "true")
 public class Vendedor implements Serializable {
 	//
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
 	private String nombre_vendedor;
-	@Unique
 	private String email_vendedor;
 	
-	@Persistent(mappedBy = "vendedor")
-	@Join
 	private List<Articulo> articulos;
 	
 	public Vendedor(){

@@ -19,6 +19,8 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ProcessingException;
+
 
 import src.main.java.es.deusto.spq.app.Articulo.Categoria;
 import src.main.java.es.deusto.spq.app.*;
@@ -28,6 +30,8 @@ import java.util.List;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.EventQueue;
+import java.awt.Dimension;
+
 
 
 
@@ -38,17 +42,29 @@ public class Articulos_bien extends JFrame{
 	private Date date;
 	
 	public Articulos_bien() {
+		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
 		
 		setSize(600,700);
+		
+		setSize(1000, 500);
+
+		//setSize(600,700);
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		
 		JPanel botonesPanel = new JPanel();
 		
 		JButton eliminarBoton = new JButton("Eliminar articulo");
+
+		JButton anyadirBoton = new JButton("Anyadir articulo");
+		botonesPanel.add(eliminarBoton);
+		botonesPanel.add(anyadirBoton);
+		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
+
 		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
 		
 		JButton btnanyadir = new JButton("Anyadir Articulo");
@@ -85,6 +101,8 @@ public class Articulos_bien extends JFrame{
 		botonesPanel.setLayout(gl_botonesPanel);
 		
 		final DefaultListModel<Articulo> articulosListModel = new DefaultListModel<>();
+
+
 		final JList<Articulo> articulosLista = new JList<>(articulosListModel);
 		
 		JScrollPane listScrollPane = new JScrollPane(articulosLista);
@@ -101,24 +119,7 @@ public class Articulos_bien extends JFrame{
 		JPanel derecha = new JPanel();
 		getContentPane().add(derecha,BorderLayout.EAST);
 		
-		final JTextField nombreText = new JTextField("", 10);
-//		final JTextField caducidadText = new JTextField("", 10);
-//		final JTextField precioText = new JTextField("", 4);
-//		final JTextField stockText = new JTextField("", 5);
-//		final JTextField descripcionText = new JTextField("", 50);
-//		final JTextField ofertaText = new JTextField("", 4);
-//		final JTextField categoriaText = new JTextField("", 40);
-//		final JTextField imagenText = new JTextField("", 50);//Duda
-		
-		
-		derecha.add(nombreText);
-//		derecha.add(caducidadText);
-//		derecha.add(precioText);
-//		derecha.add(stockText);
-//		derecha.add(descripcionText);
-//		derecha.add(ofertaText);
-//		derecha.add(categoriaText);
-//		derecha.add(imagenText);
+
 		
 		eliminarBoton.addActionListener(new ActionListener() {
 			
@@ -126,8 +127,10 @@ public class Articulos_bien extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 //				int indice = articulosLista.getSelectedIndex();
 				Articulo a = articulosLista.getSelectedValue();
+				int fila = articulosLista.getSelectedIndex();
+				
 				System.out.println(a);
-				WebTarget deleteTarget = articulosTarget.path(nombreText.getText());//Aqui meto un nombre, pero funciona con id ?
+				WebTarget deleteTarget = articulosTarget.path(Integer.toString(fila));//Aqui meto un nombre, pero funciona con id ?
 				Response response = deleteTarget.request().delete();
 				if(response.getStatus() == Status.OK.getStatusCode()) {
 					JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);

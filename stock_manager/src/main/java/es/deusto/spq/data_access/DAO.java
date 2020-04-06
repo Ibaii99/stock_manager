@@ -55,6 +55,7 @@ public class DAO {
 	}
 
 	// GET de lista de artÃ­culos
+	
 
 	public List<Articulo> getArticulos() {
 		 List<Articulo> ret = new ArrayList<Articulo>();
@@ -134,7 +135,7 @@ public class DAO {
 		clientes = (ArrayList<Cliente>) this.getClientes();
 		for (int i = 0; i < clientes.size(); i++) {
 			c = clientes.get(i);
-			if (email.equals(c.getEmail_cliente()) && contrasenya.equals(c.getContrasenya_cliente())) {
+			if (email.equals(c.getEmailCliente()) && contrasenya.equals(c.getContrasenyaCliente())) {
 				System.out.println("Cliente encontrado.");
 				return c;
 			}
@@ -144,8 +145,7 @@ public class DAO {
 
 	
 	////////////////////////////////////////////////////////////////////
-	@GET
-	@Path("get_users")
+
 		public List<Usuario> getUsuarios() {
 			List<Usuario> ret = new ArrayList<Usuario>();
 			Transaction tx = pm.currentTransaction();
@@ -185,57 +185,56 @@ public class DAO {
 	
 	///////////////////////////////////////////////////////////////////
 
-//
-//
-//	public List<Cesta> getCestas() {
-//		 List<Cesta> ret = new ArrayList<Cesta>();
-//		 Transaction tx = pm.currentTransaction();
-//		try {
-//			System.out.println("   * Retrieving an Extent for Cestas.");
-//			tx.begin();
-//			 Extent<Cesta> extent = pm.getExtent(Cesta.class, true);
-//			for ( Cesta cesta : extent) {
-//				ret.add(cesta);
-//				cesta.getArticulos().toString();
-//			}
-//			tx.commit();
-//		} catch ( Exception ex) {
-//			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
-//		} finally {
-//			if (tx != null && tx.isActive()) {
-//				tx.rollback();
-//			}
-//		}
-//		return ret;
-//	}
-//
-//	public Cesta getCesta( long idCesta) {
-//		Cesta c = null;
-//		ArrayList<Cesta> cestas = new ArrayList<Cesta>();
-//		cestas = (ArrayList<Cesta>) this.getCestas();
-//		for (int i = 0; i < cestas.size(); i++) {
-//			c = cestas.get(i);
-//			if (idCesta == c.getId()) {
-//				return c;
-//			}
-//		}
-//		return c;
-//	}
-//
-//	public Cesta addCesta( long idCesta,  long idArticulo,  int cantidad) {
-//		Cesta c = getCesta(idCesta);
-//		Articulo a = getArticulo(idArticulo);
-//		c.anyadirCesta(a, cantidad);
-//		return c;
-//	}
-//
-//	public Cesta removeCesta( long idCesta,  long idArticulo,  int cantidad) {
-//
-//		 Cesta c = getCesta(idCesta);
-//		 Articulo a = getArticulo(idArticulo);
-//		c.eliminarCesta(a, cantidad);
-//		return c;
-//	}
+
+
+	public List<Cesta> getCestas() {
+		 List<Cesta> ret = new ArrayList<Cesta>();
+		 Transaction tx = pm.currentTransaction();
+		try {
+			System.out.println("   * Retrieving an Extent for Cestas.");
+			tx.begin();
+			 Extent<Cesta> extent = pm.getExtent(Cesta.class, true);
+			for ( Cesta cesta : extent) {
+				ret.add(cesta);
+				cesta.getArticulos().toString();
+			}
+			tx.commit();
+		} catch ( Exception ex) {
+			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+		} finally {
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		}
+		return ret;
+	}
+
+	public Cesta getCesta( long idCesta) {
+		Cesta c = null;
+		ArrayList<Cesta> cestas = new ArrayList<Cesta>();
+		cestas = (ArrayList<Cesta>) this.getCestas();
+		for (int i = 0; i < cestas.size(); i++) {
+			c = cestas.get(i);
+			if (idCesta == c.getId()) {
+				return c;
+			}
+		}
+		return c;
+	}
+
+	public Cesta modifyCesta( long idCesta,  long idArticulo,  int cantidad) {
+		Cesta c = getCesta(idCesta);
+		Articulo a = getArticulo(idArticulo);
+		c.modifyCesta(a, cantidad);
+		return c;
+	}
+
+	public Cesta cleanCesta( long idCesta) {
+
+		Cesta c = getCesta(idCesta);
+		c.vaciarCesta();
+		return c;
+	}
 
 	// GET de lista de opiniones
 	public List<Opinion> getOpiniones() {
@@ -302,7 +301,7 @@ public class DAO {
 		vendedores = (ArrayList<Vendedor>) this.getVendedores();
 		for (int i = 0; i < vendedores.size(); i++) {
 			v = vendedores.get(i);
-			if (email.equals(v.getEmail_vendedor())) {
+			if (email.equals(v.getEmailVendedor())) {
 				return v;
 			}
 		}
