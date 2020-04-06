@@ -29,10 +29,11 @@ public class Cesta_test{
 	Integer cantidad1 = 400;
 	Integer cantidad2 = 500;
 
-	private Cesta c = new Cesta(1, c1, listaArticulos, listaCantidades, Estado.ACTUAL);
+	private Cesta c =c1.getCarrito();
 	
 	@Before
 	public void insertarDatos() {
+	
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
 		listaCantidades.add(cantidad1);
@@ -43,10 +44,6 @@ public class Cesta_test{
 	@Test
 	public void testId() {
 		assertEquals(c.getId(), 1);
-	}
-	@Test
-	public void testCliente() {
-		assertEquals(c.getCliente(), c1);
 	}
 	@Test
 	public void testArticulos() {

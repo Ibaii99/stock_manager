@@ -151,8 +151,8 @@ public class Articulo implements Serializable {
 		return imageUrl;
 	}
 
-	public void setImageUrl(String image_url) {
-		this.imageUrl = image_url;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public void storeMe() {

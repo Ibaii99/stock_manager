@@ -28,18 +28,18 @@ public class Vendedor_test{
 		v.setArticulos(listaArticulos);
 	}
 	
-	@Test
-	public void testNombre() {
-		assertEquals(v.getNombre_vendedor(), "Jokin");
-	}
+	// @Test
+	// public void testNombre() {
+	// 	assertEquals(v.getNombre_vendedor(), "Jokin");
+	// }
 	@Test
 	public void testId() {
 		assertEquals(v.getId(), 0);
 	}
-	@Test
-	public void testEmail() {
-		assertEquals(v.getEmail_vendedor(), "Jokin@gmail.com");
-	}
+	// @Test
+	// public void testEmail() {
+	// 	assertEquals(v.getEmail_vendedor(), "Jokin@gmail.com");
+	// }
 	@Test
 	public void testArticulos() {
 		assertEquals(v.getArticulos(), listaArticulos);
