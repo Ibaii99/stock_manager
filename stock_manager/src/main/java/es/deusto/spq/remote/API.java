@@ -70,7 +70,7 @@ public class API {
 		get_from_json(json, "address"));
 		cliente.registrarme();
 
-		return "{ \"nombre\": \""+cliente.getNombre_cliente() + "\" }";
+		return "{ \"nombre\": \""+cliente.getNombreCliente() + "\" }";
 	}
 	/*
 	{
@@ -334,7 +334,7 @@ public class API {
 		Vendedor vendedor = new Vendedor(get_from_json(json, "name"), get_from_json(json, "email"), new ArrayList<Articulo>());
 		vendedor.registrar();
 
-		return "{ \"nombre\": \""+vendedor.getNombre_vendedor() + "\" }";
+		return "{ \"nombre\": \""+vendedor.getNombreVendedor() + "\" }";
 	}
 
 	@GET

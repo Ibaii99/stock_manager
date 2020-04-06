@@ -44,7 +44,7 @@ public class Articulo implements Serializable {
     private Categoria categoria;
     private byte [] image;
     
-    private String image_url;
+    private String imageUrl;
     
     private Vendedor vendedor;
     
@@ -52,7 +52,7 @@ public class Articulo implements Serializable {
 	}
 
 	public Articulo(String nombre, Date caducidad, float precio, int stock, String descripcion, float oferta,
-			Categoria categoria, String image_url) {
+			Categoria categoria, String imageUrl) {
         super();
 		this.nombre = nombre;
 		this.caducidad = caducidad;
@@ -61,7 +61,7 @@ public class Articulo implements Serializable {
 		this.descripcion = descripcion;
 		this.oferta = oferta;
 		this.categoria = categoria;
-		this.image_url = image_url;
+		this.imageUrl = imageUrl;
     }
     
 	public Categoria getCategoria() {
@@ -148,11 +148,11 @@ public class Articulo implements Serializable {
 	
 	
 	public String getImage_url() {
-		return image_url;
+		return imageUrl;
 	}
 
 	public void setImage_url(String image_url) {
-		this.image_url = image_url;
+		this.imageUrl = image_url;
 	}
 
 	public void storeMe() {
