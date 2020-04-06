@@ -1,12 +1,16 @@
 # Stock Manager
 
-Esta es **API REST** del proyecto del **Grupo 2** desarrollada en python 3 (Python 3).
+Esta es **API REST** del proyecto del **Grupo 2** desarrollada en python 3 (Python 3) y Java 1.8(Oracle).
 
-Tecnolog铆as usadas:
+Tecnolog脙颅as usadas:
 -  virtualenvwrapper --> **Entornos virtuales** que se van a usar
    - docu: https://virtualenvwrapper.readthedocs.io/en/latest/index.html 
 - Django --> **Web Framework** que se va a usar para la parte de cliente
    - docu: https://docs.djangoproject.com/en/3.0/
+- Maven --> **Herramienta de software para la gesti贸n y construcci贸n de proyectos Java** usada en la API REST.
+   - docu: https://maven.apache.org/guides/index.html
+- MySQL --> Sistema de gesti贸n de bases de datos relacional **SGBD**
+   - docu: https://dev.mysql.com/doc/
 
 # Steps
 ### Client
@@ -16,17 +20,37 @@ Tecnolog铆as usadas:
 ~~~ 
 pip install -r requirements.txt 
 ~~~
-4. En stock_manager/stockmanager:
+4. En stock_manager/mysite/stock_manager:
 ~~~ 
 python manage.py runserver
 ~~~ 
 ### API
+1. Instalar dependencias
+~~~ 
+mvn install
+~~~ 
+2. Compilar el proyecto
+~~~ 
+mvn clean compile
+~~~ 
+3. Crear el esquema de las clases en la base de datos
+~~~ 
+mvn datanucleus:schema-create
+~~~ 
+4. Ejecutar la API
+~~~ 
+mvn exec:java
+~~~ 
+X. Borrar las tablas de la base de datos
+~~~ 
+mvn datanucleus:schema-delete
+~~~ 
 
-# Inicio de aplicaci髇
+# Inicio de aplicaci贸n
 
-Para un correcto uso de la aplicaci髇 implementada estos requisitos deber韆n ser completados.
+Para un correcto uso de la aplicaci贸n implementada estos requisitos deber铆an ser completados.
 1. Se debe activar el entorno virtual.
-2. Se debe tener activa la aplicaci髇 de MySQL Workbench.
+2. Se debe tener activa la aplicaci贸n de MySQL Workbench.
 3. Se debe ejecutar el comando mvn compile exec:java para el correcto funcionamiento del proyecto.
 
-Por otro lado si se implementa el proyecto por primera vez se deber韆n seguir las instrucciones que se especifican en el archivo instrucciones.txt
+Por otro lado si se implementa el proyecto por primera vez se deber铆an seguir las instrucciones que se especifican en el archivo instrucciones.txt
