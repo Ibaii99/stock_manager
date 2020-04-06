@@ -207,29 +207,27 @@ public class API {
 //	}
 	
 	
-//	@GET
-//	@Path("get_cestas")
-//	public List<Cesta> get_cestas() {
-//		System.out.println("Mandando todos los cestas");
-//		DAO db = new DAO();
-//		return db.getCestas();
-//	}
-//
-//	@POST
-//	@Path("get_cesta")//por ID
-//	public Cesta get_cesta(JsonObject json) {
-//		System.out.println("Mandando la cesta");
-//		long l = Long.parseLong(get_from_json(json, "ID"));
-//		Cesta a = new DAO().getCesta(l);
-//		return a;
-//	}
+	@GET
+	@Path("get_cestas")
+	public List<Cesta> get_cestas() {
+		System.out.println("Mandando todos los cestas");
+		DAO db = new DAO();
+		return db.getCestas();
+	}
+
+	@POST
+	@Path("get_cesta")//por ID
+	public Cesta get_cesta(JsonObject json) {
+		System.out.println("Mandando la cesta");
+		long l = Long.parseLong(get_from_json(json, "ID"));
+		Cesta a = new DAO().getCesta(l);
+		return a;
+	}
 	/*
 		{
 		"ID": "1"
 		}
 	*/
-	
-
 	
 	@GET
 	@Path("get_usuarios")
