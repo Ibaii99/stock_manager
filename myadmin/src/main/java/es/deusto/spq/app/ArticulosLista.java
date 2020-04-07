@@ -129,7 +129,7 @@ public class ArticulosLista extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				WebTarget deleteTarget = eliminarTarget.path(codeTextField.getText());
-				Response response = deleteTarget.request().delete(codeTextField.getText());
+				Response response = deleteTarget.request().delete();
 				if(response.getStatus() == Status.OK.getStatusCode()) {
 					JOptionPane.showMessageDialog(ArticulosLista.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
 				}else {
