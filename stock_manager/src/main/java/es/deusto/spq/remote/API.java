@@ -221,6 +221,10 @@ public class API {
 		}
 	*/ 
 	
+	/**
+	 * @param json
+	 * @return
+	 */
 	@POST
 	@Path("getCliente")
 	public Cliente getCliente(JsonObject json) {
