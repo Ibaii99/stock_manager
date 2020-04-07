@@ -76,6 +76,7 @@ public class Articulos_bien extends JFrame{
 				try {
 					CrearArticulo frame = new CrearArticulo();
 					frame.setVisible(true);
+					dispose();
 				} catch (Exception er) {
 					er.printStackTrace();
 				}

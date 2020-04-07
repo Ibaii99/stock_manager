@@ -101,7 +101,7 @@ public class InicioSesion extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				String usuarioCogido = usuario.getText();
-				System.out.println(usuarioCogido);
+//				System.out.println(usuarioCogido);
 				char[] c = contrasenya.getPassword();
 				String contrasenya = c.toString();
 				String m = "";
@@ -113,7 +113,7 @@ public class InicioSesion extends JFrame {
 				List<Usuario> usuarios = usuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 				boolean correcto = false;
 				for(Usuario usuario: usuarios) {
-					System.out.println("Nombre: " + usuario.getNombre()+" Contrasenya: " + usuario.getContrasenya());
+//					System.out.println("Nombre: " + usuario.getNombre()+" Contrasenya: " + usuario.getContrasenya());
 					if(usuarioCogido.equals(usuario.getNombre()) && m.equals(usuario.getContrasenya())) {
 						correcto = true;
 					}
@@ -124,10 +124,13 @@ public class InicioSesion extends JFrame {
 					try {
 						Articulos_bien frame = new Articulos_bien();
 						frame.setVisible(true);
+						dispose();
 					} catch (Exception er) {
 						er.printStackTrace();
 					}
 					
+				}else {
+					JOptionPane.showMessageDialog(InicioSesion.this, "Usuarios o Contrasenya erroneos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

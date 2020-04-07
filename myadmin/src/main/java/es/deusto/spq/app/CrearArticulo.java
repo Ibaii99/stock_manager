@@ -134,6 +134,7 @@ public class CrearArticulo extends JFrame {
 					System.out.println("Ha pulsaod cancelar, volver a pagina anterior");
 					ArticulosLista frame = new ArticulosLista();
 					frame.setVisible(true);
+					dispose();
 				} catch (Exception es) {
 					es.printStackTrace();
 				}
@@ -169,7 +170,7 @@ public class CrearArticulo extends JFrame {
 			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
 			    System.out.println(articulo);
 			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
-			    System.out.println("Usuario anadido");
+			    System.out.println("Articulo anadido");
 
 			}
 		});
