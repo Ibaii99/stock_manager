@@ -34,7 +34,7 @@ public class Articulo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
-    private long id;
+    private long ID;
     private String nombre;
     private Date caducidad;
     private float precio;
@@ -70,7 +70,7 @@ public class Articulo implements Serializable {
 
 	
     public long getId() {
-		return id;
+		return ID;
 	}
 
 	public void setImage(byte[] image) {
@@ -78,7 +78,7 @@ public class Articulo implements Serializable {
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.ID = id;
 	}
 
 	public String getNombre() {
@@ -162,7 +162,9 @@ public class Articulo implements Serializable {
 
 	@Override
 	public String toString() {
-        return "Articulo [Id=" + this.id + "Nombre=" + this.nombre + ", Caducidad=" + this.caducidad + ", Precio" + this.precio +
+
+        return "Articulo [Id=" + this.ID + "Nombre=" + this.nombre + ", Caducidad=" + this.caducidad + ", Precio" + this.precio +
+
         ", Stock" + this.stock + ", Descrpción" + this.descripcion + ", Oferta" + this.oferta + ", Categoria" + this.categoria +     "]";
 	}
 

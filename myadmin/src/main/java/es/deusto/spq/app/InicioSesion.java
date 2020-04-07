@@ -9,6 +9,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+import src.main.java.es.deusto.spq.app.Articulos_bien;
 import src.main.java.es.deusto.spq.data.Usuario;
 
 import javax.ws.rs.core.GenericType;
@@ -121,7 +122,7 @@ public class InicioSesion extends JFrame {
 				
 				if(correcto) {
 					try {
-						ArticulosLista frame = new ArticulosLista();
+						Articulos_bien frame = new Articulos_bien();
 						frame.setVisible(true);
 					} catch (Exception er) {
 						er.printStackTrace();
