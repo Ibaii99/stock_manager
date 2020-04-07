@@ -89,12 +89,24 @@ def register(request):
             }
             
             resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/register', json=info)
-            save_session(request, request.COOKIES['sessionid'], resp.json()["nombre"], request.POST.get('email'), request.POST.get('password_1') )
-        
+            
+            pagina = redirect("/index/")
+            try:
+                session_id = request.COOKIES['sessionid']
+            
+            except:
+                request.session.create()
+                session_id = request.session.session_key
+                set_cookie(pagina, "sessionid", session_id)
+            
             request.session['nombre'] = resp.json()["nombre"]
             request.session['email'] = request.POST.get('email')
             
-            return redirect("/index/")
+            save_session(request, session_id, resp.json()["nombre"], request.POST.get('email'), request.POST.get('password_1') )
+        
+            
+            
+            return pagina 
             
         else:
             return render(request, "register.html", {"var": get_vars(request), "message": "Error: La contraseña ha coincidir."})
@@ -108,15 +120,26 @@ def login(request):
 	        "password": request.POST.get('password')
         }
         
-        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/logIn', json=info)
+        pagina = redirect("/index/")
+        try:
+            session_id = request.COOKIES['sessionid']
+            
+        except:
+            request.session.create()
+            session_id = request.session.session_key
+            set_cookie(pagina, "sessionid", session_id)
         
-        save_session(request, request.COOKIES['sessionid'], resp.json()["nombre"], request.POST.get('email'), request.POST.get('password') )
+        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/logIn', json=info)
         
         request.session['nombre'] = resp.json()["nombre"]
         request.session['email'] = request.POST.get('email')
         
         
-        return redirect("/index/")
+        save_session(request, session_id , resp.json()["nombre"], request.POST.get('email'), request.POST.get('password') )
+        
+        
+        
+        return pagina
         
     return render(request, "login.html", {"var": get_vars(request)})
 
@@ -212,7 +235,7 @@ def save_session(request, session_id, user_name, email, password):
             "fecha_caducidad": datetime.date.today()
     }
     
-    sessions[request.COOKIES['sessionid']] = store
+    sessions[session_id] = store
     
 #Borra los datos de la sesion
 def close_session(request):
