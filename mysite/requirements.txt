@@ -6,9 +6,11 @@ Click==7.0
 Django==3.0.4
 Flask==1.1.1
 idna==2.9
+image==1.5.28
 itsdangerous==1.1.0
 Jinja2==2.11.1
 MarkupSafe==1.1.1
+Pillow==7.1.1
 psycopg2==2.8.4
 pytz==2019.3
 requests==2.23.0
