@@ -37,7 +37,10 @@ public class Cliente implements Serializable{
     
     @Column
     private Cesta favoritos = new Cesta();
-    
+	
+	@Persistent
+	private ArrayList<Cesta> pedidos = new ArrayList<>();
+
     public Cliente(){
 
     }
@@ -117,6 +120,14 @@ public class Cliente implements Serializable{
 		this.favoritos = favoritos;
 	}
 
+	public ArrayList<Cesta> getPedidos(){
+		return this.pedidos;
+	}
+
+	public void setPedidos(ArrayList<Cesta> pedidos){
+		this.pedidos = pedidos;
+	}
+
 	public void opinar(Articulo articulo, int valoracion, String texto) {
 		Opinion opinion = new Opinion(texto, valoracion, this);
 		DAO dao = new DAO();
@@ -154,5 +165,17 @@ public class Cliente implements Serializable{
 		dao.store(this);
 	}
 	
+	public void carritoToPedido(){
+
+		Cesta c = new Cesta(this.carrito);
+
+		for (Articulo articulo : this.carrito.getArticulos()){
+			c.addArticulo(articulo, this.carrito.getCantidades().get(this.carrito.getArticulos().indexOf(articulo)));
+		}
+
+		this.pedidos.add(c);
+		this.carrito.vaciarCesta();
+		
+	}
 
 }

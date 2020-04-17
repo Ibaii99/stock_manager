@@ -211,13 +211,14 @@ public class API {
 	 * @param json
 	 * @return
 	 */
-	
+	/*
 	@POST
 	@Path("actualizarArticulo")
 	public String actualizarArticulo(JsonObject json) {
 		DAO dao = new DAO();
 		
 	}
+	*/
 	@POST
 	@Path("getCliente")
 	public Cliente getCliente(JsonObject json) {
@@ -347,7 +348,16 @@ public class API {
         DAO db = new DAO();
         Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-        c.getCarrito().removeArticuloCesta(a);;
+        c.getCarrito().removeArticuloCesta(a);
+	}
+	
+	@POST
+    @Path("carritoToPedido")//por ID
+    public void carritoToPedido(JsonObject json) {
+        System.out.println("Modificando la cesta de la compra");
+        DAO db = new DAO();
+        Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+        c.carritoToPedido();
     }
 
 	
@@ -475,9 +485,6 @@ public class API {
 		return "{ \"nombre\": \""+vendedor.getNombreVendedor() + "\" }";
 	}
 	
-	
-
-
 	@GET
 	@Path("meter_datos")
 	public String api_meter_datos() {
