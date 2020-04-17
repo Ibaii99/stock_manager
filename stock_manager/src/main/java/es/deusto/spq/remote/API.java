@@ -35,6 +35,7 @@ import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
+import netscape.javascript.JSObject;
 
 
 
@@ -187,24 +188,9 @@ public class API {
 		System.out.println(categoria);
 		String urlImage = get_from_json(json, "imageUrl");
 		System.out.println(urlImage);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, urlImage);
-		
-		
-		
 		System.out.println(c.toString());
 		dao.store(c);
-		
-
 		return "Creado";
 	}
 
@@ -225,6 +211,13 @@ public class API {
 	 * @param json
 	 * @return
 	 */
+	
+	@POST
+	@Path("actualizarArticulo")
+	public String actualizarArticulo(JsonObject json) {
+		DAO dao = new DAO();
+		
+	}
 	@POST
 	@Path("getCliente")
 	public Cliente getCliente(JsonObject json) {
