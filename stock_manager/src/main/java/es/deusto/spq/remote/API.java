@@ -35,6 +35,7 @@ import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
+import netscape.javascript.JSObject;
 
 
 
@@ -165,27 +166,38 @@ public class API {
 		System.out.println(categoria);
 		String urlImage = get_from_json(json, "imageUrl");
 		System.out.println(urlImage);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, urlImage);
-		
-		
-		
 		System.out.println(c.toString());
 		dao.store(c);
-		
-
 		return "Creado";
 	}
 
+
+	/*
+		{
+		"nombre": "Manzana",
+		"caducidad": "02/03/2021",
+		"precio": "0.46",
+		"stock": "120",
+		"descripcion" : "Manzana Ibiza",
+		"oferta" : "0.23",
+		"categoria" : "FRUTAS",
+		"image_url": ""
+		}
+	*/ 
+	
+	/**
+	 * @param json
+	 * @return
+	 */
+	/*
+	@POST
+	@Path("actualizarArticulo")
+	public String actualizarArticulo(JsonObject json) {
+		DAO dao = new DAO();
+		
+	}
+	*/
 	@POST
 	@Path("getCliente")
 	public Cliente getCliente(JsonObject json) {
@@ -311,7 +323,16 @@ public class API {
         DAO db = new DAO();
         Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-        c.getCarrito().removeArticuloCesta(a);;
+        c.getCarrito().removeArticuloCesta(a);
+	}
+	
+	@POST
+    @Path("carritoToPedido")//por ID
+    public void carritoToPedido(JsonObject json) {
+        System.out.println("Modificando la cesta de la compra");
+        DAO db = new DAO();
+        Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+        c.carritoToPedido();
     }
 
 	@GET

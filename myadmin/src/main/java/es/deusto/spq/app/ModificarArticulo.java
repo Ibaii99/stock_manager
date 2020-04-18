@@ -1,3 +1,5 @@
+package main.java.es.deusto.spq.app;
+
 package src.main.java.es.deusto.spq.app;
 
 import javax.ws.rs.client.Client;
@@ -34,7 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class CrearArticulo extends JFrame {
+public class ModificarArticulo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tUrl;
@@ -55,7 +57,7 @@ public class CrearArticulo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearArticulo frame = new CrearArticulo();
+					ModificarArticulo frame = new ModificarArticulo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,11 +72,11 @@ public class CrearArticulo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearArticulo() {
+	public ModificarArticulo() {
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 
-		final WebTarget articuloTarget = appTarget.path("ingresarArticulo");
+		final WebTarget articuloTarget = appTarget.path("actualizarArticulo");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
@@ -170,7 +172,7 @@ public class CrearArticulo extends JFrame {
 			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
 			    System.out.println(articulo);
 			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
-			    System.out.println("Articulo anadido");
+			    System.out.println("Articulo modificado");
 
 			}
 		});

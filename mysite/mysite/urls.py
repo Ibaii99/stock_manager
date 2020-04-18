@@ -32,6 +32,7 @@ urlpatterns = [
     path('user/cart/checkout', views.checkout),
     path('user/favourites/', views.favourites),
     path('article/<int:id>', views.article),
+    path('contact', views.emailView),
     path('', views.index),
 ]
 

@@ -53,6 +53,12 @@ public class Cesta implements Serializable {
 		this.estado = estado;
 	}
 
+	public Cesta(Cesta cesta) {
+		this.articulos = cesta.articulos;
+		this.cantidades = cesta.cantidades;
+		this.estado = Estado.PREPARACION;
+	}
+
 
 	public long getId() {
 		return id;

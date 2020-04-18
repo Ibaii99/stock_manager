@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq.app;
+package main.java.es.deusto.spq.app;
 
 
 
@@ -17,13 +17,16 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response.Status;
+
+import main.java.es.deusto.spq.data.Articulo;
+import src.main.java.es.deusto.spq.app.ModificarArticulo;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ProcessingException;
 
-import src.main.java.es.deusto.spq.app.*;
-import src.main.java.es.deusto.spq.data.Articulo;
-import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+//import src.main.java.es.deusto.spq.data.Articulo;
+//import src.main.java.es.deusto.spq.data.Articulo.Categoria;
 
 import java.util.Date;
 import java.util.List;
@@ -47,6 +50,7 @@ public class ArticulosLista extends JFrame{
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
 		final WebTarget eliminarTarget = appTarget.path("code");
+		final WebTarget modificarTarget = appTarget.path("modificarArticulos");
 
 
 		setSize(1200, 500);
@@ -61,8 +65,11 @@ public class ArticulosLista extends JFrame{
 		JButton eliminarBoton = new JButton("Eliminar articulo");
 
 		JButton anyadirBoton = new JButton("Anyadir articulo");
+		JButton modificarBoton = new JButton("Modificar articulo");
 		botonesPanel.add(eliminarBoton);
 		botonesPanel.add(anyadirBoton);
+		botonesPanel.add(modificarBoton);
+		
 		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
 
 		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
@@ -88,6 +95,7 @@ public class ArticulosLista extends JFrame{
 					.addComponent(eliminarBoton)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnanyadir)
+					.addComponent(modificarBoton)
 					.addContainerGap())
 		);
 		gl_botonesPanel.setVerticalGroup(
@@ -96,7 +104,8 @@ public class ArticulosLista extends JFrame{
 					.addGap(5)
 					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnanyadir)
-						.addComponent(eliminarBoton)))
+						.addComponent(eliminarBoton)
+						.addComponent(modificarBoton)))
 		);
 		botonesPanel.setLayout(gl_botonesPanel);
 		
@@ -135,6 +144,20 @@ public class ArticulosLista extends JFrame{
 				}else {
 					JOptionPane.showMessageDialog(ArticulosLista.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
 				}
+				
+			}
+		});
+		
+		modificarBoton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ModificarArticulo frame = new ModificarArticulo();
+					frame.setVisible(true);
+				} catch (Exception er) {
+					er.printStackTrace();
+				} 
 				
 			}
 		});
