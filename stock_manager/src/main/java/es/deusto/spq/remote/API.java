@@ -253,7 +253,7 @@ public class API {
 	}
 
 	@POST
-	@Path("VaciarCarrito")//por ID
+	@Path("vaciarCarrito")//por ID
 	public void VaciarCarrito(JsonObject json) {
 		System.out.println("Limpiando a la cesta de la compra");
 		DAO db = new DAO();
@@ -291,7 +291,7 @@ public class API {
 	}
 	
 	@POST
-	@Path("VaciarFavoritos")//por ID
+	@Path("vaciarFavoritos")//por ID
 	public void VaciarFavoritos(JsonObject json) {
 		System.out.println("Limpiando a la cesta de la compra");
 		DAO db = new DAO();
@@ -337,12 +337,12 @@ public class API {
 
 	@POST
     @Path("carritoPrecio")//por ID
-    public float carritoPrecio(JsonObject json) {
+    public String carritoPrecio(JsonObject json) {
         System.out.println("Se ha entyregado el precio del carrito");
         DAO db = new DAO();
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-        return c.getCarrito().getRecibo();
-    }
+        return "{ \"precio\": \""+ c.getCarrito().getRecibo() + "\" }";
+	}
 	
 	//Conseguir administradores
 //	@POST
