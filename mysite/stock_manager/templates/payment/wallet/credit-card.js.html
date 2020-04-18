@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0143)file:///C:/Users/ibaig_vi6j6bo/git/stock_manager/mysite/stock_manager/templates/payment/wallet/Credit%20card%20validation%20with%20card.js.html -->
+<html lang="en" class="pc chrome80 js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Credit card validation with card.js</title>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@CodePen">
+<meta name="twitter:title" content="Credit card validation with card.js">
+<meta name="twitter:description" content="Responsive credit card validation with card.js....">
+<meta name="twitter:image" content="https://screenshot.codepen.io/121761.JYvgBW.b1d2ad23-837f-4435-b3a5-718b725fc6f7.png">
+<meta property="og:image" content="https://codepen.io/hswd/pen/JYvgBW/image/large.png" itemprop="thumbnailUrl">
+<meta property="og:title" content="Credit card validation with card.js">
+<meta property="og:url" content="https://codepen.io/hswd/details/JYvgBW">
+<meta property="og:site_name" content="CodePen">
+<meta property="og:description" content="Responsive credit card validation with card.js....">
+<link rel="alternate" type="application/json+oembed" href="https://codepen.io/api/oembed?url=https%3A%2F%2Fcodepen.io%2Fhswd%2Fpen%2FJYvgBW&amp;format=json" title="Credit card validation with card.js">
+<link href="{% static 'credit-card.js_files/css" rel="stylesheet' %}">
+<link rel="stylesheet" media="all" href="{% static 'credit-card.js_files/global-7a9f25f2cd0936277cb0b47b34435528521cd702e5c9c1d652b6d22e11c4667c.css' %}">
+<link rel="stylesheet" media="screen" href="{% static 'credit-card.js_files/everypage-44bf132d.css' %}">
+<link rel="stylesheet" media="all" href="{% static 'credit-card.js_files/editor-4b9455e47e680eb3ba4d576bce3169777f15a82bd0a30b719d5c5a229055432f.css' %}">
+<meta name="description" content="Responsive credit card validation with card.js....">
+<link rel="stylesheet" media="screen" href="{% static 'credit-card.js_files/twilight-c4d2eafba805f08fdb40c0900ac100b78469aba0532ca487a4fb1591a9424a02.css" id="cm-theme' %}">
+<style id="cm-font-family" class="cm-font-family">
+  
+      
+  .CodeMirror,
+  .console-logs .console-line,
+  .console-command-line-input,
+  .console-message,
+  .CodeMirror-hint {
+    font-family: Monaco, MonoSpace;
+  }
+</style>
+<style id="cm-font-size">
+  .CodeMirror,
+  .console-logs .console-line,
+  .console-command-line-input,
+  .console-message,
+  .CodeMirror-hint {
+    font-size: 15px;
+  }
+</style>
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="lJULJ9MWsDcqPzLOVip252dcq5fcNBjQXOET/UPGH2ytLYhZJexcdL4Op64pcMGP8MdzWziI371DIjY1UlyUZw==">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" async="" src="{% static 'credit-card.js_files/mixpanel-2-latest.min.js.descarga' %}"></script><script async="" crossorigin="anonymous" src="{% static 'credit-card.js_files/fs.js.descarga' %}"></script><script>/* Firefox needs this to prevent FOUC. */</script>
+<script data-dapp-detection="">
+(function() {
+  let alreadyInsertedMetaTag = false
+
+  function __insertDappDetected() {
+    if (!alreadyInsertedMetaTag) {
+      const meta = document.createElement('meta')
+      meta.name = 'dapp-detected'
+      document.head.appendChild(meta)
+      alreadyInsertedMetaTag = true
+    }
+  }
+
+  if (window.hasOwnProperty('web3')) {
+    // Note a closure can't be used for this var because some sites like
+    // www.wnyc.org do a second script execution via eval for some reason.
+    window.__disableDappDetectionInsertion = true
+    // Likely oldWeb3 is undefined and it has a property only because
+    // we defined it. Some sites like wnyc.org are evaling all scripts
+    // that exist again, so this is protection against multiple calls.
+    if (window.web3 === undefined) {
+      return
+    }
+    __insertDappDetected()
+  } else {
+    var oldWeb3 = window.web3
+    Object.defineProperty(window, 'web3', {
+      configurable: true,
+      set: function (val) {
+        if (!window.__disableDappDetectionInsertion)
+          __insertDappDetected()
+        oldWeb3 = val
+      },
+      get: function () {
+        if (!window.__disableDappDetectionInsertion)
+          __insertDappDetected()
+        return oldWeb3
+      }
+    })
+  }
+})()</script><script charset="utf-8" src="{% static 'credit-card.js_files/17-0fe35207f05a6173a711.chunk.js.descarga' %}"></script><script charset="utf-8" src="{% static 'credit-card.js_files/firebase-d19aef7d0ca69cf070e7.chunk.js.descarga' %}"></script></head><body class="room-editor editor state-htmlOn-cssOn-jsOn sidebar-false   layout-top  logged-in split-output"><style id="style-embed">.embed-nav .code-types a, .embed-nav .result-button-list a, .action-button.action-button {  color: #333333 !important;  background-color: #eeeeee;}.embed-nav .code-types a.active, .embed-nav .result-button-list a.active, .action-button.active {  color: #333333 !important;  background-color: #cccccc;  box-shadow: inset 0px 3px #333333;}</style><link id="syntax-highlighting-css-url" rel="stylesheet" type="text/css" href="{% static 'credit-card.js_files/classic-c62bf0da3affc130fe1fec30935afd3eec44e91c8cc1d13a0740696900f9cb63.css' %}">
+
+
+
+
+
+<div class="page-wrap twilight">
+<div class="boxes">
+
+
+
+
+<div class="output-container">
+<div class="output-sizer">
+<div id="result_div" class="result">
+<iframe id="result" name="CodePen" src="{% static 'credit-card.js_files/JYvgBW.html' %}" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; microphone; midi; payment; vr" scrolling="auto" allowtransparency="true" allowpaymentrequest="true" allowfullscreen="true" class="result-iframe ">
+          </iframe>
+<div id="editor-drag-cover" class="drag-cover"></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

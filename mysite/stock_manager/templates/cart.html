@@ -22,11 +22,14 @@
 				<div class="row">
     			<div class="col-md-12 ftco-animate">
     				<div class="cart-list">
+					
+					<form method="POST">
+							{% csrf_token %}
 	    				<table class="table" id="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">
 						        <th>&nbsp;</th>
-						        <th>&nbsp;</th>
+						        <th><input type="submit" value="Guardar cambios" name="Guardar" class="btn btn-black py-3 px-5"></th>
 						        <th>Nombre del Producto</th>
 						        <th>Precio Unitario</th>
 						        <th>Cantidad</th>
@@ -34,32 +37,30 @@
 						      </tr>
 						    </thead>
 						    <tbody>
-							<form method="POST">
-									{% csrf_token %}
 						      {% for articulo in cesta.articulos %}
 								<tr class="text-center" id="row" name="{{ articulo.nombre }}">
 									
-										<td class="product-remove"> <button class="ion-ios-close" name="borrar" value="{{ articulo.id }}"></span></td>
-									
+										<td class="product-remove"><button class="ion-ios-close btn btn-primary py-3 px-5" name="borrar" value="{{ articulo.id }}"></td>
+
 									<td class="image-prod"><div class="img" style="background-image:url({{ articulo.imageUrl }});"></div></td>
 									
 									<td class="product-name">
+										<h3 style="display:none"> {{ articulo.id }}</h3>
 										<h3> {{ articulo.nombre }}</h3>
 										<p> {{ articulo.descripcion }}</p>
 									</td>
 									
-									<td class="price" id="precio_{{ articulo.nombre }}" value="{{ articulo.oferta }}">{{ articulo.oferta }}</td>
+									<td class="price" id="precio_{{ articulo.id }}" value="{{ articulo.oferta }}">{{ articulo.oferta }}</td>
 									
 									<td class="quantity">
 										<div class="input-group mb-3">
-										<input type="number" step="1" id="cantidad_{{ articulo.nombre }}" name="{{ articulo.nombre }}" class="quantity form-control input-number" value="{{ articulo.cantidad }}" min="1" max="1000">
+										<input type="number" step="1" id="cantidad_{{ articulo.id }}" name="{{ articulo.id }}" class="quantity form-control input-number" value="{{ articulo.cantidad }}" min="1" max="1000">
 									</div>
 								</td>
 									
-									<td class="total" > <input id="resultado_{{ articulo.nombre }}" class"absolute_price" value="{{ articulo.precio_articulo }}" readonly ><span>€</span></td>
+									<td class="total" > <input id="resultado_{{ articulo.id }}" class"absolute_price" value="{{ articulo.precio_articulo }}" readonly ><span>€</span></td>
 								</tr><!-- END TR-->
 								{% endfor %}
-								</form>
 						    </tbody>
 						  </table>
 					  </div>
@@ -100,6 +101,7 @@
     				</div>
     				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
     			</div> {% endcomment %}
+				
     			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
     					<h3>Cart Totals</h3>
@@ -107,22 +109,23 @@
     						<span>Subtotal</span>
     						<span id="total_f">{{ cesta.precio_total }}</span><span>€</span>
     					</p>
-    					<p class="d-flex">
+    					{% comment %} <p class="d-flex">
     						<span>Delivery</span>
     						<span>$0.00</span>
-    					</p>
-    					<p class="d-flex">
+    					</p> {% endcomment %}
+    					{% comment %} <p class="d-flex">
     						<span>Discount</span>
     						<span>$0.00</span>
-    					</p>
+    					</p> {% endcomment %}
     					<hr>
     					<p class="d-flex total-price" id="aqui">
     						<span>Total</span>
     						<span id="total_g" >{{ cesta.precio_total }}</span><span>€</span>
     					</p>
     				</div>
-    				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+					<input type="submit" value="Pagar" name="Pagar" class="btn btn-primary py-3 px-5">
     			</div>
+				</form>
     		</div>
 			</div>
 		</section>
