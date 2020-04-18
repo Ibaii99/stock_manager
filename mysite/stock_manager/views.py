@@ -18,16 +18,6 @@ def test(request):
 def cart(request):
     if is_session_alive(request):
         sesion = sessions.get(request.COOKIES['sessionid'])
-        
-        if request.method == "POST":
-            z = {
-                "id_articulo": request.POST.get("borrar"),
-                "email": sesion.get("email"),
-                "password": sesion.get('password')
-            }
-            
-            resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/removeCarrito', json=z)
-            
         info={
             "email": sesion.get("email"),
             "password": sesion.get('password')
@@ -36,17 +26,49 @@ def cart(request):
         resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getCarrito', json=info)
         
         cesta = json.loads(resp.text)
+        
+        if request.method == "POST":
+            if(request.POST.get("borrar") is None):
+                print("--------------------")
+                for key, value in request.POST.items():
+                    if(key != "Guardar" and key != "Pagar" and key != "csrfmiddlewaretoken"): 
+                        print(key, value)
+                        z = {
+                            "id_articulo": key,
+                            "email": sesion.get("email"),
+                            "password": sesion.get('password'),
+                            "cantidad": value
+                        }
+                        
+                        requests.post(settings.STOCK_MANAGER_API_URL +'/api/modifyCarrito', json=z)
+                    
+                print("--------------------")
+                    
+                if( request.POST.get("Pagar") is not None and request.POST.get("Guardar") is None ):
+                    return redirect("/user/cart/checkout")
+            
+            
+            else:
+                z = {
+                    "id_articulo": request.POST.get("borrar"),
+                    "email": sesion.get("email"),
+                    "password": sesion.get('password')
+                }
+                
+                resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/removeCarrito', json=z)
+            
+            
+            resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getCarrito', json=info)
+            cesta = json.loads(resp.text)
+        
         e=0
-        print(len(cesta.get("articulos")))
         preciototal = 0
         while (e < len(cesta.get("articulos"))):
-            print(cesta.get("articulos")[e])
             cesta.get("articulos")[e]["cantidad"] = cesta.get("cantidades")[e]
             
             cesta.get("articulos")[e]["precio_articulo"] =  int(cesta.get("cantidades")[e]) * float(cesta.get("articulos")[e]["oferta"])
             preciototal +=  int(cesta.get("cantidades")[e]) * cesta.get("articulos")[e]["oferta"]
             e+=1
-            
             
         cesta["precio_total"] = preciototal
         return render(request, "cart.html", {"var": get_vars(request), "cesta": cesta} ) 
@@ -54,7 +76,16 @@ def cart(request):
     return redirect("/user/login")
 
 def favourites(request):
-    None    
+    None 
+    
+
+def checkout(request):
+    if request.method == "POST":
+        for key, value in request.POST.items():
+            if(key != "Guardar" and key != "Pagar" and key != "csrfmiddlewaretoken"): 
+                print(key, value)
+    return render(request, "payment.html")   
+    # return render(request, "checkout.html")   
 
 def user(request):
     global sessions

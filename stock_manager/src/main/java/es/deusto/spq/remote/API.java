@@ -61,12 +61,6 @@ public class API {
 		System.out.println(nombre);
 		return "{ \"nombre\": \""+nombre + "\" }";
 	}
-	/*
-	{
- 	  "email": "izaianda@gmail.com",
-  	  "password": "123"
-	}
-	*/	
 
 	@POST
 	@Path("register")
@@ -77,14 +71,6 @@ public class API {
 
 		return "{ \"nombre\": \""+cliente.getNombreCliente() + "\" }";
 	}
-	/*
-	{
-	  "name": "Jon Joseba",
- 	  "email": "izaianda@gmail.com",
-  	  "password": "123",
-	  "address": "Altzaga"
-	}
-	*/
 	
 	@DELETE
 	@Path("code")
@@ -98,7 +84,6 @@ public class API {
 		}
 	}
 	
-
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -107,7 +92,6 @@ public class API {
 				", " + articulo.getDescripcion() + ", " + articulo.getOferta() + ", " + articulo.getCategoria() + ", " + articulo.getImageUrl());
 		return "articulo añadido correctamente";
 	}
-	
 	
 	@POST
 	@Path("eliminarArticulo")
@@ -120,7 +104,6 @@ public class API {
 		dao.delete(a);
 		return "Articulo eliminado";
 	}
-	
 	
 	@DELETE
     @Path("/{code}")
@@ -145,11 +128,6 @@ public class API {
 
     }
 	
-	
-	
-	
-
-
 	@POST
 	@Path("ingresarArticulo")
 	public String ingresarArticulo(JsonObject json) {
@@ -208,19 +186,6 @@ public class API {
 		return "Creado";
 	}
 
-	/*
-		{
-		"nombre": "Manzana",
-		"caducidad": "02/03/2021",
-		"precio": "0.46",
-		"stock": "120",
-		"descripcion" : "Manzana Ibiza",
-		"oferta" : "0.23",
-		"categoria" : "FRUTAS",
-		"image_url": ""
-		}
-	*/ 
-	
 	@POST
 	@Path("getCliente")
 	public Cliente getCliente(JsonObject json) {
@@ -338,11 +303,7 @@ public class API {
 		Articulo a = new DAO().getArticulo(l);
 		return a;
 	}
-	/*
-		{
-		"ID": "1"
-		}
-	*/
+
 	@POST
     @Path("removeCarrito")//por ID
     public void removeCarrito(JsonObject json) {
@@ -353,18 +314,6 @@ public class API {
         c.getCarrito().removeArticuloCesta(a);;
     }
 
-	
-	//Conseguir administradores
-//	@POST
-//	@Path("get_admin")
-//	public Admin get_admin(JsonObject json) {
-//		System.out.println("Usuario: " + get_from_json(json, "usuario") + " Pass: "+  get_from_json(json, "password"));
-//		Admin a = new DAO().getAdmin(get_from_json(json, "usuario"), get_from_json(json, "password"));
-//		a.toString();
-//		return a;
-//	}
-	
-	
 	@GET
 	@Path("getCestas")
 	public List<Cesta> getCestas() {
@@ -381,12 +330,7 @@ public class API {
 		Cesta a = new DAO().getCesta(l);
 		return a;
 	}
-	/*
-		{
-		"ID": "1"
-		}
-	*/
-	
+
 	@GET
 	@Path("getUsuarios")
 	public List<Usuario> getUsuarios() {
@@ -420,11 +364,6 @@ public class API {
 		Opinion a = new DAO().getOpinion(l);
 		return a;
 	}
-	/*
-		{
-		"ID": "1"
-		}
-	*/
 
 	@POST
 	@Path("nuevaOpinion")
@@ -438,14 +377,6 @@ public class API {
 
 		return o;
 	}
-
-	/*
-		{
-		"idCliente": "1",
-		"txt": "Venia pocha",
-		"valoracion": "1"
-		}
-	*/
 
 	@GET
 	@Path("getVendedores")
@@ -462,11 +393,6 @@ public class API {
 		Vendedor a = new DAO().getVendedor(get_from_json(json, "email"));
 		return a;
 	}
-	/*
-		{
-		"email": "asier@gmail.com"
-		}
-	*/
 
 	@POST
 	@Path("nuevoVendedor")
@@ -478,9 +404,6 @@ public class API {
 		return "{ \"nombre\": \""+vendedor.getNombreVendedor() + "\" }";
 	}
 	
-	
-
-
 	@GET
 	@Path("meter_datos")
 	public String api_meter_datos() {
