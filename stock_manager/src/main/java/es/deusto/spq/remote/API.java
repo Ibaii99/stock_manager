@@ -354,12 +354,20 @@ public class API {
 	@POST
     @Path("carritoToPedido")//por ID
     public void carritoToPedido(JsonObject json) {
-        System.out.println("Modificando la cesta de la compra");
+        System.out.println("Se ha cambiado de carrito a Pedido");
         DAO db = new DAO();
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
         c.carritoToPedido();
     }
 
+	@POST
+    @Path("carritoPrecio")//por ID
+    public float carritoPrecio(JsonObject json) {
+        System.out.println("Se ha entyregado el precio del carrito");
+        DAO db = new DAO();
+        Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+        return c.getCarrito().getRecibo();
+    }
 	
 	//Conseguir administradores
 //	@POST
