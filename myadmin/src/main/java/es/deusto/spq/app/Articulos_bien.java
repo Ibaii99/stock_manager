@@ -50,6 +50,7 @@ public class Articulos_bien extends JFrame{
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
 		final WebTarget articuloTarget = appTarget.path("eliminarArticulo");
+		
 
 
 		setSize(1000, 500);
@@ -130,22 +131,21 @@ public class Articulos_bien extends JFrame{
 				Articulo a = articulosLista.getSelectedValue();
 				System.out.println(a);
 				articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
-			    System.out.println("Articulo Eliminado");
-//				if(response.getStatus() == Status.OK.getStatusCode()) {
-//					JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
-//				}else {
-//					JOptionPane.showMessageDialog(Articulos_bien.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
-//				}
+			   
 				
-				
-//				WebTarget deleteTarget = appTarget.path(codeTextField.getText());
+//				long l = a.getId();
+//				String m = ""+l ;
+//				System.out.println(m);
+//				WebTarget deleteTarget = articuloTarget.path(m);
 //                Response response = deleteTarget.request().delete();
+//                response.getStatus() = Status.OK.getStatusCode();
+                System.out.println("Articulo Eliminado");
 //                if(response.getStatus() == Status.OK.getStatusCode()) {
 //                 JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
 //                }else {
 //                    JOptionPane.showMessageDialog(Articulos_bien.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
 //                }
-//				
+				
 				
 				
 				

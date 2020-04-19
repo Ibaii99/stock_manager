@@ -98,10 +98,11 @@ public class API {
 	@Path("eliminarArticulo")
 	public String eliminarArticulo(JsonObject json) {
 		DAO dao = new DAO();
+		System.out.println("Dentro de eliminar Articulo");
 		long id = Long.parseLong(get_from_json(json, "id"));
 		System.out.println(id);
 		Articulo a = dao.getArticulo(id);
-//		System.out.println(a);
+		System.out.println(a);
 		dao.delete(a);
 		return "Articulo eliminado";
 	}
