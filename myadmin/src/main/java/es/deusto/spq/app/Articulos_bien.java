@@ -86,12 +86,28 @@ public class Articulos_bien extends JFrame{
 		});
 		
 		JButton modificarBoton = new JButton("Modificar articulo");
+		
+		JButton btnNewButton = new JButton("Volver al menu");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Menu frame = new Menu();
+					frame.setVisible(true);
+					dispose();
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
+			}
+		});
 
 		GroupLayout gl_botonesPanel = new GroupLayout(botonesPanel);
 		gl_botonesPanel.setHorizontalGroup(
 			gl_botonesPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_botonesPanel.createSequentialGroup()
-					.addContainerGap(629, Short.MAX_VALUE)
+					.addContainerGap(530, Short.MAX_VALUE)
+					.addComponent(btnNewButton)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(modificarBoton, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(eliminarBoton)
@@ -106,7 +122,8 @@ public class Articulos_bien extends JFrame{
 					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnanyadir)
 						.addComponent(eliminarBoton)
-						.addComponent(modificarBoton))
+						.addComponent(modificarBoton)
+						.addComponent(btnNewButton))
 					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		botonesPanel.setLayout(gl_botonesPanel);

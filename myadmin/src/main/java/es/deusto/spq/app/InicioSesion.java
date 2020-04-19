@@ -122,7 +122,7 @@ public class InicioSesion extends JFrame {
 				
 				if(correcto) {
 					try {
-						Articulos_bien frame = new Articulos_bien();
+						Menu frame = new Menu();
 						frame.setVisible(true);
 						dispose();
 					} catch (Exception er) {
