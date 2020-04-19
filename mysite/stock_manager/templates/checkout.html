@@ -16,6 +16,8 @@
       </div>
     </div>
 
+<form method="POST">
+	{% csrf_token %}
     <section class="ftco-section">
 		<form action="#" class="billing-form">
       <div class="container">
@@ -25,70 +27,69 @@
 					<div class="row align-items-end">
 						<div class="col-md-6">
 						<div class="form-group">
-							<label for="firstname">Firt Name</label>
-						<input type="text" class="form-control" placeholder="">
+							<label for="firstname">Nombre*</label>
+						<input type="text" name="name" class="form-control" required placeholder="Fernando">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="lastname">Last Name</label>
-						<input type="text" class="form-control" placeholder="">
+							<label for="lastname">Apellido*</label>
+						<input type="text" name="surname" class="form-control" required placeholder="Alonso">
 						</div>
 					</div>
 					<div class="w-100"></div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="country">State / Country</label>
+								<label for="country">País / Estado*</label>
 								<div class="select-wrap">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="" id="" class="form-control">
-										<option value="">France</option>
-										<option value="">Italy</option>
-										<option value="">Philippines</option>
-										<option value="">South Korea</option>
-										<option value="">Hongkong</option>
-										<option value="">Japan</option>
+									<select name="pais" name="country" required class="form-control">
+										<option value="">Francia</option>
+										<option value="">Italia</option>
+										<option value="">Portugal</option>
+										<option value="">España</option>
 									</select>
 								</div>
 							</div>
 						</div>
+
 						<div class="w-100"></div>
 							<div class="col-md-6">
 								<div class="form-group">
-								<label for="streetaddress">Street Address</label>
-								<input type="text" class="form-control" placeholder="House number and street name">
+								<label for="streetaddress">Dirección*</label>
+								<input type="text" name="address" required class="form-control" placeholder="Calle Gran vía">
 								</div>
 							</div>
 						<div class="col-md-6">
 							<div class="form-group">
-						<input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
+						<input type="text" name="address2" required class="form-control" placeholder="Nº 4, 2B">
 						</div>
 						</div>
 						<div class="w-100"></div>
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="towncity">Town / City</label>
-						<input type="text" class="form-control" placeholder="">
+							<label for="towncity">Ciudad*</label>
+						<input type="text" name="city" required class="form-control" placeholder="">
 						</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="postcodezip">Postcode / ZIP *</label>
-						<input type="text" class="form-control" placeholder="">
+								<label for="postcodezip">Código postal*</label>
+						<input type="text" class="form-control" name="postal_code" required placeholder="49990">
 						</div>
 						</div>
 
 						<div class="w-100"></div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="phone">Phone</label>
-									<input type="text" class="form-control" placeholder="">
+									<label for="phone">Teléfono*</label>
+									<input type="text" required class="form-control" placeholder="666 777 888">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="emailaddress">Email Address</label>
-									<input type="text" class="form-control" placeholder="">
+									<label for="emailaddress">Email</label>
+									<input type="text" class="form-control" placeholder="ejemplo@ejemplo.es">
 								</div>
 							</div>
 
@@ -130,34 +131,34 @@
 							<h3 class="billing-heading mb-4">Cart Total</h3>
 							<p class="d-flex">
 										<span>Subtotal</span>
-										<span>$20.60</span>
+										<span>{{ total }}€</span>
 									</p>
-									<p class="d-flex">
+									{% comment %} <p class="d-flex">
 										<span>Delivery</span>
 										<span>$0.00</span>
 									</p>
 									<p class="d-flex">
 										<span>Discount</span>
 										<span>$3.00</span>
-									</p>
+									</p> {% endcomment %}
 									<hr>
 									<p class="d-flex total-price">
 										<span>Total</span>
-										<span>$17.60</span>
+										<span>{{ total }}€</span>
 									</p>
 									</div>
 					</div>
 					<div class="col-md-12">
 						<div class="cart-detail p-3 p-md-4">
-							<h3 class="billing-heading mb-4">Payment Method</h3>
+							<h3 class="billing-heading mb-4">Método de pago:</h3>
 										<div class="form-group">
 											<div class="col-md-12">
 												<div class="radio">
-												<label><input type="radio" name="optradio" class="mr-2"> Direct Bank Tranfer</label>
+												<label><input type="radio" name="optradio" class="mr-2" required> Direct Bank Tranfer</label>
 												</div>
 											</div>
 										</div>
-										<div class="form-group">
+										{% comment %} <div class="form-group">
 											<div class="col-md-12">
 												<div class="radio">
 												<label><input type="radio" name="optradio" class="mr-2"> Check Payment</label>
@@ -170,15 +171,15 @@
 												<label><input type="radio" name="optradio" class="mr-2"> Paypal</label>
 												</div>
 											</div>
-										</div>
+										</div> {% endcomment %}
 										<div class="form-group">
 											<div class="col-md-12">
 												<div class="checkbox">
-												<label><input type="checkbox" value="" class="mr-2" required> I have read and accept the terms and conditions</label>
+												<label><input type="checkbox" value="" required class="mr-2">He leido y acepto los terminos y condiciones.</label>
 												</div>
 											</div>
 										</div>
-										<p><a href="#"class="btn btn-primary py-3 px-4">Place an order</a></p>
+										<p><input type="submit" value="Confirmar Compra" class="btn btn-primary py-3 px-5"> </p>
 									</div>
 	          	</div>
 	          </div>
@@ -188,7 +189,7 @@
 	  </form><!-- END -->
 
     </section>
-    
+    </form>
  {% endblock %} 
 
   {% comment %} <!-- loader -->

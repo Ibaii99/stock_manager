@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 import javax.swing.*;
-import javax.swing.JScrollPane;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -40,6 +39,7 @@ public class Articulos_bien extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private Client client;
 	private Date date;
+	private JTextField textField;
 	
 	public Articulos_bien() {
 		setTitle("ARTICULOS");
@@ -49,8 +49,12 @@ public class Articulos_bien extends JFrame{
 		
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
+
 		final WebTarget articuloTarget = appTarget.path("eliminarArticulo");
 		
+
+		final WebTarget eliminarTarget = appTarget.path("eliminarArticulo");
+
 
 
 		setSize(1000, 500);
@@ -61,10 +65,7 @@ public class Articulos_bien extends JFrame{
 		JPanel botonesPanel = new JPanel();
 		
 		JButton eliminarBoton = new JButton("Eliminar articulo");
-
-		JButton anyadirBoton = new JButton("Anyadir articulo");
 		botonesPanel.add(eliminarBoton);
-		botonesPanel.add(anyadirBoton);
 		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
 
 		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
@@ -83,11 +84,16 @@ public class Articulos_bien extends JFrame{
 				}
 			}
 		});
+		
+		JButton modificarBoton = new JButton("Modificar articulo");
+
 		GroupLayout gl_botonesPanel = new GroupLayout(botonesPanel);
 		gl_botonesPanel.setHorizontalGroup(
-			gl_botonesPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_botonesPanel.createSequentialGroup()
-					.addContainerGap(278, Short.MAX_VALUE)
+			gl_botonesPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_botonesPanel.createSequentialGroup()
+					.addContainerGap(629, Short.MAX_VALUE)
+					.addComponent(modificarBoton, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(eliminarBoton)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnanyadir)
@@ -99,7 +105,9 @@ public class Articulos_bien extends JFrame{
 					.addGap(5)
 					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnanyadir)
-						.addComponent(eliminarBoton)))
+						.addComponent(eliminarBoton)
+						.addComponent(modificarBoton))
+					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		botonesPanel.setLayout(gl_botonesPanel);
 		
@@ -119,17 +127,16 @@ public class Articulos_bien extends JFrame{
 			articulosListModel.addElement(articulo);
 		}
 		
-		JPanel derecha = new JPanel();
-		getContentPane().add(derecha,BorderLayout.EAST);
-		
 
 		
 		eliminarBoton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				Articulo a = articulosLista.getSelectedValue();
 				System.out.println(a);
+
 				articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
 			   
 				
@@ -147,13 +154,32 @@ public class Articulos_bien extends JFrame{
 //                }
 				
 				
+			}
+
 				
+		});
+		
+		modificarBoton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Articulo articulo = articulosLista.getSelectedValue();
+				System.out.println(articulo);
+				try {
+					ModificarArticulo frame = new ModificarArticulo(articulo);
+					frame.setVisible(true);
+					dispose();
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
+
 				
 			}
 		});
 		setVisible(true);
 		
 	}
+
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -165,6 +191,5 @@ public class Articulos_bien extends JFrame{
 			}
 		});
 	}
-	
 	
 }

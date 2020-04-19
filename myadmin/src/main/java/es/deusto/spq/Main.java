@@ -26,7 +26,7 @@ public class Main
 	    @SuppressWarnings("deprecation")
 		public static void main(String[] args) throws IOException {
 	    	try {
-				CrearArticulo frame = new CrearArticulo();
+				InicioSesion frame = new InicioSesion();
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();

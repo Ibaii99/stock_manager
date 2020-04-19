@@ -60,6 +60,7 @@ public class DAO {
 	
 	public void delete(Articulo u) {
 
+
 		Transaction tm = pm.currentTransaction();
 		
 		try {
@@ -69,10 +70,12 @@ public class DAO {
 			q.setClass(Articulo.class);
 			q.setUnique(true);
 			Articulo product = (Articulo) q.execute();
+			Articulo art = product;
+			System.out.println(art);
 			tm.begin();
-			System.out.println(product);
+			
 			pm.deletePersistent(product);
-			System.out.println(product);
+			product = art;
 			tm.commit();
 			System.out.println("Aqui llega despues de commit");
 
@@ -87,6 +90,7 @@ public class DAO {
 				}
 
 			}
+
 		}
 	
 	

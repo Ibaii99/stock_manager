@@ -132,6 +132,7 @@ public class CrearArticulo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					System.out.println("Ha pulsado cancelar, volver a pagina anterior");
+
 					Articulos_bien frame = new Articulos_bien();
 					frame.setVisible(true);
 					dispose();
@@ -191,7 +192,8 @@ public class CrearArticulo extends JFrame {
 		categoriaSpinner = new JSpinner(model1);
 		
 		calendar = new JCalendar();
-
+//		Date fechaHoy = new Date();
+//		calendar.setMinSelectableDate(fechaHoy);
 		GroupLayout gl_caducidad = new GroupLayout(caducidad);
 		gl_caducidad.setHorizontalGroup(
 			gl_caducidad.createParallelGroup(Alignment.LEADING)
