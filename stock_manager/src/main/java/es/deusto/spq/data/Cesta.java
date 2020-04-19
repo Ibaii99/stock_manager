@@ -120,13 +120,10 @@ public class Cesta implements Serializable {
 
    //A modificar por Oferta
    public float getRecibo() {
-
-       int r = 0;
-
+       float r = 0;
 	   for (int i = 0; i < this.articulos.size(); i++) {
-		   r += this.articulos.get(i).getPrecio() * this.cantidades.get(i);
+		   r += this.articulos.get(i).getOferta() * this.cantidades.get(i);
 	   }
-      
        return r;
    }
 

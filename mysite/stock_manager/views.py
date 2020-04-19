@@ -1,6 +1,3 @@
-from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse, HttpResponseRedirect
-from .forms import ContactForm
 from django.shortcuts import render, redirect, HttpResponseRedirect
 import datetime
 from mysite import settings
@@ -18,8 +15,11 @@ def test(request):
     return render(request, "shop.html") 
     #Prueba de commit
 
+
+
 def cart(request):
     if is_session_alive(request):
+        global sessions
         sesion = sessions.get(request.COOKIES['sessionid'])
         info={
             "email": sesion.get("email"),
@@ -27,9 +27,9 @@ def cart(request):
         }
         
         resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getCarrito', json=info)
-        
+
         cesta = json.loads(resp.text)
-        
+
         if request.method == "POST":
             if(request.POST.get("borrar") is None):
                 print("--------------------")
@@ -44,13 +44,11 @@ def cart(request):
                         }
                         
                         requests.post(settings.STOCK_MANAGER_API_URL +'/api/modifyCarrito', json=z)
-                    
+
                 print("--------------------")
                     
                 if( request.POST.get("Pagar") is not None and request.POST.get("Guardar") is None ):
                     return redirect("/user/cart/checkout")
-            
-            
             else:
                 z = {
                     "id_articulo": request.POST.get("borrar"),
@@ -59,7 +57,6 @@ def cart(request):
                 }
                 
                 resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/removeCarrito', json=z)
-            
             
             resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/getCarrito', json=info)
             cesta = json.loads(resp.text)
@@ -72,7 +69,7 @@ def cart(request):
             cesta.get("articulos")[e]["precio_articulo"] =  int(cesta.get("cantidades")[e]) * float(cesta.get("articulos")[e]["oferta"])
             preciototal +=  int(cesta.get("cantidades")[e]) * cesta.get("articulos")[e]["oferta"]
             e+=1
-            
+
         cesta["precio_total"] = preciototal
         return render(request, "cart.html", {"var": get_vars(request), "cesta": cesta} ) 
     
@@ -81,18 +78,53 @@ def cart(request):
 def favourites(request):
     None 
     
+def pay(request):
+    if is_session_alive(request):
+        global sessions
+        sesion = sessions.get(request.COOKIES['sessionid'])
+        info={
+            "email": sesion.get("email"),
+            "password": sesion.get('password')
+        }
+        
+        if request.method == "POST":
+            for key, value in request.POST.items():
+                if(key != "Guardar" and key != "Pagar" and key != "csrfmiddlewaretoken"): 
+                    print(key, value)
+
+                requests.post(settings.STOCK_MANAGER_API_URL +'/api/carritoToPedido', json=info)
+                
+            #Por ahora no vamos a hacer nada con los datos de pago vaciarCarrito
+            
+            return redirect("/index")
+            
+        return render(request, "payment.html", {"var": get_vars(request)})   
+    
+    return redirect("/user/login") 
 
 def checkout(request):
-    if request.method == "POST":
-        for key, value in request.POST.items():
-            if(key != "Guardar" and key != "Pagar" and key != "csrfmiddlewaretoken"): 
-                print(key, value)
-    return render(request, "payment.html")   
-    # return render(request, "checkout.html")   
+    
+    if is_session_alive(request):
+        #carritoPrecio
+        global sessions
+        sesion = sessions.get(request.COOKIES['sessionid'])
+        info={
+            "email": sesion.get("email"),
+            "password": sesion.get('password')
+        }
+        
+        if request.method == "POST":
+            return redirect("/user/cart/payment")
+            
+        resp = requests.post(settings.STOCK_MANAGER_API_URL +'/api/carritoPrecio', json=info)
+        
+        return render(request, "checkout.html", {"var": get_vars(request), "total": resp.json()["precio"]})
+      
+    return redirect("/user/login") 
 
 def user(request):
-    global sessions
     if is_session_alive(request):
+        global sessions
         sesion = sessions.get(request.COOKIES['sessionid'])
         info={
             "email": sesion.get("email"),
@@ -171,14 +203,11 @@ def login(request):
         
         save_session(request, session_id , resp.json()["nombre"], request.POST.get('email'), request.POST.get('password') )
         
-        
-        
         return pagina
         
     return render(request, "login.html", {"var": get_vars(request)})
 
 def shop(request):
-    
     if is_session_alive(request):
         sesion = sessions.get(request.COOKIES['sessionid'])
         
@@ -345,23 +374,3 @@ def erro_handler(request, exception=None):
     # make a redirect to homepage
     # you can use the name of url or just the plain link
     return redirect('/index/') # or redirect('name-of-index-url')
-
-def emailView(request):
-    if request.method == 'GET':
-        form = ContactForm()
-    else:
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            from_email = form.cleaned_data['from_email']
-            message = form.cleaned_data['message']
-            try:
-                print("Ha entrado")
-                send_mail(subject, message, from_email, ['stockmanager2020@gmail.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return render(request, "shop.html")
-    return render(request, "contact.html", {'form': form})
-
-def successView(request):
-    return HttpResponse('Success! Thank you for your message.')
