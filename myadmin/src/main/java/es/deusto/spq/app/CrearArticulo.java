@@ -132,7 +132,7 @@ public class CrearArticulo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					System.out.println("Ha pulsaod cancelar, volver a pagina anterior");
-					ArticulosLista frame = new ArticulosLista();
+					Articulos_bien frame = new Articulos_bien();
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception es) {

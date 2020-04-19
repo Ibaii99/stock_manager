@@ -1,5 +1,3 @@
-package main.java.es.deusto.spq.app;
-
 package src.main.java.es.deusto.spq.app;
 
 import javax.ws.rs.client.Client;
@@ -49,35 +47,18 @@ public class ModificarArticulo extends JFrame {
 	private JTextField tcaducidad;
 	private JTextField tid;
 	private Date date;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ModificarArticulo frame = new ModificarArticulo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	
 	private Client client;
 
 	/**
 	 * Create the frame.
 	 */
-	public ModificarArticulo() {
+	public ModificarArticulo(final Articulo a) {
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 
 		final WebTarget articuloTarget = appTarget.path("actualizarArticulo");
-
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
@@ -104,28 +85,29 @@ public class ModificarArticulo extends JFrame {
 		
 		JLabel lurl = new JLabel("URL Imagen:");
 		
-		tUrl = new JTextField();
+		
+		tUrl = new JTextField(a.getImageUrl());
 		tUrl.setColumns(10);
 		
-		tcategoria = new JTextField();
+		tcategoria = new JTextField(a.getCategoria().toString());
 		tcategoria.setColumns(10);
 		
-		toferta = new JTextField();
+		toferta = new JTextField(Float.toString(a.getOferta()));
 		toferta.setColumns(10);
 		
-		tdescripcion = new JTextField();
+		tdescripcion = new JTextField(a.getDescripcion());
 		tdescripcion.setColumns(10);
 		
-		tstock = new JTextField();
+		tstock = new JTextField(Integer.toString(a.getStock()));
 		tstock.setColumns(10);
 		
-		tprecio = new JTextField();
+		tprecio = new JTextField(Float.toString(a.getPrecio()));
 		tprecio.setColumns(10);
 		
-		tcaducidad = new JTextField();
+		tcaducidad = new JTextField(a.getCaducidad().toString());
 		tcaducidad.setColumns(10);
 		
-		tnombre = new JTextField();
+		tnombre = new JTextField(a.getNombre());
 		tnombre.setColumns(10);
 		
 		JButton btncancelar = new JButton("Cancelar");
@@ -134,7 +116,7 @@ public class ModificarArticulo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					System.out.println("Ha pulsaod cancelar, volver a pagina anterior");
-					ArticulosLista frame = new ArticulosLista();
+					Articulos_bien frame = new Articulos_bien();
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception es) {
@@ -168,10 +150,18 @@ public class ModificarArticulo extends JFrame {
 			    String cat = tcategoria.getText();
 			    Categoria categoria = Categoria.valueOf(cat);
 			    String image_url = tUrl.getText();
-			    
-			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
-			    System.out.println(articulo);
-			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
+			 
+			   
+			    a.setNombre(nombre);
+			    a.setCaducidad(caduci);
+			    a.setPrecio(precio);
+			    a.setStock(stock);
+			    a.setDescripcion(descripcion);
+			    a.setOferta(oferta);
+			    a.setCategoria(categoria);
+			    a.setImageUrl(image_url); 
+			    System.out.println(a);
+			    articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
 			    System.out.println("Articulo modificado");
 
 			}
@@ -255,5 +245,17 @@ public class ModificarArticulo extends JFrame {
 					.addContainerGap())
 		);
 		caducidad.setLayout(gl_caducidad);
+	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ModificarArticulo frame = new ModificarArticulo(null);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

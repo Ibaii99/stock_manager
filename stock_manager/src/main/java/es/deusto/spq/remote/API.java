@@ -73,17 +73,6 @@ public class API {
 		return "{ \"nombre\": \""+cliente.getNombreCliente() + "\" }";
 	}
 	
-	@DELETE
-	@Path("code")
-	public Response eliminarArticulo(@PathParam("code") int code) {
-		if (code == 10) {
-			System.out.println("Eliminando articulo...");
-			return Response.status(Response.Status.OK).build();
-		}else {
-			System.out.println("Articulo no encontrado");
-			return Response.status(Response.Status.NOT_FOUND).build();
-		}
-	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -94,40 +83,19 @@ public class API {
 		return "articulo añadido correctamente";
 	}
 	
-	@POST
+
+	@DELETE
 	@Path("eliminarArticulo")
-	public String eliminarArticulo(JsonObject json) {
+	public Response eliminarArticulo(JsonObject json) {
 		DAO dao = new DAO();
 		long id = Long.parseLong(get_from_json(json, "id"));
 		System.out.println(id);
 		Articulo a = dao.getArticulo(id);
 //		System.out.println(a);
 		dao.delete(a);
-		return "Articulo eliminado";
-	}
-	
-	@DELETE
-    @Path("/{code}")
-    public Response deleteProducto(@PathParam("code") int code){
-        DAO dao = new DAO();
-        boolean existe = false;
-        List<Articulo> articulos = dao.getArticulos();
-
-        for (int i = 0; i < articulos.size(); i++) {
-            if (code == articulos.get(i).getId()){
-                existe = true;
-                dao.delete(articulos.get(i));
-            }
-        }
-        if (existe) {
-            System.out.println("Deleting producto...");
-            return Response.status(Response.Status.OK).build();
-        }else {
-            System.out.println("producto not found");
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-
-    }
+		System.out.println("Deleting producto...");
+        return Response.status(Response.Status.OK).build();
+	}	
 	
 	@POST
 	@Path("ingresarArticulo")
