@@ -7,7 +7,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response.Status;
-import  com.toedter.calendar.JCalendar.*;
+import com.toedter.calendar.JCalendar.*;
 import src.main.java.es.deusto.spq.data.Articulo;
 import src.main.java.es.deusto.spq.data.Articulo.Categoria;
 
@@ -134,7 +134,7 @@ public class CrearArticulo extends JFrame {
 				try {
 					System.out.println("Ha pulsado cancelar, volver a pagina anterior");
 
-					Articulos_bien frame = new Articulos_bien();
+					ArticulosBien frame = new ArticulosBien();
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception es) {

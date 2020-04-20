@@ -53,7 +53,7 @@ public class Menu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Articulos_bien frame = new Articulos_bien();
+					ArticulosBien frame = new ArticulosBien();
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception er) {

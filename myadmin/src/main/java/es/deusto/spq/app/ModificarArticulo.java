@@ -57,10 +57,11 @@ public class ModificarArticulo extends JFrame {
 	 * Create the frame.
 	 */
 	public ModificarArticulo(final Articulo a) {
+		articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-
-		final WebTarget articuloTarget = appTarget.path("actualizarArticulo");
+		final WebTarget articuloTarget = appTarget.path("eliminarArticulo");
+		final WebTarget nuevoTarget = appTarget.path("ingresarArticulo");
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +113,7 @@ public class ModificarArticulo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					System.out.println("Ha pulsaod cancelar, volver a pagina anterior");
-					Articulos_bien frame = new Articulos_bien();
+					ArticulosBien frame = new ArticulosBien();
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception es) {
@@ -154,18 +155,10 @@ public class ModificarArticulo extends JFrame {
 			    System.out.println(cat);
 			    Categoria categoria = Categoria.valueOf(cat);
 			    String image_url = tUrl.getText();
-			 
-			   
-			    a.setNombre(nombre);
-			    a.setCaducidad(caduci);
-			    a.setPrecio(precio);
-			    a.setStock(stock);
-			    a.setDescripcion(descripcion);
-			    a.setOferta(oferta);
-			    a.setCategoria(categoria);
-			    a.setImageUrl(image_url); 
-			    System.out.println(a);
+			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta, categoria, image_url);
+			    System.out.println(articulo);
 			    articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
+			    nuevoTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
 			    System.out.println("Articulo modificado");
 
 			}

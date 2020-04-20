@@ -34,14 +34,14 @@ import java.awt.Dimension;
 
 
 
-public class Articulos_bien extends JFrame{
+public class ArticulosBien extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private Client client;
 	private Date date;
 	private JTextField textField;
 	
-	public Articulos_bien() {
+	public ArticulosBien() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
 
@@ -51,9 +51,6 @@ public class Articulos_bien extends JFrame{
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
 
 		final WebTarget articuloTarget = appTarget.path("eliminarArticulo");
-		
-
-		final WebTarget eliminarTarget = appTarget.path("eliminarArticulo");
 
 
 
@@ -203,7 +200,7 @@ public class Articulos_bien extends JFrame{
 			
 			@Override
 			public void run() {
-				new Articulos_bien();
+				new ArticulosBien();
 				
 			}
 		});

@@ -9,7 +9,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-import src.main.java.es.deusto.spq.app.Articulos_bien;
+import src.main.java.es.deusto.spq.app.ArticulosBien;
 import src.main.java.es.deusto.spq.data.Usuario;
 
 import javax.ws.rs.core.GenericType;

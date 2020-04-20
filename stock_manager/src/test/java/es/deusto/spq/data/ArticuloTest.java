@@ -2,6 +2,7 @@ package es.deusto.spq.data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
@@ -68,6 +69,6 @@ public class ArticuloTest{
 	@Test 
 	public void testId() {
 		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
-		assertFalse(a1.equals(actual));
+		assertNotEquals(a1.getId(),actual.getId());
 	}
 }
