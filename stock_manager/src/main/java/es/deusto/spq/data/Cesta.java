@@ -35,7 +35,8 @@ public class Cesta implements Serializable {
     // En el indice 1 de articulos estara el articulo añadido primero
     // En el indice 1 de cantidades estara las cantidades dedl articulo 1
 	
-    @Join
+	@Persistent(mappedBy = "cestas")
+	@Join
     private List<Articulo> articulos = new ArrayList<>();
     
     private List<Integer> cantidades = new ArrayList<>();

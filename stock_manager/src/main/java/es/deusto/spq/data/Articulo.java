@@ -48,6 +48,8 @@ public class Articulo implements Serializable {
     
     private Vendedor vendedor;
     
+    private  List<Cesta> cestas;
+    
 	public Articulo() {
 	}
 
@@ -95,6 +97,15 @@ public class Articulo implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	
+	public List<Cesta> getCestas() {
+		return cestas;
+	}
+
+	public void setCestas(List<Cesta> pedidos) {
+		this.cestas = pedidos;
 	}
 
 	public void setCaducidad(Date caducidad) {
