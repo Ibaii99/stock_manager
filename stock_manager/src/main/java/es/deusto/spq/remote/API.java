@@ -4,6 +4,7 @@ import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -110,17 +111,20 @@ public class API {
 		String cad = get_from_json(json, "caducidad");
 		System.out.println("Cadudcida json");
 		System.out.println(cad);
-
-		Date caducidad = null;
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-
-		try{
-            caducidad = df.parse(cad);
-            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, "+cad);
-        } catch (Exception e){ System.out.println("invalid format");}
+		String[] cadu = cad.split("-");
+		int year = Integer.parseInt(cadu[0]);
+		System.out.println(year);
+		int mes = Integer.parseInt(cadu[1]);
+		System.out.println(mes);
+		char[] diaChar = cad.toCharArray();
+		String diaString = ""+diaChar[8]+diaChar[9];
+		int dia = Integer.parseInt(diaString);
 		
-		
-
+		System.out.println(dia);
+		Calendar fecha = Calendar.getInstance();
+		fecha.set(year, mes, dia);
+		Date caducidad = fecha.getTime();
+		System.out.println(caducidad);
 //		System.out.println(caducidad);
 		Float precio = Float.parseFloat(get_from_json(json, "precio")); //13.2
 		System.out.println(precio);

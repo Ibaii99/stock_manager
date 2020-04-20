@@ -70,12 +70,8 @@ public class DAO {
 			q.setClass(Articulo.class);
 			q.setUnique(true);
 			Articulo product = (Articulo) q.execute();
-			Articulo art = product;
-			System.out.println(art);
 			tm.begin();
-			
 			pm.deletePersistent(product);
-			product = art;
 			tm.commit();
 			System.out.println("Aqui llega despues de commit");
 
