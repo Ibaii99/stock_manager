@@ -77,6 +77,7 @@ public class CrearArticulo extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearArticulo() {
+		setTitle("CREAR ARTICULOS");
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 
