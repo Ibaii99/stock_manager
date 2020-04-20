@@ -38,6 +38,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JSpinner;
 import com.toedter.calendar.JCalendar;
+import java.awt.Dimension;
 
 
 public class CrearArticulo extends JFrame {
@@ -77,6 +78,7 @@ public class CrearArticulo extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearArticulo() {
+		setMinimumSize(new Dimension(870, 485));
 		setTitle("CREAR ARTICULOS");
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
