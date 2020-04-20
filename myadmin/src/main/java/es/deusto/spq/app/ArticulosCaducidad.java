@@ -153,8 +153,6 @@ public class ArticulosCaducidad extends JFrame {
 		Date fechaHoy = calendarioHOY.getTime();
 		calendarioLimite.set(calendarioLimite.get(Calendar.YEAR), calendarioLimite.get(Calendar.MONTH)+1, calendarioLimite.get(Calendar.DATE));
 		Date fechaLimite = calendarioLimite.getTime();
-		System.out.println(fechaLimite.toString());
-		System.out.println(fechaHoy.toString());
 		Calendar calen = Calendar.getInstance();
 		
 		for(Articulo articulo: articulos) {

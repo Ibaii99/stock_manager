@@ -48,7 +48,7 @@ public class Menu extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-		JButton listaArticulos = new JButton("Ver Lista completa Articulos");
+		JButton listaArticulos = new JButton("Gestionar Todos Los Articulos");
 		listaArticulos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -62,7 +62,7 @@ public class Menu extends JFrame {
 			}
 		});
 		
-		JButton caducidad = new JButton("Ver Articulos proximos a Caducar");
+		JButton caducidad = new JButton("Ver Articulos Proximos A Caducar");
 		caducidad.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -76,7 +76,7 @@ public class Menu extends JFrame {
 			}
 		});
 		
-		JButton stock = new JButton("Ver Articulos bajos en Stock");
+		JButton stock = new JButton("Ver Articulos Bajos En Stock");
 		stock.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
