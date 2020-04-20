@@ -1,25 +1,35 @@
 package src.test.java.es.deusto.spq.data;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import src.main.java.es.deusto.spq.data.*;
 
 
 public class UsuarioTest {
-	private Usuario usuario = new Usuario("admin", "admin");
+	private Usuario usuario;
 	
+	
+	@Before
+	public void setUp() {
+		usuario = new Usuario("admin", "admin");
+	}
 	
 	@Test
 	public void getNombre() {
-		assertEquals(usuario.getNombre(), "admin");
+		Usuario actual = new Usuario("admin", "admin");
+		assertEquals(usuario.getNombre(), actual.getNombre());
 	}
 	@Test
 	public void getContrasenya() {
-		assertEquals(usuario.getContrasenya(), "admin");
+		Usuario actual = new Usuario("admin", "admin");
+		assertEquals(usuario.getContrasenya(), actual.getContrasenya());
 	}
 	@Test
 	public void getId() {
-		assertEquals(usuario.getId(), 0);
+		Usuario actual = new Usuario("admin", "admin");
+		assertNotEquals(usuario.getId(), actual.getId());
 	}
 }

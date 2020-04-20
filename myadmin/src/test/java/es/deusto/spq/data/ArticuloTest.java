@@ -1,53 +1,68 @@
 package src.test.java.es.deusto.spq.data;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import src.main.java.es.deusto.spq.data.*;
 import src.main.java.es.deusto.spq.data.Articulo.Categoria;
-
-public class ArticuloTest {
-
-	private Articulo articulo = new Articulo("almendras", new Date("18/05/2020"), 1.20f, 100, "ricas almendra", 
-			1.05f, Categoria.FRUTOSSECOS, "almendras.com");
+import src.main.java.es.deusto.spq.data.Articulo;
+public class ArticuloTest{
+	private Articulo a1;
+	
+	@Before 
+	public void setUp() {
+		a1 = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		
+	}
 	
 	@Test
 	public void testNombre() {
-		assertEquals(articulo.getNombre(), "almendras");
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertEquals(a1.getNombre(), actual.getNombre());
 	}
 	@Test
-	public void testCaducidad() {
-		assertEquals(articulo.getCaducidad(), new Date(18/05/2020));
+	public void testFecha() {
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertEquals(a1.getCaducidad(), actual.getCaducidad());
 	}
 	@Test
 	public void testPrecio() {
-		assertEquals(articulo.getPrecio(), 1.20f,0);
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertEquals(a1.getPrecio(), actual.getPrecio(),0);
 	}
 	@Test
 	public void testStock() {
-		assertEquals(articulo.getStock(), 100);
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertEquals(a1.getStock(), actual.getStock());
 	}
 	@Test
 	public void testDescripcion() {
-		assertEquals(articulo.getDescripcion(), "ricas almendras");
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertEquals(a1.getDescripcion(), actual.getDescripcion());
 	}
 	@Test
 	public void testOferta() {
-		assertEquals(articulo.getOferta(), 1.05f,0);
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertEquals(a1.getOferta(), actual.getOferta(),0);
 	}
 	@Test
 	public void testCategoria() {
-		assertEquals(articulo.getCategoria(), Categoria.FRUTOSSECOS);
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertEquals(a1.getCategoria(), actual.getCategoria());
 	}
 	@Test
-	public void testImagen() {
-		assertEquals(articulo.getImageUrl(), "almendras.com");
+	public void testImage() {
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertEquals(a1.getImageUrl(), actual.getImageUrl());
 	}
-	@Test
-	public void testId() {
-		assertEquals(articulo.getId(), 0);
+	@Test 
+	public void testEquals() {
+		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		assertFalse(a1.equals(actual));
 	}
 }

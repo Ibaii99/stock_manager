@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import es.deusto.spq.data.Cliente;
 
-public class Opinion_test{
+public class OpinionTest{
 	private Cliente c = new Cliente("jokin", "jokin@gmail.com", "Deusto1", "Deusto kalea 1");
 	private Opinion o = new Opinion("me gusta", 8, c);
 	
@@ -26,6 +26,6 @@ public class Opinion_test{
 	}
 	@Test
 	public void testId() {
-		assertEquals(o.getId(), 1);
+		assertEquals(o.getId(), 0);
 	}
 }
