@@ -364,9 +364,9 @@ public class DAO {
 		 
 		 Cliente c2 = new Cliente("aitor", "aitor@gmail.com", "hola", "Deusto kalea 1");
 		 
-		 Articulo manzana = new Articulo("manzana", new Date(121, 3, 21), 1.20f, 400, "rica manzana", 0.95f,
+		 Articulo manzana = new Articulo("manzana", new Date(120, 4, 19), 1.20f, 90, "rica manzana", 0.95f,
 				Categoria.FRUTAS, "https://i.pinimg.com/originals/63/64/fb/6364fbeede3157aac881ed9c088d9c26.png");
-		 Articulo lechuga = new Articulo("lechuga", new Date(121, 3, 21), 1.20f, 400, "rica lechuga", 0.95f,
+		 Articulo lechuga = new Articulo("lechuga", new Date(120, 4, 11), 1.20f, 60, "rica lechuga", 0.95f,
 				Categoria.VERDURAS,
 				"https://www.frutasramirez.com/wp-content/uploads/2015/09/distribucionlechuga-iceberg-frutas-ramirez.jpg");
 		 Articulo fresa = new Articulo("pimiento", new Date(121, 3, 21), 1.20f, 400, "rico pimiento", 0.95f,
@@ -389,7 +389,9 @@ public class DAO {
 		 Articulo a4 = new Articulo("Mandarina", new Date(121, 3, 21), 1.20f, 400, "rica mandarina", 1.05f,
 				Categoria.FRUTAS,
 				"https://static.eldiariomontanes.es/www/pre2017/multimedia/noticias/201610/15/media/cortadas/webmandarina-kQ6G-U203574520628HAH-575x323@Diario%20Montanes.jpg");
-		/*
+		
+		 
+		 /*
 			manzana.setImage("src/main/java/imagenes/lechuga.png");
 			lechuga.setImage("src/main/java/imagenes/lechuga.png");
 			fresa.setImage("src/main/java/imagenes/lechuga.png");

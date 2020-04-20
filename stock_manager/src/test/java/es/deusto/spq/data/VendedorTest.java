@@ -12,7 +12,7 @@ import org.junit.Test;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Articulo;
-public class Vendedor_test{
+public class VendedorTest{
 	private Vendedor v = new Vendedor("Jokin", "Jokin@gmail.com", new ArrayList<Articulo>());
 	private List<Articulo>listaArticulos = new ArrayList<Articulo>();
 	private Date f1 = new Date(120,04,12);

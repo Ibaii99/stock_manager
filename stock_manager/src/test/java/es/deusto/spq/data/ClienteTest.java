@@ -15,8 +15,8 @@ import es.deusto.spq.data.Articulo;
 import es.deusto.spq.data.Cesta;
 
 
-public class Cliente_test{
-	private Cliente c = new Cliente("mikel@gmail.com", "mikel", "Deusto1", "Deusto kalea 1");
+public class ClienteTest{
+	private Cliente c = new Cliente("mikel", "mikel@gmail.com", "Deusto1", "Deusto kalea 1");
 	private List<Cesta> cestas = new ArrayList<Cesta>();
 	private Date f1 = new Date(120,04,12);
 	private Articulo a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
