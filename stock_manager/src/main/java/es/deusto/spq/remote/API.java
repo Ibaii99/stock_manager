@@ -4,6 +4,7 @@ import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -73,17 +74,6 @@ public class API {
 		return "{ \"nombre\": \""+cliente.getNombreCliente() + "\" }";
 	}
 	
-	@DELETE
-	@Path("code")
-	public Response eliminarArticulo(@PathParam("code") int code) {
-		if (code == 10) {
-			System.out.println("Eliminando articulo...");
-			return Response.status(Response.Status.OK).build();
-		}else {
-			System.out.println("Articulo no encontrado");
-			return Response.status(Response.Status.NOT_FOUND).build();
-		}
-	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -94,40 +84,20 @@ public class API {
 		return "articulo añadido correctamente";
 	}
 	
+
 	@POST
 	@Path("eliminarArticulo")
 	public String eliminarArticulo(JsonObject json) {
 		DAO dao = new DAO();
+		System.out.println("Dentro de eliminar Articulo");
 		long id = Long.parseLong(get_from_json(json, "id"));
 		System.out.println(id);
 		Articulo a = dao.getArticulo(id);
-//		System.out.println(a);
+		System.out.println(a);
 		dao.delete(a);
-		return "Articulo eliminado";
-	}
-	
-	@DELETE
-    @Path("/{code}")
-    public Response deleteProducto(@PathParam("code") int code){
-        DAO dao = new DAO();
-        boolean existe = false;
-        List<Articulo> articulos = dao.getArticulos();
-
-        for (int i = 0; i < articulos.size(); i++) {
-            if (code == articulos.get(i).getId()){
-                existe = true;
-                dao.delete(articulos.get(i));
-            }
-        }
-        if (existe) {
-            System.out.println("Deleting producto...");
-            return Response.status(Response.Status.OK).build();
-        }else {
-            System.out.println("producto not found");
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-
-    }
+		System.out.println("Deleting producto...");
+        return "Articulo Eliminado";
+	}	
 	
 	@POST
 	@Path("ingresarArticulo")
@@ -141,17 +111,20 @@ public class API {
 		String cad = get_from_json(json, "caducidad");
 		System.out.println("Cadudcida json");
 		System.out.println(cad);
-
-		Date caducidad = null;
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-
-		try{
-            caducidad = df.parse(cad);
-            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, "+cad);
-        } catch (Exception e){ System.out.println("invalid format");}
+		String[] cadu = cad.split("-");
+		int year = Integer.parseInt(cadu[0]);
+		System.out.println(year);
+		int mes = Integer.parseInt(cadu[1]);
+		System.out.println(mes);
+		char[] diaChar = cad.toCharArray();
+		String diaString = ""+diaChar[8]+diaChar[9];
+		int dia = Integer.parseInt(diaString);
 		
-		
-
+		System.out.println(dia);
+		Calendar fecha = Calendar.getInstance();
+		fecha.set(year, mes, dia);
+		Date caducidad = fecha.getTime();
+		System.out.println(caducidad);
 //		System.out.println(caducidad);
 		Float precio = Float.parseFloat(get_from_json(json, "precio")); //13.2
 		System.out.println(precio);

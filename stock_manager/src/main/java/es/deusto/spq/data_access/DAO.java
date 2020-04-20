@@ -60,43 +60,23 @@ public class DAO {
 	
 	public void delete(Articulo u) {
 
-//		Transaction tm = pm.currentTransaction();
+
 		Transaction tm = pm.currentTransaction();
 		
 		try {
+//			tm.begin();
+			Query q = pm.newQuery("SQL", "SELECT * FROM ARTICULO WHERE ID = " + u.getId());
+			System.out.println(u.getId());
+			q.setClass(Articulo.class);
+			q.setUnique(true);
+			Articulo product = (Articulo) q.execute();
 			tm.begin();
+			pm.deletePersistent(product);
+			tm.commit();
+			System.out.println("Aqui llega despues de commit");
+
 			   
-//			    System.out.println("   * Deleting an object: " + u);
-			    
-//			    Articulo a = this.getArticulo(u.getId());
-//			    System.out.println(a);
-//			    pm.deletePersistent(a);
-//	    		System.out.println("- Deleted inventory from db: " + u);
-//	    		tm.commit();
-		    
-//		    Extent<Articulo> extent = pm.getExtent(Articulo.class, true);
-		    
-		    
-//		    for (Articulo articulo : extent) {
-		    	Query<Articulo> productsQuery = pm.newQuery("SELECT FROM " + Articulo.class.getName() + " WHERE ID==" + u.getId());
-		    	for (Articulo product : productsQuery.executeList()) {
-			        System.out.println("- Selected product from db: " + product.getId());
-			        pm.deletePersistent(product);
-			        System.out.println("- Deleted product from db: " + product.getId());
-			    }
-//		    	System.out.println("- Deleted inventory from db: " + u);
-//		    }
-		    	
-//		    	for (Articulo articulo : extent) {
-//		    		if(articulo.getId() == u.getId()) {
-//		    			System.out.println(articulo);
-//				    	pm.deletePersistent(articulo);
-//				        System.out.println("- Deleted inventory from db: " + articulo.getId());
-//		    		}
-//			    }
-		    	
-		    	
-		    tm.commit();
+//			  
 		    
 			} catch ( Exception ex) {
 				System.out.println("   $ Error deleting an object: " + ex.getMessage());
@@ -106,6 +86,7 @@ public class DAO {
 				}
 
 			}
+
 		}
 	
 	

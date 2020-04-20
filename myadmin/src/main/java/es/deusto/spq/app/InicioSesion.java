@@ -66,6 +66,7 @@ public class InicioSesion extends JFrame {
 	private Client client;
 	 
 	public InicioSesion() {
+		setTitle("INICIO SESION");
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget usuariosTarget = appTarget.path("getUsuarios");
@@ -122,7 +123,7 @@ public class InicioSesion extends JFrame {
 				
 				if(correcto) {
 					try {
-						Articulos_bien frame = new Articulos_bien();
+						Menu frame = new Menu();
 						frame.setVisible(true);
 						dispose();
 					} catch (Exception er) {
