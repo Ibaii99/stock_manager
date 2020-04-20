@@ -66,17 +66,12 @@ public class DAO {
 		try {
 //			tm.begin();
 			Query q = pm.newQuery("SQL", "SELECT * FROM ARTICULO WHERE ID = " + u.getId());
-			System.out.println(u.getId());
 			q.setClass(Articulo.class);
 			q.setUnique(true);
 			Articulo product = (Articulo) q.execute();
 			tm.begin();
 			pm.deletePersistent(product);
 			tm.commit();
-			System.out.println("Aqui llega despues de commit");
-
-			   
-//			  
 		    
 			} catch ( Exception ex) {
 				System.out.println("   $ Error deleting an object: " + ex.getMessage());

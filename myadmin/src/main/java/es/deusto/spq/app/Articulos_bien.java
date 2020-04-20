@@ -155,7 +155,7 @@ public class Articulos_bien extends JFrame{
 				System.out.println(a);
 
 				articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
-			   
+				
 				
 //				long l = a.getId();
 //				String m = ""+l ;

@@ -89,13 +89,9 @@ public class API {
 	@Path("eliminarArticulo")
 	public String eliminarArticulo(JsonObject json) {
 		DAO dao = new DAO();
-		System.out.println("Dentro de eliminar Articulo");
 		long id = Long.parseLong(get_from_json(json, "id"));
-		System.out.println(id);
 		Articulo a = dao.getArticulo(id);
-		System.out.println(a);
 		dao.delete(a);
-		System.out.println("Deleting producto...");
         return "Articulo Eliminado";
 	}	
 	
@@ -107,40 +103,25 @@ public class API {
 		System.out.println(json);
 
 		String nombre = get_from_json(json, "nombre");
-		System.out.println(nombre);
 		String cad = get_from_json(json, "caducidad");
-		System.out.println("Cadudcida json");
 		System.out.println(cad);
 		String[] cadu = cad.split("-");
 		int year = Integer.parseInt(cadu[0]);
-		System.out.println(year);
 		int mes = Integer.parseInt(cadu[1]);
-		System.out.println(mes);
 		char[] diaChar = cad.toCharArray();
 		String diaString = ""+diaChar[8]+diaChar[9];
 		int dia = Integer.parseInt(diaString);
-		
-		System.out.println(dia);
 		Calendar fecha = Calendar.getInstance();
 		fecha.set(year, mes, dia);
 		Date caducidad = fecha.getTime();
-		System.out.println(caducidad);
-//		System.out.println(caducidad);
-		Float precio = Float.parseFloat(get_from_json(json, "precio")); //13.2
-		System.out.println(precio);
+		Float precio = Float.parseFloat(get_from_json(json, "precio"));
 		int stock = Integer.parseInt(get_from_json(json, "stock"));
-		System.out.println(stock);
 		String descripcion = get_from_json(json, "descripcion");
-		System.out.println(descripcion);
-		Float oferta = Float.parseFloat(get_from_json(json, "oferta")); //13.2
-		System.out.println(oferta);
+		Float oferta = Float.parseFloat(get_from_json(json, "oferta")); 
 		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
-		//FRUTAS, FRUTOSSECOS, VERDURAS, ZUMOS
 		System.out.println(categoria);
 		String urlImage = get_from_json(json, "imageUrl");
-		System.out.println(urlImage);
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, urlImage);
-		System.out.println(c.toString());
 		dao.store(c);
 		return "Creado";
 	}
