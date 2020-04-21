@@ -36,6 +36,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JSpinner;
 import com.toedter.calendar.JCalendar;
+import java.awt.Dimension;
 
 
 public class ModificarArticulo extends JFrame {
@@ -57,10 +58,13 @@ public class ModificarArticulo extends JFrame {
 	 * Create the frame.
 	 */
 	public ModificarArticulo(final Articulo a) {
+
+		setTitle("MODIFICAR ARTICULO");
+		setMinimumSize(new Dimension(725, 527));
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-
-		final WebTarget articuloTarget = appTarget.path("actualizarArticulo");
+		final WebTarget articuloTarget = appTarget.path("eliminarArticulo");
+		final WebTarget nuevoTarget = appTarget.path("ingresarArticulo");
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +116,7 @@ public class ModificarArticulo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					System.out.println("Ha pulsaod cancelar, volver a pagina anterior");
-					Articulos_bien frame = new Articulos_bien();
+					ArticulosBien frame = new ArticulosBien();
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception es) {
@@ -154,18 +158,12 @@ public class ModificarArticulo extends JFrame {
 			    System.out.println(cat);
 			    Categoria categoria = Categoria.valueOf(cat);
 			    String image_url = tUrl.getText();
-			 
-			   
-			    a.setNombre(nombre);
-			    a.setCaducidad(caduci);
-			    a.setPrecio(precio);
-			    a.setStock(stock);
-			    a.setDescripcion(descripcion);
-			    a.setOferta(oferta);
-			    a.setCategoria(categoria);
-			    a.setImageUrl(image_url); 
-			    System.out.println(a);
+			    long id = a.getId();
+			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta, categoria, image_url);
+			    articulo.setId(id);
+			    System.out.println(articulo);
 			    articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
+			    nuevoTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
 			    System.out.println("Articulo modificado");
 
 			}
@@ -288,18 +286,16 @@ public class ModificarArticulo extends JFrame {
 		caducidad.setLayout(gl_caducidad);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(caducidad, GroupLayout.PREFERRED_SIZE, 675, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(183, Short.MAX_VALUE))
+					.addComponent(caducidad, GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(caducidad, GroupLayout.PREFERRED_SIZE, 447, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(203, Short.MAX_VALUE))
+					.addComponent(caducidad, GroupLayout.PREFERRED_SIZE, 469, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
