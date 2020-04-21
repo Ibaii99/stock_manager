@@ -66,9 +66,5 @@ public class ArticuloTest{
 		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
 		assertFalse(a1.equals(actual));	
 	}
-	@Test 
-	public void testId() {
-		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
-		assertNotEquals(a1.getId(),actual.getId());
-	}
+	
 }

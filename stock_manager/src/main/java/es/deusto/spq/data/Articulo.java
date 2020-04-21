@@ -196,9 +196,25 @@ public class Articulo implements Serializable {
 		
 	}
 
+
 	
     public byte[] getImage() {
 		return image;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+
+		Articulo a = (Articulo) obj;
+
+		boolean s = a.getId() == this.ID && a.getNombre() == this.nombre 
+		&& a.getCaducidad() == this.caducidad && a.getPrecio() == this.precio
+		&& a.getStock() == this.stock && a.getDescripcion() == this.descripcion
+		&& a.getDescripcion() == this.descripcion && a.oferta == this.oferta
+		&&a.getCategoria() == this.categoria;
+
+		return s;
 	}
     
 

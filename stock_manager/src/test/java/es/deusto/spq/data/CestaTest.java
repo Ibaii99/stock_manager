@@ -8,6 +8,7 @@ import es.deusto.spq.data.Cliente;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -104,4 +105,95 @@ public class CestaTest{
 		assertEquals(c.getEstado(), actual.getEstado());
 	}
 	
+	@Test
+	public void testAddArticulo() {
+
+		c.addArticulo(a1, cantidad2);
+
+		int i = c.getCantidades().get(0);
+
+		assertEquals(500, i );
+
+		Articulo a3 = new Articulo("pan", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
+				Categoria.FRUTOSSECOS,
+				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
+		Integer cantidad3 = 400;
+		
+		c.addArticulo(a3, cantidad3);
+
+		assertEquals(3, c.getArticulos().size());
+		assertEquals(3, c.getCantidades().size());
+	}
+
+	@Test
+	public void testGetRecibo() {
+
+		assertEquals(945.0f, c.getRecibo(), 0.002);
+
+	}
+
+	@Test
+	public void testVaciarCesta() {
+		
+		c.vaciarCesta();
+
+		assertEquals(0, c.getArticulos().size());
+		assertEquals(0, c.getCantidades().size());
+
+	}
+
+	@Test
+	public void testModifyCesta() {
+		c.modifyCesta(a1, cantidad2);
+
+		int i = c.getCantidades().get(0);
+
+		assertEquals(500, i );
+
+		Articulo a3 = new Articulo("pan", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
+				Categoria.FRUTOSSECOS,
+				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
+		Integer cantidad3 = 400;
+		
+		c.modifyCesta(a3, cantidad3);
+
+		assertEquals(3, c.getArticulos().size());
+		assertEquals(3, c.getCantidades().size());
+
+		c.modifyCesta(a3, 0);
+
+		assertEquals(2, c.getArticulos().size());
+		assertEquals(2, c.getCantidades().size());
+
+	}
+
+	@Test
+	public void testAddCesta() {
+
+		c.addCesta(a1, cantidad2);
+
+		int i = c.getCantidades().get(0);
+
+		assertEquals(900, i );
+
+		Articulo a3 = new Articulo("pan", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
+				Categoria.FRUTOSSECOS,
+				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
+		Integer cantidad3 = 400;
+		
+		c.addCesta(a3, cantidad3);
+
+		assertEquals(3, c.getArticulos().size());
+		assertEquals(3, c.getCantidades().size());
+	}
+
+	@Test
+	public void testRemoveArticuloCesta() {
+
+		c.removeArticuloCesta(a1);
+
+		assertEquals(1, c.getArticulos().size());
+		assertEquals(1, c.getCantidades().size());
+	}
+
 }
