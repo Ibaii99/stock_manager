@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
@@ -35,13 +36,14 @@ public class Cesta implements Serializable {
     // En el indice 1 de articulos estara el articulo añadido primero
     // En el indice 1 de cantidades estara las cantidades dedl articulo 1
 	
-	@Persistent(mappedBy = "cestas")
 	@Join
     private List<Articulo> articulos = new ArrayList<>();
     
     private List<Integer> cantidades = new ArrayList<>();
     private Estado estado = Estado.ACTUAL;
 
+    private Cliente cliente;
+    
    public Cesta() {
 	// TODO Auto-generated constructor stub
 }
@@ -92,6 +94,16 @@ public class Cesta implements Serializable {
 
 	public void setCantidades(List<Integer> cantidades) {
 		this.cantidades = cantidades;
+	}
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 

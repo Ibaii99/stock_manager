@@ -38,7 +38,7 @@ public class Cliente implements Serializable{
     @Column
     private Cesta favoritos = new Cesta();
 	
-	@Persistent
+    @Persistent(mappedBy = "cliente")
 	private ArrayList<Cesta> pedidos = new ArrayList<>();
 
     public Cliente(){

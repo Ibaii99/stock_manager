@@ -23,11 +23,11 @@
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li><a href="#" class="active">All</a></li>
-    					<li><a href="#">Vegetables</a></li>
-    					<li><a href="#">Fruits</a></li>
-    					<li><a href="#">Juice</a></li>
-    					<li><a href="#">Dried</a></li>
+    					<li><a href="#" id="NAV_ALL" class="active">Todo</a></li>
+    					<li><a href="#" id="NAV_FRUTAS">Frutas</a></li>
+    					<li><a href="#" id="NAV_FRUTOSSECOS">Secos</a></li>
+    					<li><a href="#" id="NAV_VERDURAS">Verduras</a></li>
+    					<li><a href="#" id="NAV_ZUMOS">Liquidos</a></li>
     				</ul>
     			</div>
     		</div> 
@@ -233,7 +233,7 @@
     	</div>
     </section>
 
-		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+	<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
         <div class="row d-flex justify-content-center py-5">
           <div class="col-md-6">
@@ -254,4 +254,97 @@
 
 	{% endblock %}
 	
+	{% block script %} 
+		<script>
+			$(document).ready(function(){
+				$("#NAV_ALL").click(function(){
+					$("#FRUTAS").hide();
+					$("#FRUTOSSECOS").hide();
+					$("#VERDURAS").hide();
+					$("#ZUMOS").hide();
+
+					$("#NAV_ALL").removeClass('active');
+					$("#NAV_FRUTAS").removeClass('active');
+					$("#NAV_FRUTOSSECOS").removeClass('active');
+					$("#NAV_VERDURAS").removeClass('active');
+					$("#NAV_ZUMOS").removeClass('active');
+
+					$(this).addClass('active');
+						
+					$("#ALL").show();
+
+				});
+				$("#NAV_FRUTAS").click(function(){
+					$("#ALL").hide();
+					$("#FRUTOSSECOS").hide();
+					$("#VERDURAS").hide();
+					$("#ZUMOS").hide();
+					
+					$("#NAV_ALL").removeClass('active');
+					$("#NAV_FRUTAS").removeClass('active');
+					$("#NAV_FRUTOSSECOS").removeClass('active');
+					$("#NAV_VERDURAS").removeClass('active');
+					$("#NAV_ZUMOS").removeClass('active');
+					
+					$(this).addClass('active');
+					
+					$("#FRUTAS").show();
+				
+				});
+				$("#NAV_FRUTOSSECOS").click(function(){
+					$("#ALL").hide();
+					$("#FRUTAS").hide();
+					$("#VERDURAS").hide();
+					$("#ZUMOS").hide();
+
+					$("#NAV_ALL").removeClass('active');
+					$("#NAV_FRUTAS").removeClass('active');
+					$("#NAV_FRUTOSSECOS").removeClass('active');
+					$("#NAV_VERDURAS").removeClass('active');
+					$("#NAV_ZUMOS").removeClass('active');
+
+					$(this).addClass('active');
+
+					$("#FRUTOSSECOS").show();
+
+				});
+				$("#NAV_VERDURAS").click(function(){
+					$("#ALL").hide();
+					$("#FRUTAS").hide();
+					$("#FRUTOSSECOS").hide();
+					$("#ZUMOS").hide();
+
+					$("#NAV_ALL").removeClass('active');
+					$("#NAV_FRUTAS").removeClass('active');
+					$("#NAV_FRUTOSSECOS").removeClass('active');
+					$("#NAV_VERDURAS").removeClass('active');
+					$("#NAV_ZUMOS").removeClass('active');
+
+					$(this).addClass('active');
+
+					$("#VERDURAS").show();
+
+				});
+				$("#NAV_ZUMOS").click(function(){
+					$("#ALL").hide();
+					$("#FRUTAS").hide();
+					$("#FRUTOSSECOS").hide();
+					$("#VERDURAS").hide();
+
+					$("#NAV_ALL").removeClass('active');
+					$("#NAV_FRUTAS").removeClass('active');
+					$("#NAV_FRUTOSSECOS").removeClass('active');
+					$("#NAV_VERDURAS").removeClass('active');
+					$("#NAV_ZUMOS").removeClass('active');
+
+					$(this).addClass('active');
+					
+					$("#ZUMOS").show();
+					
+				});
+			});
+    	</script>
+	{% endblock %}
+
+
 </html>

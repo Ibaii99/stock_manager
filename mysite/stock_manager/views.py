@@ -209,6 +209,7 @@ def login(request):
 
 def shop(request):
     if is_session_alive(request):
+        global sessions
         sesion = sessions.get(request.COOKIES['sessionid'])
         
         if request.method == "POST":

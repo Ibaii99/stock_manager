@@ -48,7 +48,8 @@ public class Articulo implements Serializable {
     
     private Vendedor vendedor;
     
-    private  List<Cesta> cestas;
+    @Join
+    private  List<Cesta> cestas =  new ArrayList<>();
     
 	public Articulo() {
 	}
