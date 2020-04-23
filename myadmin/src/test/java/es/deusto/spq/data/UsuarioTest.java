@@ -27,9 +27,5 @@ public class UsuarioTest {
 		Usuario actual = new Usuario("admin", "admin");
 		assertEquals(usuario.getContrasenya(), actual.getContrasenya());
 	}
-	@Test
-	public void getId() {
-		Usuario actual = new Usuario("admin", "admin");
-		assertNotEquals(usuario.getId(), actual.getId());
-	}
+
 }
