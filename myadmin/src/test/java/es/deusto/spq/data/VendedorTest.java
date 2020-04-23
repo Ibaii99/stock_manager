@@ -8,10 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+
+import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+import src.main.java.es.deusto.spq.data.Articulo;
+import src.main.java.es.deusto.spq.data.Vendedor;
+
 import org.junit.Before;
 
-import src.main.java.es.deusto.spq.data.*;
-import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+
 
 
 public class VendedorTest {
@@ -25,7 +29,6 @@ public class VendedorTest {
 		articulo = new Articulo("almendras", new Date("18/05/2020"), 1.20f, 100, "ricas almendras", 
 				1.05f, Categoria.FRUTOSSECOS, "almendras.com");
 		listaArticulos.add(articulo);
-
 		vendedor = new Vendedor("admin", "admin@gmail.com", listaArticulos);
 	}
 	
@@ -42,13 +45,15 @@ public class VendedorTest {
 	}
 	
 	@Test
+
 	public void testId() {
 		Vendedor actual = new Vendedor("admin", "admin@gmail.com", listaArticulos);
 		assertEquals(vendedor.getId(), actual.getId());
 	} 
 	
 	@Test
-	public void testArticulos() {
+
+public void testArticulos() {
 		Articulo articuloActual = new Articulo("almendras", new Date("18/05/2020"), 1.20f, 100, "ricas almendras", 
 				1.05f, Categoria.FRUTOSSECOS, "almendras.com");
 		List<Articulo>listaActual = new ArrayList<>();
