@@ -7,6 +7,7 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.text.ParseException;
 
 import javax.swing.*;
@@ -35,33 +36,29 @@ import java.util.Calendar;
 import src.main.java.es.deusto.spq.data.Articulo;
 import src.main.java.es.deusto.spq.data.Articulo.Categoria;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.*;
 
-import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import javax.swing.SpinnerListModel;
-import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JSpinner;
+
 import com.toedter.calendar.JCalendar;
 
 public class ArticulosCaducidad extends JFrame {
 
 	private JPanel contentPane;
 	private Client client;
+	private JTextField tOferta;
+	final private JList<Articulo> articulosLista;
 
 	/**
 	 * Launch the application.
@@ -90,6 +87,8 @@ public class ArticulosCaducidad extends JFrame {
 		
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
 		final WebTarget articulosTarget = appTarget.path("getArticulos");
+		final WebTarget articuloTarget = appTarget.path("eliminarArticulo");
+		final WebTarget nuevoTarget = appTarget.path("ingresarArticulo");
 
 		
 
@@ -117,12 +116,57 @@ public class ArticulosCaducidad extends JFrame {
 				}
 			}
 		});
+		
+		JButton btnOferta = new JButton("Poner De Oferta");
+		btnOferta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int porcentaje = Integer.parseInt(tOferta.getText());
+					Articulo a = articulosLista.getSelectedValue();
+					float oferta = a.getPrecio() - a.getPrecio()*porcentaje/100;
+					System.out.println("Articulo: " + a.getCaducidad());
+					Articulo articuloNew = a;
+					Date fechaCad = a.getCaducidad();
+					Calendar calendario = Calendar.getInstance();
+					calendario.setTime(fechaCad);
+					int year = calendario.get(java.util.Calendar.YEAR);
+					int mes = calendario.get(java.util.Calendar.MONTH)-1;
+					int dia = calendario.get(java.util.Calendar.DATE);
+					calendario.set(year, mes, dia);
+					articuloNew.setCaducidad(calendario.getTime());
+					articuloNew.setCaducidad(a.getCaducidad());
+					System.out.println("Cambiado:"+  articuloNew.getCaducidad());
+					articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
+					articuloNew.setOferta(oferta);
+				    nuevoTarget.request().post(Entity.entity(articuloNew, MediaType.APPLICATION_JSON));
+					tOferta.setText("");
+					
+				} catch (Exception ex) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(ArticulosCaducidad.this, "El numero introducido no es un entero", "Error", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+				}
+				
+			}
+		});
+		
+		tOferta = new JTextField();
+		tOferta.setColumns(10);
+		
+		JLabel lOferta = new JLabel("Porcentaje Oferta");
 
 		GroupLayout gl_botonesPanel = new GroupLayout(botonesPanel);
 		gl_botonesPanel.setHorizontalGroup(
 			gl_botonesPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_botonesPanel.createSequentialGroup()
-					.addContainerGap(514, Short.MAX_VALUE)
+					.addContainerGap(196, Short.MAX_VALUE)
+					.addComponent(lOferta)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(tOferta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnOferta)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnNewButton)
 					.addGap(367))
 		);
@@ -130,7 +174,11 @@ public class ArticulosCaducidad extends JFrame {
 			gl_botonesPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_botonesPanel.createSequentialGroup()
 					.addGap(5)
-					.addComponent(btnNewButton)
+					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton)
+						.addComponent(btnOferta)
+						.addComponent(tOferta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lOferta))
 					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		botonesPanel.setLayout(gl_botonesPanel);
@@ -138,7 +186,7 @@ public class ArticulosCaducidad extends JFrame {
 		final DefaultListModel<Articulo> articulosListModel = new DefaultListModel<>();
 
 
-		final JList<Articulo> articulosLista = new JList<>(articulosListModel);
+		articulosLista = new JList<>(articulosListModel);
 		
 		JScrollPane listScrollPane = new JScrollPane(articulosLista);
 		getContentPane().add(listScrollPane, BorderLayout.WEST);
@@ -160,15 +208,15 @@ public class ArticulosCaducidad extends JFrame {
 			calen.setTime(articulo.getCaducidad());
 			
 			if (calen.get(Calendar.YEAR)==calendarioLimite.get(Calendar.YEAR)) {
-				if(calen.get(Calendar.MONTH)<calendarioLimite.get(Calendar.MONTH)) {
-					if(calen.get(Calendar.MONTH)==calendarioHOY.get(Calendar.MONTH)) {
-						if(calen.get(Calendar.DATE)>calendarioHOY.get(Calendar.DATE)) {
+				if(calen.get(Calendar.MONTH)>calendarioLimite.get(Calendar.MONTH)) {
+					if(calen.get(Calendar.DATE)<=calendarioHOY.get(Calendar.DATE)) {
+						
 							articulosListModel.addElement(articulo);
-						}
+						
 					}
 					
 				}else if(calen.get(Calendar.MONTH)==calendarioLimite.get(Calendar.MONTH)) {
-					if(calen.get(Calendar.DATE)<calendarioLimite.get(Calendar.DATE)) {
+					if(calen.get(Calendar.DATE)>calendarioLimite.get(Calendar.DATE)) {
 						articulosListModel.addElement(articulo);
 					}
 					
@@ -177,5 +225,4 @@ public class ArticulosCaducidad extends JFrame {
 		setVisible(true);
 	}
 	}
-
 }

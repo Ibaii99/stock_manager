@@ -164,6 +164,8 @@ public class Articulos_bien extends JFrame{
 //                Response response = deleteTarget.request().delete();
 //                response.getStatus() = Status.OK.getStatusCode();
                 System.out.println("Articulo Eliminado");
+                int indice =articulosLista.getSelectedIndex();
+				articulosLista.remove(indice);
 //                if(response.getStatus() == Status.OK.getStatusCode()) {
 //                 JOptionPane.showMessageDialog(Articulos_bien.this, "Articulo eliminado", "Message", JOptionPane.INFORMATION_MESSAGE);
 //                }else {

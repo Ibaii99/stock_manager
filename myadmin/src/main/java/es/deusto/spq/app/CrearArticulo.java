@@ -153,7 +153,7 @@ public class CrearArticulo extends JFrame {
 				String nombre = tnombre.getText();
 				String anyo = Integer.toString(calendar.getCalendar().get(java.util.Calendar.YEAR));
 				System.out.println(anyo);
-				String mes = Integer.toString(calendar.getCalendar().get(java.util.Calendar.MONTH) + 1);
+				String mes = Integer.toString(calendar.getCalendar().get(java.util.Calendar.MONTH));
 				System.out.println(mes);
 				String dia = Integer.toString(calendar.getCalendar().get(java.util.Calendar.DATE));
 				System.out.println(dia);

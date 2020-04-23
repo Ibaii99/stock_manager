@@ -108,11 +108,17 @@ public class API {
 		String[] cadu = cad.split("-");
 		int year = Integer.parseInt(cadu[0]);
 		int mes = Integer.parseInt(cadu[1]);
+		System.out.println(mes);
 		char[] diaChar = cad.toCharArray();
 		String diaString = ""+diaChar[8]+diaChar[9];
 		int dia = Integer.parseInt(diaString);
+		dia++;
 		Calendar fecha = Calendar.getInstance();
-		fecha.set(year, mes, dia);
+//		fecha.set(year, mes, dia);
+		fecha.set(Calendar.YEAR, year);
+		fecha.set(Calendar.MONTH, mes);
+		fecha.set(Calendar.DAY_OF_MONTH, dia);
+		System.out.println(fecha);
 		Date caducidad = fecha.getTime();
 		Float precio = Float.parseFloat(get_from_json(json, "precio"));
 		int stock = Integer.parseInt(get_from_json(json, "stock"));
