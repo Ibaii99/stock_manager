@@ -1,4 +1,4 @@
-package src.test.java.es.deusto.spq.data;
+package es.deusto.spq.data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -8,10 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+
+import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+import src.main.java.es.deusto.spq.data.Articulo;
+import src.main.java.es.deusto.spq.data.Vendedor;
+
 import org.junit.Before;
 
-import src.main.java.es.deusto.spq.data.*;
-import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+
 
 
 public class VendedorTest {
