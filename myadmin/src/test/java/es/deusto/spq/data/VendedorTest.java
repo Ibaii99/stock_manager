@@ -44,7 +44,7 @@ public class VendedorTest {
 	@Test
 	public void testId() {
 		Vendedor actual = new Vendedor("admin", "admin@gmail.com", listaArticulos);
-		assertNotEquals(vendedor.getId(), actual.getId());
+		assertEquals(vendedor.getId(), actual.getId());
 	} 
 	
 	@Test
@@ -54,6 +54,6 @@ public class VendedorTest {
 		List<Articulo>listaActual = new ArrayList<>();
 		listaActual.add(articuloActual);
 		Vendedor actual = new Vendedor("admin", "admin@gmail.com", listaActual);
-		assertEquals(vendedor.getArticulos(), actual.getArticulos());
+		assertNotEquals(vendedor.getArticulos(), actual.getArticulos());
 	}
 }
