@@ -9,12 +9,14 @@ import src.main.java.es.deusto.spq.data.*;
 
 
 public class UsuarioTest {
-	private Usuario usuario;
+	private Usuario u1;
+	private Usuario u2;
 	
 	
 	@Before
 	public void setUp() {
-		usuario = new Usuario("admin", "admin");
+		u1 = new Usuario("admin", "admin");
+		u2 = new Usuario("jokin", "jokin");
 	}
 	
 	@Test
