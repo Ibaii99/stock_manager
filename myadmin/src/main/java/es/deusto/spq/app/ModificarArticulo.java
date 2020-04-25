@@ -24,6 +24,7 @@ import java.awt.event.*;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
@@ -144,24 +145,44 @@ public class ModificarArticulo extends JFrame {
 	                    // TODO Auto-generated catch block
 	                    e1.printStackTrace();
 	                }
-			    String pre = tprecio.getText();
-			    float precio = Float.parseFloat(pre);
-			    String s = tstock.getText();
-			    int stock = Integer.parseInt(s);
-			    String descripcion = tdescripcion.getText();
-			    String of = toferta.getText();
-			    float oferta=Float.parseFloat(of);
-			    String cat = (String) categoriaSpinner.getValue();
-			    System.out.println(cat);
-			    Categoria categoria = Categoria.valueOf(cat);
-			    String image_url = tUrl.getText();
-			    long id = a.getId();
-			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta, categoria, image_url);
-			    articulo.setId(id);
-			    System.out.println(articulo);
-			    articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
-			    nuevoTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
-			    System.out.println("Articulo modificado");
+			   
+			    try {
+			    	String pre = tprecio.getText();
+				    float precio = Float.parseFloat(pre);
+				   
+				    try {
+				    	String s = tstock.getText();
+					    int stock = Integer.parseInt(s);
+					    String descripcion = tdescripcion.getText();
+					    try {
+						    String of = toferta.getText();
+						    float oferta=Float.parseFloat(of);
+						    String cat = (String) categoriaSpinner.getValue();
+						    System.out.println(cat);
+						    Categoria categoria = Categoria.valueOf(cat);
+						    String image_url = tUrl.getText();
+						    long id = a.getId();
+						    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta, categoria, image_url);
+						    articulo.setId(id);
+						    System.out.println(articulo);
+						    articuloTarget.request().post(Entity.entity(a, MediaType.APPLICATION_JSON));
+						    nuevoTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
+						    System.out.println("Articulo modificado");
+					    }catch (Exception ex) {
+							// TODO: handle exception
+							JOptionPane.showMessageDialog(ModificarArticulo.this, "Debe introducir un numero real en la oferta", "Error", JOptionPane.ERROR_MESSAGE);
+							ex.printStackTrace();
+						}
+				    }catch (Exception ex) {
+						// TODO: handle exception
+						JOptionPane.showMessageDialog(ModificarArticulo.this, "Debe introducir un numero entero en el stock", "Error", JOptionPane.ERROR_MESSAGE);
+						ex.printStackTrace();
+					}
+			    }catch (Exception ex) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(ModificarArticulo.this, "Debe introducir un numero real en el precio", "Error", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+				}
 
 			}
 		});
