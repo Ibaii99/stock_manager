@@ -26,6 +26,7 @@ import java.awt.event.*;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerNumberModel;
@@ -70,7 +71,7 @@ public class CrearArticulo extends JFrame {
 			}
 		});
 	}
-	
+
 	
 	private Client client;
 
@@ -78,7 +79,7 @@ public class CrearArticulo extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearArticulo() {
-		setMinimumSize(new Dimension(870, 485));
+		setMinimumSize(new Dimension(910, 505));
 		setTitle("CREAR ARTICULOS");
 		client = ClientBuilder.newClient();
 		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
@@ -86,7 +87,7 @@ public class CrearArticulo extends JFrame {
 		final WebTarget articuloTarget = appTarget.path("ingresarArticulo");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 857, 477);
+		setBounds(100, 100, 909, 504);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -152,11 +153,8 @@ public class CrearArticulo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String nombre = tnombre.getText();
 				String anyo = Integer.toString(calendar.getCalendar().get(java.util.Calendar.YEAR));
-				System.out.println(anyo);
 				String mes = Integer.toString(calendar.getCalendar().get(java.util.Calendar.MONTH));
-				System.out.println(mes);
 				String dia = Integer.toString(calendar.getCalendar().get(java.util.Calendar.DATE));
-				System.out.println(dia);
 				String cadu = dia +"/"+mes+"/"+anyo;
 				System.out.println(cadu.toString());
 				Date caduci = null;
@@ -167,24 +165,43 @@ public class CrearArticulo extends JFrame {
 	                    // TODO Auto-generated catch block
 	                    e1.printStackTrace();
 	                }
-			    String pre = tprecio.getText();
-			    float precio = Float.parseFloat(pre);
-			    String s = tstock.getText();
-			    int stock = Integer.parseInt(s);
-			    String descripcion = tdescripcion.getText();
-			    String of = toferta.getText();
-			    float oferta=Float.parseFloat(of);
-			    String cat = (String) categoriaSpinner.getValue();
-			    System.out.println(cat);
-			    Categoria categoria = Categoria.valueOf(cat);
-			    String image_url = tUrl.getText();
-			    
-			    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
-			    System.out.println(articulo);
-			    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
-			    System.out.println("Articulo anadido");
-
+	            try {
+				    String pre = tprecio.getText();
+				    float precio = Float.parseFloat(pre);
+				    try {
+					    String s = tstock.getText();
+					    int stock = Integer.parseInt(s);
+					    String descripcion = tdescripcion.getText();
+					    try {
+						    String of = toferta.getText();
+						    float oferta=Float.parseFloat(of);
+						    String cat = (String) categoriaSpinner.getValue();
+						    System.out.println(cat);
+						    Categoria categoria = Categoria.valueOf(cat);
+						    String image_url = tUrl.getText();
+						    Articulo articulo = new Articulo(nombre, caduci, precio, stock, descripcion, oferta,categoria, image_url);
+						    System.out.println(articulo);
+						    articuloTarget.request().post(Entity.entity(articulo, MediaType.APPLICATION_JSON));
+						    System.out.println("Articulo anadido");
+					    }catch (Exception ex) {
+							// TODO: handle exception
+							JOptionPane.showMessageDialog(CrearArticulo.this, "Debe introducir un numero real en la oferta", "Error", JOptionPane.ERROR_MESSAGE);
+							ex.printStackTrace();
+					    }
+					    
+				    }catch (Exception ex) {
+						// TODO: handle exception
+						JOptionPane.showMessageDialog(CrearArticulo.this, "Debe introducir un numero entero en el en el stock", "Error", JOptionPane.ERROR_MESSAGE);
+						ex.printStackTrace();
+				    }
+	            }catch (Exception ex) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(CrearArticulo.this, "Debe introducir un numero real en el precio", "Error", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+				}
 			}
+	             
+				    
 		});
 		
 		

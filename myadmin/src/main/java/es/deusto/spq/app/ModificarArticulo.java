@@ -132,11 +132,8 @@ public class ModificarArticulo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String nombre = tnombre.getText();
 				String anyo = Integer.toString(calendar.getCalendar().get(java.util.Calendar.YEAR));
-				System.out.println(anyo);
 				String mes = Integer.toString(calendar.getCalendar().get(java.util.Calendar.MONTH));
-				System.out.println(mes);
 				String dia = Integer.toString(calendar.getCalendar().get(java.util.Calendar.DATE));
-				System.out.println(dia);
 				String cadu = dia +"/"+mes+"/"+anyo;
 				System.out.println(cadu.toString());
 				Date caduci = null;

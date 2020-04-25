@@ -196,33 +196,54 @@ public class ArticulosCaducidad extends JFrame {
 		Date fecha = new Date();
 		Calendar calendarioHOY = Calendar.getInstance();
 		Calendar calendarioLimite = Calendar.getInstance();
-		
 		articulosListModel.clear();
 		Date fechaHoy = calendarioHOY.getTime();
 		calendarioLimite.set(calendarioLimite.get(Calendar.YEAR), calendarioLimite.get(Calendar.MONTH)+1, calendarioLimite.get(Calendar.DATE));
 		Date fechaLimite = calendarioLimite.getTime();
 		Calendar calen = Calendar.getInstance();
-		
 		for(Articulo articulo: articulos) {
 			
 			calen.setTime(articulo.getCaducidad());
-			
-			if (calen.get(Calendar.YEAR)==calendarioLimite.get(Calendar.YEAR)) {
-				if(calen.get(Calendar.MONTH)>calendarioLimite.get(Calendar.MONTH)) {
-					if(calen.get(Calendar.DATE)<=calendarioHOY.get(Calendar.DATE)) {
-						
-							articulosListModel.addElement(articulo);
-						
-					}
-					
-				}else if(calen.get(Calendar.MONTH)==calendarioLimite.get(Calendar.MONTH)) {
-					if(calen.get(Calendar.DATE)>calendarioLimite.get(Calendar.DATE)) {
+			int anyoArticulo = calen.get(Calendar.YEAR);
+			int anyoLimite =calendarioLimite.get(Calendar.YEAR);
+			int anyoHoy = calendarioHOY.get(Calendar.YEAR);
+			int mesArticulo = calen.get(Calendar.MONTH);
+			int mesLimite=calendarioLimite.get(Calendar.MONTH);
+			int mesHOY =calendarioHOY.get(Calendar.MONTH);
+			int diaArticulo = calen.get(Calendar.DATE);
+			int diaLimite = calendarioLimite.get(Calendar.DATE);
+			int diaHOY = calendarioHOY.get(Calendar.DATE);
+			int mesAnyoDistinto = mesArticulo - mesLimite;
+			if (anyoArticulo==anyoLimite) {
+				if(mesArticulo<mesLimite && mesArticulo>mesHOY) {
+					articulosListModel.addElement(articulo);
+	
+				}else if(mesArticulo==mesLimite) {
+					if(diaArticulo<diaLimite) {
 						articulosListModel.addElement(articulo);
 					}
-					
+				}else if(mesArticulo==mesHOY) {
+					if(diaArticulo>diaHOY) {
+						articulosListModel.addElement(articulo);
+					}
 				}
-		}
-		setVisible(true);
+			}else if ((anyoArticulo+1)==anyoLimite) {
+				int mesValido = 13-mesAnyoDistinto;
+				if(mesValido<=mesArticulo && mesArticulo>mesHOY) {
+					articulosListModel.addElement(articulo);
+	
+				}else if(mesArticulo==mesLimite) {
+					if(diaArticulo<diaLimite) {
+						articulosListModel.addElement(articulo);
+					}
+				}else if(mesArticulo==mesHOY) {
+					if(diaArticulo>diaHOY) {
+						articulosListModel.addElement(articulo);
+					}
+				}
+				
+			}
+			setVisible(true);
 	}
 	}
 }
