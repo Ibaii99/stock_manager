@@ -8,6 +8,7 @@ public class Usuario implements Serializable {
 	//
 	private static final long serialVersionUID = 1L;
 	private long id;
+	private static int contador=0;
 	
 
 	private String nombre;
@@ -18,15 +19,16 @@ public class Usuario implements Serializable {
 	}
 	
 	public Usuario(String usuario, String contrasenya) {
+		this.id=contador++;
 		this.nombre = usuario;
 		this.contrasenya = contrasenya;
 	}
 	
 	
-	public String getUser() {
+	public String getNombre() {
 		return nombre;
 	}
-	public void setUsuario(String usuario) {
+	public void setNombre(String usuario) {
 		this.nombre = usuario;
 	}
 	public String getContrasenya() {
@@ -38,15 +40,6 @@ public class Usuario implements Serializable {
 
 	public long getId() {
 		return id;
-	}
-
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	@Override

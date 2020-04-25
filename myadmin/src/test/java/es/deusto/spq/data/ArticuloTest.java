@@ -21,23 +21,36 @@ public class ArticuloTest{
 	private Vendedor v1;
 	private Vendedor v2;
 	private List<Articulo> listaArticulos = new ArrayList<Articulo>();
+	private Date d1;
+	private Date d2;
 	
 	@Before
-	public void setUp() {
-		a1 = new Articulo("coliflor", new Date(23/04/2020), 1.20f, 400, "rica coliflor", 1.05f,
-				Categoria.FRUTAS,
-				"https://gastronomiaycia.republica.com/wp-content/uploads/2013/04/quitar_manchas_coliflor.jpg");
-		a2 = new Articulo("pan", new Date(22/04/2020), 1.10f, 200, "rica pan", 1.04f,
+	public void setUp() throws IOException {
+		d1 = new Date(2020, 04, 15);
+		d2 = new Date(2020, 04, 16);
+		a1 = new Articulo("coliflor", d1, 1.20f, 400, "rica coliflor", 1.05f,
+				Categoria.VERDURAS,"coliflor.com");
+		a2 = new Articulo("pan", d2, 1.10f, 200, "rica pan", 1.04f,
 				Categoria.FRUTOSSECOS,
-				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
+				"pan.com");
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
 		v1 = new Vendedor("jokin", "jokin@gmail.com", listaArticulos);
 		v2 = new Vendedor("jon", "jon@gmail.com", listaArticulos);
 		a1.setVendedor(v1);
 		a2.setVendedor(v2);
-		
-		
+		a1.setId(1);
+		a1.setNombre("platano");
+		a1.setCaducidad(new Date(15/05/2020));
+		a1.setPrecio(2.15f);
+		a1.setStock(50);
+		a1.setDescripcion("me gusta");
+		a1.setOferta(1.88f);
+		a1.setCategoria(Categoria.FRUTAS);
+		a1.setImageUrl("platano.com");
+//		a1.setimage("https://gastronomiaycia.republica.com/wp-content/uploads/2013/04/quitar_manchas_coliflor.jpg");
+//		a2.setimage("https://s1.eestatic.com/2015/03/24/cocinillas/cocinillas_20507999_115826466_1024x576.jpg");
+
 	}
 	
 	@Test
@@ -46,8 +59,7 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testSetId() {//Comprobamos que el ID, despues de hacer el set sea igual
-		a1.setId(a2.getId());
-		assertEquals(a1.getId(), a2.getId());
+		assertEquals(1, a1.getId());
 	}
 	@Test
 	public void testGetNombre() {
@@ -55,8 +67,7 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testSetNombre() {
-		a2.setNombre(a1.getNombre());
-		assertEquals(a1.getNombre(), a2.getNombre());
+		assertEquals("platano", a1.getNombre());
 	}
 	@Test
 	public void testGetCaducidad() {
@@ -64,35 +75,34 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testSetCaducidad() {
-		a1.setCaducidad(a2.getCaducidad());
-		assertEquals(a1.getCaducidad(), a2.getCaducidad());
+		assertEquals(new Date(15/05/2020), a1.getCaducidad());
 	}
+	
 	@Test
 	public void testGetPrecio() {
 		assertNotEquals(a1.getPrecio(), a2.getPrecio());
 	}
 	@Test
 	public void testSetPrecio() {
-		a2.setPrecio(a1.getPrecio());
-		assertEquals(a1.getPrecio(), a2.getPrecio(),0);
+		assertEquals(2.15f, a1.getPrecio(),0);
 	}
+	
 	@Test
 	public void testGetStock() {
 		assertNotEquals(a1.getStock(), a2.getStock());
 	}
 	@Test
 	public void testSetStock() {
-		a1.setStock(a2.getStock());
-		assertEquals(a1.getStock(), a2.getStock());
+		assertEquals(50, a1.getStock());
 	}
+	
 	@Test
 	public void testGetDescripcion() {
 		assertNotEquals(a1.getDescripcion(), a2.getDescripcion());
 	}
 	@Test
 	public void testSetDescripcion() {
-		a2.setDescripcion(a1.getDescripcion());
-		assertEquals(a1.getDescripcion(), a2.getDescripcion());
+		assertEquals("me gusta", a1.getDescripcion());
 	}
 	@Test
 	public void testGetOferta() {
@@ -100,8 +110,7 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testSetOferta() {
-		a1.setPrecio(a2.getOferta());
-		assertEquals(a1.getOferta(), a2.getOferta(),0);
+		assertEquals(1.88f, a1.getOferta(),0);
 	}
 	@Test
 	public void testGetCategoria() {
@@ -109,8 +118,8 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testSetCategoria() {
-		a2.setCategoria(a1.getCategoria());
-		assertEquals(a1.getCategoria(), a2.getCategoria());
+		assertEquals(Categoria.FRUTAS, a1.getCategoria());
+	
 	}
 	@Test
 	public void testGetVendedor() {
@@ -119,9 +128,7 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testSetVendedor() {
-		a1.setVendedor(a2.getVendedor());
-		assertEquals(a1.getVendedor(), a2.getVendedor());
-		
+		assertEquals(v1, a1.getVendedor());
 	}
 	@Test
 	public void testGetImageUrl() {
@@ -129,18 +136,13 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testSetImageUrl() {
-		a2.setImageUrl(a1.getImageUrl());
-		assertEquals(a1.getImageUrl(), a2.getImageUrl());
-	}
-	@Test
+		assertEquals("platano.com", a1.getImageUrl());
+	}@Test
 	public void testGetImage() {
-		assertNotEquals(a1.getImage(), a2.getImage());
+		assertEquals(a1.getImage(), a2.getImage());//Iguales(null),porque no tienen ninguna imagen asignada
 	}
-	@Test
-	public void testSetImage() throws IOException {
-		a1.setImage(a2.getImage().toString());
-		assertEquals(a1.getImage(), a2.getImage());
-	}
-	
-	
+//	@Test
+//	public void testSetImage(){
+//		assertEquals("platano.com", a1.getImageUrl());
+//	}
 }
