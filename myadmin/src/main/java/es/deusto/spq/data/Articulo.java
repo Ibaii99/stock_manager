@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +38,6 @@ public class Articulo implements Serializable {
     private String descripcion;
     private float oferta;
     private Categoria categoria;
-    private byte [] image;
     private String imageUrl;
     
     private Vendedor vendedor;
@@ -153,52 +153,69 @@ public class Articulo implements Serializable {
         ", Stock: " + this.stock + ", Descripción: " + this.descripcion + ", Oferta: " + this.oferta + ", Categoria: " + this.categoria +     "]";
 	}
 
-
-    @Override
+	@Override
 	public int hashCode() {
-		
-        int hash = 31 * this.caducidad.hashCode();
-        hash += 31 * this.stock;
-        hash += 31 * this.categoria.hashCode();
-        hash += 31 * this.descripcion.hashCode();
-        hash += 31 * this.nombre.hashCode();
-        hash += 31 * Math.round(this.oferta);
-        hash += 31 * Math.round( this.precio);
-        
-		return hash;
-		
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((caducidad == null) ? 0 : caducidad.hashCode());
+		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((imageUrl == null) ? 0 : imageUrl.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + Float.floatToIntBits(oferta);
+		result = prime * result + Float.floatToIntBits(precio);
+		result = prime * result + stock;
+		result = prime * result + ((vendedor == null) ? 0 : vendedor.hashCode());
+		return result;
 	}
 
-	
-    public byte[] getImage() {
-		return image;
-	}
-    
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-
-		Articulo a = (Articulo) obj;
-
-		boolean s = a.getId() == this.id && a.getNombre() == this.nombre 
-		&& a.getCaducidad() == this.caducidad && a.getPrecio() == this.precio
-		&& a.getStock() == this.stock && a.getDescripcion() == this.descripcion
-		&& a.getDescripcion() == this.descripcion && a.oferta == this.oferta
-		&&a.getCategoria() == this.categoria;
-
-		return s;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Articulo other = (Articulo) obj;
+		if (caducidad == null) {
+			if (other.caducidad != null)
+				return false;
+		} else if (!caducidad.equals(other.caducidad))
+			return false;
+		if (categoria != other.categoria)
+			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (id != other.id)
+			return false;
+		if (imageUrl == null) {
+			if (other.imageUrl != null)
+				return false;
+		} else if (!imageUrl.equals(other.imageUrl))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (Float.floatToIntBits(oferta) != Float.floatToIntBits(other.oferta))
+			return false;
+		if (Float.floatToIntBits(precio) != Float.floatToIntBits(other.precio))
+			return false;
+		if (stock != other.stock)
+			return false;
+		if (vendedor == null) {
+			if (other.vendedor != null)
+				return false;
+		} else if (!vendedor.equals(other.vendedor))
+			return false;
+		return true;
 	}
 
-	public void setImage(String path) throws IOException {
-			 // open image
-		 File imgPath = new File(path);
-		 BufferedImage bufferedImage = ImageIO.read(imgPath);
 	
-		 // get DataBufferBytes from Raster
-		 WritableRaster raster = bufferedImage .getRaster();
-		 DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
-
-		this.image =  data.getData();
-	}
-    
 }

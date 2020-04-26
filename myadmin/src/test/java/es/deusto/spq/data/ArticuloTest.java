@@ -7,7 +7,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +28,7 @@ public class ArticuloTest{
 	private Date d2;
 	
 	@Before
-	public void setUp() throws IOException {
+	public void setUp(){
 		d1 = new Date(2020, 04, 15);
 		d2 = new Date(2020, 04, 16);
 		a1 = new Articulo("coliflor", d1, 1.20f, 400, "rica coliflor", 1.05f,
@@ -52,14 +52,14 @@ public class ArticuloTest{
 		a1.setOferta(1.88f);
 		a1.setCategoria(Categoria.FRUTAS);
 		a1.setImageUrl("platano.com");
-//		a1.setimage("https://gastronomiaycia.republica.com/wp-content/uploads/2013/04/quitar_manchas_coliflor.jpg");
-//		a2.setimage("https://s1.eestatic.com/2015/03/24/cocinillas/cocinillas_20507999_115826466_1024x576.jpg");
+
 
 	}
 	
 	@Test
 	public void testGetId() {//Comprobamos que el ID de los articulos sean distintos
 		assertNotEquals(a1.getId(), a2.getId(),a3.getId());
+		
 	}
 	@Test
 	public void testSetId() {//Comprobamos que el ID, despues de hacer el set sea igual
@@ -129,7 +129,6 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testGetVendedor() {
-	
 		assertNotEquals(a1.getVendedor(), a2.getVendedor());
 		assertNotEquals(a1.getVendedor(), a3.getVendedor());
 	}
@@ -144,20 +143,50 @@ public class ArticuloTest{
 	@Test
 	public void testSetImageUrl() {
 		assertEquals("platano.com", a1.getImageUrl());
-	}@Test
-	public void testGetImage() {
-		assertEquals(a1.getImage(), a2.getImage());//Iguales(null),porque no tienen ninguna imagen asignada
-		assertEquals(a1.getImage(),a3.getImage());
-	}
-	@Test
-	public void testSetImage(){
-		assertEquals("platano.com", a1.getImageUrl());
 	}
 	@Test
 	public void testEquals() {
-		Articulo prueba = new Articulo("coliflor", d1, 1.20f, 400, "rica coliflor", 1.05f,
-				Categoria.VERDURAS,"coliflor.com");
-		assertFalse(a1.equals(prueba));//distintos articulos
+		assertFalse(a1.equals(a2));
+		assertFalse(a1.equals(a3));
+		assertFalse(a2.equals(a1));
+		assertFalse(a2.equals(a3));
+		assertFalse(a3.equals(a1));
+		assertFalse(a3.equals(a2));
+		assertTrue(a1.equals(a1));
+		assertTrue(a2.equals(a2));
+		assertTrue(a3.equals(a3));
+		Articulo prueba = a1;
+		assertTrue(a1.equals(prueba));
+		assertTrue(prueba.equals(a1));
+		assertFalse(prueba.equals(a2));
+		assertFalse(a2.equals(prueba));
+		assertFalse(prueba.equals(a3));
+		assertFalse(a3.equals(prueba));
+		assertTrue(prueba.equals(prueba));
+		
+		Articulo prueba2 = a2;
+		assertFalse(a1.equals(prueba2));
+		assertFalse(prueba2.equals(a1));
+		assertTrue(prueba2.equals(a2));
+		assertTrue(a2.equals(prueba2));
+		assertFalse(prueba2.equals(a3));
+		assertFalse(a3.equals(prueba2));
+		assertFalse(prueba2.equals(prueba));
+		assertFalse(prueba.equals(prueba2));
+		assertTrue(prueba2.equals(prueba2));
+		
+		Articulo prueba3 = a3;
+		assertFalse(a1.equals(prueba3));
+		assertFalse(prueba3.equals(a1));
+		assertFalse(prueba3.equals(a2));
+		assertFalse(a2.equals(prueba3));
+		assertTrue(prueba3.equals(a3));
+		assertTrue(a3.equals(prueba3));
+		assertFalse(prueba3.equals(prueba));
+		assertFalse(prueba.equals(prueba3));
+		assertFalse(prueba3.equals(prueba2));
+		assertFalse(prueba2.equals(prueba3));
+		assertTrue(prueba3.equals(prueba3));
 		
 	}
 	@Test
@@ -165,9 +194,11 @@ public class ArticuloTest{
 		String prueba = a1.toString();
 		assertNotEquals(prueba, a2.toString());
 	}
-	@Test
-	public void testHashCode() {
-		assertNotEquals(a1.hashCode(),a2.hashCode());
-	}
+//	@Test
+//	public void testHashCode() {
+//		assertNotEquals(a1.hashCode(), a2.hashCode());
+//		assertNotEquals(a1.hashCode(), a3.hashCode());
+//		assertNotEquals(a2.hashCode(), a3.hashCode());
+//	}
 	
 }
