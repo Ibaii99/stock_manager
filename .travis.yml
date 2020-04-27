@@ -10,9 +10,9 @@ before_script:
   - mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
 addons:
   sonarcloud:
-    - organization: ibaii99
-    - token: 
-        secure: ${SONAR_TOKEN2}
+    organization: ibaii99
+    token: 
+        secure: 140b40bd7191b9f133e54f7b84cc40ab24d7ea5f
 script:
     # - sonar-scanner
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
