@@ -114,12 +114,11 @@ public class DAO {
 	// GET de un articulo
 	public Articulo getArticulo( long idArticulo) {
 		Articulo a = null;
-		ArrayList<Articulo> articulos = new ArrayList<Articulo>();
-		articulos = (ArrayList<Articulo>) this.getArticulos();
-		for (int i = 0; i < articulos.size(); i++) {
-			a = articulos.get(i);
-			if (idArticulo == a.getId()) {
-				System.out.println("Articulo encontrado.");
+		ArrayList<Articulo> articulos = (ArrayList<Articulo>) this.getArticulos();
+
+		for (Articulo opinion : articulos) {
+			if (idArticulo == opinion.getId()) {
+				a = opinion;
 				return a;
 			}
 		}
@@ -257,7 +256,7 @@ public class DAO {
 		c.vaciarCesta();
 		return c;
 	}
-
+/*
 	// GET de una lista de opiniones
 	public List<Opinion> getOpiniones() {
 		 List<Opinion> ret = new ArrayList<Opinion>();
@@ -283,11 +282,10 @@ public class DAO {
 	// GET de una opinion
 	public Opinion getOpinion( long id) {
 		Opinion c = null;
-		ArrayList<Opinion> Opiniones = new ArrayList<Opinion>();
-		Opiniones = (ArrayList<Opinion>) this.getOpiniones();
-		for (int i = 0; i < Opiniones.size(); i++) {
-			c = Opiniones.get(i);
-			if (id == c.getId()) {
+		ArrayList<Opinion> Opiniones = (ArrayList<Opinion>) this.getOpiniones();
+		for (Opinion opinion : Opiniones) {
+			if (id == opinion.getId()) {
+				c = opinion;
 				return c;
 			}
 		}
@@ -319,17 +317,16 @@ public class DAO {
 	// GET de un vendedor
 	public Vendedor getVendedor( String email) {
 		Vendedor v = null;
-		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
-		vendedores = (ArrayList<Vendedor>) this.getVendedores();
+		ArrayList<Vendedor> vendedores =  (ArrayList<Vendedor>) this.getVendedores();
 		for (int i = 0; i < vendedores.size(); i++) {
 			v = vendedores.get(i);
-			if (email.equals(v.getEmailVendedor())) {
+			if (email == (v.getEmailVendedor())) {
 				return v;
 			}
 		}
 		return v;
 	}
-
+*/
 
 
 	// Meter para introducir datos a la Base de Datos
