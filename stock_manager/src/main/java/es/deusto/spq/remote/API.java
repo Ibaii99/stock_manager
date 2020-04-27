@@ -36,7 +36,6 @@ import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data_access.DAO;
-import netscape.javascript.JSObject;
 
 
 
