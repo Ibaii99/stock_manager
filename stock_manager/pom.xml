@@ -107,8 +107,6 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/java/es/deusto/spq</sourceDirectory>
-		<testSourceDirectory>src/test/java/es/deusto/spq</testSourceDirectory>
 
 		<resources>
 			<resource>
