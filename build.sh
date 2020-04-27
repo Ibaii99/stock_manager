@@ -1,2 +1,2 @@
 cd stock_manager/
-mvn clean compile install -e
+mvn clean compile datanucleus:create-schema install -e
