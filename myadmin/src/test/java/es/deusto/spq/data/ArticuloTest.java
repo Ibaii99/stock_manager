@@ -15,6 +15,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import src.main.java.es.deusto.spq.data.*;
 
 public class ArticuloTest{
@@ -146,59 +147,22 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testEquals() {
-		assertFalse(a1.equals(a2));
-		assertFalse(a1.equals(a3));
-		assertFalse(a2.equals(a1));
-		assertFalse(a2.equals(a3));
-		assertFalse(a3.equals(a1));
-		assertFalse(a3.equals(a2));
-		assertTrue(a1.equals(a1));
-		assertTrue(a2.equals(a2));
-		assertTrue(a3.equals(a3));
-		Articulo prueba = a1;
-		assertTrue(a1.equals(prueba));
-		assertTrue(prueba.equals(a1));
-		assertFalse(prueba.equals(a2));
-		assertFalse(a2.equals(prueba));
-		assertFalse(prueba.equals(a3));
-		assertFalse(a3.equals(prueba));
-		assertTrue(prueba.equals(prueba));
-		
-		Articulo prueba2 = a2;
-		assertFalse(a1.equals(prueba2));
-		assertFalse(prueba2.equals(a1));
-		assertTrue(prueba2.equals(a2));
-		assertTrue(a2.equals(prueba2));
-		assertFalse(prueba2.equals(a3));
-		assertFalse(a3.equals(prueba2));
-		assertFalse(prueba2.equals(prueba));
-		assertFalse(prueba.equals(prueba2));
-		assertTrue(prueba2.equals(prueba2));
-		
-		Articulo prueba3 = a3;
-		assertFalse(a1.equals(prueba3));
-		assertFalse(prueba3.equals(a1));
-		assertFalse(prueba3.equals(a2));
-		assertFalse(a2.equals(prueba3));
-		assertTrue(prueba3.equals(a3));
-		assertTrue(a3.equals(prueba3));
-		assertFalse(prueba3.equals(prueba));
-		assertFalse(prueba.equals(prueba3));
-		assertFalse(prueba3.equals(prueba2));
-		assertFalse(prueba2.equals(prueba3));
-		assertTrue(prueba3.equals(prueba3));
-		
+		Articulo actual = new Articulo("Platano",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		Articulo actual2 = new Articulo("coliflor", d1, 1.20f, 400, "rica coliflor", 1.05f,
+				Categoria.VERDURAS,"coliflor.com");
+		assertFalse(a1.equals(actual));	
+		assertTrue(a1.equals(a1));	
 	}
 	@Test
 	public void testToString() {
 		String prueba = a1.toString();
 		assertNotEquals(prueba, a2.toString());
 	}
-//	@Test
-//	public void testHashCode() {
-//		assertNotEquals(a1.hashCode(), a2.hashCode());
-//		assertNotEquals(a1.hashCode(), a3.hashCode());
-//		assertNotEquals(a2.hashCode(), a3.hashCode());
-//	}
+	@Test
+	public void testHashCode() {
+		assertNotEquals(a1.hashCode(), a2.hashCode());
+		assertNotEquals(a1.hashCode(), a3.hashCode());
+		assertNotEquals(a2.hashCode(), a3.hashCode());
+	}
 	
 }
