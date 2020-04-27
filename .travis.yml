@@ -1,19 +1,19 @@
 language: java
 jdk:
-- openjdk8
+  - openjdk8
 services:
-- mysql
+  - mysql
 before_script:
-- cd stock_manager
-- mysql -u root -e 'CREATE DATABASE stock_managerdb;'
-- mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
-- mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
+  - cd stock_manager
+  - mysql -u root -e 'CREATE DATABASE stock_managerdb;'
+  - mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
+  - mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
 addons:
   sonarcloud:
     organization: ibaii99
     token:
-      secure: AorQwHnqFuYqWWwj2WsaL7ErvVj/KHEHOrgFltw0eKAJK9IUEQwJvDymPerAXIn34f3vdzswnP9+b0WD5Va+8xCDegRhitFFNhP5SxvBNl9vK01G1hPcKqMzIarOl4mAvojZBcbgQc2wPUesqW2dc9331MzdW5ZcSZ8SWWU0CXkEtQbjyoCToFG0LoROWlcyJkSlVvjkjU7JohOiKzjNCHNn+kDp69x3PdDwKLG5bpYhTbNkMEEFmJfex1vF53HsPI5u/BMpPTiIt8CqXu+B4OOLKvo9djq2DcSM9o+fJxbRTIafnYb/t4edyEF5vDv8YpqLpZKbVdOYvb2cIsaq7JOgbbK4V6sPVtHfxsgz3cyUH+4glze1ly53e64I6zuQES4XSNbhK7lMVrlsLc3rdGfCJngXPDZHdgBSzvpJ9uH6TAqr0vf81FM6jPkiy2uskGDHO01d4WUHqMfrwEWsDmLqTvGeavbAEf0mik7u659t8eBzY5tePx9nUuz/g4GnLoXrAbKjDiMysgUvO/iZ1twYa3pawCA1RVE6OHhbhPqh+6eroLF6/SrumFkwE57/vjiPWV1gLrcS77FDshMIvyN9s4VnHqKYuHSlXcPouuq1H+RHoKUo2nHfWIJxBxnC4MeWj7/02Xs3JFwUcZV2IkRXbbjsq6qq+YqeFG6RgCs=
+      secure:h5TK10h78Ld635bWHHBZuh71HRGEJETT9cD+9xndo7NnUlTf54CC9eUOt7620jcjXa4O/kyy3UJ1TZn5UHTTUUihGxbzyp8MsuhlmXLkuxLI1YOXZ4WkliI0h0ka9O6GggLyKvVaByqoyWdVfz36/8W1GrXO0TVXzngQLUJi9oaqmsHXWOG+aiZog5u6FqPN7dRJmfKVfG4NpfyRFgshnORmu/bmdBm2EX2KPLk/QFC32c2Cl+I+z8/cizA7U4Z7oY4ID+EBpGGxvR1p+gANiqqpaAyZ+FeX2Qi762IGNUCGVVayxImX/IJOAiu00nv38+2DHS02vBM9BnnX3TZ+sUNSs7/PuoXC8CcwXcKaAuvkthYxCAVaisO90z8juMWWnALauMIPM01bxPQPrUhC5BEamgoH0VPJEfLjziaiV9WBklgKHelIwfIgWQnBbk3zVdJ+NpN4leM1U0GzP15oz1PudTYkI5H7uk022bL76Rzh7CVoxcCau1LhU6ZopyNclaXFtHrrsWkySQeYk9XyoicaZhSHlZe/BURGUXXipwPsWAM1xl4fdR6UV0o/d6ou6Fd81EMWv59kFdOd/6n/zGDnU085Gc6E5SQAbxR1+r3XQp8hHX8RcXAwNX0yeDi91ILvZQrqwCiW7CNJY3ZhyzTS1Iz32O5mTqAwgAeewxM=
 script:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
 dd:
   secure: h5TK10h78Ld635bWHHBZuh71HRGEJETT9cD+9xndo7NnUlTf54CC9eUOt7620jcjXa4O/kyy3UJ1TZn5UHTTUUihGxbzyp8MsuhlmXLkuxLI1YOXZ4WkliI0h0ka9O6GggLyKvVaByqoyWdVfz36/8W1GrXO0TVXzngQLUJi9oaqmsHXWOG+aiZog5u6FqPN7dRJmfKVfG4NpfyRFgshnORmu/bmdBm2EX2KPLk/QFC32c2Cl+I+z8/cizA7U4Z7oY4ID+EBpGGxvR1p+gANiqqpaAyZ+FeX2Qi762IGNUCGVVayxImX/IJOAiu00nv38+2DHS02vBM9BnnX3TZ+sUNSs7/PuoXC8CcwXcKaAuvkthYxCAVaisO90z8juMWWnALauMIPM01bxPQPrUhC5BEamgoH0VPJEfLjziaiV9WBklgKHelIwfIgWQnBbk3zVdJ+NpN4leM1U0GzP15oz1PudTYkI5H7uk022bL76Rzh7CVoxcCau1LhU6ZopyNclaXFtHrrsWkySQeYk9XyoicaZhSHlZe/BURGUXXipwPsWAM1xl4fdR6UV0o/d6ou6Fd81EMWv59kFdOd/6n/zGDnU085Gc6E5SQAbxR1+r3XQp8hHX8RcXAwNX0yeDi91ILvZQrqwCiW7CNJY3ZhyzTS1Iz32O5mTqAwgAeewxM=
