@@ -33,7 +33,7 @@ public class ClienteTest{
 	private ArrayList<Cesta> pedidos = new ArrayList<>();
 	
 	@Before
-	public void insertarDatos() {
+	public void setUp() {
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
 		listaCantidades.add(cantidad1);
