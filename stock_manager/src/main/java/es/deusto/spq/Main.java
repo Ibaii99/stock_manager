@@ -41,7 +41,7 @@ public class Main {
      * @throws IOException
      */
     @SuppressWarnings("deprecation")
-	public static void main(String[] args) throws IOException {
+	public static boolean main(String[] args) throws IOException {
         final HttpServer server = startServer();
         DAO dao = new DAO();
         dao.meter_datos();
@@ -51,6 +51,7 @@ public class Main {
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
         System.in.read();
         server.stop();
+        return true;
     }
 }
 

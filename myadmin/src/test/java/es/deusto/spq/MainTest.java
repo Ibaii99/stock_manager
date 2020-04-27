@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.deusto.spq.*;
-
 public class MainTest {
 	private Main m,m2;
 	
