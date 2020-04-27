@@ -140,7 +140,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>src.main.java.es.deusto.spq.Main</mainClass>
+                    <mainClass>es.deusto.spq.Main</mainClass>
                 </configuration>
             </plugin>
 
@@ -201,7 +201,7 @@
   					<artifactId>exec-maven-plugin</artifactId>
   					<configuration>
 
-  						<mainClass>src.main.java.es.deusto.spq.Main</mainClass>
+  						<mainClass>es.deusto.spq.Main</mainClass>
 
   					</configuration>
   				</plugin>
