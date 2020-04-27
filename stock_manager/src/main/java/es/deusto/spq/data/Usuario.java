@@ -27,11 +27,11 @@ public class Usuario implements Serializable {
 		this.contrasenya = contrasenya;
 	}
 	
-	
-	public String getUser() {
+
+	public String getNombre() {
 		return nombre;
 	}
-	public void setUsuario(String usuario) {
+	public void setNombre(String usuario) {
 		this.nombre = usuario;
 	}
 	public String getContrasenya() {
@@ -45,15 +45,11 @@ public class Usuario implements Serializable {
 		return id;
 	}
 
-
-	public String getNombre() {
-		return nombre;
+	@Override
+	public String toString() {
+	return ", nombre=" + nombre + ", contrasenya=" + contrasenya + "]";
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
+	
 	
 	
 }

@@ -154,7 +154,8 @@ public class ArticuloTest{
 		assertTrue(a1.equals(a4));
 		assertTrue(a1.equals(a1));	
 		assertTrue(a2.equals(a2));
-		assertEquals(a1.THRESHOLD, .0001,0);
+		
+		
 	}
 	@Test
 	public void testToString() {
