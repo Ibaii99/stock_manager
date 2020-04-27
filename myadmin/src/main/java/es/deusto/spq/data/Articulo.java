@@ -191,7 +191,5 @@ public class Articulo implements Serializable {
 			return false;
 		}
 	}
-
-	
 	
 }
