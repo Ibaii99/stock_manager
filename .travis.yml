@@ -19,4 +19,4 @@ script:
 
 addons:
   sonarcloud:
-    organization: "Ibaii99"
+    organization: "ibaii99"
