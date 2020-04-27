@@ -9,10 +9,7 @@ services:
   - mysql
 
 before_script:
-  - mysql -u root -e 'ALTER USER 'root'@'localhost' IDENTIFIED BY 'admin';'
-  - mysql -u root -e 'FLUSH PRIVILEGES;'
-  - mysql -u root -e 'drop user root@localhost;'
-  - mysql -u root -e 'FLUSH PRIVILEGES;'
+  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('admin') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
   - mysql -u root -e 'CREATE DATABASE stock_managerdb;'
   - mysql -u root -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'admin';"
   - mysql -u root -e "GRANT ALL ON stock_managerdb . * TO 'root'@'localhost';"
