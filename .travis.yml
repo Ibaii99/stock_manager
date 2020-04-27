@@ -13,5 +13,5 @@ addons:
     organization: ibaii99
     token: ${SONAR_TOKEN}
 script:
-    #- sonar-scanner
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
+    - sonar-scanner
+    #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
