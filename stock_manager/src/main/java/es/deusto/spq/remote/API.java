@@ -346,7 +346,7 @@ public class API {
 		u.toString();
 		return u;
 	}
-	
+	/*
 	@GET
 	@Path("getOpiniones")
 	public List<Opinion> getOpiniones() {
@@ -402,7 +402,7 @@ public class API {
 
 		return "{ \"nombre\": \""+vendedor.getNombreVendedor() + "\" }";
 	}
-	
+	*/
 	@GET
 	@Path("meter_datos")
 	public String api_meter_datos() {

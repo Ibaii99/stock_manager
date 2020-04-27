@@ -209,15 +209,12 @@ public class Articulo implements Serializable {
 		// TODO Auto-generated method stub
 
 		Articulo a = (Articulo) obj;
+		
+		if(a.getId()==this.ID) 
+			return true;
 
-		boolean s = a.getId()==this.ID && a.getNombre() == this.nombre 
-		&& a.getCaducidad().equals(this.caducidad)
-		&& (Math.abs(a.getPrecio() - this.precio) < THRESHOLD)
-		&& a.getStock() == this.stock && a.getDescripcion() == this.descripcion
-		&& a.getDescripcion() == this.descripcion && (Math.abs(a.getOferta() - this.oferta) < THRESHOLD)
-		&&a.getCategoria() == this.categoria;
+		return false;
 
-		return s;
 	}
     
 

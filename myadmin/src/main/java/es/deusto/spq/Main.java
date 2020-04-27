@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq;
+package es.deusto.spq;
 
 import java.io.IOException;
 import java.net.URI;
@@ -6,7 +6,9 @@ import java.awt.EventQueue;
 
 import java.io.IOException;
 import java.net.URI;
-import src.main.java.es.deusto.spq.app.*;
+import es.deusto.spq.app.*;
+import es.deusto.spq.data.*;
+import es.deusto.spq.data.Articulo.Categoria;
 
 
 
@@ -24,13 +26,12 @@ public class Main
 //	     * @throws IOException
 //	     */
 	    @SuppressWarnings("deprecation")
-		public static void main(String[] args) throws IOException {
-	    	try {
+		public static boolean main(String[] args) throws IOException {
+	    	
 				InicioSesion frame = new InicioSesion();
 				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+				return true;
+			
 	       
 	    }
 	

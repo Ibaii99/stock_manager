@@ -1,6 +1,22 @@
 language: java
+
 jdk:
-  - oraclejdk8
-  - oraclejdk9
   - openjdk8
-script: bash build.sh
+  
+services:
+  - mysql
+
+before_script:
+  - cd stock_manager
+  - mysql -u root -e 'CREATE DATABASE stock_managerdb;'
+  - mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
+  - mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
+
+addons:
+  sonarcloud:
+    organization: "ibaii99"
+    
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=unaguil_simple-jersey-example

@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq.app;
+package es.deusto.spq.app;
 
 import java.awt.BorderLayout;
 
@@ -21,9 +21,9 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ProcessingException;
 
-import src.main.java.es.deusto.spq.app.*;
-import src.main.java.es.deusto.spq.data.Articulo;
-import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+import es.deusto.spq.app.*;
+import es.deusto.spq.data.*;
+import es.deusto.spq.data.Articulo.Categoria;
 
 import java.util.Date;
 import java.util.List;
@@ -32,9 +32,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.EventQueue;
 import java.awt.Dimension;
 import java.util.Calendar;
-
-import src.main.java.es.deusto.spq.data.Articulo;
-import src.main.java.es.deusto.spq.data.Articulo.Categoria;
 
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;

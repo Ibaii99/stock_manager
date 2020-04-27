@@ -1,7 +1,7 @@
-package src.test.java.es.deusto.spq.data;
+package es.deusto.spq.data;
 
-import src.main.java.es.deusto.spq.data.*;
-import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+import es.deusto.spq.data.*;
+import es.deusto.spq.data.Articulo.Categoria;
 
 import org.junit.Before;
 import org.junit.Test;
