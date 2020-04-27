@@ -19,3 +19,4 @@ stock_manager/datanucleus.log
 *.log
 *.log
 *.sqlite3
+stock_manager/.classpath

@@ -35,19 +35,17 @@ public class DAOTest {
 //	DAO d;
 	
     DAO dao;
-	 
     Articulo articulo,a;
     Usuario u;
     Cliente c;
     Vendedor v;
     Opinion o;
     Calendar cal;
-    List<Articulo> articulos = new ArrayList<Articulo>();
+
+    List<Articulo> listaarticulos = new ArrayList<Articulo>();
 
     @Before
 	public void setUp() {
-        
-    	
     	
         dao = new DAO();
         cal = Calendar.getInstance();
@@ -56,38 +54,30 @@ public class DAOTest {
         cal.set(Calendar.DAY_OF_MONTH, 1);
 
         articulo = new Articulo("papaya", cal.getTime(), 1.0f, 200, "papaya", 0.5f, Categoria.FRUTAS, "imageUrl");
+        articulo.setId(9999);
         a= new Articulo("platano", cal.getTime(), 1.0f, 200, "platano", 0.5f, Categoria.FRUTAS, "imageUrl");
-        dao.store(articulo);
+        //dao.store(articulo);
 
         List<Articulo> lista = dao.getArticulos();
-
-        for (Articulo articulo2 : lista) {
-            if(articulo2.getNombre().equals(articulo)){
-                articulo = articulo2;
-            }
-        }
+        listaarticulos = lista;
         u = new Usuario("usuario", "contrasenya");
 
-        dao.store(u);
+        //dao.store(u);
 
         c = new Cliente("nombre", "email", "contrasenya", "direccion");
         c.setId(666);
         c.getCarrito().setId(666);
-        dao.store(c);
+        //dao.store(c);
 
         
 
         v= new Vendedor("vendedor", "correo");
 
-        dao.store(v);
+        //dao.store(v);
 
         o = new Opinion("texto", 4, c);
 
-        dao.store(o);
-        
-        articulos.add(articulo);
-        articulos.add(a);
-        
+        //dao.store(o);        
 
     }
 
@@ -178,7 +168,9 @@ public class DAOTest {
        assertEquals(v.getNombreVendedor(), vendedor.getNombreVendedor());
 
     } 
- */   
+ */ 
+
+ /*
     @Test
     public void testMeter_datos() {
 
@@ -187,7 +179,7 @@ public class DAOTest {
         assertNotNull(lista);
 
     } 
-
+*/
     
     @Test
     public void testCleanCesta() {
