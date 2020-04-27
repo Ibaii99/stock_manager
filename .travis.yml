@@ -14,5 +14,5 @@ addons:
     token:
       secure:"h5TK10h78Ld635bWHHBZuh71HRGEJETT9cD+9xndo7NnUlTf54CC9eUOt7620jcjXa4O/kyy3UJ1TZn5UHTTUUihGxbzyp8MsuhlmXLkuxLI1YOXZ4WkliI0h0ka9O6GggLyKvVaByqoyWdVfz36/8W1GrXO0TVXzngQLUJi9oaqmsHXWOG+aiZog5u6FqPN7dRJmfKVfG4NpfyRFgshnORmu/bmdBm2EX2KPLk/QFC32c2Cl+I+z8/cizA7U4Z7oY4ID+EBpGGxvR1p+gANiqqpaAyZ+FeX2Qi762IGNUCGVVayxImX/IJOAiu00nv38+2DHS02vBM9BnnX3TZ+sUNSs7/PuoXC8CcwXcKaAuvkthYxCAVaisO90z8juMWWnALauMIPM01bxPQPrUhC5BEamgoH0VPJEfLjziaiV9WBklgKHelIwfIgWQnBbk3zVdJ+NpN4leM1U0GzP15oz1PudTYkI5H7uk022bL76Rzh7CVoxcCau1LhU6ZopyNclaXFtHrrsWkySQeYk9XyoicaZhSHlZe/BURGUXXipwPsWAM1xl4fdR6UV0o/d6ou6Fd81EMWv59kFdOd/6n/zGDnU085Gc6E5SQAbxR1+r3XQp8hHX8RcXAwNX0yeDi91ILvZQrqwCiW7CNJY3ZhyzTS1Iz32O5mTqAwgAeewxM="
 script:
-    - sonar-scanner
-    #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
+    #- sonar-scanner
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
