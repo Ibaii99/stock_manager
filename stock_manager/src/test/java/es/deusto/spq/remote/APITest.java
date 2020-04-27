@@ -5,7 +5,7 @@ import javax.validation.constraints.Email;
 import com.google.gson.Gson;
 
 import javax.json.JsonObject;
-import javax.json.JsonString;0
+import javax.json.JsonString;
 
 import org.junit.Before;
 import org.junit.Test;
