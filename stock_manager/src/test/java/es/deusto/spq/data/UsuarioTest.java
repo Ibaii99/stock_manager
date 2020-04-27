@@ -9,9 +9,7 @@ public class UsuarioTest {
 	private Usuario usuario;
 	@Before
 	public void setUp() {
-
 		usuario = new Usuario("admin", "root");
-
 	}
 	@Test
 	public void testGetNombre() {
