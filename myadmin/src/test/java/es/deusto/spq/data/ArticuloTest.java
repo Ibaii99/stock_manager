@@ -1,6 +1,6 @@
-package src.test.java.es.deusto.spq.data;
+package es.deusto.spq.data;
 
-import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+import es.deusto.spq.data.Articulo.Categoria;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -15,9 +15,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-
-import src.main.java.es.deusto.spq.data.*;
-
+import es.deusto.spq.data.Articulo;
+import es.deusto.spq.data.Vendedor;
 public class ArticuloTest{
 	private Articulo a1;
 	private Articulo a2;
@@ -147,11 +146,10 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testEquals() {
-		Articulo actual = new Articulo("Platano",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
-		Articulo actual2 = new Articulo("coliflor", d1, 1.20f, 400, "rica coliflor", 1.05f,
-				Categoria.VERDURAS,"coliflor.com");
-		assertFalse(a1.equals(actual));	
+		assertFalse(a1.equals(a2));	
 		assertTrue(a1.equals(a1));	
+		assertTrue(a2.equals(a2));
+		assertEquals(a1.THRESHOLD, .0001,0);
 	}
 	@Test
 	public void testToString() {

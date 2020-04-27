@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq;
+package es.deusto.spq;
 
 import java.io.IOException;
 import java.net.URI;
@@ -6,7 +6,9 @@ import java.awt.EventQueue;
 
 import java.io.IOException;
 import java.net.URI;
-import src.main.java.es.deusto.spq.app.*;
+import es.deusto.spq.app.*;
+import es.deusto.spq.data.*;
+import es.deusto.spq.data.Articulo.Categoria;
 
 
 

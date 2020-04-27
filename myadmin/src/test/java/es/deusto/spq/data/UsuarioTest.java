@@ -1,4 +1,4 @@
-package src.test.java.es.deusto.spq.data;
+package es.deusto.spq.data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import src.main.java.es.deusto.spq.data.*;
+import es.deusto.spq.data.*;
 
 public class UsuarioTest {
 	private Usuario u1;
