@@ -18,7 +18,7 @@ public class ArticuloTest{
 	@Before 
 	public void setUp() {
 		a1 = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
-		
+		a1.setId(25);
 	}
 	
 	@Test
@@ -65,6 +65,7 @@ public class ArticuloTest{
 	public void testEquals() {
 		Articulo actual = new Articulo("Platano",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
 		Articulo actual2 = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		actual2.setId(25);
 		assertFalse(a1.equals(actual));	
 		assertTrue(a1.equals(actual2));	
 	}
@@ -72,6 +73,7 @@ public class ArticuloTest{
 	@Test
 	public void testtoString() {
 		Articulo actual = new Articulo("manzana",new Date(18/05/2020), 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
+		actual.setId(25);
 		assertEquals(a1.toString(), actual.toString());
 	}
 

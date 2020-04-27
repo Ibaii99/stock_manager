@@ -37,6 +37,7 @@ public class CestaTest{
 		a1 = new Articulo("coliflor", new Date(21/03/2020), 1.20f, 400, "rica coliflor", 1.05f,
 				Categoria.FRUTAS,
 				"https://gastronomiaycia.republica.com/wp-content/uploads/2013/04/quitar_manchas_coliflor.jpg");
+		a1.setId(888);
 		a2 = new Articulo("pan", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
 				Categoria.FRUTOSSECOS,
 				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
@@ -54,6 +55,7 @@ public class CestaTest{
 		Articulo a3 = new Articulo("coliflor", new Date(21/03/2020), 1.20f, 400, "rica coliflor", 1.05f,
 				Categoria.FRUTAS,
 				"https://gastronomiaycia.republica.com/wp-content/uploads/2013/04/quitar_manchas_coliflor.jpg");
+		a3.setId(888);
 		Articulo a4 = new Articulo("pan", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
 				Categoria.FRUTOSSECOS,
 				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
@@ -118,7 +120,7 @@ public class CestaTest{
 				Categoria.FRUTOSSECOS,
 				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
 		Integer cantidad3 = 400;
-		
+		a3.setId(565);
 		c.addArticulo(a3, cantidad3);
 
 		assertEquals(3, c.getArticulos().size());
@@ -154,7 +156,7 @@ public class CestaTest{
 			Categoria.FRUTOSSECOS,
 			"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
 		Integer cantidad3 = 400;
-		
+		a3.setId(565);		
 		c.modifyCesta(a3, cantidad3);
 
 		assertEquals(3, c.getArticulos().size());
@@ -180,7 +182,7 @@ public class CestaTest{
 				Categoria.FRUTOSSECOS,
 				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
 		Integer cantidad3 = 400;
-		
+		a3.setId(565);
 		c.addCesta(a3, cantidad3);
 
 		assertEquals(3, c.getArticulos().size());
