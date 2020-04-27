@@ -24,12 +24,14 @@ public class Main
 //	     * @throws IOException
 //	     */
 	    @SuppressWarnings("deprecation")
-		public static void main(String[] args) throws IOException {
+		public static boolean main(String[] args) throws IOException {
 	    	try {
 				InicioSesion frame = new InicioSesion();
 				frame.setVisible(true);
+				return true;
 			} catch (Exception e) {
 				e.printStackTrace();
+				return false;
 			}
 	       
 	    }
