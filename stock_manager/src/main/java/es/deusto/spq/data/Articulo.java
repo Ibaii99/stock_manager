@@ -32,6 +32,8 @@ public class Articulo implements Serializable {
 		ZUMOS
 	}
 	
+	final double THRESHOLD = .0001;
+
 	private static final long serialVersionUID = 1L;
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long ID;
@@ -208,10 +210,11 @@ public class Articulo implements Serializable {
 
 		Articulo a = (Articulo) obj;
 
-		boolean s = a.getId() == this.ID && a.getNombre() == this.nombre 
-		&& a.getCaducidad() == this.caducidad && a.getPrecio() == this.precio
+		boolean s = a.getId()==this.ID && a.getNombre() == this.nombre 
+		&& a.getCaducidad().equals(this.caducidad)
+		&& (Math.abs(a.getPrecio() - this.precio) < THRESHOLD)
 		&& a.getStock() == this.stock && a.getDescripcion() == this.descripcion
-		&& a.getDescripcion() == this.descripcion && a.oferta == this.oferta
+		&& a.getDescripcion() == this.descripcion && (Math.abs(a.getOferta() - this.oferta) < THRESHOLD)
 		&&a.getCategoria() == this.categoria;
 
 		return s;

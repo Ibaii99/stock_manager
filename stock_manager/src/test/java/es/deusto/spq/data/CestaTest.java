@@ -64,7 +64,7 @@ public class CestaTest{
 		Estado estadoActual = Estado.ENTREGADO;
 		
 		Cesta actual = new Cesta(listaArticulosActual, listaCantidadesActual, estadoActual);
-		assertNotEquals(c.getArticulos(),actual.getArticulos());//son distintos articulos
+		assertEquals(c.getArticulos(),actual.getArticulos());//son distintos articulos
 	}
 	@Test
 	public void getListaCantidades() {
@@ -114,7 +114,7 @@ public class CestaTest{
 
 		assertEquals(500, i );
 
-		Articulo a3 = new Articulo("pan", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
+		Articulo a3 = new Articulo("Trufa", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
 				Categoria.FRUTOSSECOS,
 				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
 		Integer cantidad3 = 400;
@@ -150,9 +150,9 @@ public class CestaTest{
 
 		assertEquals(500, i );
 
-		Articulo a3 = new Articulo("pan", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
-				Categoria.FRUTOSSECOS,
-				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
+		Articulo a3 = new Articulo("Trufa", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
+			Categoria.FRUTOSSECOS,
+			"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
 		Integer cantidad3 = 400;
 		
 		c.modifyCesta(a3, cantidad3);
@@ -176,7 +176,7 @@ public class CestaTest{
 
 		assertEquals(900, i );
 
-		Articulo a3 = new Articulo("pan", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
+		Articulo a3 = new Articulo("Trufa", new Date(22/04/2020), 1.20f, 400, "rica pan", 1.05f,
 				Categoria.FRUTOSSECOS,
 				"https://s1.eestatic.com/2015/03/24/cocinillas/Cocinillas_20507999_115826466_1024x576.jpg");
 		Integer cantidad3 = 400;
