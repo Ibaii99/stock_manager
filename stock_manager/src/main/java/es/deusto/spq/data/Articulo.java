@@ -210,7 +210,7 @@ public class Articulo implements Serializable {
 
 		Articulo a = (Articulo) obj;
 
-		boolean s = a.getId()==this.ID && a.getNombre() == this.nombre 
+		boolean s =  a.getNombre() == this.nombre 
 		&& a.getCaducidad().equals(this.caducidad)
 		&& (Math.abs(a.getPrecio() - this.precio) < THRESHOLD)
 		&& a.getStock() == this.stock && a.getDescripcion() == this.descripcion
