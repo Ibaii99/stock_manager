@@ -1,22 +1,17 @@
 language: java
-
 jdk:
-  - openjdk8
-  
+- openjdk8
 services:
-  - mysql
-
+- mysql
 before_script:
-  - cd stock_manager
-  - mysql -u root -e 'CREATE DATABASE stock_managerdb;'
-  - mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
-  - mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
-
+- cd stock_manager
+- mysql -u root -e 'CREATE DATABASE stock_managerdb;'
+- mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
+- mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
 addons:
   sonarcloud:
-    organization: "ibaii99"
-    
-
+    organization: ibaii99
 script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=unaguil_simple-jersey-example
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=unaguil_simple-jersey-example
+dd:
+  secure: Sis0J6rHb+5A7tXN9btOjIejBF9CsSbEy2U5BzQ4JyXedWFJeTRRB6sev/w0ZT0OAYwXzSP/w8qjbgavdWZeahcbfbvqJEuhJgAK/RMgA2FcqZ0ucAK2jA68Zk6HecFJIdPumRyz4O3G1Po+NF1IbfW0yUvQXbU8yqBJqxJ4AfkGCASmk1ImWvcCKom4qvBFSlwDJIVUJUhs3bDVQvCtUNqbiAA7pgT/CMhL4XSPsHyHNLyVwHP+48oOjpkaIGqzqiSkHWANJnqf8cc1IqGfc/Uji+jKWoyaHZ2Gt4aJu18a4nPpzkHuyTCH9lhD8mEs9GB1oGaZ2GdIzuE9a27O78Zz2rxWJrkua8t84tniL5+TgRoA/mtuLN73DLDv0pnYQ2RvBh/gpccPRkpRUpePXU3gDwsTe3CoON8iM8hvOL8ZBzXu1Dadr+8zbwk91kMjmIEXNRVgauksGFSIZ6CMonqnuewBcHoHnW8riS+SwzmjYvQFzFx8ublZ/5p7YKLfNDtv47Tc4Z1w1jYFsGa25sZ6heyoI9B15FaN6vDApEbkGM/4PjrZ+PYSNCb1mU9pXTJIJ0AbsL6y4aBo1Z89M6F6gbsgi+2hnctVGIP9PuqC47HDcSVSGK7ympK8TMDZZ6sQKI/GF0CpaDB+SGqmkDbZZgjCi7bp4/yn+ZlkCkA=
