@@ -58,6 +58,7 @@ public class VendedorTest {
 	@Test
 	public void testGetId() {
 		assertNotEquals(v1.getId(),v2.getId(),v3.getId());
+		assertFalse(v1.equals(v2));
 	}
 	@Test
 	public void testSetId() {
@@ -65,10 +66,12 @@ public class VendedorTest {
 		assertEquals(1,v2.getId());
 		assertEquals(0, v3.getId());
 		assertNotEquals(v1.getId(),v2.getId(),v3.getId());
+		assertFalse(v1.equals(v2));
 	}
 	@Test
 	public void testGetNombreVendedor() {
 		assertNotEquals(v1.getNombreVendedor(), v2.getNombreVendedor(),v3.getNombreVendedor());
+		assertFalse(v1.equals(v2));
 	}
 	@Test
 	public void testSetNombreVendedor() {
@@ -76,10 +79,12 @@ public class VendedorTest {
 		assertEquals("ander", v2.getNombreVendedor());
 		assertEquals(null, v3.getNombreVendedor());
 		assertNotEquals(v1.getNombreVendedor(), v2.getNombreVendedor(),v3.getNombreVendedor());
+		assertFalse(v1.equals(v2));
 	}
 	@Test
 	public void testGetEmailVendedor() {
 		assertNotEquals(v1.getEmailVendedor(), v2.getEmailVendedor(),v3.getEmailVendedor());
+		assertFalse(v1.equals(v2));
 	}
 	@Test
 	public void testSetEmailVendedor() {
@@ -87,12 +92,14 @@ public class VendedorTest {
 		assertEquals("ander@gmail.com", v2.getEmailVendedor());
 		assertEquals(null, v3.getEmailVendedor());
 		assertNotEquals(v1.getEmailVendedor(), v2.getEmailVendedor(),v3.getEmailVendedor());
+		assertFalse(v1.equals(v2));
 	}
 	@Test
 	public void testGetArticulos() {
 		assertNotEquals(v1.getArticulos(), v2.getArticulos());
 		assertNotEquals(v1.getArticulos(), v3.getArticulos());
 		assertNotEquals(v2.getArticulos(), v3.getArticulos());
+		assertFalse(v1.equals(v2));
 	}
 	@Test
 	public void testSetArticulos() {
@@ -102,6 +109,7 @@ public class VendedorTest {
 		assertNotEquals(v1.getArticulos(), v2.getArticulos());
 		assertNotEquals(v1.getArticulos(), v3.getArticulos());
 		assertNotEquals(v2.getArticulos(), v3.getArticulos());
+		assertFalse(v1.equals(v2));
 	}
 	@Test
 	public void testToString() {
@@ -111,35 +119,6 @@ public class VendedorTest {
 		assertEquals(prueba1, "Nombre=" + v2.getNombreVendedor() + ", email=" + v2.getEmailVendedor() + "]");
 		String prueba2 = v3.toString();
 		assertEquals(prueba2, "Nombre=" + v3.getNombreVendedor() + ", email=" + v3.getEmailVendedor() + "]");
-		
-	}
-	@Test
-	public void testHashCode() {
-		assertNotEquals(v1.hashCode(), v2.hashCode());
-		assertNotEquals(v1.hashCode(), v3.hashCode());
-		assertNotEquals(v2.hashCode(),v3.hashCode());
-	}
-	@Test
-	public void testEquals() {
 		assertFalse(v1.equals(v2));
-		assertFalse(v1.equals(v3));
-		assertFalse(v2.equals(v3));
-		assertFalse(v2.equals(v1));
-		assertFalse(v3.equals(v1));
-		assertFalse(v3.equals(v2));
-		assertTrue(v1.equals(v1));
-		assertTrue(v2.equals(v2));
-		assertTrue(v3.equals(v3));
-		assertNotSame(v1, v2);
-		assertNotSame(v1,v3);
-		assertNotSame(v2,v3);
-		assertNotSame(v2,v1);
-		assertNotSame(v3,v1);
-		assertNotSame(v3,v2);
-		assertSame(v1, v1);
-		assertSame(v2,v2);
-		assertSame(v3,v3);
-		
-		
 	}
 }

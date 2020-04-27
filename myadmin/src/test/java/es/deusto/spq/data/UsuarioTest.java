@@ -53,45 +53,4 @@ public class UsuarioTest {
 		assertEquals(u1.toString(), 
 				", nombre=" + u1.getNombre() + ", contrasenya=" + u1.getContrasenya() + "]");
 	}
-
-	@Test
-	public void testHashCode() {
-		assertNotEquals(u1.hashCode(),u2.hashCode());
-		assertNotEquals(u2.hashCode(),u1.hashCode());
-		assertNotEquals(u2.hashCode(),u3.hashCode());
-		assertNotEquals(u1.hashCode(),u3.hashCode());
-		assertNotEquals(u3.hashCode(),u2.hashCode());
-		assertNotEquals(u3.hashCode(),u1.hashCode());
-	}
-	
-	@Test
-	public void testEquals() {
-		assertFalse(u1.equals(u2));
-		assertFalse(u1.equals(u3));
-		assertFalse(u2.equals(u1));
-		assertFalse(u2.equals(u3));
-		assertFalse(u3.equals(u1));
-		assertFalse(u3.equals(u2));
-		assertTrue(u1.equals(u1));
-		assertTrue(u2.equals(u2));
-		assertTrue(u3.equals(u3));
-		assertFalse(u1.getNombre().equals(u2.getNombre()));
-		assertFalse(u1.getNombre().equals(u3.getNombre()));
-		assertFalse(u2.getNombre().equals(u1.getNombre()));
-		assertFalse(u2.getNombre().equals(u3.getNombre()));
-		assertTrue(u3.getNombre()==null);
-		assertFalse(u1.getContrasenya().equals(u2.getContrasenya()));
-		assertFalse(u1.getContrasenya().equals(u3.getContrasenya()));
-		assertFalse(u2.getContrasenya().equals(u1.getContrasenya()));
-		assertFalse(u2.getContrasenya().equals(u3.getContrasenya()));
-		assertTrue(u3.getContrasenya()==null);
-		assertFalse(u1.getId() == u2.getId());
-		assertFalse(u1.getId() == u3.getId());
-		assertFalse(u2.getId() == u1.getId());
-		assertFalse(u2.getId()== u3.getId());
-//		assertTrue(u3.getId()==null);
-		
-		
-
-	}
 }
