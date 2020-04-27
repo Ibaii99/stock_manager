@@ -81,7 +81,7 @@ public class VendedorTest{
 	}
 	@Test
 	public void testSetArticulos() {
-		assertEquals(v1.getArticulos(), listaArticulos);
+		assertEquals(v1.getArticulos(), listaArticulos1);
 	}
 	@Test
 	public void testAddArticulos() {

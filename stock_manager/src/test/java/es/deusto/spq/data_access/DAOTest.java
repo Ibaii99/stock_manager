@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -96,9 +97,9 @@ public class DAOTest {
     }
 
     @Test
-    public void testGetAriculos() {
+    public void testGetArticulos() {
 //    	 when(d.getArticulos().thenReturn(articulos));
-        List<Articulo> lista = d.getArticulos();
+        List<Articulo> lista = dao.getArticulos();
 
         assertNotNull(lista);
     }

@@ -77,9 +77,8 @@ public class ArticuloTest{
 		a1.setCestas(cestas1);
 		a2.setCestas(cestas2);
 		a3.setCestas(cestas1);
-		//a1.storeMe();
 		dao = new DAO();
-		a4.storeMe();
+		
 
 	}
 	
@@ -197,10 +196,11 @@ public class ArticuloTest{
 	public void testSetCestas() {
 		assertEquals(a1.getCestas(), a3.getCestas());
 	}
-	@Test
-	public void testStoreMe() {
-		assertFalse(dao.getArticulos().contains(a4));//??
-	}
+//	@Test
+//	public void testStoreMe() {
+//		a4.storeMe();
+//		assertFalse(dao.getArticulos().contains(a4));//??
+//	}
 	@Test 
 	public void testGetSerialVersionUid() {
 		assertNotNull(a1);
