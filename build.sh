@@ -1,2 +1,2 @@
 cd stock_manager/
-mvn clean install -X
+mvn clean compile install -X
