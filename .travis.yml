@@ -9,7 +9,7 @@ services:
   - mysql
 
 before_script:
-  - mysql -u root -e 'root password admin;'
+  - mysql -u root -e ''root'@'localhost password admin;'
   - mysql -u root -e 'drop user root@localhost;'
   - mysql -u root -e 'FLUSH PRIVILEGES;'
   - mysql -u root -e 'CREATE DATABASE stock_managerdb;'
