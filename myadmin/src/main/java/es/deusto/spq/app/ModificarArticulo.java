@@ -1,4 +1,4 @@
-package src.main.java.es.deusto.spq.app;
+package es.deusto.spq.app;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -7,8 +7,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response.Status;
 
-import src.main.java.es.deusto.spq.data.Articulo;
-import src.main.java.es.deusto.spq.data.Articulo.Categoria;
+import es.deusto.spq.app.*;
+import es.deusto.spq.data.*;
+import es.deusto.spq.data.Articulo.Categoria;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
