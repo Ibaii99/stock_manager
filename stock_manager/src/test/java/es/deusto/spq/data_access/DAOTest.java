@@ -55,7 +55,6 @@ public class DAOTest {
                 articulo = articulo2;
             }
         }
-
         u = new Usuario("usuario", "contrasenya");
 
         dao.store(u);
@@ -82,7 +81,7 @@ public class DAOTest {
     }
 
     @Test
-    public void testGetAriculo() {
+    public void testGetArticulo() {
 
         Articulo a = dao.getArticulo(articulo.getId());
 
