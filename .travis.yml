@@ -1,13 +1,13 @@
 language: java
 jdk:
-- openjdk8
+  - openjdk8
 services:
-- mysql
+  - mysql
 before_script:
-- cd stock_manager
-- mysql -u root -e 'CREATE DATABASE stock_managerdb;'
-- mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
-- mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
+  - cd stock_manager
+  - mysql -u root -e 'CREATE DATABASE stock_managerdb;'
+  - mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
+  - mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
 addons:
   sonarcloud:
     organization: ibaii99
@@ -15,4 +15,4 @@ addons:
       secure: "AorQwHnqFuYqWWwj2WsaL7ErvVj/KHEHOrgFltw0eKAJK9IUEQwJvDymPerAXIn34f3vdzswnP9+b0WD5Va+8xCDegRhitFFNhP5SxvBNl9vK01G1hPcKqMzIarOl4mAvojZBcbgQc2wPUesqW2dc9331MzdW5ZcSZ8SWWU0CXkEtQbjyoCToFG0LoROWlcyJkSlVvjkjU7JohOiKzjNCHNn+kDp69x3PdDwKLG5bpYhTbNkMEEFmJfex1vF53HsPI5u/BMpPTiIt8CqXu+B4OOLKvo9djq2DcSM9o+fJxbRTIafnYb/t4edyEF5vDv8YpqLpZKbVdOYvb2cIsaq7JOgbbK4V6sPVtHfxsgz3cyUH+4glze1ly53e64I6zuQES4XSNbhK7lMVrlsLc3rdGfCJngXPDZHdgBSzvpJ9uH6TAqr0vf81FM6jPkiy2uskGDHO01d4WUHqMfrwEWsDmLqTvGeavbAEf0mik7u659t8eBzY5tePx9nUuz/g4GnLoXrAbKjDiMysgUvO/iZ1twYa3pawCA1RVE6OHhbhPqh+6eroLF6/SrumFkwE57/vjiPWV1gLrcS77FDshMIvyN9s4VnHqKYuHSlXcPouuq1H+RHoKUo2nHfWIJxBxnC4MeWj7/02Xs3JFwUcZV2IkRXbbjsq6qq+YqeFG6RgCs="
 
 script:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
