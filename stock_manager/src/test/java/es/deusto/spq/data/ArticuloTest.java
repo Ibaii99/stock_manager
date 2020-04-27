@@ -53,8 +53,7 @@ public class ArticuloTest{
 				Categoria.FRUTOSSECOS,
 				"pan.com");
 		a3 = new Articulo();
-		a4= new Articulo("coliflor", d2, 1.20f, 400, "rica coliflor", 1.05f,
-				Categoria.VERDURAS,"coliflor.com");
+		a4= new Articulo();
 		cesta1 = new Cesta(listaArticulos, cantidades1, Estado.ENCAMINO);
 		cesta2 = new Cesta(listaArticulos,cantidades2,Estado.ACTUAL);
 		listaArticulos.add(a1);
@@ -80,6 +79,7 @@ public class ArticuloTest{
 		a3.setCestas(cestas1);
 		//a1.storeMe();
 		dao = new DAO();
+		a4.storeMe();
 
 	}
 	
@@ -199,9 +199,7 @@ public class ArticuloTest{
 	}
 	@Test
 	public void testStoreMe() {
-		a1.storeMe();
-		dao.getArticulo(a1.getId());
-		assertFalse(dao.getArticulos().contains(a1));//??
+		assertFalse(dao.getArticulos().contains(a4));//??
 	}
 	@Test 
 	public void testGetSerialVersionUid() {
