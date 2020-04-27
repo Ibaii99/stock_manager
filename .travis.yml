@@ -15,8 +15,9 @@ before_script:
 addons:
   sonarcloud:
     organization: "ibaii99"
-    
+    token:
+      secure: ${SONAR_TOKEN} # encrypted value of your token
 
 script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=unaguil_simple-jersey-example
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager -e
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package org.jacoco:jacoco-maven-plugin:report
