@@ -151,6 +151,7 @@ public class ArticuloTest{
 	@Test
 	public void testEquals() {
 		assertFalse(a1.equals(a2));	
+		assertFalse(a1.equals(null));	
 		assertTrue(a1.equals(a4));
 		assertTrue(a1.equals(a1));	
 		assertTrue(a2.equals(a2));

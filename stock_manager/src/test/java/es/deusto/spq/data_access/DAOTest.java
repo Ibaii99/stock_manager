@@ -1,6 +1,7 @@
 package es.deusto.spq.data_access;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -20,32 +21,41 @@ import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  * DAOTest
  */
 public class DAOTest {
-
+	
+//	
+//	@Mock
+//	DAO d;
+	
     DAO dao;
-    Articulo articulo;
+	 
+    Articulo articulo,a;
     Usuario u;
     Cliente c;
     Vendedor v;
     Opinion o;
     Calendar cal;
+    List<Articulo> articulos = new ArrayList<Articulo>();
 
     @Before
 	public void setUp() {
         
+    	
+    	
         dao = new DAO();
-
         cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 1988);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
         cal.set(Calendar.DAY_OF_MONTH, 1);
 
         articulo = new Articulo("papaya", cal.getTime(), 1.0f, 200, "papaya", 0.5f, Categoria.FRUTAS, "imageUrl");
-
+        a= new Articulo("platano", cal.getTime(), 1.0f, 200, "platano", 0.5f, Categoria.FRUTAS, "imageUrl");
         dao.store(articulo);
 
         List<Articulo> lista = dao.getArticulos();
@@ -71,12 +81,18 @@ public class DAOTest {
         o = new Opinion("texto", 4, c);
 
         dao.store(o);
+        
+        articulos.add(articulo);
+        articulos.add(a);
+        
+       
 
     }
 
     @Test
     public void testGetAriculos() {
-        List<Articulo> lista = dao.getArticulos();
+//    	 when(d.getArticulos().thenReturn(articulos));
+        List<Articulo> lista = d.getArticulos();
 
         assertNotNull(lista);
     }
@@ -180,16 +196,16 @@ public class DAOTest {
 
     }
     
-    @Test
-    public void testModifyCesta() {
-
-        int sise = c.getCarrito().getArticulos().size();
-
-        Cesta cesta = dao.modifyCesta(c.getId(),articulo.getId(),10);
-
-        assertNotEquals(sise, cesta.getArticulos().size());
-        
-    }
+//    @Test
+//    public void testModifyCesta() {
+//
+//        int sise = c.getCarrito().getArticulos().size();
+//
+//        Cesta cesta = dao.modifyCesta(c.getId(),articulo.getId(),10);
+//
+//        assertNotEquals(sise, cesta.getArticulos().size());
+//        
+//    }
 /*
     @Test
     public void testGetOpiniones() {
