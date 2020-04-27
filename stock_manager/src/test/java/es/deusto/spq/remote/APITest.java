@@ -2,29 +2,36 @@ package es.deusto.spq.remote;
 
 import javax.validation.constraints.Email;
 
-import com.google.gson.JsonObject;
+import com.google.gson.Gson;
+
+import javax.json.JsonObject;
+import javax.json.JsonString;0
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class APITest {
 
-    JsonObject cliente;
+    String cliente;
+    API api;
 
     @Before
 	public void setUp(){
-       cliente = new JsonObject();
-        cliente.addProperty("email", "test@testing.es");
-        cliente.addProperty("password", "123");
-        cliente.addProperty("name", "test-man");
-        cliente.addProperty("address", "TestHouse 22");
+       cliente = "{ \"name\": \"Baeldung\", \"java\": true }";
+
     }
+    /*
     @Test
     public void testRegister() {
-        
+        String json = "{'id': 1001, "
+        + "'firstName': 'Lokesh',"
+        + "'lastName': 'Gupta',"
+        + "'email': 'howtodoinjava@gmail.com'}";
+        JsonObject convertedObject = new Gson().fromJson(json, JsonObject.class);
     }
     @Test
     public void testLogIn() {
         
     }
+    */
 }
