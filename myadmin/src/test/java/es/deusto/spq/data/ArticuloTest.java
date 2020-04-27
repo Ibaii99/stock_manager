@@ -21,6 +21,7 @@ public class ArticuloTest{
 	private Articulo a1;
 	private Articulo a2;
 	private Articulo a3;
+	private Articulo a4;
 	private Vendedor v1;
 	private Vendedor v2;
 	private List<Articulo> listaArticulos = new ArrayList<Articulo>();
@@ -37,6 +38,7 @@ public class ArticuloTest{
 				Categoria.FRUTOSSECOS,
 				"pan.com");
 		a3 = new Articulo();
+		a4=null;
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
 		v1 = new Vendedor("jokin", "jokin@gmail.com", listaArticulos);
@@ -149,7 +151,8 @@ public class ArticuloTest{
 		assertFalse(a1.equals(a2));	
 		assertTrue(a1.equals(a1));	
 		assertTrue(a2.equals(a2));
-		assertEquals(a1.THRESHOLD, .0001,0);
+		
+		
 	}
 	@Test
 	public void testToString() {

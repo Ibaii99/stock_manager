@@ -162,21 +162,36 @@ public class Articulo implements Serializable {
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		// TODO Auto-generated method stub
+//
+//		Articulo a = (Articulo) obj;
+//
+//		if( a.getId()==this.id && a.getNombre().equals(this.nombre) 
+//		&& a.getCaducidad().equals(this.caducidad)
+//		&& (Math.abs(a.getPrecio() - this.precio) < THRESHOLD)
+//		&& a.getStock() == this.stock && a.getDescripcion().equals(this.descripcion)
+//		&&(Math.abs(a.getOferta() - this.oferta) < THRESHOLD)&&a.getImageUrl().equals(this.imageUrl)
+//		&&a.getCategoria() == this.categoria) {
+//			return true;
+//		}else {
+//			return false;
+//		}
+//
+//	}
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-
 		Articulo a = (Articulo) obj;
-
-		boolean s = a.getId()==this.id && a.getNombre() == this.nombre 
-		&& a.getCaducidad().equals(this.caducidad)
-		&& (Math.abs(a.getPrecio() - this.precio) < THRESHOLD)
-		&& a.getStock() == this.stock && a.getDescripcion() == this.descripcion
-		&& a.getDescripcion() == this.descripcion && (Math.abs(a.getOferta() - this.oferta) < THRESHOLD)
-		&&a.getCategoria() == this.categoria;
-
-		return s;
+		if(a.getId() == this.id) {
+			return true;
+		}else {
+			return false;
+		}
 	}
+
+	
 	
 }
