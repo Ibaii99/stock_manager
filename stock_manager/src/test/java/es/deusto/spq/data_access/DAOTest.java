@@ -56,18 +56,18 @@ public class DAOTest {
         articulo = new Articulo("papaya", cal.getTime(), 1.0f, 200, "papaya", 0.5f, Categoria.FRUTAS, "imageUrl");
         articulo.setId(9999);
         a= new Articulo("platano", cal.getTime(), 1.0f, 200, "platano", 0.5f, Categoria.FRUTAS, "imageUrl");
-        //dao.store(articulo);
+        dao.store(articulo);
 
         List<Articulo> lista = dao.getArticulos();
         listaarticulos = lista;
         u = new Usuario("usuario", "contrasenya");
 
-        //dao.store(u);
+        dao.store(u);
 
         c = new Cliente("nombre", "email", "contrasenya", "direccion");
         c.setId(666);
         c.getCarrito().setId(666);
-        //dao.store(c);
+        dao.store(c);
 
         
 
@@ -136,7 +136,7 @@ public class DAOTest {
 
         List<Cesta> lista = dao.getCestas();
 
-        assertNotNull(lista);
+        assertNotEquals(lista.size(), 0);
 
     } 
     

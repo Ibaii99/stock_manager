@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.deusto.spq.data.Vendedor;
-import es.deusto.spq.data_access.DAO;
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Articulo;
 public class VendedorTest{
@@ -25,7 +24,6 @@ public class VendedorTest{
 	private Articulo a1;
 	private Articulo a2;
 	private Articulo a3;
-	private DAO dao;
 	
 	
 	@Before
@@ -46,7 +44,6 @@ public class VendedorTest{
 		v1.setEmailVendedor("jon@gmail.com");
 		v1.setId(1);
 		v2.addArticulo(a3);
-		dao = new DAO();
 	}
 	
 	 @Test

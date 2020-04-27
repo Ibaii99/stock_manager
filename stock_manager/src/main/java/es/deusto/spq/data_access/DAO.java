@@ -232,8 +232,7 @@ public class DAO {
 	//GET de una cesta
 	public Cesta getCesta( long idCesta) {
 		Cesta c = null;
-		ArrayList<Cesta> cestas = new ArrayList<Cesta>();
-		cestas = (ArrayList<Cesta>) this.getCestas();
+		ArrayList<Cesta> cestas =  (ArrayList<Cesta>) this.getCestas();
 		for (int i = 0; i < cestas.size(); i++) {
 			c = cestas.get(i);
 			if (idCesta == c.getId()) {
