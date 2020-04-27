@@ -20,15 +20,15 @@ import org.junit.Test;
 import es.deusto.spq.data.Articulo;
 
 import es.deusto.spq.data.Articulo.Categoria;
-
 public class CestaTest{
-	Cesta c;
-	Articulo a1;
-	Articulo a2;
-	List<Articulo> listaArticulos;
-	List<Integer> listaCantidades;
-	Integer cantidad1;
-	Integer cantidad2;
+	private Cesta c;
+	private Articulo a1;
+	private Articulo a2;
+	private List<Articulo> listaArticulos;
+	private List<Integer> listaCantidades;
+	private Integer cantidad1;
+	private Integer cantidad2;
+	private Cesta c1;
 	
 	@Before
 	public void setUp() {
@@ -46,8 +46,45 @@ public class CestaTest{
 		listaArticulos.add(a1);listaArticulos.add(a2);
 		listaCantidades.add(cantidad1);listaCantidades.add(cantidad2);
 		c = new Cesta(listaArticulos, listaCantidades, Estado.ENTREGADO);
+		c1 = new Cesta();
+		c1.setId(1);
+		c1.setArticulos(listaArticulos);
+		c1.setCantidades(listaCantidades);
+		c1.setEstado(Estado.ACTUAL);
+		c1.setCliente(null);
 	}
-	
+	@Test
+	public void testGetId() {
+		assertNotEquals(c.getId(),c1.getId());
+	}
+	@Test
+	public void testSetId() {
+		assertEquals(c1.getId(),1);
+	}
+	@Test
+	public void testGetSerialVersionUid() {
+		assertEquals(c1.getSerialVersionUid(), c.getSerialVersionUid());
+	}
+	@Test
+	public void testSetArticulos() {
+		assertEquals(listaArticulos, c1.getArticulos());
+	}
+	@Test
+	public void testSetCantidades() {
+		assertEquals(listaCantidades, c1.getCantidades());
+	}
+	@Test
+	public void testSetEstado() {
+		assertEquals(c1.getEstado(), Estado.ACTUAL);
+	}
+	@Test
+	public void testGetCliente() {
+		assertEquals(c1.getCliente(), null);
+	}
+	@Test
+	public void testSetCliente() {
+		assertEquals(null, c1.getCliente());
+	}
 	@Test
 	public void getListaArticulos() {
 		List<Articulo> listaArticulosActual = new ArrayList<Articulo>();

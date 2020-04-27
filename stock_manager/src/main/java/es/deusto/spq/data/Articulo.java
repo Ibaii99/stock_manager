@@ -78,9 +78,6 @@ public class Articulo implements Serializable {
 		return ID;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
 
 	public void setId(long id) {
 		this.ID = id;
@@ -98,7 +95,7 @@ public class Articulo implements Serializable {
 		return caducidad;
 	}
 
-	public static long getSerialversionuid() {
+	public static long getSerialVersionUid() {
 		return serialVersionUID;
 	}
 
@@ -183,26 +180,16 @@ public class Articulo implements Serializable {
 	}
 
 
-    @Override
-	public int hashCode() {
-		
-        int hash = 31 * this.caducidad.hashCode();
-        hash += 31 * this.stock;
-        hash += 31 * this.categoria.hashCode();
-        hash += 31 * this.descripcion.hashCode();
-        hash += 31 * this.nombre.hashCode();
-        hash += 31 * Math.round(this.oferta);
-        hash += 31 * Math.round( this.precio);
-        
-		return hash;
-		
-	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 1;
+		int result = 1;
+		result = prime * result + (int) (ID ^ (ID >>> 32));
+		return result;
+	}
 
 	
-    public byte[] getImage() {
-		return image;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -218,17 +205,7 @@ public class Articulo implements Serializable {
 	}
     
 
-	public void setImage(String path) throws IOException {
-			 // open image
-		 File imgPath = new File(path);
-		 BufferedImage bufferedImage = ImageIO.read(imgPath);
 	
-		 // get DataBufferBytes from Raster
-		 WritableRaster raster = bufferedImage .getRaster();
-		 DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
-
-		this.image =  data.getData();
-	}
     
   
 

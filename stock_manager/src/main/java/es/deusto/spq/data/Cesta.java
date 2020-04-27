@@ -72,7 +72,7 @@ public class Cesta implements Serializable {
 		this.id = id;
 	}
 
-	public static long getSerialversionuid() {
+	public static long getSerialVersionUid() {
 		return serialVersionUID;
 	}
 
