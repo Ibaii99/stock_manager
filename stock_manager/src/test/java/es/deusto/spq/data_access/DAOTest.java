@@ -140,7 +140,7 @@ public class DAOTest {
 
         Cesta cesta = dao.getCesta(c.getCarrito().getId());
 
-        assertNotNull(c);
+        assertNotNull(cesta);
         
     }   
 /*
@@ -230,5 +230,12 @@ public class DAOTest {
 
         assertNull(a);
     } 
+
+    @Test
+    public void testCloseConnection() {
+        
+        dao.closeConection();
+
+    }
 
 }
