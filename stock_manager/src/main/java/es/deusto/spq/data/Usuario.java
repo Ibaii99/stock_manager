@@ -27,13 +27,6 @@ public class Usuario implements Serializable {
 		this.contrasenya = contrasenya;
 	}
 	
-	
-	public String getUser() {
-		return nombre;
-	}
-	public void setUsuario(String usuario) {
-		this.nombre = usuario;
-	}
 	public String getContrasenya() {
 		return contrasenya;
 	}
@@ -45,6 +38,9 @@ public class Usuario implements Serializable {
 		return id;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getNombre() {
 		return nombre;
