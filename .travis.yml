@@ -1,2 +1,4 @@
 language: java
 script: bash build.sh
+jdk:
+    - oraclejdk8
