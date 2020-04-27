@@ -76,7 +76,7 @@ public class DAOTest {
         dao.store(c);
 
         
-/*
+
         v= new Vendedor("vendedor", "correo");
 
         dao.store(v);
@@ -84,15 +84,10 @@ public class DAOTest {
         o = new Opinion("texto", 4, c);
 
         dao.store(o);
-<<<<<<< HEAD
         
         articulos.add(articulo);
         articulos.add(a);
         
-       
-
-=======
-*/
 
     }
 

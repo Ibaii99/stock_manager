@@ -1,4 +1,4 @@
-package es.deusto.spq.data;
+package es.deusto.spq;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

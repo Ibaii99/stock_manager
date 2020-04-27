@@ -33,10 +33,10 @@ public class VendedorTest{
 		f1 = new Date(120,04,12);
 		a1 = new Articulo("manzana",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
 		a2 = new Articulo("pan",f1, 1.20f, 400, "rica manzana", 1.05f, Categoria.FRUTAS, "");
-		a3 = new Articulo();
+		a3 = new Articulo("pipas",f1, 3.50f, 500, "rico arroz", 1.05f, Categoria.FRUTOSSECOS, "");
 		v = new Vendedor("Jokin", "Jokin@gmail.com", new ArrayList<Articulo>());
-		v1 = new Vendedor();
-		v2 = new Vendedor();
+		v1 = new Vendedor("jon","jon");
+		v2 = new Vendedor("aitor","aitor");
 		listaArticulos.add(a1);
 		listaArticulos.add(a2);
 		listaArticulos1.add(a1);
