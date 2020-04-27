@@ -1,5 +1,5 @@
 # Stock Manager
-[![Coverage Status](https://coveralls.io/repos/github/Ibaii99/stock_manager/badge.svg?branch=master)](https://coveralls.io/github/Ibaii99/stock_manager?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/ProcesoSoftware/stock_manager/badge.svg?branch=master)](https://coveralls.io/github/ProcesoSoftware/stock_manager?branch=master)
 [![Build Status](https://travis-ci.com/Ibaii99/stock_manager.svg?branch=master)](https://travis-ci.com/Ibaii99/stock_manager)
 
 Este es el repositorio del proyecto del **Grupo 2**, incluye:
