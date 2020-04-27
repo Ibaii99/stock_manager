@@ -8,9 +8,12 @@ before_script:
   - mysql -u root -e 'CREATE DATABASE stock_managerdb;'
   - mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
   - mysql -u root -e "GRANT ALL ON stock_managerdb.* TO 'spq'@'localhost';"
+  
 addons:
   sonarcloud:
-    organization: ibaii99
+    organization: "ibaii99"
+    token:
+        secure:"Y/lk/q/6OYIPtjPNqkTw+++J0MbzchTELRw92eWC8rKuIsOSm2EnmLkfDD6nqQr+OevmNe+syA6uzAriCTq3plqidMahiSru+C+wUDw1s6usJHLKTVWFbJH0a84XDZaS2qYokY2xNnmBcbebuNbPnQVE+ZKkRvUy7evb+e7ZpZ36fwiP85Cf3X3NyeupuzaWGS6gdsuDc5KFLseLjVYXRnOHeSbgz2AGSaqI4y+uHfSx77PYhkij9ceJg4zWRd7gkLHuSbxoPm8i3sxjru2l0kA3ce6BAMyMt2MnnAHkzl51Gn+8PDEJXEFft//rEcPaNSCG9X3eG+Q0tyXpFiCRjeSzD+6zxkabnjMLBtfFcQLrO54zJM4bZgFy7tvA547YpKetbcQ777y1keL24I2ZVTeT/+hckYk/h6zhTsPOCW83RpbLrvnR+yxMd6b/uQU59urEnhZ5pXyt9MoSaRfn1MmDDMncBla+DVxnH2VhtTd4HCT0CWAJepR4Iu2tk1TLsVqMfReYYlj0SUKI44H7MP3pJ8OisUux+QAO5yUhyLBr2Snib0n3SvwIGSGJ034FXYGCKlXkdmB9ypR4sLgYwF9vTMOpr3Tns8j5Sj2feBkGb675W/96HvveJHOy9Oq3/Wc8ZUp/MzRlLhldyG1E2xm+nq5Y03dDXkERCA/LXh4="
     
 script:
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Ibaii99_stock_manager
