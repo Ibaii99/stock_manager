@@ -139,6 +139,14 @@ public class DAOTest {
         assertNotNull(lista);
 
     }    
+    
+    @Test
+    public void testMeter_datos() {
 
+        String lista = dao.meter_datos();
+
+        assertNotNull(lista);
+
+    } 
 
 }
