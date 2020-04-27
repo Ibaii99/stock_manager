@@ -94,20 +94,17 @@ public class Cliente implements Serializable{
 	}
 
 
-
+/*
 	public void enviarMensajeServicioTecnico(int ID, Vendedor vendedor, String mensaje) {
 		//Hay que crearlo
     	
 	}
-
+*/
 	public Cesta getCarrito() {
 		return carrito;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	
 	public void setCarrito(Cesta carrito) {
 		this.carrito = carrito;
 	}
@@ -127,13 +124,13 @@ public class Cliente implements Serializable{
 	public void setPedidos(ArrayList<Cesta> pedidos){
 		this.pedidos = pedidos;
 	}
-
+/*
 	public void opinar(Articulo articulo, int valoracion, String texto) {
 		Opinion opinion = new Opinion(texto, valoracion, this);
 		DAO dao = new DAO();
 		dao.store(opinion);
 	}
-	
+*/	
 	public String loggin(String email, String contrasenya) {
 		DAO dao = new DAO();
 		try {
@@ -167,7 +164,7 @@ public class Cliente implements Serializable{
 	
 	public void carritoToPedido(){
 
-		Cesta c = new Cesta(this.carrito);
+		Cesta c = new Cesta();
 
 		for (Articulo articulo : this.carrito.getArticulos()){
 			c.addArticulo(articulo, this.carrito.getCantidades().get(this.carrito.getArticulos().indexOf(articulo)));

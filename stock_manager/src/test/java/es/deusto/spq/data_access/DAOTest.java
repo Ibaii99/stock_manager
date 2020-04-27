@@ -60,9 +60,12 @@ public class DAOTest {
         dao.store(u);
 
         c = new Cliente("nombre", "email", "contrasenya", "direccion");
-        
+        c.setId(666);
+        c.getCarrito().setId(666);
         dao.store(c);
 
+        
+/*
         v= new Vendedor("vendedor", "correo");
 
         dao.store(v);
@@ -70,7 +73,7 @@ public class DAOTest {
         o = new Opinion("texto", 4, c);
 
         dao.store(o);
-
+*/
     }
 
     @Test
@@ -136,8 +139,8 @@ public class DAOTest {
 
         Cesta cesta = dao.getCesta(c.getCarrito().getId());
 
-        assertNotNull(c);
-
+        assertNotNull(cesta);
+        
     }   
 /*
     @Test
@@ -226,5 +229,12 @@ public class DAOTest {
 
         assertNull(a);
     } 
+
+    @Test
+    public void testCloseConnection() {
+        
+        dao.closeConection();
+
+    }
 
 }
