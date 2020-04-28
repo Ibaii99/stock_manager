@@ -482,7 +482,7 @@ public class DAO {
 		store(n);
 		store(o);
 		logger.info("Todos los usuarios de prueba anyadidos");
-		return "Todos los datos han sido aÃ±adidos bien";
+		return "Todos los datos han sido anyadidos bien";
 
 	}
 
