@@ -22,18 +22,23 @@ import es.deusto.spq.data.Opinion;
 import es.deusto.spq.data.Usuario;
 import es.deusto.spq.data.Vendedor;
 import es.deusto.spq.data.Articulo.Categoria;
+
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import static org.mockito.Mockito.*;
+
 
 /**
  * DAOTest
  */
+@RunWith(MockitoJUnitRunner.class)
 public class DAOTest {
 	
-//	
-//	@Mock
-//	DAO d;
 	
+	@Mock
+	DAO d;
+//	
     DAO dao;
     Articulo articulo,a;
     Usuario u;
@@ -42,7 +47,12 @@ public class DAOTest {
     Opinion o;
     Calendar cal;
 
-    List<Articulo> listaarticulos = new ArrayList<Articulo>();
+    List<Articulo> articulos = new ArrayList<Articulo>();
+    List<Cliente> clientes = new ArrayList<Cliente>();
+    List<Usuario> usuarios = new ArrayList<Usuario>();
+    List<Cesta> cestas = new ArrayList<Cesta>();
+    Cesta e;
+    String l;
 
     @Before
 	public void setUp() {
@@ -59,7 +69,7 @@ public class DAOTest {
         dao.store(articulo);
 
         List<Articulo> lista = dao.getArticulos();
-        listaarticulos = lista;
+//        listaarticulos = lista;
         u = new Usuario("usuario", "contrasenya");
 
         dao.store(u);
@@ -77,30 +87,40 @@ public class DAOTest {
 
         o = new Opinion("texto", 4, c);
 
-        //dao.store(o);        
+        //dao.store(o);  
+        e = new Cesta();
+        articulos.add(articulo);
+        articulos.add(a);
+        usuarios.add(u);
+        cestas.add(e);
+        l = "algo";
 
     }
 
     @Test
-    public void testGetArticulos() {
-//    	 when(d.getArticulos().thenReturn(articulos));
-        List<Articulo> lista = dao.getArticulos();
+
+    public void testGetAriculos() {
+    	
+    	when(d.getArticulos()).thenReturn(articulos);
+
+        List<Articulo> lista = d.getArticulos();
 
         assertNotNull(lista);
     }
 
     @Test
     public void testGetArticulo() {
+    	when(d.getArticulo(a.getId())).thenReturn(a);
 
-        Articulo a = dao.getArticulo(articulo.getId());
+        Articulo ar = d.getArticulo(a.getId());
 
-        assertEquals(articulo, a);
+        assertEquals(a, ar);
     }
 
     @Test
     public void testGetClientes() {
-
-        List<Cliente> lista = dao.getClientes();
+    	when(d.getClientes()).thenReturn(clientes);
+        List<Cliente> lista = d.getClientes();
 
         assertNotNull(lista);
 
@@ -108,12 +128,30 @@ public class DAOTest {
 
     @Test
     public void testGetCliente() { 
+    	when(d.getCliente(c.getEmailCliente(), c.getContrasenyaCliente())).thenReturn(c);
+        Cliente a = d.getCliente(c.getEmailCliente(), c.getContrasenyaCliente());
 
-        Cliente a = dao.getCliente("email", "contrasenya");
-
-        assertEquals(c.getNombreCliente(), a.getNombreCliente());
+        assertEquals(c,a);
     }
 
+//    @Test
+//    public void testGetUsuarios() {
+//    	when(d.getUsuarios()).thenReturn(usuarios);
+//        List<Usuario> lista = d.getUsuarios();
+//
+//        assertNotNull(lista);
+//
+//    }
+//    
+//    @Test
+//    public void testGetUsuario() { 
+//    	when(d.getUsuario(u.getNombre(), u.getContrasenya())).thenReturn(u);
+//        Usuario a = d.getUsuario(u.getNombre(), u.getContrasenya());
+//
+//        assertEquals(u,a);
+//    }
+    
+    
     @Test
     public void testGetUsuarios() {
 
@@ -122,7 +160,7 @@ public class DAOTest {
         assertNotNull(lista);
 
     }
-    
+
     @Test
     public void testGetUsuario() { 
 
@@ -133,17 +171,17 @@ public class DAOTest {
 
     @Test
     public void testGetCestas() {
+    	when(d.getCestas()).thenReturn(cestas);
+        List<Cesta> lista = d.getCestas();
 
-        List<Cesta> lista = dao.getCestas();
-
-        assertNotEquals(lista.size(), 0);
+        assertNotNull(lista);
 
     } 
     
     @Test
     public void testGetCesta() { 
-
-        Cesta cesta = dao.getCesta(c.getCarrito().getId());
+    	when(d.getCesta(c.getCarrito().getId())).thenReturn(e);
+        Cesta cesta = d.getCesta(c.getCarrito().getId());
 
         assertNotNull(cesta);
         
@@ -151,14 +189,22 @@ public class DAOTest {
 /*
     @Test
     public void testGetVendedores() {
+
         List<Vendedor> lista = dao.getVendedores();
+
         assertNotNull(lista);
+
     }    
+
     @Test
     public void testGetVendedor() {
+
         Vendedor vendedor = dao.getVendedor("correo");
+
         
+
        assertEquals(v.getNombreVendedor(), vendedor.getNombreVendedor());
+
     } 
  */ 
 
