@@ -1,6 +1,8 @@
 package es.deusto.spq.data;
 
 import es.deusto.spq.data.*;
+
+
 import es.deusto.spq.data.Articulo.Categoria;
 
 import org.junit.Before;
@@ -11,11 +13,17 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import org.junit.Rule;
+import com.github.javatlacati.contiperf.Required;
+import com.github.javatlacati.contiperf.PerfTest;
+import com.github.javatlacati.contiperf.junit.ContiPerfRule;
+import com.github.javatlacati.contiperf.report.EmptyReportModule;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
-
+@PerfTest(invocations = 5)
+@Required(max = 12000, average = 250)
 public class VendedorTest {
 	private Vendedor v1;
 	private Vendedor v2;
@@ -28,7 +36,8 @@ public class VendedorTest {
 	private Articulo a3;
 	private Date d1;
 	private Date d2;
-	
+	@Rule 
+	public ContiPerfRule rule = new ContiPerfRule();
 	
 	@Before
 	public void setUp() {
@@ -56,11 +65,15 @@ public class VendedorTest {
 	}
 	
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetId() {
 		assertNotEquals(v1.getId(),v2.getId(),v3.getId());
 		assertFalse(v1.equals(v2));
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetId() {
 		assertEquals(15, v1.getId());
 		assertEquals(1,v2.getId());
@@ -69,11 +82,15 @@ public class VendedorTest {
 		assertFalse(v1.equals(v2));
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetNombreVendedor() {
 		assertNotEquals(v1.getNombreVendedor(), v2.getNombreVendedor(),v3.getNombreVendedor());
 		assertFalse(v1.equals(v2));
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetNombreVendedor() {
 		assertEquals("aitor", v1.getNombreVendedor());
 		assertEquals("ander", v2.getNombreVendedor());
@@ -82,11 +99,15 @@ public class VendedorTest {
 		assertFalse(v1.equals(v2));
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetEmailVendedor() {
 		assertNotEquals(v1.getEmailVendedor(), v2.getEmailVendedor(),v3.getEmailVendedor());
 		assertFalse(v1.equals(v2));
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetEmailVendedor() {
 		assertEquals("aitor@gmail.com", v1.getEmailVendedor());
 		assertEquals("ander@gmail.com", v2.getEmailVendedor());
@@ -95,6 +116,8 @@ public class VendedorTest {
 		assertFalse(v1.equals(v2));
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetArticulos() {
 		assertNotEquals(v1.getArticulos(), v2.getArticulos());
 		assertNotEquals(v1.getArticulos(), v3.getArticulos());
@@ -102,6 +125,8 @@ public class VendedorTest {
 		assertFalse(v1.equals(v2));
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetArticulos() {
 		assertEquals(listaArticulosTest, v1.getArticulos());
 		assertEquals(listaArticulos2, v2.getArticulos());
@@ -112,6 +137,8 @@ public class VendedorTest {
 		assertFalse(v1.equals(v2));
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testToString() {
 		String prueba = v1.toString();
 		assertEquals(prueba, "Nombre=" + v1.getNombreVendedor() + ", email=" + v1.getEmailVendedor() + "]");
