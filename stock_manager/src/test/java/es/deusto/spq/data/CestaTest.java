@@ -54,6 +54,13 @@ public class CestaTest{
 		c1.setCliente(null);
 	}
 	@Test
+	public void testConstructorCesta() {
+		
+		Cesta cesta = new Cesta(c);
+
+		assertNotEquals(c,cesta);
+	}
+	@Test
 	public void testGetId() {
 		assertNotEquals(c.getId(),c1.getId());
 	}

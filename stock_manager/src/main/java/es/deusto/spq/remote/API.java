@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.json.JsonObject;
 import javax.json.bind.annotation.JsonbTransient;
@@ -55,11 +57,13 @@ public class API {
 	 *
 	 * @return String that will be returned as a text/plain response.
 	 */
+	private final static Logger LOGGER = Logger.getLogger("es.deusto.spq.remote.api");
+
 	@POST
 	@Path("logIn")
 	public String logIn(JsonObject json) {
 		String nombre = new Cliente().loggin(get_from_json(json, "email"), get_from_json(json, "password"));
-		System.out.println(nombre);
+		LOGGER.log(Level.INFO, nombre);
 		return "{ \"nombre\": \""+nombre + "\" }";
 	}
 
@@ -72,15 +76,6 @@ public class API {
 
 		return "{ \"nombre\": \""+cliente.getNombreCliente() + "\" }";
 	}
-	
-	
-	@POST
-	public String addArticulo(Articulo articulo) {
-		System.out.println("Nuevo articulo" + articulo.getNombre() + ", " + articulo.getCaducidad() + ", " + articulo.getPrecio() + 
-				", " + articulo.getDescripcion() + ", " + articulo.getOferta() + ", " + articulo.getCategoria() + ", " + articulo.getImageUrl());
-		return "articulo añadido correctamente";
-	}
-	
 
 	@POST
 	@Path("eliminarArticulo")
