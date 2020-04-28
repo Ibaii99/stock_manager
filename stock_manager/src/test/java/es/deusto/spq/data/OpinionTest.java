@@ -1,6 +1,12 @@
 package es.deusto.spq.data;
 
 import es.deusto.spq.data.Opinion;
+
+//import org.junit.runner.RunWith;
+//import org.mockito.Mock;
+//import org.mockito.junit.MockitoJUnitRunner;
+//import static org.mockito.Mockito.*;
+
 import es.deusto.spq.data_access.DAO;
 
 import static org.junit.Assert.assertEquals;
@@ -16,13 +22,16 @@ public class OpinionTest{
 	private Cliente c;
 	private Opinion o;
 	private Opinion o1;
-	private DAO dao;
+	
+//	@Mock
+//	private DAO dao;
+	
 	@Before
 	public void setUp() {
 		c = new Cliente("jokin", "jokin@gmail.com", "Deusto1", "Deusto kalea 1");
 		o = new Opinion("me gusta", 8, c);
 		o1 = new Opinion();
-		dao = new DAO();
+//		dao = new DAO();
 		o.setId(1);
 		o.setTexto("oo");
 		o.setCliente(c);
@@ -66,11 +75,11 @@ public class OpinionTest{
 		assertEquals(o.getCliente(), c);
 	}
 
-//	@Test
-//	public void testPublicar() {
-//		o.publicar();
-//	
-//	}
+	@Test
+	public void testPublicar() {
+		o.publicar();
+	
+	}
 	
 	
 }

@@ -151,35 +151,23 @@ public class DAOTest {
 /*
     @Test
     public void testGetVendedores() {
-
         List<Vendedor> lista = dao.getVendedores();
-
         assertNotNull(lista);
-
     }    
-
     @Test
     public void testGetVendedor() {
-
         Vendedor vendedor = dao.getVendedor("correo");
-
         
-
        assertEquals(v.getNombreVendedor(), vendedor.getNombreVendedor());
-
     } 
  */ 
 
- /*
     @Test
     public void testMeter_datos() {
-
         String lista = dao.meter_datos();
-
         assertNotNull(lista);
-
     } 
-*/
+
     
     @Test
     public void testCleanCesta() {
@@ -190,37 +178,28 @@ public class DAOTest {
 
     }
     
-//    @Test
-//    public void testModifyCesta() {
-//
-//        int sise = c.getCarrito().getArticulos().size();
-//
-//        Cesta cesta = dao.modifyCesta(c.getId(),articulo.getId(),10);
-//
-//        assertNotEquals(sise, cesta.getArticulos().size());
-//        
-//    }
+    @Test
+    public void testModifyCesta() {
+
+        int sise = c.getCarrito().getArticulos().size();
+
+        Cesta cesta = dao.modifyCesta(c.getId(),articulo.getId(),10);
+
+        assertNotEquals(sise, cesta.getArticulos().size());
+        
+    }
 /*
     @Test
     public void testGetOpiniones() {
-
         List<Opinion> lista = dao.getOpiniones();
-
         assertNotNull(lista);
-
     }    
-
     @Test
     public void testGetOpinion() {
-
        Opinion opinion = dao.getOpinion(351684);
-
        assertNull(opinion);
-
        opinion =  dao.getOpinion(1);;
-
        assertNotNull(opinion);
-
     } 
     
 */

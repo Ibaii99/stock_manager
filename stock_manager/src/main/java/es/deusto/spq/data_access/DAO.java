@@ -69,7 +69,6 @@ public class DAO {
 
 		Transaction tm = pm.currentTransaction();
 		
-		try {
 //			tm.begin();
 			Query q = pm.newQuery("SQL", "SELECT * FROM ARTICULO WHERE ID = " + u.getId());
 			q.setClass(Articulo.class);
@@ -79,15 +78,7 @@ public class DAO {
 			pm.deletePersistent(product);
 			tm.commit();
 		    
-			} catch ( Exception ex) {
-				System.out.println("   $ Error deleting an object: " + ex.getMessage());
-			} finally {
-				if (tm != null && tm.isActive()) {
-					tm.rollback();
-				}
-
-			}
-
+		
 		}
 	
 	

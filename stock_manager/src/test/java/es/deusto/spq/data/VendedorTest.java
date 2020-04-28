@@ -86,9 +86,9 @@ public class VendedorTest{
 		prueba.add(a3);
 		assertEquals(prueba, v2.getArticulos());
 	}
-//	@Test
-//	public void testRegistrar() {
-//		v.registrar();
-//	}
+	@Test
+	public void testRegistrar() {
+		v.registrar();
+	}
 	
 }
