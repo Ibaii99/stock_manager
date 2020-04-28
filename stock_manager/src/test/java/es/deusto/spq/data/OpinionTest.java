@@ -75,11 +75,11 @@ public class OpinionTest{
 		assertEquals(o.getCliente(), c);
 	}
 
-//	@Test
-//	public void testPublicar() {
-//		o.publicar();
-//	
-//	}
+	@Test
+	public void testPublicar() {
+		o.publicar();
+	
+	}
 	
 	
 }

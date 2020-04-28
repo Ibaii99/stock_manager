@@ -30,7 +30,6 @@ import static org.junit.Assert.assertTrue;
 public class APITest {
 
     Cliente c;
-    String cliente;
     
     @Mock
     API api;
@@ -45,9 +44,6 @@ public class APITest {
 	public void setUp(){
     	c = new Cliente("pepe", "pepe@gmail.com", "pepe1234", "pepeshouse");
     	c.setId(1);
-    	cliente ="{ \"nombre\": \""+c.getNombreCliente() + "\" }";
-
-
     }
     
     @Test
@@ -59,7 +55,26 @@ public class APITest {
     }
     @Test
     public void testLogIn() {
-        
+        String cl ="{ \"nombre\": \""+c.getNombreCliente() + "\" }";
+    	when(api.logIn(json)).thenReturn("{ \"nombre\": \""+c.getNombreCliente() + "\" }");
+       String s = api.logIn(json);
+       assertTrue(s.equals(cl));
+    }
+
+    @Test
+    public void testEliminarArticulo() {
+        String cl ="Articulo Eliminado";
+    	when(api.eliminarArticulo(json)).thenReturn("Articulo Eliminado");
+       String s = api.eliminarArticulo(json);
+       assertTrue(s.equals(cl));
+    }
+
+    @Test
+    public void testIngresarArticulo() {
+        String cl ="Creado";
+    	when(api.ingresarArticulo(json)).thenReturn("Creado");
+       String s = api.ingresarArticulo(json);
+       assertTrue(s.equals(cl));
     }
     
 }

@@ -197,11 +197,10 @@ public class ArticuloTest{
 	public void testSetCestas() {
 		assertEquals(a1.getCestas(), a3.getCestas());
 	}
-//	@Test
-//	public void testStoreMe() {
-//		a4.storeMe();
-//		assertFalse(dao.getArticulos().contains(a4));//??
-//	}
+	@Test
+	public void testStoreMe() {
+		a4.storeMe();
+	}
 	@Test 
 	public void testGetSerialVersionUid() {
 		assertNotNull(a1);
