@@ -146,8 +146,7 @@ public class Cliente implements Serializable{
 			}
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			LOGGER.debug("Cliente no encontrado, error.");
+			LOGGER.error("Cliente no encontrado, error:" + e.getStackTrace() );
 			return null;
 		}
 	}
