@@ -260,6 +260,8 @@ public class ArticuloTest{
 		assertEquals(a1.getCestas(), a3.getCestas());
 	}
 	@Test
+	@PerfTest(invocations = 100, threads = 20)
+    @Required(max = 15000, average = 6000)
 	public void testStoreMe() {
 		a4.storeMe();
 	}

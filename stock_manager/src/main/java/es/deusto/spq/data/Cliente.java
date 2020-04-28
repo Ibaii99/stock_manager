@@ -143,6 +143,10 @@ public class Cliente implements Serializable{
 			}
 			else {
 				LOGGER.debug("Cliente no encontrado");
+
+				return c.getNombreCliente();
+			}
+			else {
 				return null;
 			}
 		}
