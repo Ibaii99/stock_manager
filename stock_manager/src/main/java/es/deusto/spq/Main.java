@@ -20,7 +20,7 @@ import es.deusto.spq.data_access.DAO;
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
     public static final String BASE_URI = "http://localhost:8080/stock_manager/";
-
+    private static HttpServer server = new HttpServer();
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
      * @return Grizzly HTTP server.
@@ -40,9 +40,8 @@ public class Main {
      * @param args
      * @throws IOException
      */
-    @SuppressWarnings("deprecation")
 	public static boolean main(String[] args) throws IOException {
-        final HttpServer server = startServer();
+		server = startServer();
         DAO dao = new DAO();
         dao.meter_datos();
         
@@ -50,9 +49,20 @@ public class Main {
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
         System.in.read();
-        server.stop();
+        server.shutdownNow();
+        
         return true;
     }
+
+	public static HttpServer getServer() {
+		return server;
+	}
+
+	public static void setServer(HttpServer server) {
+		Main.server = server;
+	}
+
+	
 }
 
 
