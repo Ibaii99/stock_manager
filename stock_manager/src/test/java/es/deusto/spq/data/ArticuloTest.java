@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,10 +14,20 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+
+import org.junit.Rule;
+import com.github.javatlacati.contiperf.Required;
+import com.github.javatlacati.contiperf.PerfTest;
+import com.github.javatlacati.contiperf.junit.ContiPerfRule;
+import com.github.javatlacati.contiperf.report.EmptyReportModule;
+
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
 import es.deusto.spq.data_access.DAO;
 import es.deusto.spq.data.Articulo;
+
+@PerfTest(invocations = 5)
+@Required(max = 12000, average = 250)
 public class ArticuloTest{
 	private Articulo a1;
 	private Articulo a2;
@@ -37,7 +48,10 @@ public class ArticuloTest{
 	private Integer cantidad1;
 	private Integer cantidad2;
 	private DAO dao;
+	@Rule 
+	public ContiPerfRule rule = new ContiPerfRule();
 	
+
 	
 	@Before
 	public void setUp(){
@@ -83,15 +97,22 @@ public class ArticuloTest{
 	}
 	
 	@Test
-	public void testGetId() {//Comprobamos que el ID de los articulos sean distintos
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
+	public void testGetId() throws Exception{//Comprobamos que el ID de los articulos sean distintos
 		assertNotEquals(a1.getId(), a2.getId(),a3.getId());
+		Thread.sleep(121);
 		
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetId() {//Comprobamos que el ID, despues de hacer el set sea igual
 		assertEquals(9999, a1.getId());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetNombre() {
 		assertNotEquals(a1.getNombre(),a2.getNombre(),a3.getNombre());
 	}
@@ -100,99 +121,142 @@ public class ArticuloTest{
 		assertEquals("platano", a1.getNombre());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetCaducidad() {
 		assertNotEquals(a1.getCaducidad(), a2.getCaducidad());
 		assertNotEquals(a2.getCaducidad(), a3.getCaducidad());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetCaducidad() {
 		assertEquals(new Date(15/05/2020), a1.getCaducidad());
 	}
 	
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetPrecio() {
 		assertNotEquals(a1.getPrecio(), a2.getPrecio(),a3.getPrecio());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetPrecio() {
 		assertEquals(2.15f, a1.getPrecio(),0);
 	}
 	
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetStock() {
 		assertNotEquals(a1.getStock(), a2.getStock(),a3.getStock());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetStock() {
 		assertEquals(50, a1.getStock());
 	}
 	
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetDescripcion() {
 		assertNotEquals(a1.getDescripcion(), a2.getDescripcion(),a3.getDescripcion());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetDescripcion() {
 		assertEquals("me gusta", a1.getDescripcion());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetOferta() {
 		assertNotEquals(a1.getOferta(), a2.getOferta(),a3.getOferta());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetOferta() {
 		assertEquals(1.88f, a1.getOferta(),0);
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetCategoria() {
 		assertNotEquals(a1.getCategoria(), a2.getCategoria());
 		assertNotEquals(a1.getCategoria(), a3.getCategoria());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetCategoria() {
 		assertEquals(Categoria.FRUTAS, a1.getCategoria());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetVendedor() {
 		assertNotEquals(a1.getVendedor(), a2.getVendedor());
 		assertNotEquals(a1.getVendedor(), a3.getVendedor());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetVendedor() {
 		assertEquals(v1, a1.getVendedor());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetImageUrl() {
 		assertNotEquals(a1.getImageUrl(), a2.getImageUrl(),a3.getImageUrl());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetImageUrl() {
 		assertEquals("platano.com", a1.getImageUrl());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 12000, average = 125)
 	public void testEquals() {
 		assertFalse(a1.equals(a2));	
 		assertTrue(a1.equals(a1));	
 		assertTrue(a2.equals(a2));
+		assertFalse(a2.equals(a1));
 		
 		
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testToString() {
 		String prueba = a1.toString();
 		assertNotEquals(prueba, a2.toString());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testHashCode() {
 		assertNotEquals(a1.hashCode(), a2.hashCode());
 //		assertNotEquals(a1.hashCode(), a3.hashCode());
 //		assertNotEquals(a2.hashCode(), a3.hashCode());
 	}
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetCestas() {
 		assertNotEquals(a1.getCestas(), a2.getCestas());
 	}
 	@Test 
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testSetCestas() {
 		assertEquals(a1.getCestas(), a3.getCestas());
 	}
@@ -202,6 +266,8 @@ public class ArticuloTest{
 //		assertFalse(dao.getArticulos().contains(a4));//??
 //	}
 	@Test 
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
 	public void testGetSerialVersionUid() {
 		assertNotNull(a1);
 		assertEquals(a1.getSerialVersionUid(), a2.getSerialVersionUid());

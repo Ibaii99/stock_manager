@@ -50,7 +50,6 @@ public class UsuarioTest {
 	
 	@Test
 	public void testToString() {
-		assertEquals(u1.toString(), 
-				"Usuario [id=" + u1.getId() + ", nombre=" + u1.getNombre() + ", contrasenya=" + u1.getContrasenya() + "]");
+		assertEquals(u1.toString(), ", nombre=" + u1.getNombre() + ", contrasenya=" + u1.getContrasenya() + "]");
 	}
 }
