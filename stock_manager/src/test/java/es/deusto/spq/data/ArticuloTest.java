@@ -223,17 +223,6 @@ public class ArticuloTest{
 	}
 	@Test
 	@PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 12000, average = 125)
-	public void testEquals() {
-		assertFalse(a1.equals(a2));	
-		assertTrue(a1.equals(a1));	
-		assertTrue(a2.equals(a2));
-		assertFalse(a2.equals(a1));
-		
-		
-	}
-	@Test
-	@PerfTest(invocations = 1000, threads = 20)
     @Required(max = 1200, average = 125)
 	public void testToString() {
 		String prueba = a1.toString();
@@ -264,6 +253,13 @@ public class ArticuloTest{
     @Required(max = 15000, average = 6000)
 	public void testStoreMe() {
 		a4.storeMe();
+	}
+	@Test
+	@PerfTest(invocations = 100, threads = 20)
+    @Required(max = 15000, average = 6000)
+	public void testEquals() {
+		assertTrue(a1.equals(a1));
+		assertFalse(a1.equals(a2));
 	}
 	@Test 
 	@PerfTest(invocations = 1000, threads = 20)
