@@ -43,7 +43,7 @@ public class Main {
 	public static boolean main(String[] args) throws IOException {
 		server = startServer();
         DAO dao = new DAO();
-        dao.meter_datos();
+        //dao.meter_datos();
         
         
         System.out.println(String.format("Jersey app started with WADL available at "
