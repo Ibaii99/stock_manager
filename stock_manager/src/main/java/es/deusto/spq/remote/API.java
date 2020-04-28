@@ -66,6 +66,7 @@ public class API {
 		LOGGER.debug("ha entrado en logIn");
 		String nombre = new Cliente().loggin(get_from_json(json, "email"), get_from_json(json, "password"));
 		LOGGER.info(nombre);
+		LOGGER.info("se ha completado logIn");
 		return "{ \"nombre\": \""+nombre + "\" }";
 	}
 
@@ -76,7 +77,7 @@ public class API {
 		Cliente cliente = new Cliente(get_from_json(json, "name"), get_from_json(json, "email"), get_from_json(json, "password"), 
 		get_from_json(json, "address"));
 		cliente.registrarme();
-
+		LOGGER.info("se ha completado register");
 		return "{ \"nombre\": \""+cliente.getNombreCliente() + "\" }";
 	}
 
@@ -88,6 +89,7 @@ public class API {
 		long id = Long.parseLong(get_from_json(json, "id"));
 		Articulo a = dao.getArticulo(id);
 		dao.delete(a);
+		LOGGER.info("se ha completado eliminarArticulo");
         return "Articulo Eliminado";
 	}	
 	
@@ -96,16 +98,11 @@ public class API {
 	public String ingresarArticulo(JsonObject json) {
 		LOGGER.debug("ha entrado en ingresarArticulo");
 		DAO dao = new DAO();
-		
-		System.out.println(json);
-
 		String nombre = get_from_json(json, "nombre");
 		String cad = get_from_json(json, "caducidad");
-		System.out.println(cad);
 		String[] cadu = cad.split("-");
 		int year = Integer.parseInt(cadu[0]);
 		int mes = Integer.parseInt(cadu[1]);
-		System.out.println(mes);
 		char[] diaChar = cad.toCharArray();
 		String diaString = ""+diaChar[8]+diaChar[9];
 		int dia = Integer.parseInt(diaString);
@@ -115,17 +112,16 @@ public class API {
 		fecha.set(Calendar.YEAR, year);
 		fecha.set(Calendar.MONTH, mes);
 		fecha.set(Calendar.DAY_OF_MONTH, dia);
-		System.out.println(fecha);
 		Date caducidad = fecha.getTime();
 		Float precio = Float.parseFloat(get_from_json(json, "precio"));
 		int stock = Integer.parseInt(get_from_json(json, "stock"));
 		String descripcion = get_from_json(json, "descripcion");
 		Float oferta = Float.parseFloat(get_from_json(json, "oferta")); 
 		Categoria categoria =  Categoria.valueOf(get_from_json(json, "categoria")); 
-		System.out.println(categoria);
 		String urlImage = get_from_json(json, "imageUrl");
 		Articulo c = new Articulo(nombre, caducidad, precio, stock, descripcion, oferta, categoria, urlImage);
 		dao.store(c);
+		LOGGER.info("se ha completado ingresarArticulo");
 		return "Creado";
 	}
 
@@ -159,9 +155,8 @@ public class API {
 	@Path("getCliente")
 	public Cliente getCliente(JsonObject json) {
 		LOGGER.debug("ha entrado en getCliente");
-		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-		
+		LOGGER.info("se ha completado getCliente");
 		return c;
 	}
 
@@ -169,8 +164,8 @@ public class API {
 	@Path("getCarrito")
 	public Cesta getCarrito(JsonObject json) {
 		LOGGER.debug("ha entrado en getCarrito");
-		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		LOGGER.info("se ha completado getCarrito");
 		return c.getCarrito();
 	}
 	
@@ -178,8 +173,8 @@ public class API {
 	@Path("getFavoritos")
 	public Cesta getFavoritos(JsonObject json) {
 		LOGGER.debug("ha entrado en getFavoritos");
-		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		LOGGER.info("se ha completado getFavoritos");
 		return c.getFavoritos();
 	}
 	
@@ -187,31 +182,31 @@ public class API {
 	@Path("addCarrito")//por ID
 	public void anyadirCarrito(JsonObject json) {
 		LOGGER.debug("ha entrado en anyadirCarrito");
-		System.out.println("Añadiendo a la cesta de la compra");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getCarrito().addCesta(a, Integer.parseInt(get_from_json(json,"cantidad")));
+		LOGGER.info("se ha completado addCarrito");
 	}
 
 	@POST
 	@Path("modifyCarrito")//por ID
 	public void modifyCarrito(JsonObject json) {
 		LOGGER.debug("ha entrado en modifyCarrito");
-		System.out.println("Modificando la cesta de la compra");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getCarrito().modifyCesta(a, Integer.parseInt(get_from_json(json,"cantidad")));
+		LOGGER.info("se ha completado modifyCarrito");
 	}
 	
 	@POST
 	@Path("tamanyoCarrito")//por ID
 	public String tamanyoCarrito(JsonObject json) {
 		LOGGER.debug("ha entrado en tamanyoCarrito");
-		System.out.println("Obteniendo tamaño de la cesta de la compra");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		LOGGER.info("se ha completado tamanyoCarrito");
 		return "{ \"tamanyo\": \""+c.getCarrito().getArticulos().size() + "\" }";
 	}
 
@@ -219,41 +214,41 @@ public class API {
 	@Path("vaciarCarrito")//por ID
 	public void VaciarCarrito(JsonObject json) {
 		LOGGER.debug("ha entrado en VaciarCarrito");
-		System.out.println("Limpiando a la cesta de la compra");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getCarrito().vaciarCesta();
+		LOGGER.info("se ha completado vaciarCarrito");
 	}
 
 	@POST
 	@Path("addFavoritos")//por ID
 	public void anyadirFavoritos(JsonObject json) {
 		LOGGER.debug("ha entrado en anyadirFavoritos");
-		System.out.println("Añadiendo a la cesta de favoritos");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getFavoritos().addCesta(a, 1);
+		LOGGER.info("se ha completado addFavoritos");
 	}
 	
 	@POST
 	@Path("modifyFavoritos")//por ID
 	public void modifyFavoritos(JsonObject json) {
 		LOGGER.debug("ha entrado en modifyFavoritos");
-		System.out.println("Añadiendo a la cesta de favoritos");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getFavoritos().modifyCesta(a, 1);
+		LOGGER.info("se ha completado modifyFavoritos");
 	}
 
 	@POST
 	@Path("tamanyoFavoritos")//por ID
 	public int tamanyoFavoritos(JsonObject json) {
 		LOGGER.debug("ha entrado en tamanyoFavoritos");
-		System.out.println("Obteniendo tamaño de la cesta de favoritos");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		LOGGER.info("se ha completado tamanyoFavoritos");
 		return c.getCarrito().getArticulos().size();
 	}
 	
@@ -261,18 +256,18 @@ public class API {
 	@Path("vaciarFavoritos")//por ID
 	public void VaciarFavoritos(JsonObject json) {
 		LOGGER.debug("ha entrado en VaciarFavoritos");
-		System.out.println("Limpiando a la cesta de la compra");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.getCarrito().vaciarCesta();
+		LOGGER.info("se ha completado vaciarFavoritos");
 	}
 
 	@GET
 	@Path("getArticulos")
 	public List<Articulo> getArticulos() {
 		LOGGER.debug("ha entrado en getArticulos");
-		System.out.println("Mandando todos los articulos");
 		DAO db = new DAO();
+		LOGGER.info("se ha completado getArticulos");
 		return db.getArticulos();
 	}
 		
@@ -280,9 +275,9 @@ public class API {
 	@Path("getArticulo")//por ID
 	public Articulo getArticulos(JsonObject json) {
 		LOGGER.debug("ha entrado en getArticulo");
-		System.out.println("Mandando un articulo");
 		long l = Long.parseLong(get_from_json(json, "ID"));
 		Articulo a = new DAO().getArticulo(l);
+		LOGGER.info("se ha completado getArticulo");
 		return a;
 	}
 
@@ -290,30 +285,30 @@ public class API {
     @Path("removeCarrito")//por ID
     public void removeCarrito(JsonObject json) {
 		LOGGER.debug("ha entrado en removeCarrito");
-        System.out.println("Modificando la cesta de la compra");
         DAO db = new DAO();
         Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-        c.getCarrito().removeArticuloCesta(a);
+		c.getCarrito().removeArticuloCesta(a);
+		LOGGER.info("se ha completado removeCarrito");
 	}
 	
 	@POST
     @Path("carritoToPedido")//por ID
     public void carritoToPedido(JsonObject json) {
 		LOGGER.debug("ha entrado en carritoToPedido");
-        System.out.println("Se ha cambiado de carrito a Pedido");
         DAO db = new DAO();
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
-        c.carritoToPedido();
+		c.carritoToPedido();
+		LOGGER.info("se ha completado carritoToPedido");
     }
 
 	@POST
     @Path("carritoPrecio")//por ID
     public String carritoPrecio(JsonObject json) {
 		LOGGER.debug("ha entrado en carritoPrecio");
-        System.out.println("Se ha entyregado el precio del carrito");
         DAO db = new DAO();
-        Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
+		LOGGER.info("se ha completado carritoPrecio");
         return "{ \"precio\": \""+ c.getCarrito().getRecibo() + "\" }";
 	}
 	
@@ -331,8 +326,8 @@ public class API {
 	@Path("getCestas")
 	public List<Cesta> getCestas() {
 		LOGGER.debug("ha entrado en getCestas");
-		System.out.println("Mandando todos los cestas");
 		DAO db = new DAO();
+		LOGGER.info("se ha completado getCestas");
 		return db.getCestas();
 	}
 
@@ -340,9 +335,9 @@ public class API {
 	@Path("getCesta")//por ID
 	public Cesta getCesta(JsonObject json) {
 		LOGGER.debug("ha entrado en getCesta");
-		System.out.println("Mandando la cesta");
 		long l = Long.parseLong(get_from_json(json, "ID"));
 		Cesta a = new DAO().getCesta(l);
+		LOGGER.info("se ha completado getCesta");
 		return a;
 	}
 
@@ -350,8 +345,8 @@ public class API {
 	@Path("getUsuarios")
 	public List<Usuario> getUsuarios() {
 		LOGGER.debug("ha entrado en getUsuarios");
-		System.out.println("Mandando todos los usuarios");
 		DAO db = new DAO();
+		LOGGER.info("se ha completado getUsuarios");
 		return db.getUsuarios();
 	}
 	
@@ -359,9 +354,9 @@ public class API {
 	@Path("getUsuario")
 	public Usuario getUsuario(JsonObject json) {
 		LOGGER.debug("ha entrado en getUsuario");
-		System.out.println("Nombre: " + get_from_json(json, "nombre") + " Pass: "+  get_from_json(json, "contrasenya"));
 		Usuario u = new DAO().getUsuario(get_from_json(json, "nombre"), get_from_json(json, "contrasenya"));
 		u.toString();
+		LOGGER.info("se ha completado getUsuario");
 		return u;
 	}
 	/*
@@ -425,10 +420,9 @@ public class API {
 	@Path("meter_datos")
 	public String api_meter_datos() {
 		LOGGER.debug("ha entrado en api_meter_datos");
-		System.out.println("Metiendo datos a la base de datos ...");
 		DAO db = new DAO();
 		String respuesta = db.meter_datos();
-		System.out.println("Terminado.");
+		LOGGER.info("se ha completado api_meter_datos");
 		return respuesta;
 	}
 	
