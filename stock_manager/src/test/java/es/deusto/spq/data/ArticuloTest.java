@@ -97,7 +97,7 @@ public class ArticuloTest{
 	
 	@Test
 	@PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 1200, average = 125)
+    @Required(max = 1200, average = 150)
 	public void testGetId() throws Exception{//Comprobamos que el ID de los articulos sean distintos
 		assertNotEquals(a1.getId(), a2.getId(),a3.getId());
 		Thread.sleep(121);
@@ -105,7 +105,7 @@ public class ArticuloTest{
 	}
 	@Test
 	@PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 1200, average = 125)
+    @Required(max = 1200, average = 300)
 	public void testSetId() {//Comprobamos que el ID, despues de hacer el set sea igual
 		assertEquals(9999, a1.getId());
 	}
@@ -250,7 +250,7 @@ public class ArticuloTest{
 	}
 	@Test
 	@PerfTest(invocations = 100, threads = 20)
-    @Required(max = 15000, average = 6000)
+    @Required(max = 155000, average = 30000)
 	public void testStoreMe() {
 		a4.storeMe();
 	}
