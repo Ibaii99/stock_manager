@@ -23,6 +23,7 @@ import com.github.javatlacati.contiperf.report.EmptyReportModule;
 
 import es.deusto.spq.data.Articulo.Categoria;
 import es.deusto.spq.data.Cesta.Estado;
+import es.deusto.spq.data_access.DAO;
 //import es.deusto.spq.data_access.DAO;
 import es.deusto.spq.data.Articulo;
 
@@ -262,6 +263,8 @@ public class ArticuloTest{
 		assertEquals(a1.getCestas(), a3.getCestas());
 	}
 	@Test
+	@PerfTest(invocations = 100, threads = 20)
+    @Required(max = 15000, average = 6000)
 	public void testStoreMe() {
 		a4.storeMe();
 	}
