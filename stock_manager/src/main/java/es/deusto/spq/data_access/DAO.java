@@ -1,5 +1,7 @@
 package es.deusto.spq.data_access;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,22 +35,26 @@ public class DAO {
 
 	private  PersistenceManagerFactory pmf;
 	private  PersistenceManager pm;
-
+	static final Logger logger = Logger.getLogger(DAO.class);
 	//
 	public DAO() {
+		BasicConfigurator.configure();
+		 
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		pm = pmf.getPersistenceManager();
+
+        logger.info("Database Access success");
 	}
 
 	public void store( Object u) {
 		 Transaction tx = this.pm.currentTransaction();
 		try {
 			tx.begin();
-			System.out.println("   * Storing an object: " + u);
+			logger.debug("   * Storing an object: " + u);
 			pm.makePersistent(u);
 			tx.commit();
 		} catch ( Exception ex) {
-			System.out.println("   $ Error storing an object: " + ex.getMessage());
+			logger.error("   $ Error storing an object: " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
@@ -93,7 +99,8 @@ public class DAO {
 		 List<Articulo> ret = new ArrayList<Articulo>();
 		 Transaction tx = pm.currentTransaction();
 		try {
-			System.out.println("   * Retrieving an Extent for Articulos.");
+			logger.warn("   * Retrieving an Extent for Articulos.");
+			logger.info("IBNFO");
 			tx.begin();
 			 Extent<Articulo> extent = pm.getExtent(Articulo.class, true);
 			for ( Articulo product : extent) {
@@ -101,7 +108,7 @@ public class DAO {
 			}
 			tx.commit();
 		} catch ( Exception ex) {
-			System.out.println("   $ Error retrieving an usuario: " + ex.getMessage());
+			logger.error("   $ Error retrieving an usuario: " + ex.getMessage());
 		} finally {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();

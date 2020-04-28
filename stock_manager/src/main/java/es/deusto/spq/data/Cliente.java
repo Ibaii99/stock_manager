@@ -136,17 +136,14 @@ public class Cliente implements Serializable{
 		try {
 			Cliente c = dao.getCliente(email, contrasenya);
 			if(c !=null) {
-				System.out.println("Cliente encontrado.");
 				return c.getNombreCliente();
 			}
 			else {
-				System.out.println("Cliente no encontrado.");
 				return null;
 			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Cliente no encontrado, error.");
 			return null;
 		}
 	}
