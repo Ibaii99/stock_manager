@@ -63,5 +63,5 @@ mvn clean compile
 3. Ejecutar la aplicacion.
 ~~~ 
 mvn exec:java
-~~~ 
+~~~
 
