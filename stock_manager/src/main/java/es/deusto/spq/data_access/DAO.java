@@ -1,6 +1,5 @@
 package es.deusto.spq.data_access;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ public class DAO {
 	static final Logger logger = Logger.getLogger(DAO.class);
 	//
 	public DAO() {
-		BasicConfigurator.configure();
 		 
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		pm = pmf.getPersistenceManager();
@@ -50,7 +48,7 @@ public class DAO {
 		 Transaction tx = this.pm.currentTransaction();
 		try {
 			tx.begin();
-			logger.debug("   * Storing an object: " + u);
+			logger.info("   * Storing an object: " + u);
 			pm.makePersistent(u);
 			tx.commit();
 		} catch ( Exception ex) {
