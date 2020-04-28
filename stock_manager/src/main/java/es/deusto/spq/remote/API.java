@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import javax.json.JsonObject;
 import javax.json.bind.annotation.JsonbTransient;
@@ -57,19 +57,22 @@ public class API {
 	 *
 	 * @return String that will be returned as a text/plain response.
 	 */
-	private final static Logger LOGGER = Logger.getLogger("es.deusto.spq.remote.api");
+
+	private final static Logger LOGGER = Logger.getLogger(API.class);
 
 	@POST
 	@Path("logIn")
 	public String logIn(JsonObject json) {
+		LOGGER.debug("ha entrado en logIn");
 		String nombre = new Cliente().loggin(get_from_json(json, "email"), get_from_json(json, "password"));
-		LOGGER.log(Level.INFO, nombre);
+		LOGGER.info(nombre);
 		return "{ \"nombre\": \""+nombre + "\" }";
 	}
 
 	@POST
 	@Path("register")
 	public String register(JsonObject json) {
+		LOGGER.debug("ha entrado en register");
 		Cliente cliente = new Cliente(get_from_json(json, "name"), get_from_json(json, "email"), get_from_json(json, "password"), 
 		get_from_json(json, "address"));
 		cliente.registrarme();
@@ -80,6 +83,7 @@ public class API {
 	@POST
 	@Path("eliminarArticulo")
 	public String eliminarArticulo(JsonObject json) {
+		LOGGER.debug("ha entrado en eliminarArticulo");
 		DAO dao = new DAO();
 		long id = Long.parseLong(get_from_json(json, "id"));
 		Articulo a = dao.getArticulo(id);
@@ -90,6 +94,7 @@ public class API {
 	@POST
 	@Path("ingresarArticulo")
 	public String ingresarArticulo(JsonObject json) {
+		LOGGER.debug("ha entrado en ingresarArticulo");
 		DAO dao = new DAO();
 		
 		System.out.println(json);
@@ -153,6 +158,7 @@ public class API {
 	@POST
 	@Path("getCliente")
 	public Cliente getCliente(JsonObject json) {
+		LOGGER.debug("ha entrado en getCliente");
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		
@@ -162,6 +168,7 @@ public class API {
 	@POST
 	@Path("getCarrito")
 	public Cesta getCarrito(JsonObject json) {
+		LOGGER.debug("ha entrado en getCarrito");
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		return c.getCarrito();
@@ -170,6 +177,7 @@ public class API {
 	@POST
 	@Path("getFavoritos")
 	public Cesta getFavoritos(JsonObject json) {
+		LOGGER.debug("ha entrado en getFavoritos");
 		System.out.println("Email: " + get_from_json(json, "email") + " Pass: "+  get_from_json(json, "password"));
 		Cliente c = new DAO().getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		return c.getFavoritos();
@@ -178,6 +186,7 @@ public class API {
 	@POST
 	@Path("addCarrito")//por ID
 	public void anyadirCarrito(JsonObject json) {
+		LOGGER.debug("ha entrado en anyadirCarrito");
 		System.out.println("Añadiendo a la cesta de la compra");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
@@ -188,6 +197,7 @@ public class API {
 	@POST
 	@Path("modifyCarrito")//por ID
 	public void modifyCarrito(JsonObject json) {
+		LOGGER.debug("ha entrado en modifyCarrito");
 		System.out.println("Modificando la cesta de la compra");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
@@ -198,6 +208,7 @@ public class API {
 	@POST
 	@Path("tamanyoCarrito")//por ID
 	public String tamanyoCarrito(JsonObject json) {
+		LOGGER.debug("ha entrado en tamanyoCarrito");
 		System.out.println("Obteniendo tamaño de la cesta de la compra");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
@@ -207,6 +218,7 @@ public class API {
 	@POST
 	@Path("vaciarCarrito")//por ID
 	public void VaciarCarrito(JsonObject json) {
+		LOGGER.debug("ha entrado en VaciarCarrito");
 		System.out.println("Limpiando a la cesta de la compra");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
@@ -216,6 +228,7 @@ public class API {
 	@POST
 	@Path("addFavoritos")//por ID
 	public void anyadirFavoritos(JsonObject json) {
+		LOGGER.debug("ha entrado en anyadirFavoritos");
 		System.out.println("Añadiendo a la cesta de favoritos");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
@@ -226,6 +239,7 @@ public class API {
 	@POST
 	@Path("modifyFavoritos")//por ID
 	public void modifyFavoritos(JsonObject json) {
+		LOGGER.debug("ha entrado en modifyFavoritos");
 		System.out.println("Añadiendo a la cesta de favoritos");
 		DAO db = new DAO();
 		Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
@@ -236,6 +250,7 @@ public class API {
 	@POST
 	@Path("tamanyoFavoritos")//por ID
 	public int tamanyoFavoritos(JsonObject json) {
+		LOGGER.debug("ha entrado en tamanyoFavoritos");
 		System.out.println("Obteniendo tamaño de la cesta de favoritos");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
@@ -245,6 +260,7 @@ public class API {
 	@POST
 	@Path("vaciarFavoritos")//por ID
 	public void VaciarFavoritos(JsonObject json) {
+		LOGGER.debug("ha entrado en VaciarFavoritos");
 		System.out.println("Limpiando a la cesta de la compra");
 		DAO db = new DAO();
 		Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
@@ -254,6 +270,7 @@ public class API {
 	@GET
 	@Path("getArticulos")
 	public List<Articulo> getArticulos() {
+		LOGGER.debug("ha entrado en getArticulos");
 		System.out.println("Mandando todos los articulos");
 		DAO db = new DAO();
 		return db.getArticulos();
@@ -262,6 +279,7 @@ public class API {
 	@POST
 	@Path("getArticulo")//por ID
 	public Articulo getArticulos(JsonObject json) {
+		LOGGER.debug("ha entrado en getArticulo");
 		System.out.println("Mandando un articulo");
 		long l = Long.parseLong(get_from_json(json, "ID"));
 		Articulo a = new DAO().getArticulo(l);
@@ -271,6 +289,7 @@ public class API {
 	@POST
     @Path("removeCarrito")//por ID
     public void removeCarrito(JsonObject json) {
+		LOGGER.debug("ha entrado en removeCarrito");
         System.out.println("Modificando la cesta de la compra");
         DAO db = new DAO();
         Articulo a = db.getArticulo( Long.parseLong(get_from_json(json, "id_articulo")));
@@ -281,6 +300,7 @@ public class API {
 	@POST
     @Path("carritoToPedido")//por ID
     public void carritoToPedido(JsonObject json) {
+		LOGGER.debug("ha entrado en carritoToPedido");
         System.out.println("Se ha cambiado de carrito a Pedido");
         DAO db = new DAO();
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
@@ -290,6 +310,7 @@ public class API {
 	@POST
     @Path("carritoPrecio")//por ID
     public String carritoPrecio(JsonObject json) {
+		LOGGER.debug("ha entrado en carritoPrecio");
         System.out.println("Se ha entyregado el precio del carrito");
         DAO db = new DAO();
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
@@ -309,6 +330,7 @@ public class API {
 	@GET
 	@Path("getCestas")
 	public List<Cesta> getCestas() {
+		LOGGER.debug("ha entrado en getCestas");
 		System.out.println("Mandando todos los cestas");
 		DAO db = new DAO();
 		return db.getCestas();
@@ -317,6 +339,7 @@ public class API {
 	@POST
 	@Path("getCesta")//por ID
 	public Cesta getCesta(JsonObject json) {
+		LOGGER.debug("ha entrado en getCesta");
 		System.out.println("Mandando la cesta");
 		long l = Long.parseLong(get_from_json(json, "ID"));
 		Cesta a = new DAO().getCesta(l);
@@ -326,6 +349,7 @@ public class API {
 	@GET
 	@Path("getUsuarios")
 	public List<Usuario> getUsuarios() {
+		LOGGER.debug("ha entrado en getUsuarios");
 		System.out.println("Mandando todos los usuarios");
 		DAO db = new DAO();
 		return db.getUsuarios();
@@ -334,6 +358,7 @@ public class API {
 	@GET
 	@Path("getUsuario")
 	public Usuario getUsuario(JsonObject json) {
+		LOGGER.debug("ha entrado en getUsuario");
 		System.out.println("Nombre: " + get_from_json(json, "nombre") + " Pass: "+  get_from_json(json, "contrasenya"));
 		Usuario u = new DAO().getUsuario(get_from_json(json, "nombre"), get_from_json(json, "contrasenya"));
 		u.toString();
@@ -399,6 +424,7 @@ public class API {
 	@GET
 	@Path("meter_datos")
 	public String api_meter_datos() {
+		LOGGER.debug("ha entrado en api_meter_datos");
 		System.out.println("Metiendo datos a la base de datos ...");
 		DAO db = new DAO();
 		String respuesta = db.meter_datos();

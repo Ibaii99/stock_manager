@@ -12,6 +12,8 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Unique;
 
+import org.apache.log4j.Logger;
+
 import es.deusto.spq.data.Cesta.Estado;
 import es.deusto.spq.data_access.DAO;
 
@@ -23,7 +25,7 @@ public class Cliente implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private final static Logger LOGGER = Logger.getLogger(Cliente.class);
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT, primaryKey="true")
     private long id;
 	@Unique
@@ -136,17 +138,17 @@ public class Cliente implements Serializable{
 		try {
 			Cliente c = dao.getCliente(email, contrasenya);
 			if(c !=null) {
-				System.out.println("Cliente encontrado.");
+				LOGGER.debug("Cliente encontrado.");
 				return c.getNombreCliente();
 			}
 			else {
-				System.out.println("Cliente no encontrado.");
+				LOGGER.debug("Cliente no encontrado");
 				return null;
 			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Cliente no encontrado, error.");
+			LOGGER.debug("Cliente no encontrado, error.");
 			return null;
 		}
 	}
