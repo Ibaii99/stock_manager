@@ -62,18 +62,30 @@ public class DAO {
 	}
 
 	public void delete(Articulo u) {
-		logger.debug("Delete method access");
-		Transaction tm = pm.currentTransaction();
-		Query q = pm.newQuery("SQL", "SELECT * FROM ARTICULO WHERE ID = " + u.getId());
-		q.setClass(Articulo.class);
-		q.setUnique(true);
-		Articulo product = (Articulo) q.execute();
-		tm.begin();
-		pm.deletePersistent(product);
-		tm.commit();
-		logger.info("Articulo deleted");
 
-	}
+
+		Transaction tm = pm.currentTransaction();
+		
+		try {
+			logger.debug("Delete method access");
+			Query q = pm.newQuery("SQL", "SELECT * FROM ARTICULO WHERE ID = " + u.getId());
+			q.setClass(Articulo.class);
+			q.setUnique(true);
+			Articulo product = (Articulo) q.execute();
+			tm.begin();
+			pm.deletePersistent(product);
+			tm.commit();
+			logger.info("Articulo deleted");
+			} catch ( Exception ex) {
+				System.out.println("   $ Error deleting an object: " + ex.getMessage());
+			} finally {
+				if (tm != null && tm.isActive()) {
+					tm.rollback();
+				}
+
+			}
+			
+		}
 
 	// GET de lista de articulos
 
