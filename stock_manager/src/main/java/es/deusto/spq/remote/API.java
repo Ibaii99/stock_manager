@@ -60,6 +60,10 @@ public class API {
 
 	private final static Logger LOGGER = Logger.getLogger(API.class);
 
+	/** Este metodo sirve para logearse en el sistema
+	 * @param 	json Recibe un json con el email y la contrasenya
+	 * @return devuelve un json crudo con el nombre
+	 */
 	@POST
 	@Path("logIn")
 	public String logIn(JsonObject json) {
@@ -69,6 +73,7 @@ public class API {
 		LOGGER.info("se ha completado logIn");
 		return "{ \"nombre\": \""+nombre + "\" }";
 	}
+
 
 	@POST
 	@Path("register")

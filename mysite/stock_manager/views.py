@@ -15,9 +15,22 @@ def test(request):
     return render(request, "shop.html") 
     #Prueba de commit
 
-
-
 def cart(request):
+    """Gestiona la visualización del carro, el borrado de articulos, el guardado de las cantidades y la posible redireccion a pagar
+    
+    Comprueba que la sesion este abierta, de lo contrario 
+    redirige al usuario a la pagina de logearse.
+    
+    Si esta abierta muestra el carrito de la persona y se 
+    calculan los precios de todos los articulos y de la cesta 
+    en general. Pasandolos como parametro a la plantilla.
+    
+    Si en la visualizacion del carrito se produce un post,
+    se comprueba de que tipo se trata, de eliminar un articulo,
+    de guardar el cambio de unidades en la cesta, o de pasar continuar
+    al pago.
+    
+    """
     if is_session_alive(request):
         global sessions
         sesion = sessions.get(request.COOKIES['sessionid'])
@@ -79,6 +92,15 @@ def favourites(request):
     None 
     
 def pay(request):
+    """Gestiona la visualización y gestión del pago.
+    
+    Comprueba que la sesion este abierta, de lo contrario 
+    redirige al usuario a la pagina de logearse.
+    
+    Calcula el precio del carrito del usuario y muestra el formulario
+    para meter todos los datos de la factura y del envio.
+    
+    """
     if is_session_alive(request):
         global sessions
         sesion = sessions.get(request.COOKIES['sessionid'])
@@ -103,7 +125,15 @@ def pay(request):
     return redirect("/user/login") 
 
 def checkout(request):
+    """Gestiona el pago con tarjeta, visualiza la tarjeta y llama a la api para efectuarla.
     
+    Comprueba que la sesion este abierta, de lo contrario 
+    redirige al usuario a la pagina de logearse.
+    
+    No verifica la tarjeta de credito porque esta hecho para
+    desarrollo en vez de despliegue.
+        
+    """
     if is_session_alive(request):
         #carritoPrecio
         global sessions
@@ -123,6 +153,15 @@ def checkout(request):
     return redirect("/user/login") 
 
 def user(request):
+    """ Muestra la información del usuario y permite borrar la sesion.    
+    
+    Comprueba que la sesion este abierta, de lo contrario 
+    redirige al usuario a la pagina de logearse.
+    
+    Si esta logueado muestra su información y si recibe un
+    post borra la sesion.    
+    
+    """
     if is_session_alive(request):
         global sessions
         sesion = sessions.get(request.COOKIES['sessionid'])
@@ -144,6 +183,13 @@ def user(request):
     return redirect("/user/login") 
     
 def register(request):
+    """Gestiona la visualizacion del formulario de registro y se encarga de registrarlo en la api.
+    
+    Si recibe un post comprueba los datos que recibe 
+    para saber si la repeticion de la contraseña coincide
+    y si coincide lo registra en la api.
+    
+    """
     if(request.method == 'POST'):
         if( request.POST.get('password_1') == request.POST.get('password_2')):
             
@@ -179,6 +225,13 @@ def register(request):
     return render(request, "register.html", {"var": get_vars(request)})
 
 def login(request):
+    """Gestiona la pagina de inicio de sesión y es la encargada de guardar la sesion en la coockie del cliente y en el front-end.
+    
+    Cuando recibe un post evalua los datos
+    para comprobar que coincidan con los del
+    usuario y si lo son registra la sesion.
+    
+    """
     if(request.method == 'POST'):
         
         info={
@@ -208,6 +261,12 @@ def login(request):
     return render(request, "login.html", {"var": get_vars(request)})
 
 def shop(request):
+    """Gestiona la pagina de compra y mostrar articulos.
+    
+    Comprueba que la sesion este abierta, de lo contrario 
+    al intentar añadir un articulo a la cesta no se hará.
+    
+    """
     if is_session_alive(request):
         global sessions
         sesion = sessions.get(request.COOKIES['sessionid'])
@@ -228,6 +287,12 @@ def shop(request):
     return render(request, "shop.html", {"var": get_vars(request), "articulos": articulos })
 
 def article(request, id):
+    """Gestiona la vision detallada de los datos de un articulo.
+    
+    Comprueba que la sesion este abierta, de lo contrario 
+    al intentar añadir un articulo a la cesta no se hará.
+    
+    """
     if request.method == "POST":
         if is_session_alive(request):
             global sessions
@@ -256,12 +321,21 @@ def article(request, id):
     return render(request, "product-single.html", {"var": get_vars(request), "article": resp.json()})
     
 def index(request): 
+    """ Simplemente muestra la pagina de indice dee la pagina.
+    
+    """
     return render(request, "index.html", {"var": get_vars(request)})
 
 #Devuelve las variables necesarias para la ejecucion generica
 def get_vars(request):
-    global sessions
+    """Devuelve las variables necesarias para la plantilla base.
     
+    Comprueba que la sesion este abierta, para 
+    obtener los detalles del tamaño del carrito
+    y de no estar logueado lo devuelve como json.
+        
+    """
+    global sessions
     if is_session_alive(request):
         if is_data_correct(request):
             session = sessions.get(request.COOKIES['sessionid'])
@@ -288,6 +362,19 @@ def get_vars(request):
 
 #Guardara el valor de la ip la informaci'on necesaria
 def save_session(request, session_id, user_name, email, password):
+    """Recibe los datos necesarios para guardar la sesion en el front-end.
+    
+    Guarda:
+        ip,
+        nombre,
+        email,
+        id de la sesion,
+        contraseña,
+    
+    La fecha de caducidad se settea al dia siguiente
+    y cuando se llegue a ese dia se borrara.
+    
+    """
     global sessions
     
     store= {
@@ -303,6 +390,9 @@ def save_session(request, session_id, user_name, email, password):
     
 #Borra los datos de la sesion
 def close_session(request):
+    """ Borra los datos de la sesion del front-end y de la coockie.   
+    
+    """
     global sessions
     try:
         sesion = sessions[request.COOKIES['sessionid']]
@@ -322,6 +412,11 @@ def close_session(request):
         
 #Comprueba que la sesion de la cookie siga activa
 def is_session_alive(request):
+    """ Comprueba que la sesion este abierta y que sea valida, si esta caducada la borra.
+    
+    Devuelve:   True si esta abierta
+                False si no lo esta
+    """
     global sessions
     try:
         sesion = sessions.get(request.COOKIES['sessionid'])
@@ -340,6 +435,9 @@ def is_session_alive(request):
 
 #Compruba que los datos metidos sigan siendo los correctos
 def is_data_correct(request):
+    """ Comprueba que los datos del usuario sean los mismos que los de la api.
+    
+    """
     global sessions
     sesion = sessions.get(request.COOKIES['sessionid'])
     info={
@@ -356,6 +454,9 @@ def is_data_correct(request):
              
 #Para conseguir la ip de un usuario y obtener asi el id de la sesion
 def get_client_ip(request):
+    """Coge la IP del cliente de los metadatos del request.
+    
+    """
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
@@ -364,6 +465,9 @@ def get_client_ip(request):
     return ip
 
 def set_cookie(response, key, value, days_expire = 2):
+    """ Metodo para crear coockies personalizadas en el cliente.
+        
+    """
     if days_expire is None:
         max_age = 365 * 24 * 60 * 60  #one year
     else:
@@ -372,6 +476,9 @@ def set_cookie(response, key, value, days_expire = 2):
         response.set_cookie(key, value, max_age=max_age, expires=expires, domain=settings.SESSION_COOKIE_DOMAIN, secure=settings.SESSION_COOKIE_SECURE or None)
         
 def erro_handler(request, exception=None):
+    """ Redirige a la pagina de inicio si ocurre cualquier error.
+    
+    """
     # make a redirect to homepage
     # you can use the name of url or just the plain link
     return redirect('/index/') # or redirect('name-of-index-url')
