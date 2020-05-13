@@ -129,3 +129,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '/static/media')
 
 STOCK_MANAGER_API_URL = 'http://localhost:8080/stock_manager'
+
+
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+
+#Edita este correo y acuerdate de admitir el uso de 3-s en google
+EMAIL_HOST_USER = 'stockmanager2020@gmail.com'
+EMAIL_HOST_PASSWORD = 'Grupo2wins'
+
+EMAIL_DESTINY_USER = 'stockmanager2020@gmail.com'

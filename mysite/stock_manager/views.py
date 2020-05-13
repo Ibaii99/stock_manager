@@ -4,6 +4,8 @@ from mysite import settings
 import requests
 import json
 import io
+import smtplib
+
 from PIL import Image
 
 sessions = {}
@@ -321,9 +323,19 @@ def article(request, id):
     return render(request, "product-single.html", {"var": get_vars(request), "article": resp.json()})
     
 def index(request): 
-    """ Simplemente muestra la pagina de indice dee la pagina.
+    """ Simplemente muestra la pagina de indice de la pagina.
+    
+    Permite postear comentarios.
     
     """
+    
+    if (request.method == "POST"):
+        send_email("Gracias por su comentario", "Gracias por su comentario, lo hemos recibido, espere a ser contactado por email.", request.POST.get("email"))
+        
+        cuerpo = "Sugerencia recibida: \n%s \nEmisor: %s" % (request.POST.get("comentario"), request.POST.get("email"))
+        send_email("Comentario recibido" ,cuerpo, settings.EMAIL_DESTINY_USER)
+    
+    
     return render(request, "index.html", {"var": get_vars(request)})
 
 #Devuelve las variables necesarias para la ejecucion generica
@@ -482,3 +494,27 @@ def erro_handler(request, exception=None):
     # make a redirect to homepage
     # you can use the name of url or just the plain link
     return redirect('/index/') # or redirect('name-of-index-url')
+
+
+def send_email(subject ,text, to):
+    """Metodo para envío de emails a traves de gmail.
+    
+    Recibe: 
+        Motivo del email,
+        Cuerpo del email,
+        y el destino
+    
+    """
+    try:
+        server = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        server.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
+        message = 'Subject: {}\n\n{}'.format(subject, text)
+        server.sendmail(settings.EMAIL_HOST_USER, to, message)
+        print("Email enviado")
+        server.quit()
+
+    except:
+        print('Something went wrong...')
