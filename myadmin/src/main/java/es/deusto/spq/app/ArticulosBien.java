@@ -24,6 +24,8 @@ import es.deusto.spq.app.*;
 import es.deusto.spq.data.*;
 import es.deusto.spq.data.Articulo.Categoria;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import javax.swing.GroupLayout.Alignment;
@@ -60,71 +62,6 @@ public class ArticulosBien extends JFrame{
 		
 		
 		JPanel botonesPanel = new JPanel();
-		
-		JButton eliminarBoton = new JButton("Eliminar articulo");
-		botonesPanel.add(eliminarBoton);
-		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
-
-		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
-		
-		JButton btnanyadir = new JButton("Anyadir Articulo");
-		btnanyadir.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				try {
-					CrearArticulo frame = new CrearArticulo();
-					frame.setVisible(true);
-					dispose();
-				} catch (Exception er) {
-					er.printStackTrace();
-				}
-			}
-		});
-		
-		JButton modificarBoton = new JButton("Modificar articulo");
-		
-		JButton btnNewButton = new JButton("Volver al menu");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					Menu frame = new Menu();
-					frame.setVisible(true);
-					dispose();
-				} catch (Exception er) {
-					er.printStackTrace();
-				}
-			}
-		});
-
-		GroupLayout gl_botonesPanel = new GroupLayout(botonesPanel);
-		gl_botonesPanel.setHorizontalGroup(
-			gl_botonesPanel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_botonesPanel.createSequentialGroup()
-					.addContainerGap(530, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(modificarBoton, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(eliminarBoton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnanyadir)
-					.addContainerGap())
-		);
-		gl_botonesPanel.setVerticalGroup(
-			gl_botonesPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_botonesPanel.createSequentialGroup()
-					.addGap(5)
-					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnanyadir)
-						.addComponent(eliminarBoton)
-						.addComponent(modificarBoton)
-						.addComponent(btnNewButton))
-					.addContainerGap(36, Short.MAX_VALUE))
-		);
-		botonesPanel.setLayout(gl_botonesPanel);
-		
 		final DefaultListModel<Articulo> articulosListModel = new DefaultListModel<>();
 
 
@@ -134,7 +71,7 @@ public class ArticulosBien extends JFrame{
 		getContentPane().add(listScrollPane, BorderLayout.WEST);
 		
 		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
-		List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+		final List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 	
 		articulosListModel.clear();
 		for(Articulo articulo: articulos) {
@@ -142,7 +79,7 @@ public class ArticulosBien extends JFrame{
 		}
 		
 
-		
+		JButton eliminarBoton = new JButton("Eliminar articulo");
 		eliminarBoton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -172,7 +109,22 @@ public class ArticulosBien extends JFrame{
 
 				
 		});
-		
+		JButton ordenarNombreBtn = new JButton("Ordenar por nombre");
+		ordenarNombreBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				articulos.sort(new Comparator<Articulo>(){
+		            public int compare(Articulo o1, Articulo o2) {
+		            	articulosListModel.clear();
+		        		for(Articulo articulo: articulos) {
+		        			articulosListModel.addElement(articulo);
+		        		}
+		                return o1.getNombre().compareToIgnoreCase(o2.getNombre());
+		        		}
+				});
+				
+			}	
+		});
+		JButton modificarBoton = new JButton("Modificar articulo");
 		modificarBoton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -190,6 +142,156 @@ public class ArticulosBien extends JFrame{
 				
 			}
 		});
+		
+		botonesPanel.add(eliminarBoton);
+		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
+
+		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
+		
+		JButton btnanyadir = new JButton("Anyadir Articulo");
+		btnanyadir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					CrearArticulo frame = new CrearArticulo();
+					frame.setVisible(true);
+					dispose();
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
+			}
+		});
+		
+		
+		JButton btnNewButton = new JButton("Volver atras");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Menu frame = new Menu();
+					frame.setVisible(true);
+					dispose();
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
+			}
+		});
+		
+		JButton ordenarIDBtn = new JButton("Ordenar por ID");
+		ordenarIDBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				articulos.sort(new Comparator<Articulo>() {
+
+					@Override
+					public int compare(Articulo o1, Articulo o2) {
+		            	articulosListModel.clear();
+		        		for(Articulo articulo: articulos) {
+		        			articulosListModel.addElement(articulo);
+		        		}
+		                return Long.toString(o1.getId()).compareToIgnoreCase(Long.toString(o2.getId()));
+					}
+					
+				});
+				
+			}
+		});
+		
+		JButton ordenarStockBtn = new JButton("Ordenar por stock");
+		ordenarStockBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				articulos.sort(new Comparator<Articulo>() {
+
+					@Override
+					public int compare(Articulo o1, Articulo o2) {
+						articulosListModel.clear();
+		        		for(Articulo articulo: articulos) {
+		        			articulosListModel.addElement(articulo);
+		        		}
+		                return Integer.toString(o1.getStock()).compareToIgnoreCase(Integer.toString(o2.getStock()));
+					}
+				});
+				
+			}
+		});
+		
+		JButton ordenarCaduBtn = new JButton("Ordenar por caducidad");
+		ordenarCaduBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				articulos.sort(new Comparator<Articulo>() {
+
+					@Override
+					public int compare(Articulo o1, Articulo o2) {
+						articulosListModel.clear();
+		        		for(Articulo articulo: articulos) {
+		        			articulosListModel.addElement(articulo);
+		        		}
+		                return o1.getCaducidad().toString().compareToIgnoreCase(o2.getCaducidad().toString());
+					}
+				});
+				
+			}
+		});
+		
+		
+
+		GroupLayout gl_botonesPanel = new GroupLayout(botonesPanel);
+		gl_botonesPanel.setHorizontalGroup(
+			gl_botonesPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_botonesPanel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(ordenarNombreBtn)
+						.addComponent(ordenarIDBtn, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(ordenarCaduBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(ordenarStockBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(72)
+					.addComponent(modificarBoton, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+					.addGap(36)
+					.addComponent(eliminarBoton)
+					.addGap(18)
+					.addComponent(btnanyadir)
+					.addGap(51)
+					.addComponent(btnNewButton)
+					.addGap(120))
+		);
+		gl_botonesPanel.setVerticalGroup(
+			gl_botonesPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_botonesPanel.createSequentialGroup()
+					.addGroup(gl_botonesPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_botonesPanel.createSequentialGroup()
+							.addGap(5)
+							.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(ordenarNombreBtn, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+								.addComponent(ordenarStockBtn, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+							.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(ordenarIDBtn, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+								.addComponent(ordenarCaduBtn, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(Alignment.TRAILING, gl_botonesPanel.createSequentialGroup()
+							.addContainerGap(19, Short.MAX_VALUE)
+							.addGroup(gl_botonesPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(modificarBoton)
+								.addComponent(eliminarBoton)
+								.addComponent(btnanyadir)
+								.addComponent(btnNewButton))))
+					.addContainerGap())
+		);
+		botonesPanel.setLayout(gl_botonesPanel);
+		
+
 		setVisible(true);
 		
 	}
@@ -205,5 +307,4 @@ public class ArticulosBien extends JFrame{
 			}
 		});
 	}
-	
 }
