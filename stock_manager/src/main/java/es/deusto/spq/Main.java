@@ -14,8 +14,7 @@ import es.deusto.spq.data_access.DAO;
 //
 
 /**
- * Main class.
- *
+ * Main class, inicia el servidor jersey con su configuración.
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
@@ -37,8 +36,8 @@ public class Main {
 
     /**
      * Main method.
-     * @param args
-     * @throws IOException
+     * @param No necesita ningun parametro
+     * @throws IOException en caso de error en el arranque del servidor
      */
 	public static boolean main(String[] args) throws IOException {
 		server = startServer();
@@ -54,10 +53,16 @@ public class Main {
         return true;
     }
 
+	/** Metodo para devolver la clase HttpServer
+	 * @return Devuelve el servidor
+	 */
 	public static HttpServer getServer() {
 		return server;
 	}
 
+	/** Metodo para establecer el objeto HttpServer
+	 * @param server El servidor que se vaya a establecer
+	 */
 	public static void setServer(HttpServer server) {
 		Main.server = server;
 	}

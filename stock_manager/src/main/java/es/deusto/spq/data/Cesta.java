@@ -49,6 +49,11 @@ public class Cesta implements Serializable {
 }
 
 
+	/**Constructor de Cesta
+	 * @param articulos Lista de articulos que pertenece a la cesta
+	 * @param cantidades Lista de las cantidades de los articulos que pertenece a la cesta
+	 * @param estado El estado de la cesta
+	 */
 	public Cesta(List<Articulo> articulos, List<Integer> cantidades, Estado estado) {
 		super();
 		this.articulos = articulos;
@@ -56,6 +61,9 @@ public class Cesta implements Serializable {
 		this.estado = estado;
 	}
 
+	/** Duplicador de cesta
+	 * @param cesta Objeto Cesta para dupliclarla
+	 */
 	public Cesta(Cesta cesta) {
 		this.articulos = cesta.articulos;
 		this.cantidades = cesta.cantidades;
@@ -118,6 +126,10 @@ public class Cesta implements Serializable {
 
 
 
+    /** Metodo para añadir un articulo a la cesta
+     * @param articulo Articulo a añadir a la cesta
+     * @param cantidad Cantidad del articulo a añadir
+     */
     public void addArticulo(final Articulo articulo, final int cantidad) {
         
         if (this.articulos.contains(articulo)) {
@@ -132,7 +144,11 @@ public class Cesta implements Serializable {
     }
 
    //A modificar por Oferta
-   public float getRecibo() {
+   
+    /** Devuelve el precio total de toda la cesta
+     * @return Devuelve un float de la cantidad total
+     */
+    public float getRecibo() {
        float r = 0;
 	   for (int i = 0; i < this.articulos.size(); i++) {
 		   r += this.articulos.get(i).getOferta() * this.cantidades.get(i);
@@ -155,6 +171,9 @@ public class Cesta implements Serializable {
 // 	}
 
 
+	/**Limpia la cesta, tanto articulos como cantidades
+	 * 
+	 */
 	public void vaciarCesta() {
 		/*
 		for (int i = 0;i<articulos.size();i++) {
@@ -167,6 +186,10 @@ public class Cesta implements Serializable {
 	
 	}
 
+	/** Modifica la cantidad de un articulo en la cesta
+	 * @param articulo Articulo del que se modificara la cantidad
+	 * @param cantidad Cantidad del articulo que se va a establecer
+	 */
 	public void modifyCesta(Articulo articulo, Integer cantidad) {
 
         if(this.getArticulos().contains(articulo)) {
@@ -184,6 +207,10 @@ public class Cesta implements Serializable {
         }
     }
 	
+	/**Añadir un articulo a la cesta
+	 * @param articulo Articulo a añadir a la cesta
+	 * @param cantidad Cantidad de articulos a añadir
+	 */
 	public void addCesta(Articulo articulo, Integer cantidad) {
 
 	    if(this.getArticulos().contains(articulo)) {
@@ -197,6 +224,9 @@ public class Cesta implements Serializable {
 	    }
 
 	}
+	/** Borrar un articulo de la cesta
+	 * @param articulo Articulo a quitar de la cesta
+	 */
 	public void removeArticuloCesta(Articulo articulo) {
 
         if(this.getArticulos().contains(articulo)) {
