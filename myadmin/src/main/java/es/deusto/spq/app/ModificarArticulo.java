@@ -57,7 +57,8 @@ public class ModificarArticulo extends JFrame {
 	private JCalendar calendar;
 
 	/**
-	 * Create the frame.
+	 * Método que posibilita la edición de un artículo ya existente. 
+	 * @return Frame de modificar articulos
 	 */
 	public ModificarArticulo(final Articulo a) {
 
@@ -318,6 +319,11 @@ public class ModificarArticulo extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+    /**
+     * Metodo del main
+     * @param args
+     * @return Frame de ModificarArticulo
+     */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

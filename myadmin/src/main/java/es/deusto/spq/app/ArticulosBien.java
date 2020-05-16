@@ -6,6 +6,7 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 import java.awt.BorderLayout;
 import java.awt.event.*;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
@@ -42,17 +43,56 @@ public class ArticulosBien extends JFrame{
 	private Client client;
 	private Date date;
 	private JTextField textField;
+	private WebTarget appTarget;
+	private WebTarget articulosTarget; 
+	private WebTarget articuloTarget;
+	private DefaultListModel<Articulo> articulosListModel; 
+	private JPanel botonesPanel ;
+	private JList<Articulo> articulosLista; 
+	private JScrollPane listScrollPane ;
+	private GenericType<List<Articulo>> genericType;
+	private List<Articulo> articulos ;
+	private JButton eliminarBoton; 
+	private JButton ordenarNombreBtn ;
+	private JButton modificarBoton; 
+	private JButton btnanyadir; 
+	private JButton btnNewButton ;
+	private JButton ordenarIDBtn ;
+	private JButton ordenarStockBtn;
+	private JButton ordenarCaduBtn ;
+	private GroupLayout gl_botonesPanel;
 	
+	
+	
+	/**
+	 * Método que refresca el frame 
+	 * @return Frame de articulos actualizado
+	 */
+	public void dibujar() {
+		articulosListModel.clear();
+		for(Articulo articulo: articulos) {
+			articulosListModel.addElement(articulo);
+		}
+//		articulosLista.repaint();
+//		articulosLista.revalidate();
+		listScrollPane.revalidate();
+		listScrollPane.repaint();
+	}
+	
+	/**
+	 * Método con toda la lista de articulos.
+	 * @return Frame de articulos
+	 */
 	public ArticulosBien() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();
 
 
 		
-		final WebTarget appTarget = client.target("http://localhost:8080/stock_manager/api/");
-		final WebTarget articulosTarget = appTarget.path("getArticulos");
+		appTarget = client.target("http://localhost:8080/stock_manager/api/");
+		articulosTarget = appTarget.path("getArticulos");
 
-		final WebTarget articuloTarget = appTarget.path("eliminarArticulo");
+		articuloTarget = appTarget.path("eliminarArticulo");
 
 
 
@@ -61,25 +101,27 @@ public class ArticulosBien extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		
-		JPanel botonesPanel = new JPanel();
-		final DefaultListModel<Articulo> articulosListModel = new DefaultListModel<>();
+		botonesPanel = new JPanel();
+		articulosListModel = new DefaultListModel<>();
 
 
-		final JList<Articulo> articulosLista = new JList<>(articulosListModel);
+		articulosLista = new JList<>(articulosListModel);
 		
-		JScrollPane listScrollPane = new JScrollPane(articulosLista);
+		listScrollPane = new JScrollPane(articulosLista);
 		getContentPane().add(listScrollPane, BorderLayout.WEST);
 		
-		GenericType<List<Articulo>> genericType = new GenericType<List<Articulo>>() {};
-		final List<Articulo> articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+		
+		genericType = new GenericType<List<Articulo>>() {};
+		articulos = articulosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 	
 		articulosListModel.clear();
 		for(Articulo articulo: articulos) {
 			articulosListModel.addElement(articulo);
 		}
+
 		
 
-		JButton eliminarBoton = new JButton("Eliminar articulo");
+		eliminarBoton = new JButton("Eliminar articulo");
 		eliminarBoton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -104,27 +146,25 @@ public class ArticulosBien extends JFrame{
 //                    JOptionPane.showMessageDialog(Articulos_bien.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
 //                }
 				
-				
+				dibujar();
 			}
 
 				
 		});
-		JButton ordenarNombreBtn = new JButton("Ordenar por nombre");
+		ordenarNombreBtn = new JButton("Ordenar por nombre");
 		ordenarNombreBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				articulos.sort(new Comparator<Articulo>(){
 		            public int compare(Articulo o1, Articulo o2) {
-		            	articulosListModel.clear();
-		        		for(Articulo articulo: articulos) {
-		        			articulosListModel.addElement(articulo);
-		        		}
 		                return o1.getNombre().compareToIgnoreCase(o2.getNombre());
 		        		}
+		            
 				});
+				dibujar();
 				
 			}	
 		});
-		JButton modificarBoton = new JButton("Modificar articulo");
+		modificarBoton = new JButton("Modificar articulo");
 		modificarBoton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -148,7 +188,7 @@ public class ArticulosBien extends JFrame{
 
 		getContentPane().add(botonesPanel, BorderLayout.SOUTH);
 		
-		JButton btnanyadir = new JButton("Anyadir Articulo");
+		btnanyadir = new JButton("Anyadir Articulo");
 		btnanyadir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -164,7 +204,7 @@ public class ArticulosBien extends JFrame{
 		});
 		
 		
-		JButton btnNewButton = new JButton("Volver atras");
+		btnNewButton = new JButton("Volver atras");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -182,7 +222,7 @@ public class ArticulosBien extends JFrame{
 			}
 		});
 		
-		JButton ordenarIDBtn = new JButton("Ordenar por ID");
+		ordenarIDBtn = new JButton("Ordenar por ID");
 		ordenarIDBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -191,39 +231,33 @@ public class ArticulosBien extends JFrame{
 
 					@Override
 					public int compare(Articulo o1, Articulo o2) {
-		            	articulosListModel.clear();
-		        		for(Articulo articulo: articulos) {
-		        			articulosListModel.addElement(articulo);
-		        		}
 		                return Long.toString(o1.getId()).compareToIgnoreCase(Long.toString(o2.getId()));
 					}
 					
 				});
+				dibujar();
 				
 			}
 		});
 		
-		JButton ordenarStockBtn = new JButton("Ordenar por stock");
-		ordenarStockBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				articulos.sort(new Comparator<Articulo>() {
-
-					@Override
-					public int compare(Articulo o1, Articulo o2) {
-						articulosListModel.clear();
-		        		for(Articulo articulo: articulos) {
-		        			articulosListModel.addElement(articulo);
-		        		}
-		                return Integer.toString(o1.getStock()).compareToIgnoreCase(Integer.toString(o2.getStock()));
-					}
-				});
-				
-			}
-		});
+//		ordenarStockBtn = new JButton("Ordenar por stock");
+//		ordenarStockBtn.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				articulos.sort(new Comparator<Articulo>() {
+//
+//					@Override
+//					public int compare(Articulo o1, Articulo o2) {
+//		                return Integer.toString(o1.getStock()).compareToIgnoreCase(Integer.toString(o2.getStock()));
+//					}
+//				});
+//				dibujar();
+//				
+//			}
+//		});
 		
-		JButton ordenarCaduBtn = new JButton("Ordenar por caducidad");
+		ordenarCaduBtn = new JButton("Ordenar por caducidad");
 		ordenarCaduBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -232,20 +266,17 @@ public class ArticulosBien extends JFrame{
 
 					@Override
 					public int compare(Articulo o1, Articulo o2) {
-						articulosListModel.clear();
-		        		for(Articulo articulo: articulos) {
-		        			articulosListModel.addElement(articulo);
-		        		}
 		                return o1.getCaducidad().toString().compareToIgnoreCase(o2.getCaducidad().toString());
 					}
 				});
+				dibujar();
 				
 			}
 		});
 		
 		
 
-		GroupLayout gl_botonesPanel = new GroupLayout(botonesPanel);
+		gl_botonesPanel = new GroupLayout(botonesPanel);
 		gl_botonesPanel.setHorizontalGroup(
 			gl_botonesPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_botonesPanel.createSequentialGroup()
@@ -295,7 +326,11 @@ public class ArticulosBien extends JFrame{
 		setVisible(true);
 		
 	}
-
+    /**
+     * Metodo del main
+     * @param args
+     * @return Frame de ArticulosBien
+     */
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {

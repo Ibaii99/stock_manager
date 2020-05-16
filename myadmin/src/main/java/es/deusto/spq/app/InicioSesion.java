@@ -39,16 +39,17 @@ import java.awt.event.MouseEvent;
 
 
 public class InicioSesion extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField usuario;
 	private JPasswordField contrasenya;
 
 	
-	  //Launch the application.
+    /**
+     * Metodo del main
+     * @param args
+     * @return Frame de InicioSesion
+     */
 	 
 	public static void main(String[] args) {
 		
@@ -65,7 +66,11 @@ public class InicioSesion extends JFrame {
 	}
 
 	private Client client;
-	 
+	
+	/**
+	 * Método que permite acceder al modo administrador iniciando sesión.
+	 * @return Frame de iniciar sesion
+	 */
 	public InicioSesion() {
 		setTitle("INICIO SESION");
 		client = ClientBuilder.newClient();

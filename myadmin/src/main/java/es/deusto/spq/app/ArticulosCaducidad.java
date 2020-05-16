@@ -57,9 +57,11 @@ public class ArticulosCaducidad extends JFrame {
 	private JTextField tOferta;
 	final private JList<Articulo> articulosLista;
 
-	/**
-	 * Launch the application.
-	 */
+    /**
+     * Metodo del main
+     * @param args
+     * @return Frame de ArticulosCaducidad
+     */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -74,7 +76,8 @@ public class ArticulosCaducidad extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Método con toda la lista de articulos proximos a Caducar.
+	 * @return Frame de articulos
 	 */
 	public ArticulosCaducidad() {
 		setTitle("ARTICULOS PROXIMOS A CADUCAR");

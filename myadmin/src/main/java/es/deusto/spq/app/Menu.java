@@ -17,9 +17,11 @@ public class Menu extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
+    /**
+     * Metodo del main
+     * @param args
+     * @return Frame de Menu
+     */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -34,7 +36,8 @@ public class Menu extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Método con un menu, desde el cual hay la posibilidad de acceder a otros frames
+	 * @return Frame de un menu con distintas opciones
 	 */
 	public Menu() {
 		setTitle("MENU");

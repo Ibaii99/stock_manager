@@ -37,9 +37,11 @@ public class ArticulosStock extends JFrame {
 	private JTextField tStock;
 	final private JList<Articulo> articulosLista;
 
-	/**
-	 * Launch the application.
-	 */
+    /**
+     * Metodo del main
+     * @param args
+     * @return Frame de ArticulosStock
+     */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -54,7 +56,8 @@ public class ArticulosStock extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Método con toda la lista de articulos con bajo stock.
+	 * @return Frame de articulos
 	 */
 	public ArticulosStock() {
 		setTitle("ARTICULOS BAJOS EN STOCK");
