@@ -57,11 +57,11 @@ public class CrearArticulo extends JFrame {
 	private JSpinner categoriaSpinner;
 	private JCalendar calendar;
 
-    /**
-     * Metodo del main
-     * @param args
-     * @return Frame de CrearArticulo
-     */
+//    /**
+//     * Metodo del main
+//     * @param args
+//     * @return Frame de CrearArticulo
+//     */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -78,10 +78,10 @@ public class CrearArticulo extends JFrame {
 	
 	private Client client;
 
-	/**
-	 * Método que posibilita la creacion de un nuevo Articulo, con diferentes atributos.
-	 * @return Articulo
-	 */
+//	/**
+//	 * Método que posibilita la creacion de un nuevo Articulo, con diferentes atributos.
+//	 * @return Articulo
+//	 */
 	public CrearArticulo() {
 		setMinimumSize(new Dimension(910, 505));
 		setTitle("CREAR ARTICULOS");
