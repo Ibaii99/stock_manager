@@ -1,9 +1,16 @@
 language: java
 jdk:
   - openjdk8
+  
+env: 
+  - JDK=openjdk8
+
+dist: trusty
+ 
 services:
   - mysql
 before_script:
+  - jdk_switcher use $JDK
   - cd stock_manager
   - mysql -u root -e 'CREATE DATABASE stock_managerdb;'
   - mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
