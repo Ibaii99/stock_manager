@@ -68,16 +68,16 @@ public class ArticulosBien extends JFrame{
 	 * Método que refresca el frame 
 	 * @return Frame de articulos actualizado
 	 */
-	public void dibujar() {
-		articulosListModel.clear();
-		for(Articulo articulo: articulos) {
-			articulosListModel.addElement(articulo);
-		}
-//		articulosLista.repaint();
-//		articulosLista.revalidate();
-		listScrollPane.revalidate();
-		listScrollPane.repaint();
-	}
+//	public void dibujar() {
+//		articulosListModel.clear();
+//		for(Articulo articulo: articulos) {
+//			articulosListModel.addElement(articulo);
+//		}
+////		articulosLista.repaint();
+////		articulosLista.revalidate();
+//		listScrollPane.revalidate();
+//		listScrollPane.repaint();
+//	}
 	
 	/**
 	 * Método con toda la lista de articulos.
@@ -146,7 +146,7 @@ public class ArticulosBien extends JFrame{
 //                    JOptionPane.showMessageDialog(Articulos_bien.this, "No se pudo eliminar al usuario", "Message", JOptionPane.ERROR_MESSAGE);
 //                }
 				
-				dibujar();
+				//dibujar();
 			}
 
 				
@@ -160,7 +160,7 @@ public class ArticulosBien extends JFrame{
 		        		}
 		            
 				});
-				dibujar();
+				//dibujar();
 				
 			}	
 		});
@@ -235,7 +235,7 @@ public class ArticulosBien extends JFrame{
 					}
 					
 				});
-				dibujar();
+				//dibujar();
 				
 			}
 		});
@@ -269,7 +269,7 @@ public class ArticulosBien extends JFrame{
 		                return o1.getCaducidad().toString().compareToIgnoreCase(o2.getCaducidad().toString());
 					}
 				});
-				dibujar();
+				//dibujar();
 				
 			}
 		});
