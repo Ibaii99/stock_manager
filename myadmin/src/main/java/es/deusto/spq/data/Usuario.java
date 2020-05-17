@@ -23,47 +23,47 @@ public class Usuario implements Serializable {
 		this.contrasenya = contrasenya;
 	}
 	
-	/**
-	 * Devuelve el nombre introducido
-	 * @return Nombre
-	 */
+//	/**
+//	 * Devuelve el nombre introducido
+//	 * @return Nombre
+//	 */
 	public String getNombre() {
 		return nombre;
 	}
-	/**
-	 * Permite modificar el nombre
-	 * @param nombre
-	 * @return nombre modificado
-	 */
+//	/**
+//	 * Permite modificar el nombre
+//	 * @param nombre
+//	 * @return nombre modificado
+//	 */
 	public void setNombre(String usuario) {
 		this.nombre = usuario;
 	}
-	/**
-	 * Devuelve la contrasenya introducida
-	 * @return Contrasenya
-	 */
+//	/**
+//	 * Devuelve la contrasenya introducida
+//	 * @return Contrasenya
+//	 */
 	public String getContrasenya() {
 		return contrasenya;
 	}
-	/**
-	 * Permite modificar la contrasenya
-	 * @param contrasenya
-	 * @return contrasenya modificada
-	 */
+//	/**
+//	 * Permite modificar la contrasenya
+//	 * @param contrasenya
+//	 * @return contrasenya modificada
+//	 */
 	public void setContrasenya(String contrasenya) {
 		this.contrasenya = contrasenya;
 	}
-	/**
-	 * Devuelve el id introducido
-	 * @return Id
-	 */
+//	/**
+//	 * Devuelve el id introducido
+//	 * @return Id
+//	 */
 	public long getId() {
 		return id;
 	}
-	/**
-	 * Metodo que convierte todos los atributos introducidos a un string.
-	 * @return String de los atributos de un usuario
-	 */
+//	/**
+//	 * Metodo que convierte todos los atributos introducidos a un string.
+//	 * @return String de los atributos de un usuario
+//	 */
 	@Override
 	public String toString() {
 	return ", nombre=" + nombre + ", contrasenya=" + contrasenya + "]";
