@@ -11,7 +11,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import es.deusto.spq.data_access.DAO;
 
 
-// 
+//
 
 /**
  * Main class, inicia el servidor jersey con su configuración.
