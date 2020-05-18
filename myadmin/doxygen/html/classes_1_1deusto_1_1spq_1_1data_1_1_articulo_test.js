@@ -1,0 +1,28 @@
+var classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test =
+[
+    [ "setUp", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a4b877dd872566cecfae2b8b0f9915a4c", null ],
+    [ "testEquals", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a46f1f61a8d4c5c80d0820168fc84c98c", null ],
+    [ "testGetCaducidad", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a6c650830e34671dada7c6501daa5fa8b", null ],
+    [ "testGetCategoria", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a3454f0004399d45d106c3327dc622280", null ],
+    [ "testGetDescripcion", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a91edfa233fc69d50a4686d8e54cb0b62", null ],
+    [ "testGetId", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#aa07d58c14da08e2de0ec056ac4869b56", null ],
+    [ "testGetImageUrl", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a49a8517b6f2da431db165f6b8faa4006", null ],
+    [ "testGetNombre", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a8b21a6724bcbf66f0738111fa8f96459", null ],
+    [ "testGetOferta", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a8680f57a86c0efe1607143f47e2de047", null ],
+    [ "testGetPrecio", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a6981533e14eabda315c28bc085d67d9d", null ],
+    [ "testGetStock", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a6e70867eb8ca39cc3e34eaba05744cf7", null ],
+    [ "testGetVendedor", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a2f5c54e99bcd44afa278e1d0db256852", null ],
+    [ "testHashCode", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a551a1538043b8fcd0db3e04f43f6da77", null ],
+    [ "testSetCaducidad", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a705c9b4f11170923d6dd2068a9a959ab", null ],
+    [ "testSetCategoria", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a1678b36e9d2fd48c62dc375b561b516e", null ],
+    [ "testSetDescripcion", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#ab40f809c096b1a537f9e39b0f8f0aad5", null ],
+    [ "testSetId", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a1acbd4121fa80ac8d783562ce8a36ff5", null ],
+    [ "testSetImageUrl", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#aac78ea122c719db24ec28e5ae5568d1c", null ],
+    [ "testSetNombre", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#afe6bcecdfbae74904e7a3f70cd936193", null ],
+    [ "testSetOferta", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a079c6f6c5781251b93a73d5119e07aa2", null ],
+    [ "testSetPrecio", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a7324da64ba8915faba919b65ad30d38e", null ],
+    [ "testSetStock", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a684d927cc9f23db0f015dbc8de8d1df2", null ],
+    [ "testSetVendedor", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a660b34b8eec36176284b31973fac2955", null ],
+    [ "testToString", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#aa7843ff80ad189289ae0d559600a1e48", null ],
+    [ "rule", "classes_1_1deusto_1_1spq_1_1data_1_1_articulo_test.html#a8ee9f3995b2bb1b306a233ad0e6ce6e7", null ]
+];

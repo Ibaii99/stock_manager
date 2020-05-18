@@ -1,0 +1,25 @@
+var classes_1_1deusto_1_1spq_1_1data_1_1_cliente =
+[
+    [ "Cliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a529a4905a762f1410cd3edf9f3aca21e", null ],
+    [ "Cliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a553a16d8b18a0c5d96264db4d23689b5", null ],
+    [ "carritoToPedido", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a0d2cf5fba241149ffee878c3e6de6af3", null ],
+    [ "getCarrito", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a65a0ae5a2371bf6a2689004ee6bd9449", null ],
+    [ "getContrasenyaCliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#ac179fc40e1dcc920e172928a6f82d125", null ],
+    [ "getDireccionCliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#ab8852113a020fa7db42b0fb995d1024a", null ],
+    [ "getEmailCliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a9e9a30d9f73a2d55aafa647cf782b108", null ],
+    [ "getFavoritos", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#ac8c965dde3710572d0c46abe83314603", null ],
+    [ "getId", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#aeeec6d0185866603378d94e58906973a", null ],
+    [ "getNombreCliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#abbc15fb54f440804ecadbb3d35fd250c", null ],
+    [ "getPedidos", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a4bf6421e6b225b0278321edc95875bc2", null ],
+    [ "loggin", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a8cb9bea76f07384fea9fa8c3998b2eb0", null ],
+    [ "registrarme", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a652e76c1fa7219e94ba1ec5bb16618ba", null ],
+    [ "registro", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#af7d5557b5e49dc868e894dd6485bf68f", null ],
+    [ "setCarrito", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a8abaf47d44abd62b0ebceef8a39d7cc4", null ],
+    [ "setContrasenyaCliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a1d85ae1db43f5b153b1c3254d0aab11a", null ],
+    [ "setDireccionCliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a00bc2f638a8f168a11cbae2a2f2f8c35", null ],
+    [ "setEmailCliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a19b3e706aa0ca6d28e957cb5b35f2db5", null ],
+    [ "setFavoritos", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#a2b873e39617bf424c9d117d461f6fe16", null ],
+    [ "setId", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#ad8bd4c5a3207108f3f41c4947d735df9", null ],
+    [ "setNombreCliente", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#ac2d253c196b80720a426da02991af301", null ],
+    [ "setPedidos", "classes_1_1deusto_1_1spq_1_1data_1_1_cliente.html#afc4e7308aee53630d31139edbd63e769", null ]
+];
