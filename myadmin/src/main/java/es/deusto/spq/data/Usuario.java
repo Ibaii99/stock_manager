@@ -13,14 +13,14 @@ public class Usuario implements Serializable {
 	private String nombre;
 	private String contrasenya;
 	
-	/**Metodo para crear un objeto Usuario vacio
+	/**Constructor de un usuario vacio
 	 * 
 	 */
 	public Usuario() {
 
 	}
 	
-	/**Contructor de un Usaurio
+	/**Contructor de un Usuario
 	 * @param usuario	nombre con el que vamos a crear el usuario
 	 * @param contrasenya	contrasenya con la que se va a crear al usuario
 	 */
