@@ -125,8 +125,9 @@ public class DAO {
 	}
 
 	// GET de un articulo
+	
 	/**Metodo para obtener un solo Articulo de la BBDD
-	 * @param idArticulo	ID único e identificativo de cada Articulo
+	 * @param idArticulo	idArticulo unico e identificativo de cada Articulo
 	 * @return	devuelve un objeto de tipo Articulo
 	 */
 	public Articulo getArticulo(long idArticulo) {
@@ -273,7 +274,7 @@ public class DAO {
 
 	// GET de una cesta
 	/**Metodo para obtener una Cesta en concreto almacenada en la BBDD
-	 * @param idCesta	id único e identifcativo de la Cesta que queremos obtener
+	 * @param idCesta	id unico e identifcativo de la Cesta que queremos obtener
 	 * @return	devuelve un Objeto de tipo Cesta
 	 */
 	public Cesta getCesta(long idCesta) {
@@ -310,7 +311,7 @@ public class DAO {
 	// Metodo para vaciar cestas
 	/**	Metodo para vaciar por completo una Cesta
 	 * @param idCesta	id de la Cesta a vaciar
-	 * @return	devuelve un Objeto de tipo Cesta sin nigún Aaticulo en ella
+	 * @return	devuelve un Objeto de tipo Cesta sin nigun Aaticulo en ella
 	 */
 	public Cesta cleanCesta(long idCesta) {
 		logger.debug("Clean Cesta method access");
