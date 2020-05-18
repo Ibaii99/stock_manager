@@ -64,10 +64,10 @@ public class ArticulosBien extends JFrame{
 	
 	
 	
-//	/**
-//	 * Método que refresca el frame 
-//	 * @return Frame de articulos actualizado
-//	 */
+	/**
+	 * Método que refresca el frame 
+	 * @return Frame de articulos actualizado
+	 */
 	public void dibujar() {
 		articulosListModel.clear();
 		for(Articulo articulo: articulos) {
@@ -79,10 +79,10 @@ public class ArticulosBien extends JFrame{
 		listScrollPane.repaint();
 	}
 	
-//	/**
-//	 * Método con toda la lista de articulos.
-//	 * @return Frame de articulos
-//	 */
+	/**
+	 * Método con toda la lista de articulos.
+	 * @return Frame de articulos
+	 */
 	public ArticulosBien() {
 		setTitle("ARTICULOS");
 		client = ClientBuilder.newClient();

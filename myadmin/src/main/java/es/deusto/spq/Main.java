@@ -15,11 +15,11 @@ public class Main
 {
 
 
-//	    /**
-//	     * Metodo del main
-//	     * @param args
-//	     * @throws IOException
-//	     */
+	    /**
+	     * Metodo del main
+	     * @param args
+	     * @throws IOException
+	     */
 	    @SuppressWarnings("deprecation")
 		public static boolean main(String[] args) throws IOException {
 	    	
