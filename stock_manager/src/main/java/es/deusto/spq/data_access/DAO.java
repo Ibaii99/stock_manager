@@ -99,7 +99,7 @@ public class DAO {
 	// GET de lista de articulos
 
 	/**Metodo para obtener la lista de todos los objetos almacenados en la BBDD
-	 * @return	devuelve un List<Articulo> con todos los articlos almacenados en la BBDD
+	 * @return	devuelve un List Articulo con todos los articlos almacenados en la BBDD
 	 */
 	public List<Articulo> getArticulos() {
 		logger.debug("Get Articulos method access");
@@ -127,7 +127,7 @@ public class DAO {
 	// GET de un articulo
 	
 	/**Metodo para obtener un solo Articulo de la BBDD
-	 * @param idArticulo	idArticulo unico e identificativo de cada Articulo
+	 * @param idArticulo idArticulo unico e identificativo de cada Articulo
 	 * @return	devuelve un objeto de tipo Articulo
 	 */
 	public Articulo getArticulo(long idArticulo) {
@@ -145,7 +145,7 @@ public class DAO {
 	}
 
 	/**Metodo para obtener la lista completa de todos los clientes almacenados en la BBDD
-	 * @return	devuelve un List<Cliente> con todos los objetos de la BBDD
+	 * @return	devuelve un List Cliente con todos los objetos de la BBDD
 	 */
 	public List<Cliente> getClientes() {
 		logger.debug("Get Clientes method access");
@@ -195,7 +195,7 @@ public class DAO {
 	// GET de una lista de usuarios
 
 	/**Metodo para obtener la lista completa de los Usuarios almacenados en la BBDD
-	 * @return devuelve un ListUsuario> con todos los Usuarios almacenados
+	 * @return devuelve un List Usuario con todos los Usuarios almacenados
 	 */
 	public List<Usuario> getUsuarios() {
 		logger.debug("Get Usuarios method access");
@@ -245,7 +245,7 @@ public class DAO {
 
 	// GET de una lista de cestas
 	/**Metodo para obtener la lista completa de todas las Cestas almacenadas en la BBDD
-	 * @return	devueve un List<Cesta> con todas las Cestas almacenadas
+	 * @return	devueve un List Cesta con todas las Cestas almacenadas
 	 */
 	public List<Cesta> getCestas() {
 		logger.debug("Get Cestas method access");
@@ -297,7 +297,7 @@ public class DAO {
 	 * @param idCesta	id de la Cesta que queremos modificar la cantidad de uno de sus Articulos
 	 * @param idArticulo	id del Articulo al que le queremos aumentar o decrementar cantidad
 	 * @param cantidad	cantidad a aumentar o decrementar
-	 * @return
+	 * @return Devuelve la cesta modificada
 	 */
 	public Cesta modifyCesta(long idCesta, long idArticulo, int cantidad) {
 		logger.debug("Modify Cesta method access");
