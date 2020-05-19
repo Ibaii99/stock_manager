@@ -31,18 +31,18 @@ python manage.py runserver
 ~~~ 
 
 ### API [/stock_manager]
-1. Instalar dependencias
+1. Crear la Base de Datos en Mysql con el nombre **stock_managerdb**
+2. Crear el esquema de las clases en la base de datos 
+~~~ 
+mvn datanucleus:schema-create
+~~~ 
+3. Instalar dependencias
 ~~~ 
 mvn install
 ~~~ 
-2. Compilar el proyecto
+4. Compilar el proyecto
 ~~~ 
 mvn clean compile
-~~~ 
-3. Crear la Base de Datos en Mysql con el nombre **stock_managerdb**
-4. Crear el esquema de las clases en la base de datos
-~~~ 
-mvn datanucleus:schema-create
 ~~~ 
 5. Ejecutar la API
 ~~~ 
@@ -52,7 +52,7 @@ mvn exec:java
 ~~~ 
 mvn datanucleus:schema-delete
 ~~~ 
-*Notas: Si se tiene algún problema con el paso 3 ejecutar las tablas manualmente en mysql con el archivo BD_code.sql que se encuentra en src.main.sql.*
+*Notas: Si se tiene algún problema con el paso 2 ejecutar las tablas manualmente en mysql con el archivo BD_code.sql que se encuentra en src.main.sql.*
 
 *La documentación se encuentra en stock_manager/docs/apidocs*
 
