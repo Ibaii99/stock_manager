@@ -42,10 +42,8 @@ import es.deusto.spq.data_access.DAO;
 
 
 
-/**
- * Root resource (exposed at "api" path)
- */
 
+// Root resource (exposed at "api" path)
 @Path("api")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -55,7 +53,7 @@ public class API {
 	 * Method handling HTTP GET requests. The returned object will be sent to the
 	 * client as "text/plain" media type.
 	 *
-	 * @return String that will be returned as a text/plain response.
+	 * String that will be returned as a text/plain response.
 	 */
 
 	private final static Logger LOGGER = Logger.getLogger(API.class);
@@ -143,11 +141,7 @@ public class API {
 		"image_url": ""
 		}
 	*/ 
-	
-	/**
-	 * @param json
-	 * @return
-	 */
+
 	/*
 	@POST
 	@Path("actualizarArticulo")

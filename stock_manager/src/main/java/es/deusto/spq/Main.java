@@ -36,8 +36,9 @@ public class Main {
 
     /**
      * Main method.
-     * @param No necesita ningun parametro
+     * @param args No necesita ningun parametro
      * @throws IOException en caso de error en el arranque del servidor
+     * @return true
      */
 	public static boolean main(String[] args) throws IOException {
 		server = startServer();
