@@ -268,5 +268,13 @@ public class ArticuloTest{
 		assertNotNull(a1);
 		assertEquals(a1.getSerialVersionUid(), a2.getSerialVersionUid());
 	}
+	@Test 
+	@PerfTest(invocations = 1000, threads = 20)
+    @Required(max = 1200, average = 125)
+	public void testequals() {
+		assertNotNull(a1.equals(a2));
+		assertFalse(a1.equals(null));
+		
+	}
 	
 }
