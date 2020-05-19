@@ -260,6 +260,8 @@ public class ArticuloTest{
 	public void testEquals() {
 		assertTrue(a1.equals(a1));
 		assertFalse(a1.equals(a2));
+		assertNotNull(a1.equals(a2));
+		assertFalse(a1.equals(null));
 	}
 	@Test 
 	@PerfTest(invocations = 1000, threads = 20)
@@ -268,13 +270,6 @@ public class ArticuloTest{
 		assertNotNull(a1);
 		assertEquals(a1.getSerialVersionUid(), a2.getSerialVersionUid());
 	}
-	@Test 
-	@PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 1200, average = 125)
-	public void testEquals() {
-		assertNotNull(a1.equals(a2));
-		assertFalse(a1.equals(null));
-		
-	}
+
 	
 }
