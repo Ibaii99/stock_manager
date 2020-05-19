@@ -297,6 +297,7 @@ public class API {
 	}
 
 	/** Este metodo sirve para obtener todos los articulos del sistema
+	 * @return devuelve una lista de Articulos
 	 */
 	@GET
 	@Path("getArticulos")
@@ -415,7 +416,7 @@ public class API {
 	}
 
 	/** Este metodo sirve para introducir unos datos basicos al sistema
-	 * @return devuelve un json crudo con la cesta
+	 *
 	 */
 	@GET
 	@Path("meter_datos")
