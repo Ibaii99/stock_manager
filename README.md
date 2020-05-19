@@ -18,7 +18,7 @@ Este es el repositorio del proyecto del **Grupo 2**, incluye:
    - docu: https://dev.mysql.com/doc/
 
 # Pasos para ejecutar
-### Cliente [mysite]
+### Cliente [/mysite]
 1. Crear un entorno virtual
 2. Instalar pip
 3. Instalar dependencias:
@@ -29,7 +29,7 @@ pip install -r requirements.txt
 ~~~ 
 python manage.py runserver
 ~~~ 
-### API [stock_manager]
+### API [/stock_manager]
 1. Instalar dependencias
 ~~~ 
 mvn install
@@ -51,7 +51,7 @@ mvn exec:java
 mvn datanucleus:schema-delete
 ~~~ 
 *Notas: Si se tiene algún problema con el paso 3 ejecutar las tablas manualmente en mysql con el archivo BD_code.sql que se encuentra en src.main.sql.*
-### Administrador [myadmin]
+### Administrador [/myadmin]
 1. Instalar dependencias
 ~~~ 
 mvn install
