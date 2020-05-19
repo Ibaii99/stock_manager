@@ -279,14 +279,16 @@ public class Articulo implements Serializable{
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-
+		try {
 		Articulo a = (Articulo) obj;
 		
 		if(a.getId()==this.ID) 
 			return true;
 
 		return false;
-
+		} catch (NullPointerException e) {
+			return false;
+		}
 	}
     
 	
