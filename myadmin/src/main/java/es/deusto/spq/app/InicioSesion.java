@@ -45,11 +45,11 @@ public class InicioSesion extends JFrame {
 	private JPasswordField contrasenya;
 
 	
-//    /**
-//     * Metodo del main
-//     * @param args
-//     * @return Frame de InicioSesion
-//     */
+    /**
+     * Metodo del main
+     * @param args
+     * @return Frame de InicioSesion
+     */
 	 
 	public static void main(String[] args) {
 		
@@ -67,10 +67,10 @@ public class InicioSesion extends JFrame {
 
 	private Client client;
 	
-//	/**
-//	 * Método que permite acceder al modo administrador iniciando sesión.
-//	 * @return Frame de iniciar sesion
-//	 */
+	/**
+	 * Método que permite acceder al modo administrador iniciando sesión.
+	 * @return Frame de iniciar sesion
+	 */
 	public InicioSesion() {
 		setTitle("INICIO SESION");
 		client = ClientBuilder.newClient();

@@ -16,8 +16,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.deusto.spq.*;
-@PerfTest(invocations = 5)
-@Required(max = 12000, average = 250)
+@PerfTest(invocations = 2)
+@Required(max = 42000, average = 500)
 public class MainTest {
 	private Main m,m2;
 	@Rule 
@@ -30,15 +30,15 @@ public class MainTest {
 	}
 	
 	@Test
-	@PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 1200, average = 125)
+	@PerfTest(invocations = 10, threads = 2)
+    @Required(max = 10200, average = 1000)
 	public void mainTest() {
 		assertNotEquals(m,m2);
 	}
 	
 	@Test
-	@PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 1200, average = 125)
+	@PerfTest(invocations = 10, threads = 2)
+    @Required(max = 10200, average = 1000)
 	public void mainTest2() {
 		String[] arg= {};
 		try {

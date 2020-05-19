@@ -1,0 +1,28 @@
+var classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i =
+[
+    [ "anyadirCarrito", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a61747e4058308c5bca9124ebb8dfef2a", null ],
+    [ "anyadirFavoritos", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a1a59c435f70a40264ec966d3463df617", null ],
+    [ "api_meter_datos", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a375cc0a3dbc8d420faf6a15344de8e96", null ],
+    [ "carritoPrecio", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a818f49445856e04c06b2741a62f6af12", null ],
+    [ "carritoToPedido", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a779e3c346939049a0c0a6aa4fa654145", null ],
+    [ "eliminarArticulo", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a40b19a17b60fb2883254b575d3965981", null ],
+    [ "getArticulos", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#ae4a8d0ca592d9e809d2c7b7e0887c376", null ],
+    [ "getArticulos", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a01ba9a3cc8cfaef6ef76609b25c4a4f9", null ],
+    [ "getCarrito", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#ace9f23d2b0932caf69f6903ae4b13f96", null ],
+    [ "getCesta", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a5bc3e4106ace98846b53700f620348b0", null ],
+    [ "getCestas", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a65520cc3457c4219226a36b1f5f9a652", null ],
+    [ "getCliente", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#ad15c65ff9ff832585ef432ee731e7748", null ],
+    [ "getFavoritos", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a82322cd95898fd8950ab19e0bc5ab9a7", null ],
+    [ "getUsuario", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a717723d685cdbb4cb10f14a3f6e109a2", null ],
+    [ "getUsuarios", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#aa61346c0d580673970a9eac0ab46f783", null ],
+    [ "ingresarArticulo", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#ae01f48bd215d9c15fdf64752c2af9146", null ],
+    [ "logIn", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#acaabd035300cd7a85573d917d5884505", null ],
+    [ "modifyCarrito", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#af8e2e91a60e63c6a56ad8f9f1bc31628", null ],
+    [ "modifyFavoritos", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a7651d2c306c3a6745def3d033a231085", null ],
+    [ "register", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a31f3a30f72c80dfc57717e87b9ad0945", null ],
+    [ "removeCarrito", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#ad31b125ac11ea98a59e38a8179b6bc06", null ],
+    [ "tamanyoCarrito", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a23103b1aa16e17b8b82f370161cce460", null ],
+    [ "tamanyoFavoritos", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#acc609c9c5a2429fc1d84b4b0b2f7e772", null ],
+    [ "VaciarCarrito", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#a693927488d9568660c2afb52697ce2b6", null ],
+    [ "VaciarFavoritos", "classes_1_1deusto_1_1spq_1_1remote_1_1_a_p_i.html#af29fc6705407f00cd2f690fd44ba99fb", null ]
+];

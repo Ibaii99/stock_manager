@@ -31,7 +31,10 @@ public class DAO {
 	private PersistenceManager pm;
 	static final Logger logger = Logger.getLogger(DAO.class);
 
-	//
+	
+	/**Constructor de la clase DAO para poder generar conexion a la BBDD
+	 * 
+	 */
 	public DAO() {
 		logger.debug("Dao class initialized");
 
@@ -41,6 +44,9 @@ public class DAO {
 		logger.info("Conexion created");
 	}
 
+	/**Metodo para guardar Objetos Serializables en nuestra BBDD
+	 * @param u Objeto a guardar
+	 */
 	public void store(Object u) {
 		logger.debug("Store method access");
 		Transaction tx = this.pm.currentTransaction();
@@ -61,6 +67,9 @@ public class DAO {
 		logger.info("Object stored");
 	}
 
+	/**Metodo para eliminar un objeto Articulo de la BBDD
+	 * @param u Articulo que deseamos eliminar
+	 */
 	public void delete(Articulo u) {
 
 
@@ -89,6 +98,9 @@ public class DAO {
 
 	// GET de lista de articulos
 
+	/**Metodo para obtener la lista de todos los objetos almacenados en la BBDD
+	 * @return	devuelve un List<Articulo> con todos los articlos almacenados en la BBDD
+	 */
 	public List<Articulo> getArticulos() {
 		logger.debug("Get Articulos method access");
 		List<Articulo> ret = new ArrayList<Articulo>();
@@ -113,6 +125,11 @@ public class DAO {
 	}
 
 	// GET de un articulo
+	
+	/**Metodo para obtener un solo Articulo de la BBDD
+	 * @param idArticulo	idArticulo unico e identificativo de cada Articulo
+	 * @return	devuelve un objeto de tipo Articulo
+	 */
 	public Articulo getArticulo(long idArticulo) {
 		logger.debug("Get Articulo method access");
 		ArrayList<Articulo> articulos = (ArrayList<Articulo>) this.getArticulos();
@@ -127,6 +144,9 @@ public class DAO {
 		return null;
 	}
 
+	/**Metodo para obtener la lista completa de todos los clientes almacenados en la BBDD
+	 * @return	devuelve un List<Cliente> con todos los objetos de la BBDD
+	 */
 	public List<Cliente> getClientes() {
 		logger.debug("Get Clientes method access");
 		List<Cliente> ret = new ArrayList<Cliente>();
@@ -151,6 +171,11 @@ public class DAO {
 	}
 
 	// GET de un cliente
+	/**Metodo para obtener un Cliente en concreto de la BBDD
+	 * @param email	email del Cliente que queremos obtener
+	 * @param contrasenya	contrasenya del Cliente a obtener
+	 * @return	devuelve un objeto de tipo Cliente
+	 */
 	public Cliente getCliente(String email, String contrasenya) {
 		logger.debug("Get Cliente method access");
 		Cliente c = null;
@@ -169,6 +194,9 @@ public class DAO {
 
 	// GET de una lista de usuarios
 
+	/**Metodo para obtener la lista completa de los Usuarios almacenados en la BBDD
+	 * @return devuelve un ListUsuario> con todos los Usuarios almacenados
+	 */
 	public List<Usuario> getUsuarios() {
 		logger.debug("Get Usuarios method access");
 		List<Usuario> ret = new ArrayList<Usuario>();
@@ -194,6 +222,11 @@ public class DAO {
 	}
 
 	// GET de un usuario
+	/**Metodo para obtener un Usuario en concreto almacenado en la BBDD
+	 * @param nombre	nombre del Usuario a obtener
+	 * @param contrasenya	contrasenya del Usuario a obtener
+	 * @return	devuelve un objeto de tipo Usuario
+	 */
 	public Usuario getUsuario(String nombre, String contrasenya) {
 		logger.debug("Get Usuario method access");
 		Usuario u = null;
@@ -211,6 +244,9 @@ public class DAO {
 	}
 
 	// GET de una lista de cestas
+	/**Metodo para obtener la lista completa de todas las Cestas almacenadas en la BBDD
+	 * @return	devueve un List<Cesta> con todas las Cestas almacenadas
+	 */
 	public List<Cesta> getCestas() {
 		logger.debug("Get Cestas method access");
 		List<Cesta> ret = new ArrayList<Cesta>();
@@ -237,6 +273,10 @@ public class DAO {
 	}
 
 	// GET de una cesta
+	/**Metodo para obtener una Cesta en concreto almacenada en la BBDD
+	 * @param idCesta	id unico e identifcativo de la Cesta que queremos obtener
+	 * @return	devuelve un Objeto de tipo Cesta
+	 */
 	public Cesta getCesta(long idCesta) {
 		logger.debug("Get Cesta method access");
 		Cesta c = null;
@@ -253,6 +293,12 @@ public class DAO {
 	}
 
 	// Metodo para modificar cestas
+	/**Metodo para modificar la cantidad de un Articulo que se encuentra en una Cesta
+	 * @param idCesta	id de la Cesta que queremos modificar la cantidad de uno de sus Articulos
+	 * @param idArticulo	id del Articulo al que le queremos aumentar o decrementar cantidad
+	 * @param cantidad	cantidad a aumentar o decrementar
+	 * @return
+	 */
 	public Cesta modifyCesta(long idCesta, long idArticulo, int cantidad) {
 		logger.debug("Modify Cesta method access");
 		Cesta c = getCesta(idCesta);
@@ -263,6 +309,10 @@ public class DAO {
 	}
 
 	// Metodo para vaciar cestas
+	/**	Metodo para vaciar por completo una Cesta
+	 * @param idCesta	id de la Cesta a vaciar
+	 * @return	devuelve un Objeto de tipo Cesta sin nigun Aaticulo en ella
+	 */
 	public Cesta cleanCesta(long idCesta) {
 		logger.debug("Clean Cesta method access");
 		Cesta c = getCesta(idCesta);
@@ -304,6 +354,9 @@ public class DAO {
 	 */
 
 	// Meter para introducir datos a la Base de Datos
+	/**Metodo para guardar valores predefinidos en la BBDD
+	 * @return devuelve un objeto String para indicarnos que los objetos se han guardado correctamente
+	 */
 	@SuppressWarnings("deprecation")
 	public String meter_datos() {
 		logger.debug("Meter Datos method access");
@@ -499,6 +552,9 @@ public class DAO {
 	}
 
 	// No cerrar la conexion hasta cerrar el programa
+	/**Metodo para desconectarnos de la conexion con la BBDD
+	 * 
+	 */
 	public void closeConection() {
 		logger.debug("Close conexion method access");
 		pmf.close();

@@ -56,10 +56,10 @@ public class ModificarArticulo extends JFrame {
 	private JSpinner categoriaSpinner;
 	private JCalendar calendar;
 
-//	/**
-//	 * Método que posibilita la edición de un artículo ya existente. 
-//	 * @return Frame de modificar articulos
-//	 */
+	/**
+	 * Método que posibilita la edición de un artículo ya existente. 
+	 * @return Frame de modificar articulos
+	 */
 	public ModificarArticulo(final Articulo a) {
 
 		setTitle("MODIFICAR ARTICULO");
@@ -319,11 +319,11 @@ public class ModificarArticulo extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-//    /**
-//     * Metodo del main
-//     * @param args
-//     * @return Frame de ModificarArticulo
-//     */
+    /**
+     * Metodo del main
+     * @param args
+     * @return Frame de ModificarArticulo
+     */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
