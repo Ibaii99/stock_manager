@@ -53,7 +53,7 @@ mvn datanucleus:schema-delete
 ~~~ 
 *Notas: Si se tiene algún problema con el paso 3 ejecutar las tablas manualmente en mysql con el archivo BD_code.sql que se encuentra en src.main.sql.*
 
-*La documentación se encuentra en stock_manager/docs/apidocs *
+*La documentación se encuentra en stock_manager/docs/apidocs*
 
 ### Administrador [/myadmin]
 1. Instalar dependencias
@@ -69,4 +69,4 @@ mvn clean compile
 mvn exec:java
 ~~~
 
-*La documentación se encuentra en myadmin/docs/apidocs *
+*La documentación se encuentra en myadmin/docs/apidocs*
