@@ -39,8 +39,7 @@ public class ArticulosStock extends JFrame {
 
     /**
      * Metodo del main
-     * @param args
-     * @return Frame de ArticulosStock
+     * @param args ningun parametro es necesario
      */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -57,7 +56,6 @@ public class ArticulosStock extends JFrame {
 
 	/**
 	 * Método con toda la lista de articulos con bajo stock.
-	 * @return Frame de articulos
 	 */
 	public ArticulosStock() {
 		setTitle("ARTICULOS BAJOS EN STOCK");

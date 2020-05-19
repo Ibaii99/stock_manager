@@ -66,7 +66,6 @@ public class ArticulosBien extends JFrame{
 	
 	/**
 	 * Método que refresca el frame 
-	 * @return Frame de articulos actualizado
 	 */
 	public void dibujar() {
 		articulosListModel.clear();
@@ -81,7 +80,6 @@ public class ArticulosBien extends JFrame{
 	
 	/**
 	 * Método con toda la lista de articulos.
-	 * @return Frame de articulos
 	 */
 	public ArticulosBien() {
 		setTitle("ARTICULOS");
@@ -328,6 +326,9 @@ public class ArticulosBien extends JFrame{
 	}
 
 	
+	/**Metodo del main
+	 * @param args ningun parametro es necesario
+	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			

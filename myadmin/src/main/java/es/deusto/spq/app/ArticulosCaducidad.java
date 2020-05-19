@@ -59,8 +59,7 @@ public class ArticulosCaducidad extends JFrame {
 
     /**
      * Metodo del main
-     * @param args
-     * @return Frame de ArticulosCaducidad
+     * @param args ningun parametro es necesario
      */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -77,7 +76,6 @@ public class ArticulosCaducidad extends JFrame {
 
 	/**
 	 * Método con toda la lista de articulos proximos a Caducar.
-	 * @return Frame de articulos
 	 */
 	public ArticulosCaducidad() {
 		setTitle("ARTICULOS PROXIMOS A CADUCAR");
