@@ -39,7 +39,7 @@ mvn install
 ~~~ 
 mvn clean compile
 ~~~ 
-3. Crear la Base de datos en Mysql con el nombre **stock_managerdb**
+3. Crear la Base de Datos en Mysql con el nombre **stock_managerdb**
 4. Crear el esquema de las clases en la base de datos
 ~~~ 
 mvn datanucleus:schema-create
