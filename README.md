@@ -40,11 +40,7 @@ mvn datanucleus:schema-create
 ~~~ 
 mvn install
 ~~~ 
-4. Compilar el proyecto
-~~~ 
-mvn clean compile
-~~~ 
-5. Ejecutar la API
+4. Ejecutar la API
 ~~~ 
 mvn exec:java
 ~~~ 
