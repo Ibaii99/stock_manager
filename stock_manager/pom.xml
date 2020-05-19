@@ -233,6 +233,7 @@
 				<configuration>
 					<show>private</show>
 					<nohelp>true</nohelp>
+					<reportOutputDirectory>${basedir}/docs</reportOutputDirectory>
 				</configuration>
 			</plugin>
 			 
