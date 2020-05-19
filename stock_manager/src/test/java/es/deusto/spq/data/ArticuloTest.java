@@ -271,7 +271,7 @@ public class ArticuloTest{
 	@Test 
 	@PerfTest(invocations = 1000, threads = 20)
     @Required(max = 1200, average = 125)
-	public void testequals() {
+	public void testEquals() {
 		assertNotNull(a1.equals(a2));
 		assertFalse(a1.equals(null));
 		
