@@ -32,7 +32,7 @@ public class Usuario implements Serializable {
 	
 
 	/**Metodo para obtener el nombre de un objeto Usuario
-	 * @return	devuelve un objeto String con el nombre del Usuario
+	 * @return	nombre 
 	 */
 	public String getNombre() {
 		return nombre;
@@ -47,7 +47,7 @@ public class Usuario implements Serializable {
 
 	
 	/**Metodo para obtener la contrasenya de un Usuario
-	 * @return	devuelve un objeto String con la contrasneya del Usuario
+	 * @return	contrasenya
 	 */
 	public String getContrasenya() {
 		return contrasenya;
@@ -61,14 +61,14 @@ public class Usuario implements Serializable {
 	}
 
 	/**Metodo para cambiar el id de un Usuario
-	 * @param id	id a cambiar del Usuario
+	 * @return id	
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**Metodo para convertir el objeto Usuario a un String
-	 * @return	devuelve un objeto String con la informacion del Usuario que queremos convertir
+	 * @return	String
 	 */
 	@Override
 	public String toString() {

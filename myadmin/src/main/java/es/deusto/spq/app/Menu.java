@@ -19,8 +19,7 @@ public class Menu extends JFrame {
 
     /**
      * Metodo del main
-     * @param args
-     * @return Frame de Menu
+     * @param args ningun parametro es necesario
      */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -37,7 +36,6 @@ public class Menu extends JFrame {
 
 	/**
 	 * Método con un menu, desde el cual hay la posibilidad de acceder a otros frames
-	 * @return Frame de un menu con distintas opciones
 	 */
 	public Menu() {
 		setTitle("MENU");

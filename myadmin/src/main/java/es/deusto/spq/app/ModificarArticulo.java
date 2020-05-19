@@ -57,8 +57,8 @@ public class ModificarArticulo extends JFrame {
 	private JCalendar calendar;
 
 	/**
-	 * Método que posibilita la edición de un artículo ya existente. 
-	 * @return Frame de modificar articulos
+	 * Método que posibilita la edición de un artículo ya existente
+	 * @param a introducimos un articulo a
 	 */
 	public ModificarArticulo(final Articulo a) {
 
@@ -321,8 +321,7 @@ public class ModificarArticulo extends JFrame {
 	}
     /**
      * Metodo del main
-     * @param args
-     * @return Frame de ModificarArticulo
+     * @param args ningun parametro es necesario
      */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

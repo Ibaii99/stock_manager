@@ -33,7 +33,7 @@ public class Vendedor {
 	}
 	/**
 	 * Metodo que convierte todos los atributos introducidos a un string.
-	 * @return String de los atributos de un vendedor
+	 * @return String 
 	 */
 	@Override
 	public String toString() {
@@ -48,53 +48,49 @@ public class Vendedor {
 	}
 	/**
 	 * Permite modificar el id
-	 * @param id
-	 * @return Id modificado
+	 * @param id a modificar
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 	/**
 	 * Devuelve el nombre introducido
-	 * @return Nombre
+	 * @return nombreVendedor
 	 */
 	public String getNombreVendedor() {
 		return nombreVendedor;
 	}
 	/**
-	 * Permite modificar el nombre
-	 * @param nombre
-	 * @return Nombre modificado
+	 * Permite modificar el nombre del vendedor
+	 * @param nombreVendedor a modificar
 	 */
 	public void setNombreVendedor(String nombreVendedor) {
 		this.nombreVendedor = nombreVendedor;
 	}
 	/**
 	 * Devuelve el email introducido
-	 * @return Email
+	 * @return emailVendedor
 	 */
 	public String getEmailVendedor() {
 		return emailVendedor;
 	}
 	/**
-	 * Permite modificar el email
-	 * @param email
-	 * @return Email modificado
+	 * Permite modificar el email del vendedor
+	 * @param emailVendedor a modificar
 	 */
 	public void setEmailVendedor(String emailVendedor) {
 		this.emailVendedor = emailVendedor;
 	}
 	/**
 	 * Devuelve la lista de articulos introducida
-	 * @return Lista de articulos
+	 * @return articulos
 	 */
 	public List<Articulo> getArticulos() {
 		return articulos;
 	}
 	/**
 	 * Permite modificar la lista de articulos
-	 * @param lista de articulos
-	 * @return Lista de articulos modificada
+	 * @param articulos a modificar
 	 */
 	public void setArticulos(List<Articulo> articulos) {
 		this.articulos = articulos;

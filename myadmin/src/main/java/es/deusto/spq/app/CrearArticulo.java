@@ -59,8 +59,7 @@ public class CrearArticulo extends JFrame {
 
     /**
      * Metodo del main
-     * @param args
-     * @return Frame de CrearArticulo
+     * @param args ningun parametro es necesario
      */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -80,7 +79,6 @@ public class CrearArticulo extends JFrame {
 
 	/**
 	 * Método que posibilita la creacion de un nuevo Articulo, con diferentes atributos.
-	 * @return Articulo
 	 */
 	public CrearArticulo() {
 		setMinimumSize(new Dimension(910, 505));

@@ -17,8 +17,9 @@ public class Main
 
 	    /**
 	     * Metodo del main
-	     * @param args
-	     * @throws IOException
+	     * @param args ningun parametro es necesario
+	     * @throws IOException si hay algun error
+	     * @return true
 	     */
 	    @SuppressWarnings("deprecation")
 		public static boolean main(String[] args) throws IOException {

@@ -47,8 +47,7 @@ public class InicioSesion extends JFrame {
 	
     /**
      * Metodo del main
-     * @param args
-     * @return Frame de InicioSesion
+     * @param args ningun parametro es necesario
      */
 	 
 	public static void main(String[] args) {
@@ -69,7 +68,6 @@ public class InicioSesion extends JFrame {
 	
 	/**
 	 * Método que permite acceder al modo administrador iniciando sesión.
-	 * @return Frame de iniciar sesion
 	 */
 	public InicioSesion() {
 		setTitle("INICIO SESION");

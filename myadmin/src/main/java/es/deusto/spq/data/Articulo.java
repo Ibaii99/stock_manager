@@ -73,7 +73,7 @@ public class Articulo implements Serializable{
     }
 	/**
 	 * Devuelve la categoria introducida
-	 * @return Un tipo de categoria
+	 * @return categoria
 	 */
     
 	public Categoria getCategoria() {
@@ -81,7 +81,7 @@ public class Articulo implements Serializable{
 	}
 	/**
 	 * Devuelve el id introducido
-	 * @return Id
+	 * @return id
 	 */
 	
     public long getId() {
@@ -89,15 +89,14 @@ public class Articulo implements Serializable{
 	}
 	/**
 	 * Permite modificar el Id
-	 * @param id
-	 * @return Id modificado
+	 * @param id id a modificar
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 	/**
 	 * Devuelve el nombre introducido
-	 * @return Nombre
+	 * @return nombre
 	 */
 
 	public String getNombre() {
@@ -105,23 +104,21 @@ public class Articulo implements Serializable{
 	}
 	/**
 	 * Permite modificar el nombre
-	 * @param nombre
-	 * @return Nombre modificado
+	 * @param nombre a modificar
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	/**
 	 * Devuelve la fecha introducida
-	 * @return Fecha
+	 * @return caducidad
 	 */
 	public Date getCaducidad() {
 		return caducidad;
 	}
 	/**
 	 * Permite modificar la fecha de caducidad
-	 * @param fecha
-	 * @return Fecha modificada
+	 * @param caducidad a modificar
 	 */
 	public void setCaducidad(Date caducidad) {
 		this.caducidad = caducidad;
@@ -135,76 +132,70 @@ public class Articulo implements Serializable{
 	}
 	/**
 	 * Permite modificar el precio
-	 * @param precio
-	 * @return Precio modificado
+	 * @param precio a modificar
 	 */
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 	/**
 	 * Devuelve el stock introducido
-	 * @return Stock
+	 * @return stock
 	 */
 	public int getStock() {
 		return stock;
 	}
 	/**
 	 * Permite modificar el stock
-	 * @param stock
-	 * @return Stock modificado
+	 * @param stock a modificar
 	 */
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
 	/**
 	 * Devuelve la descripcion introducida
-	 * @return Descripcion
+	 * @return descripcion
 	 */
 	public String getDescripcion() {
 		return descripcion;
 	}
 	/**
 	 * Permite modificar la descripcion
-	 * @param descripcion
-	 * @return Descripcion modificada
+	 * @param descripcion a modificar
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 	/**
 	 * Devuelve la oferta introducida
-	 * @return Oferta
+	 * @return oferta
 	 */
 	public float getOferta() {
 		return oferta;
 	}
 	/**
 	 * Permite modificar la oferta
-	 * @param oferta
-	 * @return Oferta modificada
+	 * @param oferta a modificar
 	 */
 	public void setOferta(float oferta) {
 		this.oferta = oferta;
 	}
 	/**
 	 * Devuelve el vendedor introducido
-	 * @return Vendedor
+	 * @return vendedor
 	 */
 	public Vendedor getVendedor() {
 		return vendedor;
 	}
 	/**
 	 * Permite modificar el vendedor
-	 * @param vendedor
-	 * @return Vendedor modificado
+	 * @param vendedor a modificar
 	 */
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
 	/**
 	 * Permite modificar la categoria
-	 * @param categoria
-	 * @return Categoria modificada
+	 * @param categoria a modificar
 	 */
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
@@ -212,15 +203,14 @@ public class Articulo implements Serializable{
 	
 	/**
 	 * Devuelve la url introducida
-	 * @return Url
+	 * @return imageUrl
 	 */
 	public String getImageUrl() {
 		return imageUrl;
 	}
 	/**
 	 * Permite modificar la url
-	 * @param url
-	 * @return Url modificada
+	 * @param imageUrl url a modificar
 	 */
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
@@ -228,7 +218,7 @@ public class Articulo implements Serializable{
 	}
 	/**
 	 * Metodo que convierte todos los atributos introducidos a un string.
-	 * @return String de los atributos de un articulo
+	 * @return String 
 	 */
 	@Override
 	public String toString() {
@@ -237,7 +227,7 @@ public class Articulo implements Serializable{
 	}
 	/**
 	 * Metodo que compara si dos articulos son iguales. Para ello el equals debe ser el mismo.
-	 * @return Resultado de la comparacion
+	 * @return result
 	 */
 	@Override
 	public int hashCode() {
@@ -249,7 +239,8 @@ public class Articulo implements Serializable{
 	/**
 	 * Metodo que compara articulos segun el id para saber si son iguales o distintos.
 	 * @param obj el objeto referencia al que se compara.
-	 * @return False(diferentes) o True(iguales)
+	 * @return true 
+	 * @return false 
 	 */
 	@Override
 	public boolean equals(Object obj) {
