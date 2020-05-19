@@ -72,7 +72,10 @@ public class API {
 		return "{ \"nombre\": \""+nombre + "\" }";
 	}
 
-
+	/** Este metodo sirve para registrarse en el sistema
+	 * @param 	json Recibe un json con el email, la contrasenya y el nombre
+	 * @return devuelve un json crudo con el nombre
+	 */
 	@POST
 	@Path("register")
 	public String register(JsonObject json) {
@@ -84,6 +87,10 @@ public class API {
 		return "{ \"nombre\": \""+cliente.getNombreCliente() + "\" }";
 	}
 
+	/** Este metodo sirve para eliminar un Articulo del sistema
+	 * @param 	json Recibe un json con el id
+	 * @return devuelve un json crudo con un texto de verificacion
+	 */
 	@POST
 	@Path("eliminarArticulo")
 	public String eliminarArticulo(JsonObject json) {
@@ -96,6 +103,10 @@ public class API {
         return "Articulo Eliminado";
 	}	
 	
+	/** Este metodo sirve para ingresar un Articulo en el sistema
+	 * @param 	json Recibe un json con el nombre, fecha de caducidad, precio, cantidad en el stock, descripcion, precio en oferta, categoria y la url de la imangen
+	 * @return devuelve un json crudo con un texto de verificacion
+	 */
 	@POST
 	@Path("ingresarArticulo")
 	public String ingresarArticulo(JsonObject json) {
@@ -142,14 +153,10 @@ public class API {
 		}
 	*/ 
 
-	/*
-	@POST
-	@Path("actualizarArticulo")
-	public String actualizarArticulo(JsonObject json) {
-		DAO dao = new DAO();
-		
-	}
-	*/
+	/** Este metodo sirve para obtener un cliente del sistema
+	 * @param 	json Recibe un json con el email y la contrasenya
+	 * @return devuelve un json crudo con el cliente
+	 */
 	@POST
 	@Path("getCliente")
 	public Cliente getCliente(JsonObject json) {
@@ -158,7 +165,11 @@ public class API {
 		LOGGER.info("se ha completado getCliente");
 		return c;
 	}
-
+	
+	/** Este metodo sirve para obtener el carrito del cliente del sistema
+	 * @param 	json Recibe un json con el email y la contrasenya
+	 * @return devuelve un json crudo con el carrito
+	 */
 	@POST
 	@Path("getCarrito")
 	public Cesta getCarrito(JsonObject json) {
@@ -168,6 +179,10 @@ public class API {
 		return c.getCarrito();
 	}
 	
+	/** Este metodo sirve para obtener la cesta de favoritos del cliente del sistema
+	 * @param 	json Recibe un json con el email y la contrasenya
+	 * @return devuelve un json crudo con la cesta de favoritos
+	 */
 	@POST
 	@Path("getFavoritos")
 	public Cesta getFavoritos(JsonObject json) {
@@ -176,7 +191,9 @@ public class API {
 		LOGGER.info("se ha completado getFavoritos");
 		return c.getFavoritos();
 	}
-	
+	/** Este metodo sirve para meter un articulo en el carrito del cliente del sistema
+	 * @param 	json Recibe un json con el email, la contrasenya, el id del articulo y la cantidad
+	 */
 	@POST
 	@Path("addCarrito")//por ID
 	public void anyadirCarrito(JsonObject json) {
@@ -187,7 +204,9 @@ public class API {
 		c.getCarrito().addCesta(a, Integer.parseInt(get_from_json(json,"cantidad")));
 		LOGGER.info("se ha completado addCarrito");
 	}
-
+	/** Este metodo sirve para modificar el carrito del cliente del sistema
+	 * @param 	json Recibe un json con el email, la contrasenya, el id del articulo y la cantidad
+	 */
 	@POST
 	@Path("modifyCarrito")//por ID
 	public void modifyCarrito(JsonObject json) {
@@ -198,7 +217,10 @@ public class API {
 		c.getCarrito().modifyCesta(a, Integer.parseInt(get_from_json(json,"cantidad")));
 		LOGGER.info("se ha completado modifyCarrito");
 	}
-	
+	/** Este metodo sirve para obtener el tamaño del carrito del cliente del sistema
+	 * @param 	json Recibe un json con el email y la contrasenya
+	 * @return devuelve un json crudo con Tamaño de la cesta
+	 * */
 	@POST
 	@Path("tamanyoCarrito")//por ID
 	public String tamanyoCarrito(JsonObject json) {
@@ -208,7 +230,9 @@ public class API {
 		LOGGER.info("se ha completado tamanyoCarrito");
 		return "{ \"tamanyo\": \""+c.getCarrito().getArticulos().size() + "\" }";
 	}
-
+	/** Este metodo sirve para vaciar el carrito del cliente del sistema
+	 * @param 	json Recibe un json con el email y la contrasenya-
+	 */
 	@POST
 	@Path("vaciarCarrito")//por ID
 	public void VaciarCarrito(JsonObject json) {
@@ -218,7 +242,9 @@ public class API {
 		c.getCarrito().vaciarCesta();
 		LOGGER.info("se ha completado vaciarCarrito");
 	}
-
+	/** Este metodo sirve para añadir un articulo a la cesta de favoritos del cliente del sistema
+	 * @param 	json Recibe un json con el email, la contrasenya y el id del articulo
+	 */
 	@POST
 	@Path("addFavoritos")//por ID
 	public void anyadirFavoritos(JsonObject json) {
@@ -229,7 +255,9 @@ public class API {
 		c.getFavoritos().addCesta(a, 1);
 		LOGGER.info("se ha completado addFavoritos");
 	}
-	
+	/** Este metodo sirve para modificar la cesta de favoritos del cliente del sistema
+	 * @param 	json Recibe un json con el email, la contrasenya y el id del articulo
+	 */
 	@POST
 	@Path("modifyFavoritos")//por ID
 	public void modifyFavoritos(JsonObject json) {
@@ -241,6 +269,10 @@ public class API {
 		LOGGER.info("se ha completado modifyFavoritos");
 	}
 
+	/** Este metodo sirve para obtener el tamaño de la cesta de favoritos del cliente del sistema
+	 * @param 	json Recibe un json con el email y la contrasenya
+	 * @return devuelve un json crudo con el tamaño de la cesta de favoritos
+	 */
 	@POST
 	@Path("tamanyoFavoritos")//por ID
 	public int tamanyoFavoritos(JsonObject json) {
@@ -251,6 +283,9 @@ public class API {
 		return c.getCarrito().getArticulos().size();
 	}
 	
+	/** Este metodo sirve para vaciar la cesta de favoritos del cliente del sistema
+	 * @param 	json Recibe un json con el email y la contrasenya
+	 */
 	@POST
 	@Path("vaciarFavoritos")//por ID
 	public void VaciarFavoritos(JsonObject json) {
@@ -261,6 +296,8 @@ public class API {
 		LOGGER.info("se ha completado vaciarFavoritos");
 	}
 
+	/** Este metodo sirve para obtener todos los articulos del sistema
+	 */
 	@GET
 	@Path("getArticulos")
 	public List<Articulo> getArticulos() {
@@ -269,7 +306,11 @@ public class API {
 		LOGGER.info("se ha completado getArticulos");
 		return db.getArticulos();
 	}
-		
+
+	/** Este metodo sirve para obtener un articulo del sistema
+	 * @param 	json Recibe un json con el id
+	 * @return devuelve un json crudo con el articulo
+	 */
 	@POST
 	@Path("getArticulo")//por ID
 	public Articulo getArticulos(JsonObject json) {
@@ -280,6 +321,9 @@ public class API {
 		return a;
 	}
 
+	/** Este metodo sirve para remober un articulo del carrito del cliente del sistema
+	 * @param 	json Recibe un json con el email y la contraseña del cliente y el id del articulo
+	 */
 	@POST
     @Path("removeCarrito")//por ID
     public void removeCarrito(JsonObject json) {
@@ -291,6 +335,9 @@ public class API {
 		LOGGER.info("se ha completado removeCarrito");
 	}
 	
+	/** Este metodo sirve para pasar el carrito actual a Pedidos para saber que ya ha sido comprado
+	 * @param 	json Recibe un json con el email y la contraseña
+	 */
 	@POST
     @Path("carritoToPedido")//por ID
     public void carritoToPedido(JsonObject json) {
@@ -299,8 +346,12 @@ public class API {
         Cliente c = db.getCliente(get_from_json(json, "email"), get_from_json(json, "password"));
 		c.carritoToPedido();
 		LOGGER.info("se ha completado carritoToPedido");
-    }
-
+	}
+	
+	/** Este metodo sirve para obtener el precio del carrito al completo
+	 * @param 	json Recibe un json con el email y contraseña 
+	 * @return devuelve un json crudo con el precio del carrito
+	 */
 	@POST
     @Path("carritoPrecio")//por ID
     public String carritoPrecio(JsonObject json) {
@@ -311,16 +362,9 @@ public class API {
         return "{ \"precio\": \""+ c.getCarrito().getRecibo() + "\" }";
 	}
 	
-	//Conseguir administradores
-//	@POST
-//	@Path("get_admin")
-//	public Admin get_admin(JsonObject json) {
-//		System.out.println("Usuario: " + get_from_json(json, "usuario") + " Pass: "+  get_from_json(json, "password"));
-//		Admin a = new DAO().getAdmin(get_from_json(json, "usuario"), get_from_json(json, "password"));
-//		a.toString();
-//		return a;
-//	}
-
+	/** Este metodo sirve para obtener todas las cestas del sistema
+	* @return devuelve un json crudo con todas las cestas
+	 */
 	@GET
 	@Path("getCestas")
 	public List<Cesta> getCestas() {
@@ -330,6 +374,10 @@ public class API {
 		return db.getCestas();
 	}
 
+	/** Este metodo sirve para obtener una cesta del sistema
+	 * @param 	json Recibe un json con el id
+	 * @return devuelve un json crudo con la cesta
+	 */
 	@POST
 	@Path("getCesta")//por ID
 	public Cesta getCesta(JsonObject json) {
@@ -340,6 +388,9 @@ public class API {
 		return a;
 	}
 
+	/** Este metodo sirve para obtener todos los usuarios del sistema
+	* @return devuelve un json crudo con todos los usuarios 
+	 */
 	@GET
 	@Path("getUsuarios")
 	public List<Usuario> getUsuarios() {
@@ -348,7 +399,11 @@ public class API {
 		LOGGER.info("se ha completado getUsuarios");
 		return db.getUsuarios();
 	}
-	
+
+	/** Este metodo sirve para obtener un usuario del sistema
+	 * @param 	json Recibe un json con el nombre y contraseña
+	 * @return devuelve un json crudo con el usuario
+	 */
 	@GET
 	@Path("getUsuario")
 	public Usuario getUsuario(JsonObject json) {
@@ -358,71 +413,17 @@ public class API {
 		LOGGER.info("se ha completado getUsuario");
 		return u;
 	}
-	/*
-	@GET
-	@Path("getOpiniones")
-	public List<Opinion> getOpiniones() {
-		System.out.println("Mandando todos los cestas");
-		DAO db = new DAO();
-		return db.getOpiniones();
-	}
 
-	@POST
-	@Path("get_Opinion")//por ID
-	public Opinion getOpinion(JsonObject json) {
-		System.out.println("Mandando la cesta");
-		long l = Long.parseLong(get_from_json(json, "ID"));
-		Opinion a = new DAO().getOpinion(l);
-		return a;
-	}
-
-	@POST
-	@Path("nuevaOpinion")
-	public Opinion nuevaOpinion(JsonObject json) {
-
-		String txt = get_from_json(json, "txt");
-		int valoracion = Integer.parseInt(get_from_json(json, "valoracion"));
-		long idCliente = Long.parseLong(get_from_json(json, "idCliente"));
-
-		Opinion o = null ;//new DAO().nuevaOpinion(txt, valoracion, idCliente);
-
-		return o;
-	}
-
-	@GET
-	@Path("getVendedores")
-	public List<Vendedor> getVendedores() {
-		System.out.println("Mandando todos los cestas");
-		DAO db = new DAO();
-		return db.getVendedores();
-	}
-
-	@POST
-	@Path("getVendedor")//por ID
-	public Vendedor getVendedor(JsonObject json) {
-		System.out.println("Mandando la cesta");
-		Vendedor a = new DAO().getVendedor(get_from_json(json, "email"));
-		return a;
-	}
-
-	@POST
-	@Path("nuevoVendedor")
-	public String nuevoVendedor(JsonObject json) {
-
-		Vendedor vendedor = new Vendedor(get_from_json(json, "name"), get_from_json(json, "email"), new ArrayList<Articulo>());
-		vendedor.registrar();
-
-		return "{ \"nombre\": \""+vendedor.getNombreVendedor() + "\" }";
-	}
-	*/
+	/** Este metodo sirve para introducir unos datos basicos al sistema
+	 * @return devuelve un json crudo con la cesta
+	 */
 	@GET
 	@Path("meter_datos")
-	public String api_meter_datos() {
+	public void api_meter_datos() {
 		LOGGER.debug("ha entrado en api_meter_datos");
 		DAO db = new DAO();
-		String respuesta = db.meter_datos();
+		db.meter_datos();
 		LOGGER.info("se ha completado api_meter_datos");
-		return respuesta;
 	}
 	
 	/**
