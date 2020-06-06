@@ -3,7 +3,7 @@ blueprint==3.4.2
 certifi==2019.11.28
 chardet==3.0.4
 Click==7.0
-Django==3.0.4
+Django==3.0.7
 Flask==1.1.1
 idna==2.9
 image==1.5.28
